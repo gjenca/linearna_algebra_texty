@@ -1,0 +1,36 @@
+\documentclass[tikz, border=5mm]{standalone}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{positioning, fit, shapes.geometric,calc}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    every node/.style={font=\sffamily},
+    set/.style={draw, ellipse, inner sep=0.2cm, label={[font=\sffamily\bfseries]above:#1}},
+    arrow/.style={-stealth, thick}
+]
+
+% Nodes for Set A
+\node (jozko) {Jožko};
+\node[below=0.5cm of jozko] (misko) {Miško};
+\node[below=0.5cm of misko] (anka) {Anka};
+
+% Nodes for Set B
+\node[right=3cm of jozko] (bageta) {bageta};
+\node[right=3cm of misko] (gulas) {guláš};
+\node[right=3cm of anka] (jablko) {jablko};
+
+% Fit ellipses around the nodes to represent the sets
+\node[set=A, fit=(jozko) (misko) (anka)] {};
+\node[set=B, fit=(bageta) (gulas) (jablko)] {};
+
+% Draw arrows to represent the mapping 'j'
+\draw[arrow] (jozko) -- (bageta);
+\draw[arrow] (misko) -- (gulas);
+\draw[arrow] (anka) -- (gulas);
+
+\end{tikzpicture}
+
+\end{document}

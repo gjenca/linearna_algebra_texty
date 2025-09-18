@@ -1,0 +1,211 @@
+\documentclass{article}
+
+% Preamble
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[slovak]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+
+% Custom environments to match the document structure
+\theoremstyle{definition}
+\newtheorem{definition}{Definícia}
+\newtheorem{example}{Príklad}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Tvrdenie}
+
+% Style for remarks and questions (upright text, italic title)
+\theoremstyle{remark} 
+\newtheorem*{question}{Otázka}
+
+% Set the proof symbol to a square, as in the document
+\renewcommand{\qedsymbol}{$\Box$}
+
+\begin{document}
+
+\section*{Zobrazenia (Funkcie)}
+
+\begin{definition}\label{def:zobrazenie}
+Nech $A$, $B$ sú množiny. Zobrazenie $f$ z $A$ do $B$ je predpis, ktorý každému prvku $A$ priradí nejaký prvok $B$.
+\end{definition}
+
+Zapisujeme $f \colon A \rightarrow B$.
+
+To znamená, že ak chceme špecifikovať nejaké zobrazenie $f$, musíme špecifikovať tri veci:
+\begin{enumerate}
+    \item Z ktorej množiny sa zobrazuje (definičný obor).
+    \item Do ktorej množiny sa zobrazuje (koobor).
+    \item Predpis, ktorý nám určí, pre každý prvok definičného oboru ktorý prvok sa mu má zobraziť.
+\end{enumerate}
+
+\subsection*{Terminológia}
+Zobrazenia sa často nazývajú funkcie. Obe slová znamenajú to isté, obvykle však funkcia zobrazuje do čísel ($\mathbb{N}, \mathbb{R}, \mathbb{C}, \dots$). Ktoré slovo sa použije je otázkou konvencie v danej časti matematiky.
+
+\begin{example}
+$g \colon \mathbb{N} \rightarrow \mathbb{N}$ dané predpisom $g(n) = n^2 + 1$.
+Toto nám hovorí, že $g$ zobrazuje z množiny všetkých prirodzených čísel do množiny všetkých prirodzených čísel.
+
+Predpis je teda v tomto prípade daný vzorcom, ktorý nám umožňuje počítať hodnoty zobrazenia pre konkrétne prvky definičného oboru $g$ (t.j. prirodzené čísla) dosadením a výpočtom.
+\begin{align*}
+    g(2) &= 2^2 + 1 = 5 \\
+    g(7) &= 7^2 + 1 = 50
+\end{align*}
+$g(-1) = ?$ Toto neexistuje, pretože $-1 \notin \mathbb{N}$ a nie je to teda prvok definičného oboru $g$.
+\end{example}
+
+\begin{example}
+Nech $A = \{\text{Jožko, Miško}\}$ a $B = \{\text{bageta, guláš, jablko}\}$.
+Nech $j \colon A \rightarrow B$ je zobrazenie "najobľúbenejšie jedlo".
+V tomto prípade je definičný obor a koobor konečná množina. Zobrazenie môžeme nakresliť:
+\begin{center}
+\includegraphics{mnoziny_zobrazenia2_fig.pdf}
+\end{center}
+\end{example}
+
+Iný spôsob špecifikácie predpisu zobrazenia je napríklad tabuľkou:
+\begin{center}
+\begin{tabular}{c|ccc}
+    $x$ & Jožko & Miško & Anka \\
+    \hline
+    $j(x)$ & bageta & guláš & guláš
+\end{tabular}
+\end{center}
+Tu sa, samozrejme, nesmú prvky v hornom riadku opakovať.
+
+\begin{example}
+Nech $H$ je množina všetkých ľudí (aj z minulosti).
+$\sigma \colon H \rightarrow H$ je zobrazenie dané predpisom $\sigma(x) = \text{otec človeka } x$.
+\end{example}
+
+\begin{example}
+$S$ - množina všetkých občanov SR.
+$\eta \colon S \rightarrow \mathbb{N}$ dané predpisom $\eta(x) = \text{rodné číslo}$.
+\end{example}
+
+\begin{example}
+$B = \{\text{bageta, guláš, jablko}\}$. Nech $k \colon B \rightarrow \mathbb{R}$ je zobrazenie "koľko kalórií".
+Keďže $B$ je konečná, stačí nám napísať:
+$k(\text{guláš}) = 677$, $k(\text{bageta}) = 1148$, $k(\text{jablko}) = 301.4$.
+\end{example}
+
+\subsection*{Formalistická odbočka}
+Voči Definícii \ref{def:zobrazenie} by bolo možné vzniesť (z istého hľadiska oprávnene) námietku o nepresnosti; používa nejasné slová ako
+"priradí", "predpis". Námietku je možné vyriešiť takto:
+
+\begin{definition}[(formálna definícia zobrazenia)]\label{def:zobrazenieFormal}
+Nech $A$, $B$ sú množiny. Zobrazenie $f$ z $A$ do $B$ je množina $F \subseteq A \times B$ taká, že pre každé $a \in A$ existuje práve jedno $b \in B$ také, že $(a,b) \in F$.
+\end{definition}
+
+$(a,b) \in f$ v zmysle Definície \ref{def:zobrazenieFormal} potom znamená $f(a)=b$ v zmysle Definície
+\ref{def:zobrazenie}.
+
+Aj keď je Definícia \ref{def:zobrazenieFormal} presnejšia, v skutočnosti ju bežne nikto nepoužíva, ani nikto bežne
+nerozmýšľa o zobrazeniach ako o množinách usporiadaných dvojíc. Niekedy však takéto presné uvažovanie nutne potrebujeme, a preto je dobré vedieť o existencii tohto pohľadu na pojem zobrazenia.
+\subsection*{Koniec formalistickej odbočky}
+
+\begin{definition}[Obor hodnôt]\label{def:oborHodnot}
+Nech $f \colon A \rightarrow B$ je zobrazenie. Obor hodnôt je množina
+$$ \mathcal{H}(f) = \{f(a) | a \in A\} $$
+\end{definition}
+Čiže máme $b \in \mathcal{H}(f)$ práve vtedy, keď existuje $a \in A$ také, že $f(a)=b$.
+
+Je dôležité si uvedomiť rozdiel medzi oborom hodnôt a kooborom. Ak napíšeme napríklad
+$f \colon \mathbb{R} \rightarrow \mathbb{R}$ dané predpisom $f(x) = x^2 - x + 1$.
+Koobor je $\mathbb{R}$, ale $\mathcal{H}(f) = \langle\frac{3}{4}, \infty\rangle$.
+Určiť obor hodnôt zobrazenia môže byť ťažké; na druhej strane keď sa pred našim duševným zrakom zjaví nejaké zobrazenie, vždy je vybavené kooborom. Trochu mätúce môže byť, že koobor sa často neuvádza explicitne a funkcia sa stotožňuje s predpisom.
+
+\section*{Identické zobrazenie}
+\begin{definition}[1.8]
+Nech $A$ je množina. Identické zobrazenie (na $A$) je zobrazenie $id_A \colon A \rightarrow A$ dané predpisom $id_A(a) = a$, pre každý prvok $a \in A$.
+\end{definition}
+
+\section*{Rovnosť dvoch zobrazení}
+\begin{definition}[1.9]
+Nech $A, B, C, D$ sú množiny, nech $f \colon A \rightarrow B$ a $g \colon C \rightarrow D$. Hovoríme, že $f$ je rovné $g$, ak $A=C$, $B=D$ a pre všetky $x \in A=C$ platí, že $f(x)=g(x)$.
+\end{definition}
+
+\begin{example}
+\begin{enumerate}
+    \item[A)] $f \colon \mathbb{Z} \rightarrow \mathbb{N}$ dané predpisom $f(k) = \sqrt{k^2}$ \\
+    $g \colon \mathbb{Z} \rightarrow \mathbb{N}$ dané predpisom $g(k) = |k|$ \\
+    Platí $f=g$.
+
+    \item[B)] $f \colon \mathbb{N} \rightarrow \mathbb{N}$ dané predpisom $f(k) = \sqrt{k^2}$ \\
+    $g \colon \mathbb{N} \rightarrow \mathbb{N}$ dané predpisom $g(k) = |k|$ \\
+    Platí $f=g$.
+
+    \item[C)] $f \colon \mathbb{Z} \rightarrow \mathbb{Z}$ dané $f(x) = |x|$ \\
+    $g \colon \mathbb{Z} \rightarrow \mathbb{Z}$ dané $g(x) = x$ \\
+    Platí $f \neq g$ (pretože pre $x=-1$ je $f(-1)=1$, ale $g(-1)=-1$).
+
+    \item[D)] $f \colon \mathbb{N} \rightarrow \mathbb{N}$ dané $f(x) = x+1$ \\
+    $g \colon \mathbb{N} \rightarrow \mathbb{Z}$ dané $g(x) = x+1$ \\
+    Platí $f \neq g$ (pretože majú rôzne koobory).
+\end{enumerate}
+\end{example}
+
+\section*{Skladanie zobrazení}
+\begin{definition}
+Nech $A, B, C$ sú množiny. Nech $f \colon A \rightarrow B$, $g \colon B \rightarrow C$. Potom zložené zobrazenie $g \circ f$ je zobrazenie $g \circ f \colon A \rightarrow C$ dané predpisom
+$$ (g \circ f)(x) = g(f(x)) $$
+(Je dôležité, aby platilo, že koobor zobrazenia $f$ je rovný definičnému oboru zobrazenia $g$).
+\end{definition}
+
+\begin{example}
+Zobrazenie "koľko kalórií má najobľúbenejšie jedlo":
+Nech $j \colon A \rightarrow B$ je zobrazenie "najobľúbenejšie jedlo" a $k \colon B \rightarrow \mathbb{R}$ je zobrazenie "koľko kalórií".
+Potom $k \circ j \colon A \rightarrow \mathbb{R}$ je zobrazenie "koľko kalórií má najobľúbenejšie jedlo".
+Napríklad: $(k \circ j)(\text{Miško}) = k(j(\text{Miško})) = k(\text{guláš}) = 677$.
+\end{example}
+
+\begin{example}
+Nech $g \colon \mathbb{N} \rightarrow \mathbb{N}$ je dané $g(x) = x^2+1$ a $h \colon \mathbb{N} \rightarrow \mathbb{N}$ je dané $h(x) = 2x$.
+\begin{itemize}
+    \item $g \circ h \colon \mathbb{N} \rightarrow \mathbb{N}$ \\
+    $(g \circ h)(x) = g(h(x)) = g(2x) = (2x)^2+1 = 4x^2+1$
+    \item $h \circ g \colon \mathbb{N} \rightarrow \mathbb{N}$ \\
+    $(h \circ g)(x) = h(g(x)) = h(x^2+1) = 2(x^2+1) = 2x^2+2$
+\end{itemize}
+Vidíme, že $g \circ h \neq h \circ g$, lebo napríklad $(g \circ h)(1) = 5$, ale $(h \circ g)(1) = 4$.
+\end{example}
+
+\subsection*{Cvičenie}
+Čo je zobrazenie $\sigma \circ \sigma \colon H \rightarrow H$, ak $\sigma(x)$ je otec človeka $x$?
+Odpoveď: $\sigma(\sigma(x))$ je otcov otec, t.j. starý otec z otcovej strany.
+
+Identické zobrazenia sa vo vzťahu na skladanie správajú špeciálne.
+
+\begin{tvrdenie}[1.10]
+Nech $A, B$ sú množiny, nech $f \colon A \rightarrow B$ je zobrazenie. Potom platí $f \circ id_A = f$ a $id_B \circ f = f$.
+\end{tvrdenie}
+
+\begin{proof}
+Máme dokázať, že dve zobrazenia sa rovnajú. Čo je rovnosť dvoch zobrazení, o tom hovorí Definícia 1.9.
+
+Pre $f \circ id_A = f$:
+Zobrazenie $id_A$ je typu $A \rightarrow A$, zobrazenie $f$ je typu $A \rightarrow B$.
+Teda $f \circ id_A$ existuje a je typu $A \rightarrow B$. Majú rovnaký definičný obor aj koobor.
+Pre všetky $x \in A$ platí:
+$$ (f \circ id_A)(x) = f(id_A(x)) = f(x) $$
+Teda $f \circ id_A = f$ v zmysle Definície 1.9.
+Dôkaz rovnosti $id_B \circ f = f$ prenechávame čitateľovi ako cvičenie.
+\end{proof}
+
+\begin{tvrdenie}[1.11]
+Nech $A, B, C, D$ sú množiny, nech $f \colon A \rightarrow B$, $g \colon B \rightarrow C$, $h \colon C \rightarrow D$ sú zobrazenia. Potom $h \circ (g \circ f) = (h \circ g) \circ f$. (Asociativita skladania).
+\end{tvrdenie}
+
+\begin{proof}
+Obe zobrazenia, $h \circ (g \circ f)$ aj $(h \circ g) \circ f$, majú definičný obor $A$ a koobor $D$.
+Pre všetky $x \in A$:
+\begin{align*}
+    (h \circ (g \circ f))(x) &= h((g \circ f)(x)) = h(g(f(x))) \\
+    ((h \circ g) \circ f)(x) &= (h \circ g)(f(x)) = h(g(f(x)))
+\end{align*}
+Keďže obe zobrazenia majú rovnaký definičný obor, koobor a vo všetkých bodoch nadobúdajú rovnakú hodnotu, rovnajú sa.
+\end{proof}
+
+\end{document}

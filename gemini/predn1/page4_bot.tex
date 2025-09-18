@@ -1,0 +1,60 @@
+\documentclass[tikz]{standalone}
+
+% Required packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % For smooth fonts
+\usepackage{amsmath} % For math symbols like \forall and \in
+\usepackage{tikz}
+
+% TikZ libraries for advanced features
+\usetikzlibrary{
+    positioning,      % For placing nodes relative to each other (e.g., right=of)
+    decorations.pathreplacing, % For drawing curly braces
+    arrows.meta,      % For modern arrow tips (e.g., Stealth)
+    calc              % For calculating coordinates (e.g., midpoints)
+}
+
+\begin{document}
+\begin{tikzpicture}[
+    % Global style settings
+    node distance=0.8em and 1.5em, % Default vertical and horizontal spacing for nodes
+    % Style for the red elements
+    red_style/.style={
+        color=red, 
+        thick
+    },
+    % Style for arrowheads
+    arrow_tip/.style={
+        -{Stealth[length=2.5mm, width=2mm]}
+    },
+    % Style for the text labels (smaller font, boxed)
+    label_style/.style={
+        draw, % This adds the box around the node
+        font=\sffamily\small, % Use a small, sans-serif font
+        inner sep=2pt, % Add a little padding inside the box
+        align=left % Align text to the left
+    }
+]
+    % 1. Define the nodes for the main formula to easily reference each part.
+    \node[inner sep=1pt] (quantifier_in_B) {$(\forall x \in B)$};
+    \node[inner sep=1pt, right=1em of quantifier_in_B] (x_in_A) {$x \in A$};
+
+    % 2. Place the annotation text nodes, with variables in math mode.
+    \node[red_style, label_style, below=4em of quantifier_in_B, anchor=north east] (explanation_text_part1) {Pre všetky $x$ z množiny $B$ platí,};
+    \node[red_style, label_style, right=1em of explanation_text_part1, anchor=north west] (explanation_text_part2) {že $x$ patrí do $A$.};
+
+    % 3. Draw the decorative curly braces with a small gap between them.
+    \draw[red_style, decorate, decoration={brace, amplitude=5pt, mirror, raise=2pt}]
+        ([xshift=2pt]quantifier_in_B.south west) -- ([xshift=-2pt]quantifier_in_B.south east);
+    \draw[red_style, decorate, decoration={brace, amplitude=5pt, mirror, raise=2pt}]
+        ([xshift=2pt]x_in_A.south west) -- ([xshift=-2pt]x_in_A.south east);
+
+    % 4. Draw the arrows with double bends and vertical angles.
+    % 'out=-90' means the arrow leaves vertically downwards.
+    % 'in=90' means the arrow arrives vertically upwards.
+    \draw[red_style, arrow_tip] ($(quantifier_in_B.south)-(0,8pt)$) to[out=-90, in=90] (explanation_text_part1.north);
+    \draw[red_style, arrow_tip] ($(x_in_A.south)-(0,8pt)$) to[out=-90, in=90] (explanation_text_part2.north);
+
+\end{tikzpicture}
+\end{document}

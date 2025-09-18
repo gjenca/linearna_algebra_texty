@@ -1,0 +1,43 @@
+\documentclass[11pt,a4paper]{article}
+
+% PACKAGES
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovak]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm} % For theorem environments
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage[all,pdf,2cell]{xy}
+\usepackage{soul}
+
+% THEOREM ENVIRONMENTS SETUP
+% Style for definitions and examples (upright text, bold title)
+\theoremstyle{definition} 
+\newtheorem{definition}{Definícia}[section]
+\newtheorem{example}[definition]{Príklad}
+
+% Style for theorems (italicized text, bold title)
+\theoremstyle{plain} 
+\newtheorem{tvrdenie}[definition]{Tvrdenie}
+\newtheorem{veta}[definition]{Veta}
+
+% Style for remarks and questions (upright text, italic title)
+\theoremstyle{remark} 
+\newtheorem*{question}{Otázka}
+
+% Macros
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\Set}{\mathbf{Set}}
+
+% DOCUMENT START
+\begin{document}
+\title{Lineárna algebra 1\\(texty k prednáškam)}
+\author{Gejza Jenča}
+\date{Verzia 1}
+\maketitle
+\input{pred1.tex}
+\input{pred2.tex}
+\input{pred3.tex}
+\end{document}

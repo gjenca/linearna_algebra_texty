@@ -1,0 +1,156 @@
+\section{Injekcie, surjekcie a bijekcie}
+
+V tejto časti si zavedieme dôležité vlastnosti zobrazení. Skladanie zobrazení
+môžeme chápať ako nejaký typ binárnej operácie, pre ktoré sa identické zobrazenie chová neutrálne, viď
+vety \ref{veta:asocSkladania} a \ref{veta:neutralitaId}.
+Z dostatočného odstupu a zanedbávajúc isté rozdiely môžeme $g\circ f$ vidieť ako analógiu súčinu reálnych čísel a $\id$ ako analógiu
+\footnote{Táto analógia sa dá spresniť, takže z istého abstraktného hľadiska sa dajú súčin a skladanie
+naozaj pochopiť ako dve inštancie jediného abstraktného pojmu.}
+jednotky:
+\[
+\begin{array}{c|c}
+a.b & g\circ f\\
+a.1 =a &  g\circ\id=g \\
+1.b=b & \id\circ f= f
+\end{array}
+\]
+Pre násobenie čísel vieme ku každému číslu $a\neq 0$ nájsť nejaké číslo $a^{-1}$ také, že $a.a^{-1}=a^{-1}.a=1$, voláme ho
+prevrátená hodnota $a$. Prirodzene vzniká otázka, či a kedy vieme nájsť k nejakému zobrazeniu $f$ analógiu prevrátenej
+hodnoty čísla, to znamená zobrazenie $g$ z vlastnosťou $g \circ f=\id$ alebo $f\circ g=\id$. Skúmanie tohto
+problému vedie k pojmom injekcie, surjekcie a bijekcie. Situácia je však trochu komplikovanejšia ako v prípade čísel,
+pretože zobrazenia sú trochu zložitejšie veci ako čísla. 
+
+\begin{definition}[injekcia]\label{def:injekcia}
+Nech $A,B$ sú množiny. Zobrazeniu $f\colon A\to B$ hovoríme,
+\emph{injekcia/injektívne} ak pre každé dva prvky $a_1,a_2\in A$ také, že $a_1\neq a_2$ platí, že $f(a_1)\neq f(a_2)$.
+\end{definition}
+
+V jazyku formálnej logiky
+\begin{equation}\label{eq:injekcia}
+(\forall a_1,a_2\in A)\quad a_1\neq a_2\implies f(a_1)\neq f(a_2)
+\end{equation}
+\begin{example}
+Zobrazenie $j\colon A\to B$ v príklade \ref{ex:jedlo} nie je injektívne. Platí totiž
+\[
+\text{Miško}\neq\text{Janka}\qquad j(\text{Miško})=j(\text{Janka})
+\]
+Dokázali sme teda negáciu formuly \eqref{eq:injekcia} (pre $f=j$, samozrejme), to znamená
+\[
+(\exists a_1,a_2\in A)\quad a_1\neq a_2\land j(a_1)=j(a_2)
+\]
+\end{example}
+Všimnite si, že neinjektívnosť $j$ je vidno z obrázku.
+
+Logicky ekvivalentná forma \eqref{eq:injekcia} je
+\begin{equation}\label{eq:injekcia2}
+(\forall a_1,a_2\in A)\quad f(a_1)=f(a_2)\implies a_1=a_2
+\end{equation}
+ktorá vznikne transpozíciou implikácie:
+\[
+a_1\neq a_2\implies f(a_1)\neq f(a_2)
+\quad
+\text{je to isté ako}
+\quad
+f(a_1)=f(a_2)\implies a_1=a_2
+\]
+\begin{definition}[surjekcia]\label{def:surjekcia}
+Nech $A,B$ sú množiny. Zobrazeniu $f\colon A\to B$ hovoríme,
+\emph{surjekcia/surjektívne} ak pre každý prvok $b\in B$ existuje nejaký prvok $a\in A$ taký, že
+$f(a)=b$.
+\end{definition}
+\begin{example}
+Zobrazenie $j\colon A\to B$ z príkladu \ref{ex:jedlo} nie je surjektívne. Na prvok jablko kooboru $B$
+zobrazenia $j$ sa žiadny prvok definičného oboru $A$ zobrazenia $j$ nezobrazí. Inými slovami, pre všetky prvky $a\in A$
+platí, že $j(a)\neq\text{jablko}$.
+\end{example}
+V tejto chvíli je užitočné uvedomiť si, že zobrazenie $f\colon A\to B$ je surjektívne práve vtedy, keď 
+koobor $B$ je rovný oboru hodnôt $f$, $B=\mathcal H(f)$. To znamená, že z každého zobrazenia vieme spraviť surjektívne
+zobrazenie, ak zúžime jeho koobor: tieto dve zobrazenia
+\begin{align*}
+f_1\colon\mathbb R\to \mathbb R&\qquad f_1(x)=x^2+1\\
+f_2\colon\mathbb R\to \mathbb R&\qquad \langle 1,\infty)
+\end{align*}
+majú rovnaký definičný obor a predpis (ale nie koobor, teda sú to rôzne funkcie). Pritom $f_1$ nie je surjektívne, ale
+$f_2$ je surjekcia. 
+\begin{definition}[bijekcia]\label{def:bijekcia}
+Nech $A,B$ sú množiny. Zobrazeniu $f\colon A\to B$ hovoríme,
+\emph{bijekcia/bijektívne} ak pre každý prvok $b\in B$ existuje nejaký prvok $a\in A$ taký, že
+$f(a)=b$.
+\end{definition}
+\subsection{Ľavé a pravé inverzné zobrazenie}
+
+Definície injekcie a surjekcie vyzerajú veľmi odlišne. V tejto časti textu sa naučíme, že sú prepojené istou skrytou
+symetriou, ktorá sa týka toho, ako sa správajú vzhľadom na skladanie (operácia $\circ$) a identické zobrazenia.
+
+\begin{definition}[zľava/sprava inverzné zobrazenie]\label{def:zlavaSpravaInverzne}
+Nech $A,B$ sú množiny, nech $f\colon A\to B$. Hovoríme, že zobrazenie $g\colon B\to A$ je
+\begin{itemize}
+\item \emph{zľava inverzné k zobrazeniu $f$} ak platí, že $g\circ f=\id_A$
+\item \emph{sprava inverzné k zobrazeniu $f$} ak platí, že $f\circ g=\id_B$
+\end{itemize}
+\end{definition}
+
+\begin{veta}\label{veta:sekcie}
+Nech $A,B$ sú množiny, nech $f\colon A\to B$. Potom
+\begin{enumerate}[(a)]
+\item $f$ je injekcia práve vtedy, ak existuje aspoň jedno zľava inverzné zobrazenie k $f$.
+\item $f$ je surjekcia práve vtedy, ak existuje aspoň jedno sprava inverzné zobrazenie k $f$.
+\end{enumerate}
+\end{veta}
+\begin{proof}~
+\begin{enumerate}[(a)]
+\item Nech $f$ je injekcia. Chceme nájsť nejaké zobrazenie $g\colon B\to A$, pričom $g$ má byť také,
+že $g\circ f=\id_A$, teda pre všetky $a\in A$ má platiť
+$(g\circ f)(a)=\id_A(a)$, to znamená $g(f(a))=a$. Keďže $f$ je injekcia, pre $b\in\mathcal H(f)$ existuje práve jedno
+$a\in A$ také, že $f(a)=b$. Naozaj, ak by sme mali nejaké $a_1,a_2\in A$ také, že $a_1\neq a_2$ a zároveň
+$f(a_1)=f(a_2)$, $f$ by nebola injekcia.
+Pre $b\in B$, zvoľme $g(b)$ tak, že pre $b\in\mathcal H(f)$ máme $g(b)=a$, kde $f(a)=b$ a pre $b\in B\setminus\mathcal
+H(f)$ zvolíme $g(b)$ ľubovoľne. Máme potom $g(f(a))=a$, pre každé $a\in A$.
+
+Predpokladajme teraz, že existuje $g\colon B\to A$ také, že $g\circ f=\id_A$. Použijeme
+charakterizáciu injekcie \eqref{eq:injekcia2}. Nech $a_1,a_2\in A$ sú také, že $f(a_1)=f(a_2)$. Z tohto
+predpokladu máme dokázať, že $a_1=a_2$.
+Podľa predpokladu zrejme $g(f(a_1))=g(f(a_2))$, čo znamená 
+\begin{equation}\label{eq:veta:sekcie:1}
+(g\circ f)(a_1)=(g\circ f)(a_2)\tag{*}
+\end{equation}
+Ale my sme predpokladali, že
+$g\circ f=\id_A$, teda \eqref{eq:veta:sekcie:1} znamená, že $\id_A(a_1)=\id_A(a_2)$ a z toho máme ihneď
+$a_1=a_2$
+\item Dôkaz vynechávame.
+\end{enumerate}
+\end{proof}
+
+\subsection{Inverzné zobrazenie}
+
+\begin{definition}[inverzné zobrazenie]\label{def:inverzneZobrazenie}
+Nech $A,B$ sú množiny, nech $f\colon A\to B$. Hovoríme, že zobrazenie $g\colon B\to A$ je
+\emph{inverzné} k zobrazeniu $f$ ak je zľava inverzné k $f$ a zároveň sprava inverzné k $f$.
+\end{definition}
+
+\begin{veta}\label{veta:bijekciaInverzne}
+Nech $A,B$ sú množiny. Potom $f\colon A\to B$ má inverzné zobrazenie práve vtedy, keď $f$ je bijekcia.
+\end{veta}
+\begin{proof}
+Z definície bijekcie, inverzného zobrazenia a vety \ref{veta:sekcie} ihneď vidno, že ak má nejaké zobrazenie 
+$f$ inverzné zobrazenie, potom $f$ je bijekcia.
+
+Naopak, nech $f$ je bijekcia. Podľa vety \ref{veta:sekcie} má potom nejaké ľavé inverzné zobrazenie 
+$g_L\colon B\to A$ a aj nejaké pravé inverzné zobrazenie $g_R\colon B\to A$. 
+Ak dokážeme z týchto predpokladov že $g_L=g_R$, potom to je už inverzné zobrazenie k $f$.
+Použijeme elegantný trik: vezmeme výraz $g_L\circ f\circ g_R$ a zjednodušíme ho dvoma
+rôznymi spôsobmi:
+\begin{align*}
+g_L\circ f\circ g_R&=(g_L\circ f)\circ g_R=\id_A\circ g_R=g_R\\
+g_L\circ f\circ g_R&=g_L\circ (f\circ g_R)=g_L\circ\id_B=g_L.
+\end{align*}
+Ale z toho zrejme vyplýva, že $g_L=g_R$.
+\end{proof}
+Všimnime si, že v dôkaze predošlej vety sme ukázali aj čosi navyše: pokiaľ $f$ je bijekcia, nielenže má
+nejaké inverzné zobrazenie, ale toto inverzné zobrazenie je dokonca presne jedno. Z toho vyplýva, že má zmysel
+zaviesť operáciu ,,invertuj zobrazenie''
+\[
+f\mapsto f^{-1}
+\]
+ktorá bude definovaná iba ak $f$ je bijekcia. 
+

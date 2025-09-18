@@ -19,3 +19,6 @@
 *.png
 *.synctex.gz
 *.fdb_latexmk
+!main.pdf
+!figures/*.pdf
+
