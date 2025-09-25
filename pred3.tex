@@ -79,9 +79,25 @@ $f(a)=b$.
 \end{definition}
 \subsection{Ľavé a pravé inverzné zobrazenie}
 
-Definície injekcie a surjekcie vyzerajú veľmi odlišne. V tejto časti textu sa naučíme, že sú prepojené istou skrytou
-symetriou, ktorá sa týka toho, ako sa správajú vzhľadom na skladanie (operácia $\circ$) a identické zobrazenia.
+Definície injekcie a surjekcie vyzerajú veľmi odlišne. V tejto časti textu sa
+naučíme, že sú prepojené istou skrytou symetriou, ktorá sa týka toho, ako sa správajú
+vzhľadom na skladanie (operácia $\circ$) a identické zobrazenia.
 
+Pre každé dve množiny $A$, $B$ máme tieto dve množiny:
+\begin{itemize}
+\item Zobrazenia z $A$ do $B$, teda množina $\Set(A,B)$.
+\item Zobrazenia z $B$ do $A$, teda množina $\Set(B,A)$.
+\end{itemize}
+
+Ak $f\in\Set(A,B)$ (alebo $f\colon A\to B$, to je to isté), a $g\in\Set(B,A)$,
+vieme z nich vytvojiť dve zložené zobrazenia, $g\circ f$ a $f\circ g$. Pritom
+$f\circ g\colon B\to B$ a $g\circ f\colon A\to A$, alebo inak,
+\[
+f\circ g\in\Set(B,B)\quad g\circ f\in\Set(A,A),
+\]
+zobrazujú teda $B$ (respektíve $A$) do seba samej.
+V množine $\Set(B,B)$ máme jeden význačný prvok, a to identické zobrazenie
+$\id_B$; podobne samozrejme $\id_A\in\Set(A,A)$. Z týchto úvah nám akosi samovoľne vzniknú nasledujúce dva pojmy.
 \begin{definition}[zľava/sprava inverzné zobrazenie]\label{def:zlavaSpravaInverzne}
 Nech $A,B$ sú množiny, nech $f\colon A\to B$. Hovoríme, že zobrazenie $g\colon B\to A$ je
 \begin{itemize}
@@ -89,6 +105,9 @@ Nech $A,B$ sú množiny, nech $f\colon A\to B$. Hovoríme, že zobrazenie $g\col
 \item \emph{sprava inverzné k zobrazeniu $f$} ak platí, že $f\circ g=\id_B$
 \end{itemize}
 \end{definition}
+
+Všimnime si, že $f$ je zľava inverzné ku $g$ práve vtedy, keď $g$ je sprava inverzné
+ku $f$ (rozmyslite si to).
 
 \begin{veta}\label{veta:sekcie}
 Nech $A,B$ sú množiny, nech $f\colon A\to B$. Potom
@@ -147,10 +166,11 @@ g_L\circ f\circ g_R&=g_L\circ (f\circ g_R)=g_L\circ\id_B=g_L.
 Ale z toho zrejme vyplýva, že $g_L=g_R$.
 \end{proof}
 Všimnime si, že v dôkaze predošlej vety sme ukázali aj čosi navyše: pokiaľ $f$ je bijekcia, nielenže má
-nejaké inverzné zobrazenie, ale toto inverzné zobrazenie je dokonca presne jedno. Z toho vyplýva, že má zmysel
+nejaké inverzné zobrazenie, ale toto inverzné zobrazenie je dokonca presne jedno. Z
+toho vyplýva, že môžeme
 zaviesť operáciu ,,invertuj zobrazenie''
 \[
 f\mapsto f^{-1}
 \]
-ktorá bude definovaná iba ak $f$ je bijekcia. 
+ktorá bude definovaná iba ak $f$ je bijekcia. Zobrazenie $f^{-1}$ je (vždy jediné) inverzné zobrazenie k zobrazeniu $f$. 
 
