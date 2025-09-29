@@ -1,0 +1,52 @@
+\documentclass[varwidth=true]{standalone}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+
+\begin{document}
+
+\[
+% --- First Matrix (before operation) ---
+\begin{pmatrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+% Mark the last element of row k (the source row)
+a_{k1} & \dots & \tikzmarknode{rowk}{a_{kn}} \\
+\vdots & \ddots & \vdots \\
+% Mark the last element of row l (the target row)
+a_{l1} & \dots & \tikzmarknode{rowl}{a_{ln}} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \dots & a_{mn}
+\end{pmatrix}
+% --- TikZ Arrow for the operation ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw an arrow from row k to row l with an unboxed alpha
+    \draw[->, thick, shorten >=2pt]
+        % Start a bit right of row k
+        ([xshift=1.5em]rowk.east)
+        % Draw a line to the right, and mark the corner
+        -- ++(1em,0) coordinate (corner)
+        % Draw a vertical line down to the level of row l
+        -- (corner |- rowl.east)
+        % Place the alpha to the right of the vertical line
+        node [midway, right] {$\alpha$}
+        % Draw the final segment pointing to row l
+        -- ([xshift=1.5em]rowl.east);
+\end{tikzpicture}
+% --- Equivalence Symbol with adjusted spacing ---
+\hspace{3em} \sim \quad
+% --- Second Matrix (after operation) ---
+\begin{pmatrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+% Row k remains unchanged
+a_{k1} & \dots & a_{kn} \\
+\vdots & \ddots & \vdots \\
+% Row l is updated: R_l <- R_l + alpha * R_k
+a_{l1} + \alpha a_{k1} & \dots & a_{ln} + \alpha a_{kn} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \dots & a_{mn}
+\end{pmatrix}
+\]
+
+\end{document}

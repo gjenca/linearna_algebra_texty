@@ -1,0 +1,44 @@
+\documentclass[varwidth=true]{standalone}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+
+\begin{document}
+
+\[
+% --- First Matrix (before swap) ---
+\begin{pmatrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+% Mark the last element of row k
+a_{k1} & \dots & \tikzmarknode{rowk}{a_{kn}} \\
+\vdots & \ddots & \vdots \\
+% Mark the last element of row l
+a_{l1} & \dots & \tikzmarknode{rowl}{a_{ln}} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \dots & a_{mn}
+\end{pmatrix}
+% --- TikZ Arrow (placed after the first matrix) ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw the C-shaped swap arrow
+    \draw[<->, thick, shorten <=2pt, shorten >=2pt]
+        ([xshift=1em]rowk.east) -- ++(1em,0)
+        -- ([xshift=2em]rowl.east) -- ([xshift=1em]rowl.east);
+\end{tikzpicture}
+% --- Equivalence Symbol with adjusted spacing ---
+\hspace{2em} \sim \quad % Increased space before ~ to account for the arrow
+% --- Second Matrix (after swap) ---
+\begin{pmatrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+% Row l is now in the k-th position
+a_{l1} & \dots & a_{ln} \\
+\vdots & \ddots & \vdots \\
+% Row k is now in the l-th position
+a_{k1} & \dots & a_{kn} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \dots & a_{mn}
+\end{pmatrix}
+\]
+
+\end{document}
