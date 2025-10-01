@@ -112,7 +112,31 @@ Predošlý príklad je poučný v tom, že ukazuje ako jazyk postavený na pojmo
 popisovať matematické pojmy. Tento jazyk sa začal účinne používať na popis existujúcej a objavovanie novej matematiky v
 20. storočí a dnes si už matematiku bez množín ani nevieme predstaviť.
 
-%\subsection*{Formalistická odbočka}
+Jeden zo spôsobov zapisovania zobrazení je ,,po prípadoch'', ako v nasledujúcich
+dvoch príkladoch.
+\begin{example}
+\emph{Absolútna hodnota} je zobrazenie $\mathbb R\to\mathbb R$ dané predpisom
+\[
+|x|=
+\begin{cases}
+x& x\geq 0\\
+-x& x<0
+\end{cases}
+\]
+\end{example}
+\begin{example}
+\emph{Znamienková funkcia} alebo \emph{signum} je zobrazenie 
+$\mathrm{sgn}\colon\R\to\R$ dané predpisom
+\[
+\mathrm{sgn}(x)=
+\begin{cases}
+1& x>0\\
+0& x=0\\
+-1& x<0
+\end{cases}
+\]
+\end{example}
+
 Voči Definícii \ref{def:zobrazenie} by bolo možné vzniesť (z istého hľadiska oprávnene) námietku o nepresnosti; používa nejasné slová ako
 "priradí", "predpis".
 Námietku je možné vyriešiť takto:
@@ -165,7 +189,8 @@ na iných predmetoch, budeme aplikovať definíciu \ref{def:rovnostZobrazeni} ve
 presne.
 Ilustruje to nasledujúci príklad.
 
-\begin{example}~\par
+\begin{example}\label{ex:rovnostZobrazeni}
+~\par
 \begin{enumerate}
     \item[A)] $f \colon \mathbb{Z} \rightarrow \mathbb{N}$ dané predpisom $f(k) = \sqrt{k^2}$ \\
     $g \colon \mathbb{Z} \rightarrow \mathbb{N}$ dané predpisom $g(k) = |k|$ \\
@@ -179,8 +204,21 @@ Ilustruje to nasledujúci príklad.
     \item[D)] $f \colon \mathbb{N} \rightarrow \mathbb{N}$ dané $f(x) = x+1$ \\
     $g \colon \mathbb{N} \rightarrow \mathbb{Z}$ dané $g(x) = x+1$ \\
     Platí $f \neq g$ (pretože majú rôzne koobory).
+    \item[E)] $f \colon \mathbb{Z} \rightarrow \mathbb{Z}$ dané $f(x) = x+1$ \\
+    $g \colon \mathbb{N} \rightarrow \mathbb{Z}$ dané $g(x) = x+1$ \\
+    Platí $f \neq g$ (pretože majú rôzne definičné obory).
 \end{enumerate}
 \end{example}
+
+Uvažujme teraz nejaké zobrazenie $f\colon A\to B$ a množinu podmnožinu jeho 
+definičného oboru $X\subseteq A$.
+\emph{Zúženie $f$ na $X$} je zobrazenie $\restr{f}{X}\colon X\to B$ dané
+predpisom
+\[
+(\restr{f}{X})(x)=f(x)
+\]
+Napríklad v E) Príkladu \ref{ex:rovnostZobrazeni} máme $f\neq g$, ale pritom
+$g=\restr{f}{\Nat}$.
 
 \subsection{Skladanie zobrazení}
 

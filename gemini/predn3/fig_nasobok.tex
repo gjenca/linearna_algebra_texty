@@ -1,0 +1,43 @@
+\documentclass[varwidth=true]{standalone}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+
+\begin{document}
+
+\[
+% --- First Matrix (before operation) ---
+\begin{pmatrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+% Mark the last element of row k (the row being modified)
+a_{k1} & \dots & \tikzmarknode{rowk}{a_{kn}} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \dots & a_{mn}
+\end{pmatrix}
+% --- TikZ Arrow for the operation ---
+\begin{tikzpicture}[remember picture, overlay]
+    % 1. Define the start and end coordinates for the arrow.
+    \coordinate (arrow_start) at ([xshift=3.5em]rowk.east);
+    \coordinate (arrow_end)   at ([xshift=1.5em]rowk.east);
+
+    % 2. Draw the arrow between these points.
+    \draw[->, thick, shorten >=2pt] (arrow_start) -- (arrow_end);
+
+    % 3. Place the beta node slightly to the right of the arrow's start.
+    \node[right=2pt] at (arrow_start) {$\beta$};
+\end{tikzpicture}
+% --- Equivalence Symbol with adjusted spacing ---
+\hspace{4em} \sim \quad
+% --- Second Matrix (after operation) ---
+\begin{pmatrix}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+% Row k is updated: R_k <- beta * R_k
+\beta a_{k1} & \dots & \beta a_{kn} \\
+\vdots & \ddots & \vdots \\
+a_{m1} & \dots & a_{mn}
+\end{pmatrix}
+\]
+
+\end{document}
