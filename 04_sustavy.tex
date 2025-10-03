@@ -301,7 +301,7 @@ Elementárne riadkové operácie sú pre nás v tejto chvíli dôležité kvôli
 vete.
 \begin{veta}\label{veta:sustavyMatice}
 Dve sústavy $m$ lineárnych rovníc o $n$ neznámych majú rovnakú množinu riešení práve
-vtedy keď, sú ich rozšírené matice riadkovo ekvivalentné.
+vtedy keď sú ich rozšírené matice riadkovo ekvivalentné.
 \end{veta}
 
 Preto pri riešení sústavy lineárnych rovníc môžeme použiť nasledujúcu stratégiu:
@@ -311,3 +311,53 @@ Preto pri riešení sústavy lineárnych rovníc môžeme použiť nasledujúcu 
 \item Nájdeme riešenie tej sústavy, ktorá zodpovedá tomuto jednoduchšiemu tvaru.
 \end{enumerate}
 Veta \ref{veta:sustavyMatice} nám hovorí, že tento postup je korektný.
+
+Otázka je, čo budeme považovať za jednoduchší tvar; bude to takzvaný
+\emph{stupňovitý tvar}, ktorý je naznačený na nasledujúcom obrázku.
+\[
+\left(
+\begin{array}{ccccccccccc}
+    0 & \cdots & 0 & \bullet &?& \cdots & \cdots & \cdots & \cdots & \cdots & ? \\
+    0 & \cdots & 0 & 0 & 0 & \bullet &?& \cdots & \cdots & \cdots & ? \\
+    \vdots & \ddots& \vdots & \vdots &\vdots&\vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+    0 & \cdots & 0 & 0 & 0 & 0 & 0& \cdots & 0 & \bullet & ? \\
+    0 & \cdots & 0 & 0 & 0 & 0 &0 & \cdots & 0 & 0 & 0
+\end{array}
+\right)
+\]
+V tomto obrázku $\bullet$ znamená nenulový prvok (rôzny od 0), a prvok $?$ môže byť
+ľubovoľný.
+
+\begin{definition}[vedúci prvok riadku]\label{def:veduciPrvok}
+Ak A je matica typu $m \times n$, potom vedúci prvok i-teho riadku matice je
+najľavejší nenulový prvok toho riadku: $a_{ij} \ne 0$ a zároveň $a_{il} = 0$ pre
+všetky $1 \le l < j$.
+\end{definition}
+
+\begin{definition}
+Hovoríme, že matica A typu $m \times n$ je v stupňovitom tvare, ak
+\begin{enumerate}[(a)]
+    \item Ak $r_i(A) \ne (0, \dots, 0)$ a zároveň $r_k(A) = (0, \dots, 0)$, potom $i < k$. Každý nenulový riadok je nad každým nulovým riadkom.
+    \item Ak $a_{ij}$ je vedúci prvok i-teho riadku a $a_{kl}$ je vedúci prvok k-teho
+    riadku a $i<k$ potom aj $j<l$. Vedúci prvok vyššieho riadku leží viac vľavo ako
+    vedúci prvok nižšieho riadku.
+\end{enumerate}
+\end{definition}
+\begin{example}
+\[
+\begin{array}{rl}
+\begin{pmatrix} 1 & 7 & 0 & -1 & 2 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 1 & -1 & 0
+\end{pmatrix} & 
+\quad \text{nie je v stupňovitom tvare (prečo?)} \\~\\
+\begin{pmatrix} 0 & 1 & 2 & 3 & 4 \\ 0 & 0 & -1 & 0 & 1 
+\end{pmatrix} &
+\quad\text{je v stupňovitom tvare}\\~\\
+\begin{pmatrix} 0 & 0 & 1 & 3 & 7 \\ 0 & 0 & 1 & 0 & 1 \\ 0 & 0 & 0 & 1 & 0
+\end{pmatrix} &
+\quad \text{nie je v stupňovitom tvare (prečo?)} \\~\\
+\begin{pmatrix} 1 & 0 & 3 & 7 & 0 \\ 0 & 0 & 1 & 7 & 4 \\ 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 
+\end{pmatrix} &
+\quad\text{je v stupňovitom tvare}
+\end{array}
+\]
+\end{example}
