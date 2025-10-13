@@ -34,8 +34,6 @@ Zostaneme pri výklade pojmov v rovine; zovšeobecnenie do priestoru je priamoč
 \noindent \textbf{Typografické pravidlo:}
 Vektory budeme písať so šípkou: $\vec{x}, \vec{y}, \vec{u}$.
 
-\hrulefill
-
 \subsection{Prechody medzi definíciami}
 Vysvetlíme prechody medzi pohľadmi na vektor:
 \begin{center}
@@ -133,8 +131,6 @@ To, že sa body v rovine dajú jednoducho (a užitočne) vyjadrovať ako dvojice
 Zavedme teraz terminológiu týkajúcu sa $\R^n$, ktorú budeme používať:
 Pre $\vec{x}=(x_1, \dots, x_n) \in \R^n$, $x_i$ je $i$-ta zložka vektora $\vec{x}$.
 
-\hrulefill
-
 \subsection{Operácie s vektormi}
 
 \subsubsection{Násobenie vektora skalárom}
@@ -215,8 +211,6 @@ Pre všetky vektory $\vec{x} \in \R^n$ a $a,b \in \R$ platí:
     \item Pre všetky $\vec{x} \in \R^n$ platí $0\vec{x} = \vec{0}$, $1\vec{x} = \vec{x}$.
 \end{itemize}
 
-\hrulefill
-
 \subsubsection{Sčítanie vektorov}
 Geometricky sa operácia sčítania vektorov zavádza rovnobežníkovým pravidlom:
 \begin{center}
@@ -263,14 +257,16 @@ Pre všetky vektory $\vec{x}, \vec{y}, \vec{z} \in \R^n$ platia rovnosti:
 \begin{itemize}
     \item $(\vec{x}+\vec{y})+\vec{z} = \vec{x}+(\vec{y}+\vec{z})$ (asociativita)
     \item $\vec{x}+\vec{y} = \vec{y}+\vec{x}$ (komutativita)
-    \item $\vec{x}+\vec{0} = \vec{x}$
-    \item $\vec{x}+(-1)\vec{x} = \vec{0}$
+    \item $\vec{x}+\vec{0} = \vec{x}$ (neutralita $\vec 0$ vzhľadom na sčítanie)
 \end{itemize}
+Navyše pre každý vektor $\vec{x}$ existuje istý vektor $-\vec{x}$ taký, že
+\[
+\vec{x}+(-\vec{x})=(-\vec{x}+\vec{x}) = \vec{0}
+\]
 Dôkaz sa robí priamočiaro, napr. komutativita vektorov:
 $$ \vec{x}+\vec{y} = (x_1+y_1, \dots, x_n+y_n) = (y_1+x_1, \dots, y_n+x_n) = \vec{y}+\vec{x} $$
-pričom sme využili komutativitu sčítania reálnych čísel. Podobne pre ostatné rovnosti.
-
-\hrulefill
+pričom sme využili komutativitu sčítania reálnych čísel. Podobne pre ostatné
+rovnosti, vektor $-\vec{x}$ je rovný $(-1),\vec{x}$.
 
 Násobenie skalárom a sčítanie vektorov sú navzájom prepojené pomocou distributivity.
 \begin{itemize}
@@ -284,14 +280,10 @@ Násobenie skalárom má prednosť pred sčítaním vektorov.
 Nič nám nebráni zaviesť odčítanie vektorov $\vec{x}-\vec{y}$ definované ako $\vec{x}-\vec{y} := \vec{x} + (-1)\vec{y}$. Je to teda odvodená operácia zavedená pomocou sčítania a násobenia $(-1)$. Samozrejme, ako ľahko vidieť, odčítanie vektorov prebieha tiež po zložkách:
 $$ \vec{x}-\vec{y} = (x_1-y_1, \dots, x_n-y_n) $$
 
-\hrulefill
-
 \subsection{Vektory z $\R^n$ ako stĺpce}
 Odteraz až do konca letného semestra budeme na tomto predmete stotožňovať n-tice s stĺpcovými vektormi (maticami typu $n \times 1$).
 $$ \vec{x} = (x_1, \dots, x_n) \in \R^n \quad \iff \quad \vec{x} = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} $$
 Budeme plynule prechádzať medzi týmito dvoma spôsobmi zápisu usporiadaných n-tíc.
-
-\hrulefill
 
 \subsection{Lineárne kombinácie}
 \noindent\textbf{Definícia 3.3.} Nech $\vec{v}_1, \dots, \vec{v}_m \in \R^n$ a $a_1, \dots, a_m \in \R$.
