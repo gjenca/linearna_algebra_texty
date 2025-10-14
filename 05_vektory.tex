@@ -1,0 +1,358 @@
+\section{Vektory a operácie s nimi}
+
+Sila lineárnej algebry spočíva v tom, že umožňuje viac pohľadov na rovnaký pojem. Tieto pohľady sú veľmi silne prepojené - niekedy sa medzi nimi ani nerozlišuje a plynule sa prechádza z jedného do druhého.
+
+\noindent Vektor môže byť:
+\begin{itemize}
+    \item[(*)] množina všetkých orientovaných úsečiek v rovine/priestore, ktoré majú rovnakú veľkosť a smer.
+    \item[(**)] Zvoľme bod $O$ v rovine/priestore. Vektor je orientovaná úsečka s počiatkom v tomto bode (môžeme ju stotožniť s jej druhým koncovým bodom; potom vektor = bod).
+    \item[(***)] Usporiadaná n-tica reálnych čísel; $n=2$ pre rovinu a $n=3$ pre priestor.
+    \item[(****)] Prvok vektorového priestoru.
+\end{itemize}
+
+Zostaneme pri výklade pojmov v rovine; zovšeobecnenie do priestoru je priamočiare.
+
+\noindent \textbf{Typografické pravidlo:}
+Vektory budeme písať so šípkou: $\vec{x}, \vec{y}, \vec{u}$.
+
+
+
+\subsection{Prechody medzi definíciami}
+Vysvetlíme prechody medzi pohľadmi na vektor:
+\begin{center}
+    (*) $\xrightarrow{\text{výber počiatku}}$ (**) $\xrightarrow{\text{voľba súradnicových osí}}$ (***)
+\end{center}
+
+Všetci asi vieme, čo je úsečka; orientovaná úsečka je úsečka s vybratým krajným bodom. Keďže úsečka nenulovej dĺžky má dva krajné body, každej úsečke nenulovej dĺžky zodpovedajú dve orientované úsečky:
+
+\begin{center}
+\begin{tikzpicture}
+    \node[circle, fill, inner sep=1.5pt, label=left:A] (A) at (0,0) {};
+    \node[label=right:B] (B) at (2,0) {};
+    \draw[-{Stealth[]}] (A) -- (B) node[midway, below] {$\ora{AB}$};
+
+    \node[label=left:A] (A2) at (4,0) {};
+    \node[circle, fill, inner sep=1.5pt, label=right:B] (B2) at (6,0) {};
+    \draw[-{Stealth[]}] (B2) -- (A2) node[midway, below] {$\ora{BA}$};
+\end{tikzpicture}
+\end{center}
+
+Podľa (*) je (jeden!) vektor množina všetkých ($\infty$) orientovaných úsečiek, ktoré majú rovnakú veľkosť a smer.
+
+\begin{itemize}
+    \item Veľkosť orientovanej úsečky je jej dĺžka.
+    \item Čo je smer, je akosi tiež jasné.
+\end{itemize}
+
+Asi najčistejší spôsob, ako na úrovni geometrie popísať veľkosť a smer je, že dve orientované úsečky $\ora{AB}$ a $\ora{CD}$ majú rovnakú veľkosť a smer práve vtedy, keď platí jedna z týchto možností:
+\begin{itemize}
+    \item $|AB|=|CD|=0$ - nulový vektor.
+    \item $A \neq B, C \neq D$ a $ABDC$ je rovnobežník s uhlopriečkami $AD, BC$.
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+    \node[circle, fill, inner sep=1.5pt, label=left:A] (A) at (0,0) {};
+    \coordinate[label=right:B] (B) at (2,0);
+    \node[circle, fill, inner sep=1.5pt, label=above:C] (C) at (0.5,1) {};
+    \coordinate[label=above:D] (D) at (2.5,1);
+    \draw[thick, -{Stealth[]}] (A) -- (B);
+    \draw[thick, -{Stealth[]}] (C) -- (D);
+    \draw (A) -- (C);
+    \draw (B) -- (D);
+\end{tikzpicture}
+\end{center}
+
+Teda vektor v zmysle (*) si môžeme predstaviť takto:
+\begin{center}
+\begin{tikzpicture}
+    \foreach \x/\y in {0/0, 0.5/1, -0.2/0.8, 1.5/0.2, 1.8/1.2}
+    {
+        \node[circle, fill, inner sep=1.5pt] at (\x,\y) {};
+        \draw[thick, -{Stealth[]}] (\x,\y) -- (\x+1,\y+0.7);
+    }
+    \node at (5.0,0.7) {$\left.\begin{array}{c} \\ \\ \end{array}\right\}$ všetky takéto šípky};
+\end{tikzpicture}
+\end{center}
+
+Definícia (*) je úplne v poriadku, ale manipuluje sa s tým pojmom zle, pretože každý vektor je potom nekonečná množina.
+Poradíme si takto: vyberieme v rovine jeden ľubovoľný bod, nazveme ho "počiatok" a budeme ho označovať $O$. V každej množine orientovaných úsečiek, ktorá je vektorom v zmysle (*), máme práve jednu orientovanú úsečku, ktorá má počiatok v $O$. Túto vyberieme z vektora v zmysle (*) a máme vektor v zmysle (**).
+
+\begin{center}
+\begin{tikzpicture}
+    \node[label=left:O, circle, fill, inner sep=1.5pt] (O) at (0,0) {};
+    \draw[thick, -{Stealth[]}] (O) -- (2,1) node[midway, above] {$\vec{u}$};
+    \draw[thick, -{Stealth[]}] (O) -- (1,2) node[midway, left] {$\vec{v}$};
+    \draw[thick, -{Stealth[]}] (O) -- (1,-2) node[midway, left] {$\vec{x}$};
+\end{tikzpicture}
+\end{center}
+
+Všimnime si, že jeden z vektorov zodpovedá orientovanej úsečke $\ora{OO}$; hovoríme mu nulový vektor a značíme ho $\vec{0}$.
+
+Umiestnime teraz v rovine dve kópie číselnej osi: vodorovnú a zvislú tak, aby sa pretínali v bode $O$.
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[<->] (-4.5,0) -- (4.5,0) node[right] {$x$};
+    \draw[<->] (0,-4.5) -- (0,4.5) node[above] {$y$};
+    \foreach \x in {-4,-3,...,-1,1,2,...,4}
+    {
+        \draw (\x, 0.1) -- (\x, -0.1) node[below] {\tiny \x};
+    }
+    \foreach \y in {-4,-3,...,-1,1,2,...,4}
+    {
+        \draw (0.1, \y) -- (-0.1, \y) node[left] {\tiny \y};
+    }
+    \node[circle, fill, inner sep=1.5pt] at (0,0) {};
+    \draw[thick, -{Stealth[]}] (0,0) -- (3.5,2.5) node[midway, above left] {$\vec{u}$};
+    \draw[dashed] (3.5,2.5) -- (3.5,0);
+    \draw[dashed] (3.5,2.5) -- (0,2.5);
+    \node at (7, 2.5) {$\longrightarrow \left(3\frac{1}{2}, 2\frac{1}{2}\right) \in \R^2$};
+    \node[red] at (5,-2) {$\searrow$ ,,súradnicové osi''};
+\end{tikzpicture}
+\end{center}
+
+Premietnutím koncového bodu orientovanej úsečky reprezentujúcej vektor v pravom uhle na osi určíme usporiadanú dvojicu reálnych čísel a naopak, z usporiadanej dvojice reálnych čísel vieme zrejmým spôsobom dostať vektor ako orientovanú úsečku s počiatkom v bode $O$. Pritom nulový vektor $\vec{0}$ zodpovedá dvojici $(0,0)$.
+
+Voľba osí v rovine nám určuje bijekciu:
+$$ \text{vektory v rovine (body)} \longleftrightarrow \R^2 $$
+
+To, že sa body v rovine dajú jednoducho (a užitočne) vyjadrovať ako dvojice čísel je
+prekvapujúco mladý objav - pochádza z roku 1637 a vymyslel ho René
+Descartes. Zaujímavé je, že v tom čase sa už vyše tisíc rokov používali sférické
+súradnice pre určovanie polohy na Zemi pomocou rovnobežiek a poludníkov.
+
+Zavedme teraz terminológiu týkajúcu sa $\R^n$, ktorú budeme používať:
+Pre $\vec{x}=(x_1, \dots, x_n) \in \R^n$, $x_i$ je $i$-ta zložka vektora $\vec{x}$.
+
+
+
+\subsection{Operácie s vektormi}
+
+\subsubsection{Násobenie vektora skalárom}
+\begin{definition}[Násobenie geometrického vektora skalárom]
+Ak $\alpha \in \R$ (skalár) a $\vec{v}$ je vektor, potom $\alpha\vec{v}$ je vektor $|\alpha|$-krát predĺžený/skrátený.
+\begin{itemize}
+    \item ak $\alpha > 0$, $(\alpha\vec{v})$ a $\vec{v}$ sú orientované rovnako,
+    \item ak $\alpha < 0$, $(\alpha\vec{v})$ a $\vec{v}$ sú orientované opačne,
+    \item ak $\alpha=0$, $\alpha\vec{v} = \vec{0}$.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+~\\
+\begin{center}
+\begin{tikzpicture}
+    \draw[gray] (-4,0) -- (4,0);
+    \node[label=below:$O$, circle, fill, inner sep=1.5pt] at (0,0) {};
+    \draw[thick, -{Stealth[]}] (0,0) -- (2,0) node[midway, above] {$\vec{v}$};
+    \draw[thick, -{Stealth[]}] (0,0) -- (4,0) node[midway, above] {$2\vec{v}$};
+    \draw[thick, -{Stealth[]}] (0,0) -- (-3,0) node[midway, above] {$-\frac{3}{2}\vec{v}$};
+\end{tikzpicture}
+\end{center}
+\end{example}
+
+\begin{definition}[násobenie vektora skalarom v $\R^n$]
+Nech $\vec{x}=(x_1, \dots, x_n) \in \R^n$ a nech $\alpha \in \R$. Potom
+$$ \alpha . \vec{x} = (\alpha x_1, \dots, \alpha x_n) $$
+\end{definition}
+\begin{example}
+\begin{align*}
+(-2).(2,-1,0)&=(-4,2,0)\\
+\sqrt{3}.(\sqrt{3},-\frac{1}{\sqrt{3}},2)&=(3,-1,2.\sqrt{3})
+\end{align*}
+\end{example}
+Ak si teraz zvolíme v rovine súradnicové osi, dostávame tým bijekciu medzi
+geometrickými vektormi a prvkami $\R^2$.
+\begin{center}
+\begin{tabular}{m{6cm} l}
+    % Row 1: Geometric vectors
+    \begin{tikzpicture}
+        \node[circle, fill, inner sep=1.5pt, label=below left:$O$] (O) at (0,0) {};
+        \draw[thick, -{Stealth[]}] (O) -- (1.5,1) node[pos=0.7, above] {$\vec{v}$};
+        \draw[thick, -{Stealth[]}] (O) -- (3,2) node[pos=0.7, above] {$2\vec{v}$};
+    \end{tikzpicture}
+    & Geometria \\
+    
+    % Row 2: Geometric vectors with axes
+    \begin{tikzpicture}[scale=0.7]
+        \draw[->] (-0.5,0) -- (6.5,0);
+        \draw[->] (0,-0.5) -- (0,4.5);
+        \node[below left, circle, fill, inner sep=1.5pt, label=below left:$O$] at (0,0) {};
+        \foreach \x in {3,6} \draw (\x,0.1) -- (\x,-0.1) node[below] {\x};
+        \foreach \y in {2,4} \draw (0.1,\y) -- (-0.1,\y) node[left] {\y};
+
+        \draw[thick, -{Stealth[]}] (0,0) -- (3,2) node[pos=0.6, above] {$\vec{v}$};
+        \draw[thick, -{Stealth[]}] (0,0) -- (6,4) node[pos=0.6, above] {$2\vec{v}$};
+        \draw[dashed] (3,2) -- (3,0);
+        \draw[dashed] (3,2) -- (0,2);
+        \draw[dashed] (6,4) -- (6,0);
+        \draw[dashed] (6,4) -- (0,4);
+    \end{tikzpicture}
+    & Voľba osí \\
+    
+    % Row 3: Algebraic operation
+    $2.(3,2)=(6,4)$
+    & Algebra
+\end{tabular}
+\end{center}Vidíme, že operácii škálovania (násobenie $\alpha \in \R$) (geometrická operácia) zodpovedá vynásobenie usporiadanej n-tice skalárom $\alpha$ vo všetkých zložkách n-tice.
+
+Je dôležité si teraz uvedomiť, že korešpondencia medzi vektormi v geometrickom zmysle
+a usporiadanými n-ticami závisí na voľbe osí, osi môžu mať rôznu mierku a môžu byť
+dokonca trochu otočené.
+\begin{center}
+\begin{tikzpicture}[scale=0.9, rotate=20]
+    \draw[<->] (-2.5,0) -- (3.5,0);
+    \draw[<->] (0,-2.5) -- (0,5.5);
+    \foreach \x in {-2,-1,1,2,3} \draw (\x,0.1) -- (\x,-0.1) node[below] {\tiny \x};
+    \foreach \y in {-1,-0.5,1,2} \draw (0.1, \y*2) -- (-0.1, \y*2) node[left] {\tiny \y};
+    
+    \node[circle, fill, inner sep=1.5pt] at (0,0) {};
+    \draw[thick, -{Stealth[]}] (0,0) -- (-0.5*2, 2*1) node[pos=0.7, right] {$\vec{u}$};
+    \draw[dashed] (-0.5*2, 2*1) -- (-0.5*2, 0);
+    \draw[dashed] (-0.5*2, 2*1) -- (0, 2*1);
+\end{tikzpicture}
+\end{center}
+Inou voľbou osí sa bijekcia (vektory v rovine $\leftrightarrow \R^2$) zmení, ale to, že škálovanie zodpovedá násobeniu skalárom po zložkách bude stále platiť.
+
+\subsubsection{Vlastnosti násobenia vektora skalárom}
+Pre všetky vektory $\vec{x} \in \R^n$ a $a,b \in \R$ platí:
+\begin{itemize}
+    \item $(a . b) . \vec{x} = a . (b . \vec{x})$
+\end{itemize}
+\textbf{Prečo?} Nech $\vec{x}=(x_1, \dots, x_n)$.
+\begin{align*}
+(a . b) . \vec{x} &= (a . b) . (x_1, \dots, x_n) = ((ab)x_1, \dots, (ab)x_n) \\
+&= (a(bx_1), \dots, a(bx_n)) = a(bx_1, \dots, bx_n) \\
+&= a(b(x_1, \dots, x_n)) = a(b . \vec{x})
+\end{align*}
+\begin{itemize}
+    \item Pre všetky $\vec{x} \in \R^n$ platí $0\vec{x} = \vec{0}$, $1\vec{x} = \vec{x}$.
+\end{itemize}
+
+
+
+\subsubsection{Sčítanie vektorov}
+Geometricky sa operácia sčítania vektorov zavádza rovnobežníkovým pravidlom:
+\begin{center}
+\begin{tikzpicture}
+    \coordinate[circle, fill, inner sep=1.5pt] (O) at (0,0);
+    \coordinate (U) at (2,1);
+    \coordinate (V) at (1,2);
+    \coordinate (SUM) at (3,3);
+    \draw[thick, -{Stealth[]}] (O) -- (U) node[below right] {$\vec{u}$};
+    \draw[thick, -{Stealth[]}] (O) -- (V) node[above left] {$\vec{v}$};
+    \draw[thick, -{Stealth[]}] (O) -- (SUM) node[above right] {$\vec{u}+\vec{v}$};
+    \draw[dashed] (U) -- (SUM);
+    \draw[dashed] (V) -- (SUM);
+\end{tikzpicture}
+\end{center}
+Ak je jeden z vektorov $\vec{0}$, definujeme prirodzene $\vec{u}+\vec{0}=\vec{u}$.
+
+Na algebraickej strane tejto geometrickej operácii zodpovedá sčítanie po zložkách.
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[->] (-0.5,0) -- (4.5,0);
+    \draw[->] (0,-0.5) -- (0,4.5);
+    \node[circle, fill, inner sep=1.5pt] at (0,0) {};
+    \foreach \x in {1,2,3,4} \draw (\x,0.1) -- (\x,-0.1) node[below] {\tiny \x};
+    \foreach \y in {1,2,3,4} \draw (0.1,\y) -- (-0.1,\y) node[left] {\tiny \y};
+    \draw[thick, -{Stealth[]}] (0,0) -- (1,2) node[above left] {$\vec{u}$};
+    \draw[thick, -{Stealth[]}] (0,0) -- (2,1) node[below right] {$\vec{v}$};
+    \draw[thick, -{Stealth[]}] (0,0) -- (3,3) node[above right] {$\vec{u}+\vec{v}$};
+    \draw[dashed] (1,2) -- (3,3);
+    \draw[dashed] (2,1) -- (3,3);
+\end{tikzpicture}
+\end{center}
+$\vec{u}=(1,2), \vec{v}=(2,1) \implies \vec{u}+\vec{v}=(1+2, 2+1)=(3,3)$.\\
+Opäť, ako v prípade násobenia skalárom, tento vzťah medzi geometrickou operáciou sčítania vektorov a algebraickou operáciou sčítania po zložkách nezávisí na voľbe osí.
+
+\begin{definition}[Sčítanie vektorov v $\R^n$]
+Nech $\vec{x}=(x_1, \dots, x_n) \in \R^n$ a $\vec{y}=(y_1, \dots, y_n) \in \R^n$. Potom
+$$ \vec{x}+\vec{y} = (x_1+y_1, \dots, x_n+y_n) $$
+\end{definition}
+
+\begin{example}
+$(1,-3,2,0) + (-1,3,-1,4) = (0,0,1,4)$
+\end{example}
+
+\subsubsection{Vlastnosti sčítania vektorov v $\R^n$}
+Pre všetky vektory $\vec{x}, \vec{y}, \vec{z} \in \R^n$ platia rovnosti:
+\begin{itemize}
+    \item $(\vec{x}+\vec{y})+\vec{z} = \vec{x}+(\vec{y}+\vec{z})$ (asociativita)
+    \item $\vec{x}+\vec{y} = \vec{y}+\vec{x}$ (komutativita)
+    \item $\vec{x}+\vec{0} = \vec{x}$
+    \item $\vec{x}+(-1)\vec{x} = \vec{0}$
+\end{itemize}
+Dôkaz sa robí priamočiaro, napr. komutativita vektorov:
+$$ \vec{x}+\vec{y} = (x_1+y_1, \dots, x_n+y_n) = (y_1+x_1, \dots, y_n+x_n) = \vec{y}+\vec{x} $$
+pričom sme využili komutativitu sčítania reálnych čísel. Podobne pre ostatné rovnosti.
+
+
+
+Násobenie skalárom a sčítanie vektorov sú navzájom prepojené pomocou distributivity.
+\begin{itemize}
+    \item Pre všetky $a \in \R$ a $\vec{x}, \vec{y} \in \R^n$ platí: $a(\vec{x}+\vec{y}) = a\vec{x} + a\vec{y}$
+    \item Pre všetky $a,b \in \R$ a $\vec{x} \in \R^n$ platí: $(a+b)\vec{x} = a\vec{x} + b\vec{x}$
+\end{itemize}
+Násobenie skalárom má prednosť pred sčítaním vektorov.
+
+\noindent\textbf{POZOR:} Neexistuje nič také ako násobenie vektorov medzi sebou!
+
+Nič nám nebráni zaviesť odčítanie vektorov $\vec{x}-\vec{y}$ definované ako $\vec{x}-\vec{y} := \vec{x} + (-1)\vec{y}$. Je to teda odvodená operácia zavedená pomocou sčítania a násobenia $(-1)$. Samozrejme, ako ľahko vidieť, odčítanie vektorov prebieha tiež po zložkách:
+$$ \vec{x}-\vec{y} = (x_1-y_1, \dots, x_n-y_n) $$
+
+
+
+\subsection{Vektory z $\R^n$ ako stĺpce}
+Odteraz až do konca letného semestra budeme na tomto predmete stotožňovať
+usporiedané $n$-tice reálnych čísel so stĺpcovými vektormi (maticami typu $n \times 1$).
+$$ \vec{x} = (x_1, \dots, x_n) \in \R^n \quad \iff \quad \vec{x} = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} $$
+Teda prvok množiny $\R^n$ môže byť zapísaný ako riadok \underline{s čiarkami}, akebu
+ako stĺpec, oba zápisy označujú tú istú vec:
+\[
+(1,-17,0,\frac{8}{3})=
+\begin{pmatrix}
+1\\-17\\0\\\frac{8}{3}
+\end{pmatrix}
+\]
+Budeme plynule prechádzať medzi týmito dvoma spôsobmi zápisu usporiadaných $n$-tíc.
+
+
+\subsection{Lineárne kombinácie}
+\begin{definition}[Lineárna kombinácia]
+Nech $\vec{v}_1, \dots, \vec{v}_m \in \R^n$ a $a_1, \dots, a_m \in \R$.
+Potom \emph{lineárna kombinácia} vektorov $\vec{v}_1, \dots, \vec{v}_m$ s koeficientami $a_1, \dots, a_m$ je vektor
+$$ a_1\vec{v}_1 + a_2\vec{v}_2 + \dots + a_m\vec{v}_m $$
+\end{definition}
+
+\begin{example}
+$\vec{v}_1 = (1,3,4), \vec{v}_2 = (2,0,1)$ v $\R^3$.
+$a_1 = 3, a_2 = 2$.
+$a_1\vec{v}_1 + a_2\vec{v}_2 = 3(1,3,4) + 2(2,0,1) = (3,9,12) + (4,0,2) = (7,9,14)$.
+\end{example}
+
+\begin{example}
+Zistite, či je $\vec{u}=(1,2) \in \R^2$ lineárnou kombináciou vektorov $\vec{v}_1=(1,-1)$ a $\vec{v}_2=(2,5)$ a určite koeficienty tejto lineárnej kombinácie.
+
+Hľadáme $a_1, a_2 \in \R$ také, že platí:
+$$ a_1 \vec{v}_1 + a_2 \vec{v}_2 = \vec{u} $$
+Zapíšeme problém pomocou stĺpcových vektorov:
+$$ a_1 \begin{pmatrix} 1 \\ -1 \end{pmatrix} + a_2 \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix} $$
+Podľa definície násobenia skalárom:
+$$ \begin{pmatrix} a_1 \\ -a_1 \end{pmatrix} + \begin{pmatrix} 2a_2 \\ 5a_2 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix} $$
+Podľa definície sčítania vektorov:
+$$ \begin{pmatrix} a_1 + 2a_2 \\ -a_1 + 5a_2 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix} $$
+Dva vektory sa rovnajú, ak sa rovnajú po zložkách:
+\begin{align*}
+    a_1 + 2a_2 &= 1 \\
+    -a_1 + 5a_2 &= 2
+\end{align*}
+Aha! Sústava lineárnych rovníc.
+Sčítaním oboch rovníc dostaneme:
+$$ 7a_2 = 3 \implies a_2 = \frac{3}{7} $$
+Dosadením do prvej rovnice:
+$$ a_1 + 2\left(\frac{3}{7}\right) = 1 \implies a_1 + \frac{6}{7} = 1 \implies a_1 = 1 - \frac{6}{7} = \frac{1}{7} $$
+Koeficienty sú $a_1=1/7$ a $a_2=3/7$.
+Skúška:
+$$ \frac{1}{7} \begin{pmatrix} 1 \\ -1 \end{pmatrix} + \frac{3}{7} \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} 1/7 \\ -1/7 \end{pmatrix} + \begin{pmatrix} 6/7 \\ 15/7 \end{pmatrix} = \begin{pmatrix} 7/7 \\ 14/7 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix} $$
+\end{example}
