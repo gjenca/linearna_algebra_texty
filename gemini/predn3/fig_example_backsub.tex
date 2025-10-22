@@ -1,0 +1,45 @@
+\documentclass[varwidth=true]{standalone}
+\usepackage{amsmath}
+% Balíčky pre správne zobrazenie slovenčiny
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\textbf{Krok 1: Výpočet $x_3$} \\
+Z poslednej rovnice (3) priamo vyjadríme $x_3$:
+\begin{align*}
+    11x_3 &= -2 \\
+    \mathbf{x_3} &= \mathbf{-\frac{2}{11}}
+\end{align*}
+
+\textbf{Krok 2: Výpočet $x_2$} \\
+Dosadíme hodnotu $x_3$ do druhej rovnice (2) a vyriešime pre $x_2$:
+\begin{align*}
+    -x_2 + 5x_3 &= 3 \\
+    -x_2 + 5\left(-\frac{2}{11}\right) &= 3 \\
+    -x_2 - \frac{10}{11} &= 3 \\
+    -x_2 &= 3 + \frac{10}{11} \\
+    -x_2 &= \frac{33}{11} + \frac{10}{11} \\
+    -x_2 &= \frac{43}{11} \\
+    \mathbf{x_2} &= \mathbf{-\frac{43}{11}}
+\end{align*}
+
+\textbf{Krok 3: Výpočet $x_1$} \\
+Dosadíme známe hodnoty $x_2$ a $x_3$ do prvej rovnice (1) a vyriešime pre $x_1$:
+\begin{align*}
+    x_1 - 2x_2 + 3x_3 &= 0 \\
+    x_1 - 2\left(-\frac{43}{11}\right) + 3\left(-\frac{2}{11}\right) &= 0 \\
+    x_1 + \frac{86}{11} - \frac{6}{11} &= 0 \\
+    x_1 + \frac{80}{11} &= 0 \\
+    \mathbf{x_1} &= \mathbf{-\frac{80}{11}}
+\end{align*}
+
+\textbf{Záver} \\
+Riešením sústavy je usporiadaná trojica $\left[ x_1, x_2, x_3 \right]$:
+\[
+\left[ -\frac{80}{11}, -\frac{43}{11}, -\frac{2}{11} \right]
+\]
+\end{minipage}
+
+\end{document}

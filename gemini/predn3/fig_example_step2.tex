@@ -1,0 +1,47 @@
+\documentclass[varwidth=true]{standalone}
+\usepackage{amsmath}
+\usepackage{tikz}
+% Load tikzmark and calc libraries
+\usetikzlibrary{tikzmark, calc}
+
+\begin{document}
+
+\[
+% --- First Matrix (before operation) ---
+\left(
+\begin{array}{rrr|r}
+% Mark row 1 (source)
+1 & -2 & 3 & \tikzmarknode{row1}{0} \\
+0 & 2 & 1 & -8 \\
+% Mark row 3 (target)
+-1 & 1 & 2 & \tikzmarknode{row3}{3}
+\end{array}
+\right)
+% --- TikZ Arrow for the operation ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw an arrow from row 1 to row 3 with a '1'
+    \draw[->, thick, shorten >=2pt]
+        % Start a bit right of row 1
+        ([xshift=1.5em]row1.east)
+        % Draw a line to the right, and mark the corner
+        -- ++(1em,0) coordinate (corner)
+        % Draw a vertical line down to the level of row 3
+        -- (corner |- row3.east)
+        % Place the '1' to the right of the vertical line
+        node [midway, right] {$1$}
+        % Draw the final segment pointing to row 3
+        -- ([xshift=1.5em]row3.east);
+\end{tikzpicture}
+% --- Equivalence Symbol with adjusted spacing ---
+\hspace{3em} \sim \quad
+% --- Second Matrix (after operation) ---
+\left(
+\begin{array}{rrr|r}
+1 & -2 & 3 & 0 \\
+0 & 2 & 1 & -8 \\
+0 & -1 & 5 & 3
+\end{array}
+\right)
+\]
+
+\end{document}

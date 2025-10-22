@@ -1,0 +1,39 @@
+\documentclass[varwidth=true]{standalone}
+\usepackage{amsmath}
+\usepackage{tikz}
+% Load tikzmark and calc libraries
+\usetikzlibrary{tikzmark, calc}
+
+\begin{document}
+
+\[
+% --- First Matrix (before swap) ---
+\left(
+\begin{array}{rrr|r}
+% Mark the last element of row 1
+0 & 2 & 1 & \tikzmarknode{row1}{-8} \\
+% Mark the last element of row 2
+1 & -2 & 3 & \tikzmarknode{row2}{0} \\
+-1 & 1 & 2 & 3
+\end{array}
+\right)
+% --- TikZ Arrow for the swap ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw the C-shaped swap arrow
+    \draw[<->, thick, shorten <=2pt, shorten >=2pt]
+        ([xshift=1em]row1.east) -- ++(1em,0)
+        -- ([xshift=2em]row2.east) -- ([xshift=1em]row2.east);
+\end{tikzpicture}
+% --- Equivalence Symbol with adjusted spacing ---
+\hspace{3em} \sim \quad
+% --- Second Matrix (after swap) ---
+\left(
+\begin{array}{rrr|r}
+1 & -2 & 3 & 0 \\
+0 & 2 & 1 & -8 \\
+-1 & 1 & 2 & 3
+\end{array}
+\right)
+\]
+
+\end{document}

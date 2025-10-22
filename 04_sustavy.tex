@@ -376,5 +376,208 @@ dve fázy.
 \item Potom nájdeme riešenie sústavy zodpovedajúcej stupňovitému tvaru pomocou
 spätného dosádzania.
 \end{enumerate}
-Príklady boli na prednáške, budú ďalšie na cvičeniach.
+\begin{example}
+Riešme Gaussovou eliminačnou metódou sústavu
+\begin{alignat*}{4}
+        &   & 2x_2 & + &  x_3 &= & -8 \\
+     x_1 & - & 2x_2 & + & 3x_3 &= & 0 \\
+    -x_1 & + &  x_2 & + & 2x_3 &= & 3
+\end{alignat*}
+Zapíšeme si rozšírenú maticu sústavy:
 
+\[
+% --- First Matrix (before swap) ---
+\left(
+\begin{array}{rrr|r}
+% Mark the last element of row 1
+0 & 2 & 1 & -8\\
+% Mark the last element of row 2
+1 & -2 & 3 & 0\\
+-1 & 1 & 2 & 3
+\end{array}
+\right)
+\]
+Cieľom je upraviť ju na stupňovitý tvar, pomocou elementárnych riadkových operácií. V
+prvom kroku vymeníme prvý a druhý riadok.
+\[
+% --- First Matrix (before swap) ---
+\left(
+\begin{array}{rrr|r}
+% Mark the last element of row 1
+0 & 2 & 1 & \tikzmarknode{row1}{-8} \\
+% Mark the last element of row 2
+1 & -2 & 3 & \tikzmarknode{row2}{0} \\
+-1 & 1 & 2 & 3
+\end{array}
+\right)
+% --- TikZ Arrow for the swap ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw the C-shaped swap arrow
+    \draw[<->, thick, shorten <=2pt, shorten >=2pt]
+        ([xshift=1em]row1.east) -- ++(1em,0)
+        -- ([xshift=2em]row2.east) -- ([xshift=1em]row2.east);
+\end{tikzpicture}
+% --- Equivalence Symbol with adjusted spacing ---
+\hspace{3em} \sim \quad
+% --- Second Matrix (after swap) ---
+\left(
+\begin{array}{rrr|r}
+1 & -2 & 3 & 0 \\
+0 & 2 & 1 & -8 \\
+-1 & 1 & 2 & 3
+\end{array}
+\right)
+\]
+V druhom kroku pripočítame $1$-násobok riadku $1$ k riadku $3$.
+\[
+% --- First Matrix (before operation) ---
+\left(
+\begin{array}{rrr|r}
+% Mark row 1 (source)
+1 & -2 & 3 & \tikzmarknode{row1}{0} \\
+0 & 2 & 1 & -8 \\
+% Mark row 3 (target)
+-1 & 1 & 2 & \tikzmarknode{row3}{3}
+\end{array}
+\right)
+% --- TikZ Arrow for the operation ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw an arrow from row 1 to row 3 with a '1'
+    \draw[->, thick, shorten >=2pt]
+        % Start a bit right of row 1
+        ([xshift=1.5em]row1.east)
+        % Draw a line to the right, and mark the corner
+        -- ++(1em,0) coordinate (corner)
+        % Draw a vertical line down to the level of row 3
+        -- (corner |- row3.east)
+        % Place the '1' to the right of the vertical line
+        node [midway, right] {$1$}
+        % Draw the final segment pointing to row 3
+        -- ([xshift=1.5em]row3.east);
+\end{tikzpicture}
+% --- Equivalence Symbol with adjusted spacing ---
+\hspace{3em} \sim \quad
+% --- Second Matrix (after operation) ---
+\left(
+\begin{array}{rrr|r}
+1 & -2 & 3 & 0 \\
+0 & 2 & 1 & -8 \\
+0 & -1 & 5 & 3
+\end{array}
+\right)
+\]
+Teraz máme niekoľko možností, napríklad pripočítať $\frac{1}{2}$-násobok riadku 2 k
+riadku 3, aby sme dostali $0$ na pozícii $(3,2)$. To ale vedie ku zlomkom, preto urobíme radšej dva iné kroky:
+
+\[
+% --- First Matrix (before swap) ---
+\left(
+\begin{array}{rrr|r}
+1 & -2 & 3 & 0 \\
+% Mark row 2
+0 & 2 & 1 & \tikzmarknode{row2}{-8} \\
+% Mark row 3
+0 & -1 & 5 & \tikzmarknode{row3}{3}
+\end{array}
+\right)
+% --- TikZ Arrow for the swap ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw the C-shaped swap arrow
+    \draw[<->, thick, shorten <=2pt, shorten >=2pt]
+        ([xshift=1em]row2.east) -- ++(1em,0)
+        -- ([xshift=2em]row3.east) -- ([xshift=1em]row3.east);
+\end{tikzpicture}
+% --- Equivalence Symbol with adjusted spacing ---
+\hspace{3em} \sim \quad
+% --- Second Matrix (after swap) ---
+\left(
+\begin{array}{rrr|r}
+1 & -2 & 3 & 0 \\
+0 & -1 & 5 & 3 \\
+0 & 2 & 1 & -8
+\end{array}
+\right)
+\]
+\[
+% --- First Matrix (before operation) ---
+\left(
+\begin{array}{rrr|r}
+1 & -2 & 3 & 0 \\
+% Mark row 2 (source)
+0 & -1 & 5 & \tikzmarknode{row2}{3} \\
+% Mark row 3 (target)
+0 & 2 & 1 & \tikzmarknode{row3}{-8}
+\end{array}
+\right)
+% --- TikZ Arrow for the operation ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw an arrow from row 2 to row 3 with a '2'
+    \draw[->, thick, shorten >=2pt]
+        % Start a bit right of row 2
+        ([xshift=1.5em]row2.east)
+        % Draw a line to the right, and mark the corner
+        -- ++(1em,0) coordinate (corner)
+        % Draw a vertical line down to the level of row 3
+        -- (corner |- row3.east)
+        % Place the '2' to the right of the vertical line
+        node [midway, right] {$2$}
+        % Draw the final segment pointing to row 3
+        -- ([xshift=1.5em]row3.east);
+\end{tikzpicture}
+% --- Equivalence Symbol with adjusted spacing ---
+\hspace{3em} \sim \quad
+% --- Second Matrix (after operation) ---
+\left(
+\begin{array}{rrr|r}
+1 & -2 & 3 & 0 \\
+0 & -1 & 5 & 3 \\
+0 & 0 & 11 & -2
+\end{array}
+\right)
+\]
+Dostaneme maticu v stupňovitom tvare. Táto zodpovedá sústave
+\begin{alignat*}{4}
+    x_1 & - & 2x_2 & + & 3x_3 &= & 0 \\
+        & - &  x_2 & + & 5x_3 &= & 3 \\
+        &   &      &   & 11x_3 &= & -2
+\end{alignat*}
+Každú takúto sústavu zodpovadajúcu matici v stupňovitom tvare vieme vyriešiť spätným
+dosádzaním.
+
+\noindent\textbf{Krok 1: Výpočet $x_3$} \\
+Z poslednej rovnice (3) priamo vyjadríme $x_3$:
+\begin{align*}
+    11x_3 &= -2 \\
+    x_3 &= -\frac{2}{11}
+\end{align*}
+
+\noindent\textbf{Krok 2: Výpočet $x_2$} \\
+Dosadíme hodnotu $x_3$ do druhej rovnice (2) a vyriešime pre $x_2$:
+\begin{align*}
+    -x_2 + 5x_3 &= 3 \\
+    -x_2 + 5\left(-\frac{2}{11}\right) &= 3 \\
+    -x_2 - \frac{10}{11} &= 3 \\
+    -x_2 &= 3 + \frac{10}{11} \\
+    -x_2 &= \frac{33}{11} + \frac{10}{11} \\
+    -x_2 &= \frac{43}{11} \\
+    x_2 &= -\frac{43}{11}
+\end{align*}
+
+\noindent\textbf{Krok 3: Výpočet $x_1$} \\
+Dosadíme známe hodnoty $x_2$ a $x_3$ do prvej rovnice (1) a vyriešime pre $x_1$:
+\begin{align*}
+    x_1 - 2x_2 + 3x_3 &= 0 \\
+    x_1 - 2\left(-\frac{43}{11}\right) + 3\left(-\frac{2}{11}\right) &= 0 \\
+    x_1 + \frac{86}{11} - \frac{6}{11} &= 0 \\
+    x_1 + \frac{80}{11} &= 0 \\
+    x_1&=-\frac{80}{11}
+\end{align*}
+
+\noindent\textbf{Záver} \\
+Množina všetkých riešení sústavy je
+\[
+\left\{\left( -\frac{80}{11}, -\frac{43}{11}, -\frac{2}{11}
+\right)\right\}\subseteq\mathbb R^3
+\]
+\end{example}
+\todo{Doplniť príklady s nekonečnou/prázdnou množinou všetkých riešení}

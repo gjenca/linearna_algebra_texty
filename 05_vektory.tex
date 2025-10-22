@@ -114,14 +114,14 @@ Umiestnime teraz v rovine dve kópie číselnej osi: vodorovnú a zvislú tak, a
 Premietnutím koncového bodu orientovanej úsečky reprezentujúcej vektor v pravom uhle na osi určíme usporiadanú dvojicu reálnych čísel a naopak, z usporiadanej dvojice reálnych čísel vieme zrejmým spôsobom dostať vektor ako orientovanú úsečku s počiatkom v bode $O$. Pritom nulový vektor $\vec{0}$ zodpovedá dvojici $(0,0)$.
 
 Voľba osí v rovine nám určuje bijekciu:
-$$ \text{vektory v rovine (body)} \longleftrightarrow \R^2 $$
+$$ \text{vektory v rovine} \longleftrightarrow \R^2 $$
 
 To, že sa body v rovine dajú jednoducho (a užitočne) vyjadrovať ako dvojice čísel je
 prekvapujúco mladý objav - pochádza z roku 1637 a vymyslel ho René
 Descartes. Zaujímavé je, že v tom čase sa už vyše tisíc rokov používali sférické
 súradnice pre určovanie polohy na Zemi pomocou rovnobežiek a poludníkov.
 
-Zavedme teraz terminológiu týkajúcu sa $\R^n$, ktorú budeme používať:
+Zaveďme teraz terminológiu týkajúcu sa $\R^n$, ktorú budeme používať:
 Pre $\vec{x}=(x_1, \dots, x_n) \in \R^n$, $x_i$ je $i$-ta zložka vektora $\vec{x}$.
 
 
@@ -162,7 +162,8 @@ $$ \alpha . \vec{x} = (\alpha x_1, \dots, \alpha x_n) $$
 \end{align*}
 \end{example}
 Ak si teraz zvolíme v rovine súradnicové osi, dostávame tým bijekciu medzi
-geometrickými vektormi a prvkami $\R^2$.
+geometrickými vektormi a prvkami $\R^2$. Táto bijekcia zachováva násobenie skalárom,
+čo znamená, že 
 \begin{center}
 \begin{tabular}{m{6cm} l}
     % Row 1: Geometric vectors
@@ -305,9 +306,9 @@ $$ \vec{x}-\vec{y} = (x_1-y_1, \dots, x_n-y_n) $$
 
 \subsection{Vektory z $\R^n$ ako stĺpce}
 Odteraz až do konca letného semestra budeme na tomto predmete stotožňovať
-usporiedané $n$-tice reálnych čísel so stĺpcovými vektormi (maticami typu $n \times 1$).
+usporiadané $n$-tice reálnych čísel so stĺpcovými vektormi (maticami typu $n \times 1$).
 $$ \vec{x} = (x_1, \dots, x_n) \in \R^n \quad \iff \quad \vec{x} = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} $$
-Teda prvok množiny $\R^n$ môže byť zapísaný ako riadok \underline{s čiarkami}, akebu
+Teda prvok množiny $\R^n$ môže byť zapísaný ako riadok \underline{s čiarkami}, alebo
 ako stĺpec, oba zápisy označujú tú istú vec:
 \[
 (1,-17,0,\frac{8}{3})=
