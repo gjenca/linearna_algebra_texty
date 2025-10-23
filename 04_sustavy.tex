@@ -541,7 +541,7 @@ Dostaneme maticu v stupňovitom tvare. Táto zodpovedá sústave
         & - &  x_2 & + & 5x_3 &= & 3 \\
         &   &      &   & 11x_3 &= & -2
 \end{alignat*}
-Každú takúto sústavu zodpovadajúcu matici v stupňovitom tvare vieme vyriešiť spätným
+Každú takúto sústavu zodpovedajúcu matici v stupňovitom tvare vieme vyriešiť spätným
 dosádzaním.
 
 \noindent\textbf{Krok 1: Výpočet $x_3$} \\
@@ -580,4 +580,242 @@ Množina všetkých riešení sústavy je
 \right)\right\}\subseteq\mathbb R^3
 \]
 \end{example}
-\todo{Doplniť príklady s nekonečnou/prázdnou množinou všetkých riešení}
+\begin{example}
+Teraz si ukážeme, že sústava lineárnych rovníc môže mať aj nekonečnú množinu riešení.
+Najskôr eliminácia.
+\[
+\left(
+\begin{array}{rrrr|r}
+2 & -1 & 0 & 4 & \tikzmarknode{row1}{2} \\
+2 & -1 & 1 & 2 & \tikzmarknode{row2}{2} \\
+0 & 0 & 2 & -4 & 0 \\
+6 & -3 & -3 & 18 & 6
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[->, thick, shorten >=2pt]
+        ([xshift=1.5em]row1.east)
+        -- ++(1em,0) coordinate (corner)
+        -- (corner |- row2.east)
+        node [midway, right] {$-1$}
+        -- ([xshift=1.5em]row2.east);
+\end{tikzpicture}
+\hspace{3.5em} \sim \quad
+\left(
+\begin{array}{rrrr|r}
+2 & -1 & 0 & 4 & \tikzmarknode{row1}{2} \\
+0 & 0 & 1 & -2 & 0 \\
+0 & 0 & 2 & -4 & 0 \\
+6 & -3 & -3 & 18 & \tikzmarknode{row4}{6}
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[->, thick, shorten >=2pt]
+        ([xshift=1.5em]row1.east)
+        -- ++(1em,0) coordinate (corner)
+        -- (corner |- row4.east)
+        node [midway, right] {$-3$}
+        -- ([xshift=1.5em]row4.east);
+\end{tikzpicture}
+\hspace{3.5em} \sim \quad
+\]
+% --- Krok 3: R3 <- R3 - 2*R2 ---
+\[
+\left(
+\begin{array}{rrrr|r}
+2 & -1 & 0 & 4 & 2 \\
+0 & 0 & 1 & -2 & \tikzmarknode{row2}{0} \\
+0 & 0 & 2 & -4 & \tikzmarknode{row3}{0} \\
+0 & 0 & -3 & 6 & 0
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[->, thick, shorten >=2pt]
+        ([xshift=1.5em]row2.east)
+        -- ++(1em,0) coordinate (corner)
+        -- (corner |- row3.east)
+        node [midway, right] {$-2$}
+        -- ([xshift=1.5em]row3.east);
+\end{tikzpicture}
+\hspace{3.5em} \sim \quad
+\left(
+\begin{array}{rrrr|r}
+2 & -1 & 0 & 4 & 2 \\
+0 & 0 & 1 & -2 & \tikzmarknode{row2}{0} \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & -3 & 6 & \tikzmarknode{row4}{0}
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[->, thick, shorten >=2pt]
+        ([xshift=1.5em]row2.east)
+        -- ++(1em,0) coordinate (corner)
+        -- (corner |- row4.east)
+        node [midway, right] {$3$}
+        -- ([xshift=1.5em]row4.east);
+\end{tikzpicture}
+\hspace{3.5em} \sim \quad
+\]
+\[
+\left(
+\begin{array}{rrrr|r}
+2 & -1 & 0 & 4 & 2 \\
+0 & 0 & 1 & -2 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0
+\end{array}
+\right)
+\]
+Dve z rovníc sa trivializovali, stali sa z nich rovnice 
+\[
+0.x_1+0.x_2+0.x_3+0.x_4=0,
+\]
+ktoré sú pravdivé pre každú usporiadanú štvoricu $(x_1,x_2,x_3,x_4)\in\R^4$ a môžeme
+ich teda vynechať. Dve zostávajúce rovnice sú
+\begin{alignat*}{4}
+    2x_1 & - & x_2 &   & + 4x_4 &= & 2 \\
+         &   &     &  &  x_3 - 2x_4 &= & 0
+\end{alignat*}
+Množinu všetkých riešení nájdeme opäť spätným dosádzaním, pričom niektoré premenné
+zvolíme ako parametre.
+\begin{framed}
+Ako parametre vždy volíme premenné zodpovedajúce stĺpcom \emph{v ktorých nie je
+vedúci prvku}.
+\end{framed}
+Teraz sú to stĺpce 2 a 4, teda ako parametre zvolíme $x_2$ a $x_4$.
+\vspace{1em}
+
+\begin{minipage}{0.9\textwidth}
+\centering
+\[
+\left(
+\begin{array}{rrrr|r}
+% p1 = pivot 1, c2 = column 2 (no pivot), c4 = column 4 (no pivot)
+\tikzmarknode{p1}{2} & \tikzmarknode{c2}{-1} & 0 & \tikzmarknode{c4}{4} & 2 \\
+0 & 0 & \tikzmarknode{p2}{1} & -2 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0
+\end{array}
+\right)
+% --- TikZ Drawing ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw frames around leading elements (pivots)
+    \draw[thick] ($(p1.north west)+(-1.5pt,1.5pt)$) rectangle ($(p1.south east)+(1.5pt,-1.5pt)$);
+    \draw[thick] ($(p2.north west)+(-1.5pt,1.5pt)$) rectangle ($(p2.south east)+(1.5pt,-1.5pt)$);
+
+    % Draw arrows above columns without pivots
+    \draw[-{Stealth[length=4pt, width=3pt]}, thick] ([yshift=1.7em]c2.north) -- ([yshift=0.5em]c2.north);
+    \draw[-{Stealth[length=4pt, width=3pt]}, thick] ([yshift=1.7em]c4.north) -- ([yshift=0.5em]c4.north);
+    % The third arrow pointing to c5 has been removed.
+\end{tikzpicture}
+\]
+\end{minipage}
+
+\vspace{1em}
+V spätnom dosádzaní použijeme parametre:
+\begin{align*}
+    x_4 &= s \\
+    \\
+    x_3 - 2s &= 0 \\
+    x_3 &= 2s \\
+    \\
+    x_2 &= t \\
+    \\
+    2x_1 - t + 4s &= 2 \\
+    2x_1 &= 2 + t - 4s \\
+    x_1 &= 1 + \frac{1}{2}t - 2s
+\end{align*}
+Množina všetkých riešení teda je
+\[
+\left\{
+\left( 1 + \frac{1}{2}t - 2s, t, 2s, s \right)
+\mid s, t \in \mathbb{R}
+\right\}
+\]
+\end{example}
+\begin{example}
+V poslednom príklade si ukážeme, že sústava lineárnych rovníc môže mať aj prázdnu
+množinu riešení.
+% --- Krok 1: R2 <- R2 - 2*R1 ---
+\[
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & \tikzmarknode{row1}{12} \\
+2 & 4 & 12 & \tikzmarknode{row2}{-17} \\
+1 & -4 & -12 & 22
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[->, thick, shorten >=2pt]
+        ([xshift=1.5em]row1.east)
+        -- ++(1em,0) coordinate (corner)
+        -- (corner |- row2.east)
+        node [midway, right] {$-2$}
+        -- ([xshift=1.5em]row2.east);
+\end{tikzpicture}
+\hspace{3.5em} \sim \quad
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & \tikzmarknode{row1}{12} \\
+0 & 8 & 24 & -41 \\
+1 & -4 & -12 & \tikzmarknode{row3}{22}
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[->, thick, shorten >=2pt]
+        ([xshift=1.5em]row1.east)
+        -- ++(1em,0) coordinate (corner)
+        -- (corner |- row3.east)
+        node [midway, right] {$-1$}
+        -- ([xshift=1.5em]row3.east);
+\end{tikzpicture}
+\hspace{3.5em} \sim \quad
+\]
+% --- Krok 3: Swap R2 and R3 ---
+\[
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & 12 \\
+0 & 8 & 24 & \tikzmarknode{row2}{-41} \\
+0 & -2 & -6 & \tikzmarknode{row3}{10}
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[<->, thick, shorten <=2pt, shorten >=2pt]
+        ([xshift=1em]row2.east) -- ++(1em,0)
+        -- ([xshift=2em]row3.east) -- ([xshift=1em]row3.east);
+\end{tikzpicture}
+\hspace{3em} \sim \quad
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & 12 \\
+0 & -2 & -6 & \tikzmarknode{row2}{10} \\
+0 & 8 & 24 & \tikzmarknode{row3}{-41}
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[->, thick, shorten >=2pt]
+        ([xshift=1.5em]row2.east)
+        -- ++(1em,0) coordinate (corner)
+        -- (corner |- row3.east)
+        node [midway, right] {$4$}
+        -- ([xshift=1.5em]row3.east);
+\end{tikzpicture}
+\hspace{3.5em} \sim \quad
+\]
+\[
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & 12 \\
+0 & -2 & -6 & 10 \\
+0 & 0 & 0 & -1
+\end{array}
+\right)
+\]
+Posledný riadok v matici teraz zodpovedá rovnici
+\[
+0.x_1+0.x_2+0.x_3=-1,
+\]
+ale toto nie je pravda pre \emph{žiadnu} usporiadanú trojicu $(x_1,x_2,x_3)\in\R^3$.
+Množina všetkých riešení je teda $\emptyset$.
+\end{example}

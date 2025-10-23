@@ -357,3 +357,124 @@ Koeficienty sú $a_1=1/7$ a $a_2=3/7$.
 Skúška:
 $$ \frac{1}{7} \begin{pmatrix} 1 \\ -1 \end{pmatrix} + \frac{3}{7} \begin{pmatrix} 2 \\ 5 \end{pmatrix} = \begin{pmatrix} 1/7 \\ -1/7 \end{pmatrix} + \begin{pmatrix} 6/7 \\ 15/7 \end{pmatrix} = \begin{pmatrix} 7/7 \\ 14/7 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix} $$
 \end{example}
+\begin{example}
+Uvažujme vektory v rovine s počiatkom v bode $O$.
+Nech $ABCD$ je štvorec so stredom $O$.
+\begin{center}
+\begin{tikzpicture}[rotate=15]
+    % Define square vertices
+    \coordinate (A) at (0, 4);
+    \coordinate (B) at (0, 0);
+    \coordinate (C) at (4, 0);
+    \coordinate (D) at (4, 4);
+
+    % Draw square and label vertices
+    \draw (A) -- (B) -- (C) -- (D) -- cycle;
+    \node[left=3pt] at (A) {A};
+    \node[below=3pt] at (B) {B};
+    \node[right=3pt] at (C) {C};
+    \node[above=3pt] at (D) {D};
+
+    % Define interior point O at the center (2,2)
+    % Label 'O' is now on the left.
+    \node[circle, fill, inner sep=1.5pt, label={[label distance=2pt]left:O}] (O) at (2, 2) {};
+    
+    % Define midpoint S(BC)
+    \node[inner sep=0,label={[label distance=2pt]below right:S}] (S) at ($(B)!.5!(C)$) {};
+
+    % Draw vectors (thick, with \bullet start, but no \vec labels)
+    \draw[thick, -{Stealth[]}] (O) -- (C);
+    \draw[thick, -{Stealth[]}] (O) -- (D);
+    \draw[thick, -{Stealth[]}] (O) -- (S);
+\end{tikzpicture}
+\end{center}
+Nech $S$ je stred strany $BC$. Vyjadrime vektor $\ora{OS}$ ako lineárnu kombináciu
+vektorov $\ora{OC},\ora{OD}$.
+
+Najskôr si uvedomme, že $\ora{OB}=(-1).\ora{OD}$. 
+\begin{center}
+\begin{tikzpicture}[rotate=15]
+    % Define square vertices
+    \coordinate (A) at (0, 4);
+    \coordinate (B) at (0, 0);
+    \coordinate (C) at (4, 0);
+    \coordinate (D) at (4, 4);
+
+    % Draw square and label vertices
+    \draw (A) -- (B) -- (C) -- (D) -- cycle;
+    \node[left=3pt] at (A) {A};
+    \node[below=3pt] at (B) {B};
+    \node[right=3pt] at (C) {C};
+    \node[above=3pt] at (D) {D};
+
+    % Define interior point O at the center (2,2)
+    % Label 'O' is now on the left.
+    \node[circle, fill, inner sep=1.5pt, label={[label distance=2pt]left:O}] (O) at (2, 2) {};
+    
+    % Define midpoint S(BC)
+    \node[inner sep=0,label={[label distance=2pt]below right:S}] (S) at ($(B)!.5!(C)$) {};
+
+    % Draw vectors (thick, with \bullet start, but no \vec labels)
+    \draw[thick, -{Stealth[]}] (O) -- (C);
+    \draw[thick, -{Stealth[]}] (O) -- (D);
+    \draw[thick, -{Stealth[]},color=gray] (O) -- (B);
+    \draw[thick, -{Stealth[]}] (O) -- (S);
+\end{tikzpicture}
+\end{center}
+Vektory $\ora{OC}$ a $\ora{OB}$ sú kolmé a majú rovnakú dĺžku. Preto koncové vrcholy
+vektorov $\ora{OB},\ora{OC},\ora{OB}+\ora{OC}$ spolu s bodom $O$ tvoria štvorec.
+\begin{center}
+\begin{tikzpicture}[rotate=15]
+    % Define square vertices
+    \coordinate (A) at (0, 4);
+    \coordinate (B) at (0, 0);
+    \coordinate (C) at (4, 0);
+    \coordinate (D) at (4, 4);
+    \coordinate (E) at (2, -2);
+
+
+    % Draw square and label vertices
+    \draw (A) -- (B) -- (C) -- (D) -- cycle;
+    \node[left=3pt] at (A) {A};
+    \node[below=3pt] at (B) {B};
+    \node[right=3pt] at (C) {C};
+    \node[above=3pt] at (D) {D};
+    \draw (B) -- (E) -- (C);
+    \node[below=3pt] at (E) {$\ora{OB}+\ora{OC}$};
+
+    % Define interior point O at the center (2,2)
+    % Label 'O' is now on the left.
+    \node[circle, fill, inner sep=1.5pt, label={[label distance=2pt]left:O}] (O) at (2, 2) {};
+    
+    % Define midpoint S(BC)
+    \node[inner sep=0,label={[label distance=2pt]below right:S}] (S) at ($(B)!.5!(C)$) {};
+
+    % Draw vectors (thick, with \bullet start, but no \vec labels)
+    \draw[thick, -{Stealth[]}] (O) -- (C);
+    \draw[thick, -{Stealth[]},color=gray] (O) -- (E);
+    \draw[thick, -{Stealth[]}] (O) -- (D);
+    \draw[thick, -{Stealth[]},color=gray] (O) -- (B);
+    \draw[thick, -{Stealth[]}] (O) -- (S);
+\end{tikzpicture}
+\end{center}
+Pritom bod $S$ je stredom tohto štvorca, teda
+\[
+\ora{OS}=\frac{1}{2}(\ora{OB}+\ora{OC})
+\]
+a môžeme použiť pravidlá o počítaní s vektormi
+\begin{multline*}
+\frac{1}{2}.(\ora{OB}+\ora{OC})=\frac{1}{2}.\ora{OB}+\frac{1}{2}.\ora{OC}=
+\frac{1}{2}.((-1).\ora{OD})+\frac{1}{2}.\ora{OC}=\\
+(\frac{1}{2}.(-1)).\ora{OD}+\frac{1}{2}.\ora{OC}=-\frac{1}{2}\ora{OD}+\frac{1}{2}\ora{OC}
+\end{multline*}
+Teda
+\[
+\ora{OS}=-\frac{1}{2}\ora{OD}+\frac{1}{2}\ora{OC},
+\]
+čo je hľadaná lineárna kombinácia.
+
+Skúste si teraz rozmyslieť kde sú a aj nakresliť vektory 
+$-\frac{1}{2}\ora{OD},\frac{1}{2}\ora{OC}$. Spolu s bodmi $O$ a $S$ by mali ich
+koncové body tvoriť
+rovnobežník. Je to pravda?
+\end{example}

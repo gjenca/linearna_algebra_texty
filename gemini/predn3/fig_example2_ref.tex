@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{tikz}
+% Load tikzmark, calc, and arrows.meta (for better arrow heads)
+\usetikzlibrary{tikzmark, calc, arrows.meta}
+\usepackage[margin=1in]{geometry} % Added for better page layout
+
+\begin{document}
+
+\[
+\left(
+\begin{array}{rrrr|r}
+% p1 = pivot 1, c2 = column 2 (no pivot), c4 = column 4 (no pivot)
+\tikzmarknode{p1}{2} & \tikzmarknode{c2}{-1} & 0 & \tikzmarknode{c4}{4} & 2 \\
+0 & 0 & \tikzmarknode{p2}{1} & -2 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0
+\end{array}
+\right)
+% --- TikZ Drawing ---
+\begin{tikzpicture}[remember picture, overlay]
+    % Draw frames around leading elements (pivots)
+    \draw[thick] ($(p1.north west)+(-1.5pt,1.5pt)$) rectangle ($(p1.south east)+(1.5pt,-1.5pt)$);
+    \draw[thick] ($(p2.north west)+(-1.5pt,1.5pt)$) rectangle ($(p2.south east)+(1.5pt,-1.5pt)$);
+
+    % Draw arrows above columns without pivots
+    \draw[-{Stealth[length=4pt, width=3pt]}, thick] ([yshift=1.7em]c2.north) -- ([yshift=0.5em]c2.north);
+    \draw[-{Stealth[length=4pt, width=3pt]}, thick] ([yshift=1.7em]c4.north) -- ([yshift=0.5em]c4.north);
+    % The third arrow pointing to c5 has been removed.
+\end{tikzpicture}
+\]
+
+\end{document}

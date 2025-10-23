@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark, calc}
+\usepackage[margin=1in]{geometry} % For layout
+
+\begin{document}
+
+% --- Krok 1: R2 <- R2 - 2*R1 ---
+\[
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & \tikzmarknode{row1}{12} \\
+2 & 4 & 12 & \tikzmarknode{row2}{-17} \\
+1 & -4 & -12 & 22
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[->, thick, shorten >=2pt]
+        ([xshift=1.5em]row1.east)
+        -- ++(1em,0) coordinate (corner)
+        -- (corner |- row2.east)
+        node [midway, right] {$-2$}
+        -- ([xshift=1.5em]row2.east);
+\end{tikzpicture}
+\hspace{3.5em} \sim \quad
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & 12 \\
+0 & 8 & 24 & -41 \\
+1 & -4 & -12 & 22
+\end{array}
+\right)
+\]
+
+% --- Krok 2: R3 <- R3 - R1 ---
+\[
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & \tikzmarknode{row1}{12} \\
+0 & 8 & 24 & -41 \\
+1 & -4 & -12 & \tikzmarknode{row3}{22}
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[->, thick, shorten >=2pt]
+        ([xshift=1.5em]row1.east)
+        -- ++(1em,0) coordinate (corner)
+        -- (corner |- row3.east)
+        node [midway, right] {$-1$}
+        -- ([xshift=1.5em]row3.east);
+\end{tikzpicture}
+\hspace{3.5em} \sim \quad
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & 12 \\
+0 & 8 & 24 & -41 \\
+0 & -2 & -6 & 10
+\end{array}
+\right)
+\]
+
+% --- Krok 3: Swap R2 and R3 ---
+\[
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & 12 \\
+0 & 8 & 24 & \tikzmarknode{row2}{-41} \\
+0 & -2 & -6 & \tikzmarknode{row3}{10}
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[<->, thick, shorten <=2pt, shorten >=2pt]
+        ([xshift=1em]row2.east) -- ++(1em,0)
+        -- ([xshift=2em]row3.east) -- ([xshift=1em]row3.east);
+\end{tikzpicture}
+\hspace{3em} \sim \quad
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & 12 \\
+0 & -2 & -6 & 10 \\
+0 & 8 & 24 & -41
+\end{array}
+\right)
+\]
+
+% --- Krok 4: R3 <- R3 + 4*R2 ---
+\[
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & 12 \\
+0 & -2 & -6 & \tikzmarknode{row2}{10} \\
+0 & 8 & 24 & \tikzmarknode{row3}{-41}
+\end{array}
+\right)
+\begin{tikzpicture}[remember picture, overlay]
+    \draw[->, thick, shorten >=2pt]
+        ([xshift=1.5em]row2.east)
+        -- ++(1em,0) coordinate (corner)
+        -- (corner |- row3.east)
+        node [midway, right] {$4$}
+        -- ([xshift=1.5em]row3.east);
+\end{tikzpicture}
+\hspace{3.5em} \sim \quad
+\left(
+\begin{array}{rrr|r}
+1 & -2 & -6 & 12 \\
+0 & -2 & -6 & 10 \\
+0 & 0 & 0 & -1
+\end{array}
+\right)
+\]
+
+\end{document}
