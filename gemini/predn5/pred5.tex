@@ -1,0 +1,209 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[slovak]{babel}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{amsthm}
+
+% Theorem style for examples
+\theoremstyle{definition}
+\newtheorem*{example}{Pr:}
+
+\begin{document}
+
+\section*{ZÁKLADY MATICOVÉHO POČTU}
+
+Pripomenutie: matica A typu $m \times n$ je obdĺžniková tabuľka s m riadkami a n stĺpcami; inak povedané: šírka je n a výška je m:
+
+% Annotations from page 1
+\vspace{1em}
+\begin{center}
+\begin{tabular}{c c}
+   & \hspace{-2em} $n$ stĺpcov \\
+   & \hspace{-2em} $\longleftarrow \dots \longrightarrow$ \\
+$m$ riadkov \quad $\Big\uparrow$ &
+  $\begin{pmatrix}
+    a_{11} & a_{12} & \dots & a_{1n} \\
+    a_{21} & a_{22} & \dots & a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    a_{m1} & a_{m2} & \dots & a_{mn}
+  \end{pmatrix} = A$ 
+  \quad $\leftarrow$ prvky matice \\
+  $\Big\downarrow$ &
+\end{tabular}
+\end{center}
+\vspace{1em}
+
+Pozície v matici typu $m \times n$ sú usporiadané dvojice kladných prirodzených čísel $(i, j)$, kde $1 \le i \le m$, $1 \le j \le n$. Inými slovami, pozície v matici sú $\{1, \dots, m\} \times \{1, \dots, n\}$.
+
+Číslo v matici na pozícii $(i, j)$ referencujeme pomocou dvojitého indexu, napr. $a_{ij}$, $b_{ij}$.
+
+Množina všetkých (reálnych) matíc typu $m \times n$ sa značí $\mathbb{R}^{m \times n}$. Podľa pravidla, "vektory sú stĺpce" stotožňujeme $\mathbb{R}^n = \mathbb{R}^{n \times 1}$.
+... je to isté ako ...
+
+\subsection*{Zápis matice pomocou predpisu}
+Zápis matice pomocou predpisu je tvaru
+% Annotations from page 2
+\begin{center}
+$A_{m \times n} = (\underbrace{\dots}_{\text{predpis pre prvok na pozícii } i,j})_{\substack{m \times n \\ \text{dve prirodzené čísla}}}$
+\end{center}
+(predpis je teraz výraz závislý na $i, j$)
+
+\begin{example}
+$(i+j)_{2 \times 3} = \begin{pmatrix} 2 & 3 & 4 \\ 3 & 4 & 5 \end{pmatrix}$
+\end{example}
+
+\begin{example}
+$(i \cdot j)_{2 \times 3} = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{pmatrix}$
+\end{example}
+
+Tento zápis budeme používať mnoho razy na vyjadrenie maticových operácií.
+
+\subsection*{Riadky a stĺpce matice}
+Podobne môžeme písať napríklad ...
+
+nech $A = (a_{ij})_{m \times n} \dots$
+
+čím špecifikujeme typ matice A a aj to, že jej prvky označujeme $a_{ij}$.
+
+$A = (a_{ij})_{m \times n}$, potom
+
+$r_i(A) = \begin{pmatrix} a_{i1} & a_{i2} & \dots & a_{in} \end{pmatrix}$
+je i-ty riadok matice A
+
+$s_j(A) = \begin{pmatrix} a_{1j} \\ a_{2j} \\ \vdots \\ a_{mj} \end{pmatrix}$
+je j-ty stĺpec matice A.
+
+\subsection*{Pár druhov matíc}
+\textbf{Štvorcové matice} sú matice typu $n \times n$. Ak $A = (a_{ij})_{n \times n}$ je štvorcová matica, potom (hlavná) diagonála matice je tvorená prvkami $(a_{11}, a_{22}, \dots, a_{nn})$.
+% Image from page 4
+\[ \begin{pmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} & \dots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \dots & a_{nn} \end{pmatrix} \]
+
+\textbf{Diagonálna matica} je štvorcová matica, ktorá má všetky prvky okrem diagonálnych rovné 0.
+\[ \begin{pmatrix} a_{11} & 0 & \dots & 0 \\ 0 & a_{22} & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & a_{nn} \end{pmatrix} \]
+
+\textbf{Nulová matica} je matica, ktorá má všetky prvky rovné 0. Značíme ju 0. Nemusí byť nutne štvorcová.
+
+\textbf{Jednotková matica} je diagonálna matica, ktorá má na diagonále všade 1:
+\[ \begin{pmatrix} 1 & 0 & 0 & \dots & 0 \\ 0 & 1 & 0 & \dots & 0 \\ 0 & 0 & 1 & \dots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \dots & 1 \end{pmatrix} \]
+Jednotkovú maticu typu $n \times n$ značíme $I_n$. Ak $n$ je nešpecifikované, značíme $I$.
+
+\subsection*{Súčet matíc}
+Nech $A = (a_{ij})_{m \times n}$
+$B = (b_{ij})_{m \times n}$
+sú dve matice rovnakého typu $m \times n$. Potom súčet matíc A, B je matica
+\[ A + B = (a_{ij} + b_{ij})_{m \times n} \]
+
+\begin{example}
+$A = \begin{pmatrix} 1 & 2 & \sqrt{2} \\ -1 & 0 & 3 \end{pmatrix}$ $B = \begin{pmatrix} \frac{1}{2} & -1 & 0 \\ 0 & 0 & 4 \end{pmatrix}$
+\[ A + B = \begin{pmatrix} \frac{3}{2} & 1 & \sqrt{2} \\ -1 & 0 & 7 \end{pmatrix} \]
+\end{example}
+Sčítať môžeme iba dvojice matíc rovnakého typu.
+
+\subsection*{Násobenie matice skalárom}
+Nech $A = (a_{ij})_{m \times n}$, $c \in \mathbb{R}$. Potom
+\[ c A = (c \cdot a_{ij})_{m \times n} \quad (\text{bodka sa nepíše vždy}) \]
+\begin{example}
+\[ -2 \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & -7 \end{pmatrix} = \begin{pmatrix} -2 & -4 & -6 \\ 0 & -2 & 14 \end{pmatrix} \]
+\end{example}
+
+\subsection*{Vlastnosti súčtu matíc a násobenia matice skalárom}
+Zrejme doteraz zavedené operácie na maticiach manipulujú s maticami ako s vektormi $\mathbb{R}^{m \cdot n}$. V tomto zmysle nie sú pre nás ničím novým.
+Samozrejme, platia pre sčítanie a násobenie skalárom rovnaké pravidlá ako pre vektory.
+
+Pre každú trojicu matíc A, B, C rovnakého typu a každú dvojicu $a, b \in \mathbb{R}$ platí
+\begin{itemize}
+    \item $A + B = B + A$ (komutativita +)
+    \item $(A + B) + C = A + (B + C)$ (asociativita +)
+    \item $A + O = O + A = A$ \quad (nulová matica, jej typ je nutne rovnaký ako typ A; O je neutrálna vzhľadom na +)
+    \item $1A = A$
+    \item $(ab)A = a(bA)$
+    \item $(a+b)A = aA + bA$
+    \item $a(A+B) = aA + aB$
+\end{itemize}
+
+\subsection*{Transpozícia matice}
+Nech $A = (a_{ij})_{m \times n}$. Potom A transponovaná (alebo transpozícia A) je matica
+\[ A^T = (a_{ji})_{n \times m} \]
+\begin{example}
+\[ \begin{pmatrix} 1 & 2 & 4 \\ -1 & 0 & 3 \end{pmatrix}^T = \begin{pmatrix} 1 & -1 \\ 2 & 0 \\ 4 & 3 \end{pmatrix} \]
+\end{example}
+
+\textbf{Vlastnosti transpozície matice} \\
+Pre každú dvojicu matíc A, B rovnakého typu a $c \in \mathbb{R}$ platí
+\begin{itemize}
+    \item $(A^T)^T = A$
+    \item $(A + B)^T = A^T + B^T$
+    \item $(cA)^T = c(A^T)$
+\end{itemize}
+
+\textbf{Symetrická matica} je taká matica, že
+\[ A = A^T \]
+Každá symetrická matica je štvorcová (prečo?). \\
+\begin{example}
+\[ \begin{pmatrix} 1 & 0 & 7 \\ 0 & 4 & 2 \\ 7 & 2 & 1 \end{pmatrix} \text{ je symetrická matica} \]
+\end{example}
+Každá diagonálna matica je (zrejme) symetrická.
+
+\subsection*{Súčin matíc}
+Teraz ideme definovať súčin matíc; najskôr to urobíme pre špeciálny prípad matíc $1 \times n$ a $n \times 1$.
+To nám umožní definovať všeobecný súčin matíc.
+
+\textbf{Súčin riadku a stĺpca} \\
+Uvažujme teraz dve matice, jedna typu $1 \times n$ (riadok) a druhá typu $n \times 1$ (stĺpec). Ich súčin je skalar daný
+\[ \begin{pmatrix} y_1 & \dots & y_n \end{pmatrix} \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = y_1 x_1 + \dots + y_n x_n = \sum_{i=1}^n y_i x_i \]
+\begin{example}
+\[ \begin{pmatrix} 1 & -1 & 0 \end{pmatrix} \begin{pmatrix} 2 \\ 4 \\ 3 \end{pmatrix} = 1 \cdot 2 + (-1) \cdot 4 + 0 \cdot 3 = 2 - 4 + 0 = -2 \]
+\end{example}
+
+\textbf{Súčin matíc (všeobecne)} \\
+Nech A je typu $m \times n$, B je typu $n \times k$. (počet stĺpcov A = počet riadkov B) \\
+Potom súčin matíc A a B je matica $C$ typu $m \times k$ (počet riadkov A, počet stĺpcov B) \\
+Prvok $C_{ij}$ matice $C$ na pozícii $(i, j)$ je daný ako súčin $i$-teho riadku A a $j$-teho stĺpca B:
+\[ C_{ij} = r_i(A) \cdot s_j(B) \]
+
+\begin{example}
+\[ \underbrace{\begin{pmatrix} \dots \end{pmatrix}}_{\text{typ } 3 \times 2} \underbrace{\begin{pmatrix} \dots \end{pmatrix}}_{\text{typ } 2 \times 4} = \underbrace{\begin{pmatrix} \dots \end{pmatrix}}_{\text{typ } 3 \times 4} \]
+\end{example}
+Prechádzame postupne cez všetky usporiadané dvojice (riadok ľavej, stĺpec pravej). Pre každú dvojicu vyrobíme ich súčin a umiestnime to číslo do výslednej matice na pozíciu $(i, j)$.
+
+\subsection*{Vlastnosti násobenia matíc}
+\begin{itemize}
+    \item $A (B C) = (A B) C$ (asociativita) \\
+    (typy $m \times n$, $n \times p$, $p \times k$. Typy sedia.) \\
+    Dôkaz nie je zrejmý, ale priamy dôkaz je pracný a neposkytne generický vhľad do veci, preto ho neurobíme.
+    
+    \item $A (B + C) = AB + AC$ (distributivita zľava)
+    \item $(A + B) C = AC + BC$ (sprava)
+    \item $(AB)^T = B^T A^T$
+    \item $a (AB) = (aA) B = A (aB)$ (násobenie sklárom, násobenie matíc)
+    
+    \item Ak A je matica typu $m \times n$ potom \\
+    $I_m A = A$ \\
+    $A I_n = A$ \\
+    (jednotkové matice typu $m \times m$ resp. $n \times n$)
+    
+    \item $OA = O$
+    \item $A O = O$ \\
+    (nulové matice správneho typu)
+\end{itemize}
+
+\textbf{POZOR!} Operácia násobenia matíc \textbf{nie je komutatívna!} \\
+Vôbec nie je pravda, že pre matice platí $AB = BA$.
+V prvom rade, ak existuje $AB$, musí byť počet stĺpcov A rovný počtu riadkov B.
+
+A je typu $m \times n$, B je typu $n \times k$.
+Aby súčin $B A$ vôbec existoval, musí byť $k = m$, ale to nie je vo všeobecnosti pravda.
+(Poznámka: v texte je $n=k$, čo sa zdá byť preklep, kontextovo $k=m$ dáva zmysel pre $B_{n \times k} \cdot A_{m \times n}$)
+
+Ale čo ak sú A, B štvorcové matice rovnakého typu? Potom $AB$ aj $BA$ existujú a majú aj rovnaký typ.
+Skúsme:
+\[ \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix} \]
+\[ \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} \]
+Ničmenej, pre niektoré dvojice matíc platí $AB = BA$, napríklad $A O = O A = O$.
+Prirodzená otázka, pre ktoré dvojice matíc platí $AB = BA$ je obtiažna, hlboká a dôležitá.
+
+\end{document}
