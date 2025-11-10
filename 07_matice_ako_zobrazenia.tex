@@ -333,22 +333,23 @@ To znamená, že $[[B]] \circ [[A]] = [[BA]]$.
 \end{proof}
 
 \begin{example}
-Uvažujme maticu rovinnej rotácie $[[L_{\frac{\pi}{2}}]]$:
-$$ [[L_{\frac{\pi}{2}}]]= \begin{pmatrix} \cos\frac{\pi}{2} & -\sin\frac{\pi}{2} \\ \sin\frac{\pi}{2} & \cos\frac{\pi}{2} \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} $$
-$$ [[L_{\frac{\pi}{2}}]] [[L_{\frac{\pi}{2}}]] = \begin{pmatrix} 0 & -1 \\ 1 & 0
+Uvažujme maticu rovinnej rotácie $L_{\frac{\pi}{2}}$:
+$$L_{\frac{\pi}{2}}= \begin{pmatrix} \cos\frac{\pi}{2} & -\sin\frac{\pi}{2} \\ \sin\frac{\pi}{2} & \cos\frac{\pi}{2} \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} $$
+$$ L_{\frac{\pi}{2}} L_{\frac{\pi}{2}} = \begin{pmatrix} 0 & -1 \\ 1 & 0
 \end{pmatrix} \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} -1 & 0
 \\ 0 & -1 \end{pmatrix} 
 =D_{-1}
 $$
-Táto matica by mala reprezentovať zložené zobrazenie $L_{\frac{\pi}{2}} \circ
-L_{\frac{\pi}{2}}$, teda zobrazenie $L_{\frac{\pi}{2}+\frac{\pi}{2}}=L_\pi$.
+Táto matica by mala reprezentovať zložené zobrazenie $[[L_{\frac{\pi}{2}}]] \circ
+[[L_{\frac{\pi}{2}}]]$, teda zobrazenie
+$[[L_{\frac{\pi}{2}+\frac{\pi}{2}}]]=[[L_\pi]]$.
 Matica $D_{-1}$ reprezentuje zobrazenie násobenie skalárom $-1$. Ale vynásobiť
-rovinný vektor skalárom $-1$ je to isté ako otočiť ho o $\pi$ vľavo (alebo vpravo), čiže teda $D_{-1} = L_{\pi}$.
+rovinný vektor skalárom $-1$ je to isté ako otočiť ho o $\pi$ vľavo (alebo vpravo), teda $D_{-1} = L_{\pi}$.
 \end{example}
 
 \begin{example}
 Ak vezmeme pravouhlú projekciu $P$ na priamku $q$ (viď vyššie), očakávame, že
-$[[P]][[P]] = [[P]]$, pretože $P\circ P=P$.
+$PP = P$, pretože $[[P]]\circ [[P]]=[[P]]$.
 Naozaj:
 $$ \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} = \begin{pmatrix} 1/4+1/4 & 1/4+1/4 \\ 1/4+1/4 & 1/4+1/4 \end{pmatrix} = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} $$
 \end{example}
