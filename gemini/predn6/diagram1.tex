@@ -1,0 +1,71 @@
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage{amssymb} % For \mathbb{R}
+\usepackage{amsmath}
+\usetikzlibrary{arrows.meta} % For modern arrow tips
+
+\begin{document}
+\q{\}begin{tikzpicture}[
+    >=Stealth, % Sets the default arrow tip style
+    x=1cm, y=1cm, % Sets the scale
+    axis/.style={->, thick},
+    vec/.style={->, thick, -{Stealth[length=2.5mm]}},
+    dashline/.style={dashed, thick}
+]
+
+% --- Title Equation ---
+
+% --- Axes and Ticks ---
+\draw [axis] (-3,0) -- (4.5,0); % x-axis
+\draw [axis] (0,-4) -- (0,4.5); % y-axis
+
+% Ticks
+\foreach \x in {-2,-1,1,2,3} {
+    \draw (\x, 2pt) -- (\x, -2pt) node[below, yshift=-2pt] {$\x$};
+}
+\foreach \y in {-3,-2,-1,1,2,3} {
+    \draw (2pt, \y) -- (-2pt, \y) node[left, xshift=-2pt] {$\y$};
+}
+
+% Origin Label
+\node[below right, xshift=1pt, yshift=-1pt] at (0,0) {$(0,0)$};
+\node[above left, xshift=-1pt, yshift=1pt] at (0,0) {$[P](0,0)$};
+
+% --- The Line q ---
+\draw [red, thick] (-3.5,-3.5) -- (3.5, 3.5) node[right, xshift=2pt] {$q$};
+
+% --- Point (3,1) and its Projection ---
+\coordinate (A) at (3,1);
+\coordinate (PA) at (2,2); % The projection [P](3,1) is at (3,3)
+
+% Labels
+\node[right, xshift=2pt] at (A) {$(3,1)$};
+\node[right, xshift=3pt] at (PA) {$[P](3,1)$};
+
+% Vectors
+\draw [vec] (0,0) -- (A);     % Vector from origin to (3,1)
+\draw [vec] (0,0) -- (PA);   % Vector from origin to [P](3,1)
+
+% Dashed coordinate lines
+\draw [dashline] (A) -- (A |- 0,0); % (3,1) to (3,0)
+\draw [dashline] (A) -- (0,0 |- A); % (3,1) to (0,1)
+\draw [dashline] (PA) -- (PA |- 0,0); % (3,3) to (3,0)
+\draw [dashline] (PA) -- (0,0 |- PA); % (3,3) to (0,3)
+
+% --- Point (-1,-2) and its Projection ---
+\coordinate (B) at (-1,-2);
+\coordinate (PB) at (-1.5,-1.5); % The projection is at (-1.5,-1.5)
+\draw [dashline] (PB) -- (PB |- 0,0); % (3,3) to (3,0)
+\draw [dashline] (PB) -- (0,0 |- PB); % (3,3) to (0,3)
+\draw [vec] (0,0) -- (B);     % Vector from origin to (B)
+\draw [vec] (0,0) -- (PB);     % Vector from origin to (PB)
+
+% Label
+\node[below, yshift=-2pt] at (B) {$(-1,-2)$};
+\node[left, xshift=-2pt] at (PB) {$[P](-1,-2)$};
+
+% Dashed coordinate lines
+\draw [dashline] (B) -- (B |- 0,0); % (-1,-2) to (-1,0)
+\draw [dashline] (B) -- (0,0 |- B); % (-1,-2) to (0,-2)
+
+\end{tikzpicture}
+\end{document}

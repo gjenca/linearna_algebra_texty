@@ -1,0 +1,314 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[slovak]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{definicia}{Definícia}
+\newtheorem{tvrdenie}{Tvrdenie}
+
+\title{Množiny a zobrazenia}
+\author{Lineárna algebra}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Množiny}
+
+\begin{definicia}
+Množina je súbor objektov nazývaných \emph{prvky množiny}. Fakt, že objekt $x$ je prvkom množiny $A$ značíme takto: $x \in A$. Ak objekt $x$ nepatrí do množiny $A$ značíme to takto: $x \notin A$.
+\end{definicia}
+
+Množiny môžu byť konečné alebo nekonečné. Konečné množiny môžeme špecifikovať prostým vymenovaním jej prvkov takto:
+
+\begin{center}
+\tikz[baseline=-0.5ex]{
+  \node[draw,circle,minimum size=1.5cm] (A) at (0,0) {$A$};
+  \node at (0,0.3) {$1$};
+  \node at (-0.3,-0.3) {$2$};
+  \node at (0.3,-0.3) {$3$};
+}
+\end{center}
+
+$A = \{1, 2, 3\}$
+
+\textbf{Otázka:} Platí $2 \in A$? \textbf{Odpoveď:} Áno.
+
+\textbf{Otázka:} Platí $\{2\} \in A$? \textbf{Odpoveď:} Nie.
+
+Ak si niekto myslí, že áno, musí si uvedomiť, že objekt $\{2\}$ je rôzny od objektov, ktoré patria do množiny $A$. Pravdepodobne si myslíte, že $2 = \{2\}$. To však nie je pravda -- $2$ nie je množina, $\{2\}$ je množina, a teda tieto dva objekty nemôžu byť rovné, pretože rôzne objekty majú rôzne vlastnosti.
+
+Príkladom nekonečnej množiny je množina všetkých prirodzených čísel:
+\[ \mathbb{N} = \{0, 1, 2, 3, 4, \ldots\} \]
+
+Všimnime si, že $0 \in \mathbb{N}$. Je možné, že na iných prednáškach to bude inak, $0 \notin \mathbb{N}$.
+
+Ďalšie množiny čísel, ktoré poznáme zo strednej školy sú:
+\begin{itemize}
+\item $\mathbb{Z}$ -- množina všetkých celých čísel
+\item $\mathbb{Q}$ -- množina všetkých racionálnych čísel
+\item $\mathbb{R}$ -- množina všetkých reálnych čísel
+\end{itemize}
+
+\begin{definicia}
+Prázdna množina je množina, ktorá neobsahuje žiadny objekt. Prázdnu množinu značíme $\emptyset$.
+\end{definicia}
+
+\begin{definicia}
+Hovoríme, že množina $B$ je \emph{podmnožinou} množiny $A$, ak pre každý prvok $x$ množiny $B$ platí, že $x \in A$. Fakt, že $B$ je podmnožinou $A$ značíme $B \subseteq A$. Ak $B$ nie je podmnožinou $A$, značíme to $B \not\subseteq A$.
+\end{definicia}
+
+\begin{center}
+\begin{tikzpicture}
+  \draw[thick] (0,0) ellipse (2cm and 1.5cm);
+  \draw[thick,fill=gray!20] (0.5,0) ellipse (1cm and 0.8cm);
+  \node at (-1.5,1) {$A$};
+  \node at (0.5,0) {$B$};
+\end{tikzpicture}
+\end{center}
+
+Všimnime si, že $\subseteq$ sa volá \emph{inklúzia}.
+
+\textbf{Príklady:}
+\begin{itemize}
+\item Ak $A = \{1, 2, 3\}$, $B = \{2, 3\}$, potom $\{1, 2\} \subseteq A$, $\{3\} \subseteq A$, $\{1, 3\} \subseteq A$, lebo $3 \in \{1, 3\}$ a súčasne $3 \in A$.
+\item $B = \{2, 3\} \subseteq A$ lebo $2 \in \{2, 3\}$ a súčasne $2 \in A$.
+\end{itemize}
+
+V jazyku formálnej logiky $B \subseteq A$ zapíšeme pomocou logického kvantifikátora takto (implikácia):
+\[ \forall x: \, x \in B \Rightarrow x \in A \]
+\emph{Pre všetky $x$ platí: ak $x$ patrí do $B$, potom $x$ patrí do $A$.}
+
+Iný spôsob zápisu je:
+\[ B \subseteq A \Leftrightarrow (\forall x \in B: \, x \in A) \]
+\emph{Pre všetky $x$ z množiny $B$ platí, že $x$ patrí do $A$.}
+
+Tieto tri symbolické zápisy sú logicky ekvivalentné a demonštrujú rovnaký vzťah medzi množinami $B$ a $A$.
+
+V tejto chvíli je dobré uvedomiť si, že prázdna množina je podmnožinou každej množiny. Naozaj, ak by pre nejakú množinu $A$ platilo $\emptyset \not\subseteq A$, musel by existovať prvok $x$ množiny $\emptyset$ taký, že $x$ nepatrí do $A$. Ako povedané, to nemôže platiť:
+\[ \emptyset \subseteq A \text{ pre každú množinu } A \]
+pretože $x \in \emptyset$ neplatí pre žiadny objekt $x$.
+
+Pri úvahách o podmnožinách sme vlastne používali toto tvrdenie:
+
+\begin{tvrdenie}
+Nech $A$, $B$ sú množiny. Potom $B \subseteq A$ práve vtedy, keď pre každý prvok $x \in B$ platí, že $x \in A$.
+\end{tvrdenie}
+
+V jazyku formálnej logiky:
+\[ B \subseteq A \Leftrightarrow \forall x: (x \in B \Rightarrow x \in A) \]
+
+Keď sú dve množiny rovné? Realizuje množina je súbor objektov do nej patriacich. Dve množiny si sú rovné, ak obsahujú rovnaké prvky.
+
+\begin{tvrdenie}
+$A = B$ práve vtedy, keď pre všetky objekty $x$ platí, že $x \in A$ práve vtedy, keď $x \in B$.
+\end{tvrdenie}
+
+Táto vlastnosť množín sa volá \emph{extenzionalita}.
+
+Z toho vyplýva aj nasledujúce tvrdenie:
+
+\begin{tvrdenie}
+Nech $A$, $B$ sú množiny. Potom $A = B$ práve vtedy, keď $A \subseteq B$ a súčasne $B \subseteq A$.
+\end{tvrdenie}
+
+Jeden zo spôsobov, ako môžeme špecifikovať množinu, je oddelením z nejakej množiny pomocou nejakej vlastnosti:
+\[ \{x \in A \mid \text{vlastnosť o } x\} \]
+
+\textbf{Príklady:}
+\begin{align*}
+\{x \in \mathbb{R} \mid x \geq 2\} &= [2, \infty) \\
+\{x \in \mathbb{R} \mid x < 3\} &= (-\infty, 3) \\
+\{x \in \mathbb{R} \mid x \geq 4 \text{ a súčasne } x \leq 100\} &= [4, 100] \\
+\{x \in \mathbb{R} \mid x \geq 3 \text{ a súčasne } x < 2\} &= \emptyset \\
+\{x \in \mathbb{R} \mid x \geq 2\} &= [2, \infty) \\
+\{x \in \mathbb{N} \mid x \geq 2\} &= \{2, 3, 4, \ldots\} \\
+\{n \in \mathbb{N} \mid n \text{ je prvočíslo}\} &= \{2, 3, 5, 7, 11, \ldots\}
+\end{align*}
+
+Podobne, celé výrazy môžu vystupovať v zápise:
+\[ \{f(x) \mid x \in A\} \]
+
+\textbf{Príklady:}
+\begin{align*}
+\{n^2 \mid n \in \mathbb{N}\} &= \{0, 1, 4, 9, 16, \ldots\} \\
+\{\sin x \mid x \in \mathbb{R}\} &= [-1, 1]
+\end{align*}
+
+Počet prvkov konečnej množiny $A$ sa volá \emph{kardinalita} množiny $A$ a označujeme $|A|$.
+
+\textbf{Príklady:}
+\begin{align*}
+|\{1, 7, 8\}| &= 3 \\
+|\emptyset| &= 0 \\
+|\{4, 2, 3, 3\}| &= 3 \\
+|\mathbb{N}| &= \infty
+\end{align*}
+
+\section{Operácie nad množinami}
+
+Ak $A$, $B$ sú množiny, môžeme s nimi vytvoriť inú množinu pomocou množinových operácií:
+
+\begin{align*}
+A \cup B &= \{x \mid x \in A \text{ alebo } x \in B\} \\
+A \cap B &= \{x \mid x \in A \text{ a súčasne } x \in B\}
+\end{align*}
+
+$A \cup B$ sa volá \emph{zjednotenie} množín $A$, $B$.
+
+$A \cap B$ sa volá \emph{prienik} množín $A$, $B$.
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{scope}
+    \draw[thick,fill=blue!30] (0,0) circle (1cm);
+    \draw[thick,fill=blue!30] (1.5,0) circle (1cm);
+    \node at (0,-1.8) {$A \cup B$};
+  \end{scope}
+  
+  \begin{scope}[xshift=5cm]
+    \draw[thick] (0,0) circle (1cm);
+    \draw[thick] (1.5,0) circle (1cm);
+    \begin{scope}
+      \clip (0,0) circle (1cm);
+      \fill[blue!30] (1.5,0) circle (1cm);
+    \end{scope}
+    \node at (0.75,-1.8) {$A \cap B$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\textbf{Príklady:}
+\begin{align*}
+\{1, 2, 3\} \cup \{3, 4\} &= \{1, 2, 3, 4\} \\
+\{1, 2, 3\} \cap \{2, 3, 4\} &= \{2, 3\} \\
+\{2, 4\} \cap \{3, 5\} &= \emptyset \\
+\{2, 3\} \cap \{3, 5\} &= \{3\} \\
+\{2, 4\} \cup \{3, 5\} &= \{2, 3, 4, 5\}
+\end{align*}
+
+$A \cup A = A$ pre všetky množiny $A$.
+
+\[ A \setminus B = \{x \in A \mid x \notin B\} \text{ -- rozdiel množín} \]
+
+\textbf{Príklady:}
+\begin{align*}
+\{1, 2, 3\} \setminus \{2, 3\} &= \{1\} \\
+\mathbb{Z} \setminus \mathbb{N} &= \{\ldots, -3, -2, -1\} \\
+\mathbb{R} \setminus \mathbb{Q} &= \text{iracionálne čísla}
+\end{align*}
+
+$A \setminus \emptyset = A$ pre všetky množiny $A$.
+
+\section{Usporiadané $n$-tice}
+
+Ak $a$ a $b$ sú nejaké objekty, môžeme z nich vytvoriť objekt nazývaný \emph{usporiadaná dvojica}:
+\[ (a, b) \]
+
+Dôležité je, že $(a, b) \neq (b, a)$ ak $a \neq b$.
+
+\begin{definicia}
+Nech $A$, $B$ sú množiny. Kartézsky súčin $A \times B$ je množina všetkých usporiadaných dvojíc $(a, b)$, kde $a \in A$ a $b \in B$. Symbolicky:
+\[ A \times B = \{(a, b) \mid a \in A, \, b \in B\} \]
+\end{definicia}
+
+\textbf{Príklad:}
+\begin{align*}
+\{1, 2\} \times \{3, 4\} &= \{(1, 3), (1, 4), (2, 3), (2, 4)\} \\
+\{3\} \times \emptyset &= \emptyset \\
+\{3, 4\} \times \{1, 2\} &= \{(3, 1), (3, 2), (4, 1), (4, 2)\}
+\end{align*}
+
+Vidíme, že vo všeobecnosti nie je pravda, že $A \times B = B \times A$.
+
+Otázka: Čo je $A \times \emptyset$?
+\[ A \times \emptyset = \{(a, b) \mid a \in A, \, b \in \emptyset\} = \emptyset \]
+
+Takýto objekt $b$ neexistuje. Teda $A \times \emptyset = \emptyset$ pre každú množinu $A$.
+
+Nič nám nebráni vytvoriť kartézsky súčin $A \times A$.
+
+Ak $A = \{1, 2\}$, potom:
+\[ A \times A = \{(1, 1), (1, 2), (2, 1), (2, 2)\} \]
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+  \draw[->] (-0.5,0) -- (3,0) node[right] {$x$};
+  \draw[->] (0,-0.5) -- (0,3) node[above] {$y$};
+  \foreach \x in {1,2} {
+    \foreach \y in {1,2} {
+      \fill (\x,\y) circle (2pt);
+      \node[below right,font=\footnotesize] at (\x,\y) {$(\x,\y)$};
+    }
+  }
+  \node at (1.5,-1) {Druhá kartézska mocnina $A \times A$};
+\end{tikzpicture}
+\end{center}
+
+Analogicky ako pojem usporiadanej dvojice môžeme vytvoriť pojem usporiadanej trojice, štvorice, $n$-tice pre $n \in \mathbb{N}$.
+
+Poznámka: Kartézske súčiny množín môžeme rozšíriť analogicky:
+\[ A \times B \times C \times D = \{(a, b, c, d) \mid a \in A, \, b \in B, \, c \in C, \, d \in D\} \]
+
+\textbf{Príklady:}
+\begin{align*}
+\mathbb{R} \times \mathbb{R} &= \mathbb{R}^2 \text{ -- usporiadané dvojice reálnych čísel} \\
+\mathbb{R} \times \mathbb{R} \times \mathbb{R} &= \mathbb{R}^3 \text{ -- usporiadané trojice} \\
+\mathbb{R}^n &\text{ -- usporiadané $n$-tice reálnych čísel}
+\end{align*}
+
+Príklad: $(1, 2, 1, 7) \in \mathbb{R}^4$.
+
+\section{Zobrazenia}
+
+Zobrazenia (pomerne pravdepodobne) poznáte pod menom \emph{funkcia}.
+
+\begin{definicia}
+Nech $A$, $B$ sú množiny. \emph{Zobrazením} $f: A \to B$ je predpis, ktorý každému prvku $A$ priradí nejaký prvok $B$. Zapisujeme $f: A \to B$.
+
+\begin{center}
+\begin{tikzpicture}
+  \node[draw,ellipse,minimum width=1.5cm,minimum height=2cm] (A) at (0,0) {};
+  \node[draw,ellipse,minimum width=1.5cm,minimum height=2cm] (B) at (4,0) {};
+  \node at (0,1.2) {$A$};
+  \node at (4,1.2) {$B$};
+  
+  \foreach \y/\label in {0.5/x_1, 0/x_2, -0.5/x_3} {
+    \fill (0,\y) circle (1.5pt);
+    \node[left] at (-0.1,\y) {$\label$};
+  }
+  
+  \foreach \y/\label in {0.6/y_1, 0.2/y_2, -0.2/y_3, -0.6/y_4} {
+    \fill (4,\y) circle (1.5pt);
+    \node[right] at (4.1,\y) {$\label$};
+  }
+  
+  \draw[->,thick] (0.1,0.5) -- (3.9,0.6);
+  \draw[->,thick] (0.1,0) -- (3.9,0.2);
+  \draw[->,thick] (0.1,-0.5) -- (3.9,0.6);
+  
+  \node at (2,-1.5) {$f: A \to B$};
+\end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+\item $A$ sa volá \emph{definičný obor}
+\item $B$ sa volá \emph{obor hodnôt}
+\end{itemize}
+\end{definicia}
+
+Predpis môže byť daný rôzne. Napríklad, ak $f: \mathbb{R} \to \mathbb{R}$, môžeme predpis zadefinovať pomocou vzorca: $f(x) = x^2 + 1$.
+
+Ale $A$, $B$ vôbec nemusia byť množiny čísel a predpis nemusí byť vzorec:
+\begin{itemize}
+\item $f: A \to B$, $f(a)$ = najobľúbenejšie jedlo osoby $a$
+\item $A$ môže byť množina ľudí, $B$ môže byť množina jedál
+\item $d: A \to \mathbb{R}$, $d(a, b)$ = najkratšia vzdialenosť medzi mestami $a$ a $b$ (kde $a, b$ sú mestá a vzdialenosť v $\mathbb{R}$)
+\end{itemize}
+
+\end{document}

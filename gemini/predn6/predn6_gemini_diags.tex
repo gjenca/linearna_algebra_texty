@@ -1,0 +1,292 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, bending, decorations.pathmorphing}
+
+\begin{document}
+
+\section*{MATICE AKO ZOBRAZENIA VEKTOROV}
+
+Uvažujme maticu $A=(a_{ij})$ typu $m \times n$; sprava ju môžeme vynásobiť vektorom (t.j. stĺpcom) typu $n \times 1$;
+výsledok je opäť stĺpec typu $m \times 1$ (t.j. vektor).
+
+Príkl.
+$$ \begin{pmatrix} 1 & -3 & \frac{1}{2} \\ 0 & 4 & -2 \end{pmatrix} \begin{pmatrix} 2 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} \frac{3}{2} \\ -2 \end{pmatrix} $$
+
+Týmto spôsobom máme s každou maticou $A$ typu $m \times n$ asociované zobrazenie
+$$ [[A]]: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m} $$
+(matica a s ňou asociované zobrazenie stotožníme)
+dané predpisom $[[A]](\vec{x}) = A\vec{x}$ alebo (slovne) vynásob vektor $\vec{x} \in \mathbb{R}^{n}$ maticou $A$ zľava.
+Máme teda nejaký typ matematického objektu (zobrazenie z $\mathbb{R}^n$ do $\mathbb{R}^m$) reprezentovaný iným objektom (matica typu $m \times n$).
+
+\vspace{1em}
+
+$\mathbb{R}^{m \times n} = $ matice typu $M \times M$
+$\updownarrow$
+reprezentuje zobrazenie
+$\updownarrow$
+zobrazenia $\mathbb{R}^{n} \rightarrow \mathbb{R}^{n}$
+
+POZOR! nie všetky zobrazenia sú reprezentovateľné maticami.
+
+Cieľom tohto textu je preskúmať väzbu medzi maticami a zobrazeniami, ktoré reprezentujú.
+Teraz uvedieme niekoľko matíc a popíšeme zobrazenia, ktoré reprezentujú. Ak to budeme vedieť, sformulujeme aj význam toho zobrazenia - geometrický alebo iný.
+
+\subsection*{Nulové matice}
+Uvažujme nulovú maticu typu $m \times n$. Aké zobrazenie $\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}$ táto matica reprezentuje?
+Počítajme:
+$$ \begin{pmatrix} 0 & 0 & \dots & 0 \\ 0 & 0 & \dots & 0 \\ \vdots & \vdots & \vdots & \vdots \\ 0 & 0 & \dots & 0 \end{pmatrix} \begin{pmatrix} x_{1} \\ \vdots \\ x_{n} \end{pmatrix} = \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix} $$
+$\in \mathbb{R}^{m \times n}$ \hspace{1em} $\in \mathbb{R}^{n}$ \hspace{1em} $\in \mathbb{R}^{m}$
+
+Vidíme teda, že nulová matica reprezentuje zobrazenie z $\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}$, ktoré zobrazí každý vektor z $\mathbb{R}^{n}$ na prvok $\vec{0}=(0,...,0) \in \mathbb{R}^{m}$, t.j.
+konštantné zobrazenie s hodnotou $\vec{0}$. Asi nikoho neprekvapí, že toto zobrazenie sa značí $O$.
+
+\subsection*{Jednotkové matice a ich skalárne násobky}
+Spomeňme si, že jednotková matica $I_n$ je diagonálna matica typu $n \times n$, ktorá má na diagonále samé 1. Preskúmajme, aké zobrazenie reprezentuje:
+$$ \begin{pmatrix} 1 & 0 & 0 & \dots & 0 \\ 0 & 1 & 0 & \dots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \dots & 1 \end{pmatrix} \begin{pmatrix} a_{1} \\ a_{2} \\ \vdots \\ a_{n} \end{pmatrix} = \begin{pmatrix} a_{1} \\ a_{2} \\ \vdots \\ a_{n} \end{pmatrix} $$
+$I_n \in \mathbb{R}^{n \times n}$ \hspace{1em} $\in \mathbb{R}^{n}$ \hspace{1em} $\in \mathbb{R}^{n}$
+
+Vidíme teda, že $I_n \vec{x} = \vec{x}$ pre všetky vektory $\vec{x} \in \mathbb{R}^n$ a teda $I_n$ reprezentuje identické zobrazenie $id_{\mathbb{R}^n}$; $[[I_n]] = id_{\mathbb{R}^n}$.
+
+Pozrime sa teraz na trochu všeobecnejší prípad; nech $D_{\alpha}$ je diagonálna matica typu $n \times n$, ktorá má na diagonále tú istú konštantu $\alpha \in \mathbb{R}$. Určme, aké zobrazenie takáto matica reprezentuje.
+$$ \underbrace{\begin{pmatrix} \alpha & 0 & 0 & \dots & 0 \\ 0 & \alpha & 0 & \dots & 0 \\ \vdots & \vdots & \ddots & & \vdots \\ 0 & 0 & 0 & \dots & \alpha \end{pmatrix}}_{D_{\alpha} \in \mathbb{R}^{n \times n}} \underbrace{\begin{pmatrix} x_{1} \\ x_{2} \\ \vdots \\ x_{n} \end{pmatrix}}_{\in \mathbb{R}^{n}} = \underbrace{\begin{pmatrix} \alpha x_{1} \\ \alpha x_{2} \\ \vdots \\ \alpha x_{n} \end{pmatrix}}_{\in \mathbb{R}^{n}} = \alpha \vec{x} $$
+(násobenie vektora sklárom)
+
+Teda (symbolicky) $D_{\alpha}\vec{x} = \alpha\vec{x},$ pre všetky $\alpha \in \mathbb{R}$ a $\vec{x} \in \mathbb{R}^n$.
+Všimnime si, že (keďže $D_0 = 0$ a $D_1 = I_n$) toto dostávame spätne ako špeciálne prípady $\alpha=0, \alpha=1$.
+
+$D_0 = 0$ (nulová matica) \quad $D_0\vec{x} = 0\vec{x} = \vec{0}$
+$I_n\vec{x} = D_1\vec{x} = 1\vec{x} = \vec{x} = id_{\mathbb{R}^n}(\vec{x})$.
+$D_{\alpha}\vec{x} = \alpha\vec{x}$
+
+D.Ú.: Popíšte zobrazenia reprezentované diagonálnymi maticami.
+
+\subsection*{Súčty a priemery}
+Každá matica $A \in \mathbb{R}^{1 \times n}$ (riadok) reprezentuje zobrazenie
+$[[A]]: \mathbb{R}^n \rightarrow \mathbb{R}^1$.
+($\downarrow$ prvky $\mathbb{R}^1$ sú usporiadané 1-ice; $\mathbb{R}^1 = \mathbb{R}$)
+
+Uvažujme špeciálne maticu z $\mathbb{R}^{1 \times n}$ obsahujúcu iba 1; máme
+$$ (\begin{matrix} 1 & 1 & \dots & 1 \end{matrix}) \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = x_1 + x_2 + \dots + x_n $$
+Zobrazenie z $\mathbb{R}^n$ do $\mathbb{R}^1$ reprezentované touto maticou je teda dané jednoducho ako "súčet zložiek vektora".
+
+Podobne $(\frac{1}{n} \dots \frac{1}{n})$ reprezentuje zobrazenie "priemer zložiek vektora".
+$$ (\begin{matrix} \frac{1}{n} & \dots & \frac{1}{n} \end{matrix}) \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix} = \frac{x_1}{n} + \dots + \frac{x_n}{n} = \frac{x_1 + \dots + x_n}{n} $$
+
+\subsection*{Pravouhlá projekcia na priamku}
+Vezmime si teraz maticu
+$$ P = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} $$
+Táto reprezentuje zobrazenie $\mathbb{R}^2 \rightarrow \mathbb{R}^2$. Predpis tohto zobrazenia rozpísaný do zložiek nájdeme ľahko
+$$ \begin{pmatrix} \frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{2} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} \frac{1}{2}x_1 + \frac{1}{2}x_2 \\ \frac{1}{2}x_1 + \frac{1}{2}x_2 \end{pmatrix} $$
+(obe zložky sú vždy rovnaké)
+
+Pokúsme sa interpretovať toto zobrazenie geometricky; stotožníme vektory z $\mathbb{R}^2$ s vektormi v rovine prostredníctvom nejakých dvoch navzájom kolmých súradnicových osí.
+
+Pre každý vektor $\vec{x}$ má $P\vec{x}$ obe zložky rovnaké. Geometricky toto znamená, že $P\vec{x}$ leží na priamke $q$ prechádzajúcej počiatkom
+$$ q = \{(t,t) : t \in \mathbb{R}\} $$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8, >={Stealth[length=2mm]}]
+    % Osi
+    \draw [->, thick] (-3.5,0) -- (4,0) node [right] {$x_1$};
+    \draw [->, thick] (0,-3.5) -- (0,4) node [above] {$x_2$};
+    
+    % Priamka q
+    \draw [blue, dashed] (-3,-3) -- (3,3) node [right] {$q$};
+    
+    % Vektor x = (3,1)
+    \draw [->, red, very thick] (0,0) -- (3,1) node [right, black] {$\vec{x}=(3,1)$};
+    
+    % Vektor P(x) = (2,2)
+    \draw [->, red, very thick] (0,0) -- (2,2) node [above, black] {$[[P]](\vec{x})=(2,2)$};
+    
+    % Projekcia
+    \draw [black, dashed] (3,1) -- (2,2);
+    
+    % Vektor y = (-1,-2)
+    \draw [->, green, very thick] (0,0) -- (-1,-2) node [below, black] {$\vec{y}=(-1,-2)$};
+    
+    % Vektor P(y) = (-1.5, -1.5)
+    \draw [->, green, very thick] (0,0) -- (-1.5,-1.5) node [left, black] {$[[P]](\vec{y})=(-\frac{3}{2},-\frac{3}{2})$};
+    
+    % Projekcia
+    \draw [black, dashed] (-1,-2) -- (-1.5,-1.5);
+    
+    % Pociatok
+    \fill (0,0) circle (1.5pt) node [below left] {$(0,0)$};
+\end{tikzpicture}
+\end{center}
+
+Po vyskúšaní pár bodov dospejeme k hypotéze
+$[[P]](\vec{x})$ je priemet $\vec{x}$ na $q$ "v pravom uhle". Táto hypotéza je naozaj pravdivá. Je možné ju dokázať "holými rukami", ale rozumnejšie je odložiť jej dôkaz naneskôr, do druhého semestra, keď budeme mať k dispozícii mocnejšie nástroje.
+
+\subsection*{Rovinná rotácia}
+Uvažujme, pre $\alpha \in \langle 0, 2\pi \rangle$ maticu $L_{\alpha} = \begin{pmatrix} \cos\alpha & -\sin\alpha \\ \sin\alpha & \cos\alpha \end{pmatrix}$
+Máme
+$$ [[L_{\alpha}]](x_1, x_2) = \begin{pmatrix} \cos\alpha & -\sin\alpha \\ \sin\alpha & \cos\alpha \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} x_1 \cos\alpha - x_2 \sin\alpha \\ x_1 \sin\alpha + x_2 \cos\alpha \end{pmatrix} $$
+Význam tohto zobrazenia je rotácia
+proti smeru hodinových ručičiek o uhol $\alpha$ vľavo okolo počiatku.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9, >={Stealth[length=2mm]}]
+    % Osi
+    \draw [->, thick] (-2,0) -- (4,0) node [right] {$x_1$};
+    \draw [->, thick] (0,-2) -- (0,4) node [above] {$x_2$};
+    
+    % Pociatok
+    \fill (0,0) circle (1.5pt) node [below left] {$(0,0)$};
+    
+    % Uhol
+    \def\myangle{30}
+    \def\veclength{3}
+    
+    % Originalny vektor
+    \coordinate (X) at (0:\veclength); % Start on x-axis for simplicity
+    \draw [->, red, very thick] (0,0) -- (\veclength, 0) node [right, black] {$\vec{x}$};
+    
+    % Rotovany vektor
+    \coordinate (LX) at (\myangle:\veclength);
+    \draw [->, blue, very thick] (0,0) -- (LX) node [above, black] {$[[L_{\alpha}]](\vec{x})$};
+    
+    % Arc for angle
+    \draw [->, black, dashed] (1.5,0) arc (0:\myangle:1.5) node [midway, right] {$\alpha$};
+    
+    % Alternativny vektor x (nech nie je na osi)
+    \coordinate (X2) at (20:2.5);
+    \draw [->, gray, thick, dashed] (0,0) -- (X2) node [right] {$\vec{y}$};
+    
+    % Rotovany alternativny vektor
+    \coordinate (LX2) at (20+\myangle:2.5);
+    \draw [->, gray, thick, dashed] (0,0) -- (LX2) node [above] {$[[L_{\alpha}]](\vec{y})$};
+    
+    % Arc for angle 2
+    \draw [->, gray, opacity=0.8] (20:1) arc (20:20+\myangle:1);
+
+\end{tikzpicture}
+\end{center}
+
+Toto nebudeme dokazovať teraz, ale dokážeme to neskôr.
+
+\subsection*{Osová súmernosť podľa priamky}
+Uvažujme maticu $B = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ a počítajme pre $\vec{x}=(x_1, x_2)$ máme
+$$ [[B]](\vec{x}) = B\vec{x} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} x_2 \\ x_1 \end{pmatrix} $$
+Toto zobrazenie teda vymieňa zložky. Geometricky sa toto dá vyjadriť ako osová súmernosť
+podľa priamky, ktorú už poznáme
+$$ q = \{(t,t) : t \in \mathbb{R}\} $$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8, >={Stealth[length=2mm]}]
+    % Osi
+    \draw [->, thick] (-1,0) -- (4,0) node [right] {$x_1$};
+    \draw [->, thick] (0,-1) -- (0,4) node [above] {$x_2$};
+    
+    % Priamka q (os symetrie)
+    \draw [blue, dashed] (-1,-1) -- (4,4) node [right] {$q$};
+    
+    % Vektor x
+    \draw [->, red, very thick] (0,0) -- (3,1) node [right, black] {$\vec{x}=(3,1)$};
+    
+    % Vektor B(x)
+    \draw [->, red, very thick] (0,0) -- (1,3) node [above, black] {$[[B]](\vec{x})=(1,3)$};
+    
+    % Spojnica
+    \draw [black, dashed] (3,1) -- (1,3);
+    
+    % Pociatok
+    \fill (0,0) circle (1.5pt) node [below left] {$(0,0)$};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Ktoré zobrazenia sú reprezentovateľné maticami?}
+V tomto momente vzniká prirodzená otázka, ktoré zobrazenia $\mathbb{R}^n \rightarrow \mathbb{R}^m$ sú reprezentovateľné maticami $R^{m \times n}$;
+väčšina toho, čo sa budeme učiť vo zvyšku tohto semestra sa bude týkať hľadania systematickej odpovede na túto otázku.
+Zatiaľ sa obmedzíme na konštatovanie, že nie všetky zobrazenia $\mathbb{R}^n \rightarrow \mathbb{R}^m$ sú reprezentovateľné maticou.
+Napríklad iste platí, že $A\vec{0} = \vec{0}$ pre každú
+maticu $A$. Teda ľubovoľné zobrazenie, ktoré
+zobrazí vektor $\vec{0}$
+na nenulový vektor iste
+reprezentovateľné maticou nebude.
+
+\subsection*{Súčin matíc je reprezentácia zloženého zobrazenia}
+\textbf{Veta 7.1} Nech $A \in \mathbb{R}^{m \times n}, B \in \mathbb{R}^{k \times m}$.
+Uvažujme zobrazenia reprezentované maticami $A, B$.
+$$ [[A]]: \mathbb{R}^n \rightarrow \mathbb{R}^m $$
+$$ [[B]]: \mathbb{R}^m \rightarrow \mathbb{R}^k $$
+Potom zložené zobrazenie $[[B]] \circ [[A]]$ je reprezentované súčinom matíc $B A$.
+
+\textbf{Dôkaz:}
+Máme dokázať, že $[[B]] \circ [[A]] = [[B A]]$.
+Obe tieto zobrazenia sú typu $\mathbb{R}^n \rightarrow \mathbb{R}^k$. Nech $\vec{x} \in \mathbb{R}^n$.
+\begin{align*}
+([[B]] \circ [[A]])(\vec{x}) &= [[B]]([[A]](\vec{x})) & \text{(definícia zloženého zobrazenia)} \\
+&= [[B]](A\vec{x}) & \text{(predpis pre $[[A]]$)} \\
+&= B(A\vec{x}) & \text{(predpis pre $[[B]]$)} \\
+&= (B A)\vec{x} & \text{(asociativita násobenia matíc)} \\
+&= [[B A]](\vec{x}) & \text{(predpis pre $[[B A]]$)}
+\end{align*}
+Zobrazenia $[[B A]]$ a $[[B]] \circ [[A]]$ajú rovnaký definičný obor aj koobor a každý vektor $\vec{x} \in \mathbb{R}^n$ zobrazia na rovnaký vektor v $\mathbb{R}^k$. To znamená $[[B]] \circ [[A]] = [[B A]]$.
+
+\subsection*{Príklady}
+Ak vezmeme maticu rovinnej rotácie $L_{\frac{\pi}{2}}$:
+$$ L_{\frac{\pi}{2}} = \begin{pmatrix} \cos\frac{\pi}{2} & -\sin\frac{\pi}{2} \\ \sin\frac{\pi}{2} & \cos\frac{\pi}{2} \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} $$
+$$ L_{\frac{\pi}{2}} L_{\frac{\pi}{2}} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} $$
+Táto matica by mala reprezentovať zložené zobrazenie $L_{\frac{\pi}{2}} \circ L_{\frac{\pi}{2}}$. Ale $L_{\frac{\pi}{2}} \circ L_{\frac{\pi}{2}} = L_{\pi}$.
+Skontrolujme:
+$$ L_{\pi} = \begin{pmatrix} \cos\pi & -\sin\pi \\ \sin\pi & \cos\pi \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} $$
+Pokračujme ďalej a spočítajme $L_{\pi} \cdot L_{\pi}$
+$$ L_{\pi} L_{\pi} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I_2 $$
+$D_{-1}$ reprezentuje zobrazenie násobenie skalárom $-1$. Ale vynásobiť rovinný vektor skalárom $-1$ je to isté ako otočiť ho o $\pi$ vľavo alebo vpravo, čiže teda $D_{-1} = L_{\pi}$.
+V ďalšom kroku by sme mali dostať jednotkovú maticu $I_2$. Porozmýšľajte prečo a presvedčte sa, že to vyjde.
+
+Ak vezmeme pravouhlú projekciu $P$ na priamku $q$ (viď vyššie), očakávame, že $P P = P$, pretože obrazom vektorov (bodov) ležiacich na $q$ sú oni sami. Toto vyjde:
+$$ \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} = \begin{pmatrix} 1/4+1/4 & 1/4+1/4 \\ 1/4+1/4 & 1/4+1/4 \end{pmatrix} = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} $$
+
+D.Ú.: Nájdite geometrickú interpretáciu zobrazenia $P \circ D_2$. Kreslite si obrázky.
+V akom vzťahu sú zobrazenia $P \circ D_2$ a $D_2 \circ P$?
+Z toho vyplýva, presvedčte sa $P D_2 \neq D_2 P$.
+
+D.Ú.: Ukážte, že $L_{\alpha} \circ P \neq P \circ L_{\alpha}$ a vypočítajte aj príslušné matice zložených zobrazení.
+
+\subsection*{INVERZNÁ MATICA}
+\textbf{Definícia 7.2} Nech $A$ je štvorcová matica typu $n \times n$. Inverzná matica k $A$ je taká matica $A^{-1}$ $n \times n$ s vlastnosťou
+$$ A A^{-1} = A^{-1} A = I_n $$
+Pozor! Inverzná matica k štvorcovej matici nemusí existovať. Napríklad nulová matica iste nemá inverznú, prečo?
+
+\textbf{Definícia 7.3} Nech $A$ je štvorcová matica. Ak $A$ má inverznú, hovoríme, že $A$ je regulárna. V opačnom prípade hovoríme, že $A$ je singulárna.
+
+Príklad:
+$L_{-\alpha} = \begin{pmatrix} \cos(-\alpha) & -\sin(-\alpha) \\ \sin(-\alpha) & \cos(-\alpha) \end{pmatrix} = \begin{pmatrix} \cos\alpha & \sin\alpha \\ -\sin\alpha & \cos\alpha \end{pmatrix}$
+je inverzná matica k $L_{\alpha}$.
+
+Keďže $A, A^{-1}$ sú štvorcové rovnakého typu, povedzme $A, A^{-1} \in \mathbb{R}^{n \times n}$, reprezentujú nejaké zobrazenia
+$$ [[A]]: \mathbb{R}^n \rightarrow \mathbb{R}^n $$
+$$ [[A^{-1}]]: \mathbb{R}^n \rightarrow \mathbb{R}^n $$
+Definícia inverznej matice hovorí, že
+$$ A A^{-1} = A^{-1} A = I_n $$
+Keďže tieto sú matice, sú rovnaké aj nimi reprezentované zobrazenia sú rovnaké
+$$ [[A A^{-1}]] = [[A^{-1} A]] = [[I_n]] $$
+Podľa Vety 7.1 ale
+$$ [[A A^{-1}]] = [[A]] \circ [[A^{-1}]] $$
+$$ [[A^{-1} A]] = [[A^{-1}]] \circ [[A]] $$
+a vieme, že
+$$ [[I_n]] = id_{\mathbb{R}^n} $$
+Z toho dostávame rovnosť zobrazení
+$$ [[A]] \circ [[A^{-1}]] = [[A^{-1}]] \circ [[A]] = id_{\mathbb{R}^n} $$
+Týmto sme dokázali (alebo to je "Podľa Definície 1.14 z LinAlg 1.3 sme dokázali presne toto"):
+
+\textbf{Veta 7.4} Nech $A \in \mathbb{R}^{n \times n}$ je regulárna matica. Potom $[[A^{-1}]]$ je inverzné zobrazenie k zobrazeniu $[[A]]$.
+Kompaktne to môžeme zapísať ako
+$$ [[A^{-1}]] = [[A]]^{-1} $$
+
+\subsection*{Počítanie inverznej matice}
+Postup: napíšeme si vedľa seba maticu, ktorú chceme invertovať a jednotkovú maticu, oddelíme čiarou.
+$$ ( A | I_n ) $$
+(typu $n \times 2n$)
+potom používame na obe matice (celé riadky) rovnaké elementárne riadkové operácie, ktorými sa snažíme upraviť maticu vľavo od čiary tak, aby sme tam dostali $I_n$. Ak sa nám to podarí, napravo od čiary máme $A^{-1}$.
+$$ ( I_n | A^{-1} ) $$
+
+\end{document}
