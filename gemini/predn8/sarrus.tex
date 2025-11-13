@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark, calc, arrows.meta}
+
+\begin{document}
+
+\[
+\det(A) =
+\begin{vmatrix}
+\tikzmarknode{a11}{a_{11}} & \tikzmarknode{a12}{a_{12}} & \tikzmarknode{a13}{a_{13}} \\
+\tikzmarknode{a21}{a_{21}} & \tikzmarknode{a22}{a_{22}} & \tikzmarknode{a23}{a_{23}} \\
+\tikzmarknode{a31}{a_{31}} & \tikzmarknode{a32}{a_{32}} & \tikzmarknode{a33}{a_{33}}
+\end{vmatrix}
+\]
+% --- TikZ Drawing (Placed AFTER the math environment) ---
+\begin{tikzpicture}[remember picture, overlay,
+    % Style for positive (blue) arrows
+    plus_arrow/.style={
+        draw=blue!70!black, thick, -{Stealth[length=3pt]}
+    },
+    % Style for negative (red) arrows
+    minus_arrow/.style={
+        draw=red!70!black, thick, -{Stealth[length=3pt]}
+    },
+    % Style for the +/- labels
+    plus_label/.style={
+        font=\small, text=blue!70!black, above left=1pt
+    },
+    minus_label/.style={
+        font=\small, text=red!70!black, above right=1pt
+    }
+]
+    % --- Positive Diagonals (Blue) ---
+    % 1. Main diagonal (a11 -> a22 -> a33)
+    \draw[plus_arrow] (a11.north west) -- (a33.south east);
+    \node[plus_label] at (a11.north west) {$+$};
+
+    % 2. Wrap-around (a12 -> a23 -> a31)
+    \draw[plus_arrow] (a12.north) -- (a23.center);
+    \draw[plus_arrow] (a23.center) -- (a31.south);
+    \node[plus_label] at (a12.north) {$+$};
+
+    % 3. Wrap-around (a13 -> a21 -> a32)
+    \draw[plus_arrow] (a13.north) -- (a21.center);
+    \draw[plus_arrow] (a21.center) -- (a32.south);
+    \node[plus_label] at (a13.north) {$+$};
+
+    % --- Negative Diagonals (Red) ---
+    % 1. Anti-diagonal (a13 -> a22 -> a31)
+    \draw[minus_arrow] (a13.north east) -- (a31.south west);
+    \node[minus_label] at (a13.north east) {$-$};
+
+    % 2. Wrap-around (a12 -> a21 -> a33)
+    \draw[minus_arrow] (a12.north) -- (a21.center);
+    \draw[minus_arrow] (a21.center) -- (a33.south);
+    \node[minus_label] at (a12.north) {$-$};
+
+    % 3. Wrap-around (a11 -> a23 -> a32)
+    \draw[minus_arrow] (a11.north) -- (a23.center);
+    \draw[minus_arrow] (a23.center) -- (a32.south);
+    \node[minus_label] at (a11.north) {$-$};
+
+\end{tikzpicture}
+
+\end{document}

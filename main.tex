@@ -17,6 +17,12 @@
 \usepackage{framed}
 \usepackage{array}
 \usepackage{todonotes}
+\usepackage{nicematrix}
+
+\NiceMatrixOptions
+  { pgf-node-code = \pgfsetfillcolor{white} \pgfusepathqfill }
+
+\pgfset{nicematrix/cell-node/.append style = { inner sep = 1pt } }
 
 % THEOREM ENVIRONMENTS SETUP
 % Style for definitions and examples (upright text, bold title)
@@ -65,4 +71,5 @@
 \input{05_vektory.tex}
 \input{06_maticovy_pocet.tex}
 \input{07_matice_ako_zobrazenia.tex}
+\input{08_inverzia_determinant.tex}
 \end{document}

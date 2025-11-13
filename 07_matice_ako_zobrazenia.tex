@@ -361,14 +361,16 @@ $$ \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} \begin{pmatrix} 1/2 & 1/
 %D.Ú.: Ukážte, že $L_{\alpha} \circ P \neq P \circ L_{\alpha}$ a vypočítajte aj príslušné matice zložených zobrazení.
 
 \subsection{Inverzná matica}
-\begin{definition} Nech $A$ je štvorcová matica typu $n \times n$. Inverzná matica k
-$A$ je taká matica $A^{-1}$ typu $n \times n$, pre ktorú platí 
+\begin{definition}\label{def:inverzna}
+Nech $A$ je štvorcová matica typu $n \times n$. \emph{Inverzná matica k
+$A$} je taká matica $A^{-1}$ typu $n \times n$, pre ktorú platí 
 $$ A A^{-1} = A^{-1} A = I_n $$
 \end{definition}
 Pozor! Inverzná matica k štvorcovej matici nemusí existovať. Napríklad nulová matica iste nemá inverznú, prečo?
 
 \begin{definition}
-Nech $A$ je štvorcová matica. Ak $A$ má inverznú, hovoríme, že $A$ je regulárna. V opačnom prípade hovoríme, že $A$ je singulárna.
+Nech $A$ je štvorcová matica. Ak $A$ má inverznú, hovoríme, že $A$ je
+\emph{regulárna}. V opačnom prípade hovoríme, že $A$ je \emph{singulárna}.
 \end{definition}
 \begin{example}
 Ak 
@@ -419,6 +421,21 @@ Nech $A \in \mathbb{R}^{n \times n}$ je regulárna matica. Potom $[[A^{-1}]]$ je
 Kompaktne to môžeme zapísať ako
 $$ [[A^{-1}]] = [[A]]^{-1} $$
 \end{veta}
+
+\subsection{Inverzia súčinu matíc}
+
+\begin{veta}
+Nech $A, B$ sú regulárne matice rovnakého typu. Vtom aj $AB$ je regulárna matica a~platí $(AB)^{-1} = B^{-1}A^{-1}$.
+\end{veta}
+
+\begin{proof}
+\begin{align*}
+(AB) \cdot (B^{-1}A^{-1}) &= A (B B^{-1}) A^{-1} = A I A^{-1} = A A^{-1} = I \\
+(B^{-1}A^{-1}) \cdot (AB) &= B^{-1} (A^{-1} A) B = B^{-1} I B = B^{-1} B = I
+\end{align*}
+\end{proof}
+
+\textbf{POZOR:} Nič podobné neplatí pre súčet matíc.
 
 \subsection{Počítanie inverznej matice}
 Postup: napíšeme si vedľa seba maticu, ktorú chceme invertovať a jednotkovú maticu, oddelíme čiarou.
@@ -523,3 +540,131 @@ Takto sa to urobí pre konkrétnu maticu.
 \right]
 \]
 \end{example}
+
+\subsection{Sústavy lineárnych rovníc - nový pohľad}
+
+Prizrime sa na sústavy lineárnych rovníc v kontexte zobrazení asociovaných z maticami.
+Každá matica $A \in \R^{m \times n}$ nám určuje zobrazenie $[[A]]: \R^n \to \R^m$
+predpisom $[[A]](\vec{x}) = A\vec{x}$.
+Ak si predpis pre $[A]$ rozpíšeme do zložiek, dostaneme, pre $\vec{x} = (x_1, \dots, x_n) \in \R^n$, $A = (a_{ij})_{m \times n} \in \R^{m \times n}$:
+
+$$ [[A]](\vec{x}) = \begin{pmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} & \dots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = \begin{pmatrix} a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n \\ a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n \\ \vdots \\ a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n \end{pmatrix} $$
+
+To je ale presne a~doslova to, čo poznáme pod menom ľavá strana sústavy lineárnych
+rovníc! Ak teraz vezmeme nejaký vektor $\vec{b} = (b_1, \dots, b_m)$, tak
+$[[A]](\vec{x}) = \vec{b}$ presne znamená:
+
+\begin{align*}
+ a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n &= b_1 \\
+ a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n &= b_2 \\
+ \vdots \qquad \qquad \qquad \qquad & \\
+ a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n &= b_m
+\end{align*}
+
+čo je doslova sústava lineárnych rovníc. Vidíme teda, že (pre danú maticu $A$ a~vektor $\vec{b}$)
+je to isté:
+
+\begin{center}
+    \begin{minipage}[c]{0.4\textwidth}
+        \centering
+        vyriešiť \\
+        sústavu lineárnych \\
+        rovníc $(A|\vec{b})$
+    \end{minipage}
+    \begin{minipage}[c]{0.1\textwidth}
+        \centering
+        $\Leftrightarrow$
+    \end{minipage}
+    \begin{minipage}[c]{0.4\textwidth}
+        \centering
+        nájsť množinu \\
+        všetkých vektorov $\vec{x}$ \\
+        takých, že $[A](\vec{x}) = \vec{b}$, resp. $A\vec{x} = \vec{b}$
+    \end{minipage}
+\end{center}
+
+\subsection{Jednotkové vektory v $\R^n$}
+
+Zavedme novú notáciu: v~$\R^n$ budeme označovať $\vec{e}_1, \dots, \vec{e}_n$ vektory:
+\begin{align*}
+ \vec{e}_1 &= (1, 0, \dots, 0, 0) \text{} \\
+ \vec{e}_2 &= (0, 1, \dots, 0, 0) \text{} \\
+ \vdots \quad & \\
+ \vec{e}_n &= (0, 0, \dots, 0, 1) \text{}
+\end{align*}
+Všimnime si, že sú to presne stĺpce jednotkovej matice $I_n$; $s_i(I_n) = \vec{e}_i$ a~môžeme teda písať
+$$ I_n = (\vec{e}_1 \vec{e}_2 \dots \vec{e}_n) $$
+
+\subsection{Prečo funguje algoritmus počítania inverznej matice}
+
+Spomeňme si, ako sme počítali sústavy lineárnych rovníc: pomocou elementárnych riadkových operácií sme upravovali ľavú stranu na stupňovitý tvar.
+Potom sme robili ,,spätné dosádzanie''. Mohli sme ale postupovať aj trochu inak: pred fázou spätného dosádzania vynulovať aj prvky nad diagonálou:
+$$ \left( \begin{array}{ccccc|c}
+\blacksquare & 0 & 0 & \dots & 0 & \blacksquare \\
+0 & \blacksquare & 0 & \dots & 0 & \blacksquare \\
+0 & 0 & \blacksquare & \dots & 0 & \blacksquare \\
+\vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+0 & 0 & 0 & \dots & \blacksquare & \blacksquare
+\end{array} \right) $$
+to by nám spätné dosádzanie výrazne zjednodušilo.
+
+Najlepší prípad je ten, keď máme $n$ rovníc o~$n$ neznámych a~na ľavej strane nám vyjde diagonálna matica. Vtedy môžeme postupovať ďalej a~podeliť každý riadok diagonálnym prvkom.
+Vtedy nám na pravej strane vyjde priamo riešenie sústavy, a~na ľavej strane máme jednotkovú maticu.
+$$ (A|\vec{b}) \sim \dots \sim (I|\vec{x}) $$
+Ak sa nám toto teda podarí, našli sme (jediný) vektor taký, že $A\vec{x} = \vec{b}$ a~je to presne pravá strana po eliminácii matice sústavy na jednotkovú.
+
+Pozrime sa teraz z~novej perspektívy na algoritmus počítania inverznej matice:
+$$ (A|I_n) \sim \dots \sim (I_n|Y) $$
+
+\begin{center}
+na tento postup môžeme nahliadať ako na \\
+súbežné riešenie $n$ sústav lineárnych rovníc \\
+$(A|\vec{e}_1), \dots, (A|\vec{e}_n)$
+\end{center}
+
+\begin{center}
+\begin{tabular}{p{0.45\textwidth} p{0.45\textwidth}}
+o tejto matici $Y$ tvrdíme, že je inverzná k $A$; označme jej stĺpce $\vec{y}_1, \dots, \vec{y}_n$ & $\vec{y}_i$ je riešenie sústavy $(A|\vec{e}_i)$, pre $i \in \{1, \dots, n\}$ \\
+$Y = (\vec{y}_1 \dots \vec{y}_n)$ & $\Downarrow$ \\
+& znamená, že $A\vec{y}_i = \vec{e}_i$ pre $i \in \{1, \dots, n\}$
+\end{tabular}
+\end{center}
+
+Ak si teraz uvedomíme, ako sa násobia matice (napravo postupujeme po stĺpcoch), môžeme nahliadnuť, že toto znamená:
+$$ A \cdot \underbrace{(\vec{y}_1 \dots \vec{y}_n)}_{\text{Toto je } Y \text{}} = (A\vec{y}_1 \dots A\vec{y}_n) = \underbrace{(\vec{e}_1 \dots \vec{e}_n)}_{\text{Toto je } I_n \text{}} \implies AY = I_n $$
+
+V poriadku, ale prečo platí aj $YA = I_n$?
+Aby sme to dokázali, je vhodné zaviesť pojem elementárnej matice:
+
+\begin{definition}[Elementárna matica]
+$E$ je elementárna matica, ak vznikla z~jednotkovej matice $I$ vykonaním jednej elementárnej riadkovej operácie.
+\end{definition}
+
+Napríklad pre pripočítanie $\frac{1}{2}$-násobku prvého riadku $I_3$ k~druhému dostaneme:
+$$ \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \xrightarrow{r_2 \leftarrow r_2 + \frac{1}{2}r_1} \begin{pmatrix} 1 & 0 & 0 \\ \frac{1}{2} & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \to \text{elementárna matica} $$
+
+Elementárne matice majú túto peknú vlastnosť: pre každú maticu $A$:
+
+\begin{center}
+\begin{tabular}{c c c}
+$A \sim A'$ & $\Leftrightarrow$ & $A' = EA$ \\
+$\uparrow$ & & $\uparrow$ \\
+\parbox{4cm}{\centering elementárna riadková operácia} & & \parbox{5cm}{\centering toto je presne tá matica, ktorá vznikne z $A$ vykonaním elementárnej riadkovej operácie, ,,zakódovanej'' v $E$.}
+\end{tabular}
+\end{center}
+
+Pri počítaní inverznej matice sa naľavo dialo toto:
+$$ \underbrace{A \sim \dots \sim I_n}_{\text{elementárne riadkové operácie}} $$
+Pomocou elementárnych matíc to môžeme zapísať takto:
+\begin{equation} \label{eq:inv_left}
+A \sim E_1 A \sim E_2 E_1 A \sim \dots \sim E_k \dots E_2 E_1 A = I_n
+\end{equation}
+Napravo sa zase dialo toto:
+\begin{equation} \label{eq:inv_right}
+I_n \sim E_1 I_n \sim E_2 E_1 I_n \sim \dots \sim E_k \dots E_2 E_1 I_n = E_k \dots E_2 E_1 = Y
+\end{equation}
+Z \eqref{eq:inv_left} a \eqref{eq:inv_right} zrejme dostávame $YA = I_n$.
+Teda platí $AY = YA = I_n$
+a~preto $Y = A^{-1}$, viď definícia inverznej matice \ref{def:inverzna}.
+
+
