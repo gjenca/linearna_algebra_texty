@@ -1,23 +1,3 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[slovak]{babel}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{geometry}
-
-\geometry{a4paper, margin=1in}
-
-\theoremstyle{definition}
-\newtheorem{definicia}{Definícia}[section]
-\newtheorem{priklad}{Príklad}[section]
-
-\theoremstyle{plain}
-\newtheorem{tvrdenie}{Tvrdenie}[section]
-
-\begin{document}
-
 \section{Vektorové priestory}
 
 Na začiatku tejto časti si skúsme uvedomiť, aké objekty nazývame v tejto chvíli
@@ -48,7 +28,7 @@ kde $V$ je množina všetkých vektorov.
 Základná idea definície vektorového priestoru spočíva v tom, že na vyjadrenie podstaty pojmu vektora nám stačí to, aby sme zachytili to, ako sa tieto operácie správajú.
 Teda definícia vektorového priestoru nehovorí nič o tom, čo je vektor, ale vyjadruje len vlastnosti operácií $+, .$.
 
-\begin{definicia}
+\begin{definicia}\label{def:vektorovyPriestor}
 Nech $V$ je neprázdna množina, vybavená
 \begin{itemize}
     \item operáciou $+ : V \times V \longrightarrow V$ (sčítanie vektorov)
@@ -57,7 +37,7 @@ Nech $V$ je neprázdna množina, vybavená
 \end{itemize}
 pričom platia tieto rovnosti, pre všetky $a, b \in \mathbb{R}$ a pre všetky $\vec{x}, \vec{y}, \vec{z} \in V$:
 
-\begin{itemize}
+\begin{enumerate}[(V1)]
     \item \textbf{asociativita sčítania vektorov}
     $$ (\vec{x} + \vec{y}) + \vec{z} = \vec{x} + (\vec{y} + \vec{z}) $$
    
@@ -82,7 +62,7 @@ pričom platia tieto rovnosti, pre všetky $a, b \in \mathbb{R}$ a pre všetky $
     \item \textbf{jednotkový zákon}
     $$ 1 . \vec{x} = \vec{x} $$
    
-\end{itemize}
+\end{enumerate}
 Potom hovoríme, že $V$ je \emph{vektorový priestor} alebo (čo je to isté)
 \emph{lineárny priestor}. Prvky množiny $V$ sa nazývajú \emph{vektory}. Rovnosti z
 tejto definície sa volajú \emph{axiómy vektorového priestoru}.
@@ -96,7 +76,7 @@ je $(0,\dots,0)$.
 \begin{priklad}
 Množina $\rho_O$ všetkých orientovaných úsečiek v rovine s fixným počiatkom $O$,
 sčítanie je dané rovnobežníkovým pravidlom, násobenie skalárom je škálovanie
-úsečky, nulový vektor je.
+úsečky, nulový vektor je $\ora{OO}$.
 \end{priklad}
 
 \begin{priklad}
@@ -114,7 +94,7 @@ $$ - : V \times V \rightarrow V $$
 danú predpisom
 $$ \vec{x} - \vec{y} := \vec{x} + (-1)\vec{y} $$
 
-\begin{tvrdenie}
+\begin{veta}\label{veta:vlastnostiVP}
 Nech $V$ je vektorový priestor. Potom pre všetky $\vec{x}, \vec{y}, \vec{z}, \vec{u} \in V$ a pre všetky $a \in \mathbb{R}$ platí:
 \begin{enumerate}
     \item[a)] ak $\vec{x} + \vec{y} = \vec{x} + \vec{z}$, potom $\vec{y} = \vec{z}$
@@ -124,45 +104,90 @@ Nech $V$ je vektorový priestor. Potom pre všetky $\vec{x}, \vec{y}, \vec{z}, \
     \item[e)] $-\vec{x} = (-1)\vec{x}$
     \item[f)] $a(\vec{x} - \vec{y}) = a\vec{x} - a\vec{y}$
 \end{enumerate}
-\end{tvrdenie}
+\end{veta}
 
 \begin{proof}
-\textbf{a)}
+~
+\begin{enumerate}
+\item[a)]
 Nech $\vec{x} + \vec{y} = \vec{x} + \vec{z}$, potom zrejme $-\vec{x} + (\vec{x} + \vec{y}) = -\vec{x} + (\vec{x} + \vec{z})$.
-Asociativita sčítania aplikovaná na oboch stranách nám dá rovnosť
+Asociativita sčítania (V1) aplikovaná na oboch stranách nám dá rovnosť
 $$ (*) \quad (-\vec{x} + \vec{x}) + \vec{y} = (-\vec{x} + \vec{x}) + \vec{z} $$
 
-Keďže sčítanie vektorov je komutatívne, $\vec{x} + (-\vec{x})$ a z toho a (*) dostávame
+Keďže sčítanie vektorov je komutatívne (V2), platí 
+$\vec{x} + (-\vec{x})=-\vec{x}+\vec{x}$ a z toho a (*) dostávame
 $$ (**) \quad (\vec{x} + (-\vec{x})) + \vec{y} = (\vec{x} + (-\vec{x})) + \vec{z} $$
 
 Podľa axiómy o opačnom vektore $\vec{x} + (-\vec{x}) = \vec{0}$ a (**) dostaneme
 $$ \vec{0} + \vec{y} = \vec{0} + \vec{z} $$
 
-Aplikujeme na oboch stranách komutativitu sčítania
+Aplikujeme na oboch stranách komutativitu sčítania (V2):
 $$ \vec{y} + \vec{0} = \vec{z} + \vec{0} $$
 
-a teraz už stačí iba na oboch stranách aplikovať axiómu o nulovom vektore, čím dostaneme $\vec{y} = \vec{z}$.
+a teraz už stačí iba na oboch stranách aplikovať axiómu o nulovom vektore (V3), čím dostaneme $\vec{y} = \vec{z}$.
 
-\textbf{b) (menej podrobne)}
+\item[b)] (menej podrobne)
 $$ a\vec{x} = a\vec{y} $$
 $$ \Downarrow $$
 $$ \frac{1}{a}(a\vec{x}) = \frac{1}{a}(a\vec{y}) $$
-kompatibilita:
+s využitím predpokladu $a\neq 0$. Následne kompatibilita (V5) nám dá
 $$ (\frac{1}{a} . a)\vec{x} = (\frac{1}{a} . a)\vec{y} $$
 $$ 1 . \vec{x} = 1 . \vec{y} $$
-jednotkový zákon:
+a potom podľa jednotkového zákona (V8)
 $$ \vec{x} = \vec{y} $$
 
-\textbf{c) ... f)} dôkazy vynechávame.
+\item[c) ... f)] Dôkazy vynechávame.
+\end{enumerate}
 \end{proof}
 
-Pointa tohto prístupu k veci je v tom, že keďže dôkaz Tvrdenia používa iba definíciu vektorového priestoru, Tvrdenie platí pre všetky vektorové priestory (rovinné, $n$-tice, funkcie...), ktoré spĺňajú definíciu. Všetko, čo dokážeme pre vektorové priestory, bude platiť pre každý partikulárny prípad vektorového priestoru.
+Pointa tohto prístupu k veci je v tom, že keďže dôkaz vety \ref{veta:vlastnostiVP}
+používa iba definíciu vektorového priestoru, veta platí pre všetky vektorové
+priestory (rovinné, $n$-tice, funkcie...), ktoré spĺňajú definíciu. Všetko, čo
+dokážeme pre vektorové priestory, bude platiť pre každý partikulárny prípad
+vektorového priestoru.
 
-Preto budeme odteraz postupovať tak, že budeme formulovať pojmy a tvrdenia/vety v jazyku určenom definíciou.
+\begin{tikzpicture}[
+    % Style definitions for nodes and arrows
+    node distance = 1.5cm and 1cm,
+    every node/.style = {align=center},
+    % Style for the circular/oval bubbles
+    bubble/.style = {draw, ellipse, thick, minimum width=6em, minimum height=3em, inner sep=3pt},
+    % Style for the main arrows going up
+    up arrow/.style = {->, >={Latex[scale=1.3]}, thick}
+]
+
+    % --- Define and place nodes ---
+    % Top main node
+    \node[bubble] (def) {Definícia \ref{def:vektorovyPriestor}};
+    
+    % Bottom row of nodes relative to the top node
+    \node[bubble, below=2.2cm of def] (ntice) {n-tice $\R^n$};
+    \node[bubble, left=of ntice] (rv) {rovinné\\vektory $\rho_O$};
+    \node[bubble, right=of ntice] (funkcie) {funkcie $\R^\R$};
+
+    % --- Draw upward arrows ---
+    % Left curved arrow
+    \draw[up arrow, bend left=15] (rv.north) to (def.west);
+    % Middle straight arrow
+    \draw[up arrow] (ntice.north) to (def.south);
+    % Right curved arrow
+    \draw[up arrow, bend right=15] (funkcie.north) to (def.east);
+
+    % --- Add hand-drawn style annotation ---
+    % Node containing the annotation text
+    \node[above right=0.8cm and 1.2cm of funkcie] (annot text) {spĺňajú\\definíciu};
+    
+    % Draw curved arrow from annotation to diagram
+    \draw[->, >={Latex[scale=1]}, thin, bend right=15] (annot text.south west) to ($(funkcie)!0.6!(def)$);
+
+\end{tikzpicture}
+
+Preto budeme odteraz postupovať tak, že budeme formulovať pojmy a tvrdenia/vety v
+jazyku určenom definíciou vektorového priestoru.
 
 Začnime pojmom podpriestoru vektorového priestoru.
 
-\begin{definicia}
+\begin{definicia}\label{def:vektorovyPriestor}
 Nech $V$ je vektorový priestor. Množina $U \subseteq V$ sa nazýva \textbf{podpriestor}, ak platí:
 \begin{enumerate}
     \item $\vec{0} \in U$
@@ -171,11 +196,10 @@ Nech $V$ je vektorový priestor. Množina $U \subseteq V$ sa nazýva \textbf{pod
 \end{enumerate}
 \end{definicia}
 
-\begin{tvrdenie}
-Ak $U$ je podpriestor vektorového priestoru $V$, potom množina $U$ vybavená operáciami zdedenými z $V$ je tiež vektorový priestor.
-\end{tvrdenie}
-
-\textbf{POZOR!} Neexistuje nič také ako „$U$ je podpriestor“ samé osebe, to slovné spojenie nemá žiaden zmysel; podobne ako „7 je menšie“. Má zmysel slovné spojenie $U$ je podpriestor $\mathbb{R}^3$ napríklad.
+\textbf{POZOR!} Neexistuje nič také ako „$U$ je podpriestor“ samé osebe, to slovné
+spojenie nemá žiaden zmysel; podobne ako „7 je menšie“. 
+Slovné spojenie „je podpriestor“ totiž vyjadruje vzťah množiny a vektorového
+priestoru, podobne ako „je menšie“ vyjadruje vzťah medzi dvoma číslami.
 
 \begin{priklad}
 Uvažujme podmnožinu $U = \{(1,2), (0,0)\}$ vektorového priestoru $\mathbb{R}^2$.
@@ -183,23 +207,56 @@ Je $U$ podpriestor $\mathbb{R}^2$? Nie, pretože (medzi iným)
 $$ (1,2) + (1,2) = (2,4) \notin U $$
 \end{priklad}
 
+\begin{veta}
+Ak $U$ je podpriestor vektorového priestoru $V$, potom množina $U$ vybavená operáciami zdedenými z $V$ je tiež vektorový priestor.
+\end{veta}
+
 \begin{priklad}
-Uvažujme podmnožinu $U$ vektorového priestoru „vektory v rovine s počiatkom“ $S$ takú, že $U$ obsahuje všetky vektory, ktorých koncový bod leží na nejakej polpriamke s počiatkom v $\vec{0}$.
-Je $U$ podpriestor $S$? Nie, pretože ak $\vec{x} \in U$, potom $(-1) . \vec{x} \notin U$, čo odporuje bodu 3) Def.
+Uvažujme podmnožinu $U$ vektorového priestoru $\rho_O$ „vektory v rovine s počiatkom
+$O$“ takú, že $U$ obsahuje všetky vektory, ktorých koncový bod leží na nejakej
+polpriamke s počiatkom v $O$.
+\begin{center}
+\begin{tikzpicture}
+    \node[label=left:O, circle, fill, inner sep=1.5pt] (O) at (0,0) {};
+    \draw[dashed] (O) -- (5,2.5);
+    \draw[thick, -{Stealth[]}] (O) -- (2,1) node[midway, above] {$\vec{x}$};
+    \draw[thick, -{Stealth[]}] (O) -- (1,0.5) node[midway, above] {};
+    \draw[thick, -{Stealth[]}] (O) -- (3.5,1.75) node[midway, above] {};
+\end{tikzpicture}
+\end{center}
+
+Je $U$ podpriestor $S$? Nie, pretože ak $\vec{x} \in U$, potom $(-1) . \vec{x} \notin
+U$, čo odporuje bodu 3. definície \ref{def:vektorovyPriestor}.
 \end{priklad}
 
 Všimnite si, že $U$ spĺňa obidve zvyšné podmienky Definície.
 
 \begin{priklad}
-Ak nahradíme polpriamku z predošlého príkladu priamkou, taká množina vektorov už podpriestorom bude.
+Ak nahradíme polpriamku z predošlého príkladu priamkou, taká množina vektorov $U$ už
+podpriestorom vektorového priestoru $\rho_O$ bude:
+\begin{center}
+\begin{tikzpicture}
+    \node[label=above:O, circle, fill, inner sep=1.5pt] (O) at (0,0) {};
+    \draw[dashed] (O) -- (5,2.5);
+    \draw[thick, -{Stealth[]}] (O) -- (2,1) node[midway, above] {$\vec{x}$};
+    \draw[thick, -{Stealth[]}] (O) -- (1,0.5) node[midway, above] {};
+    \draw[thick, -{Stealth[]}] (O) -- (3.5,1.75) node[midway, above] {};
+    \draw[dashed] (O) -- (-5,-2.5);
+    \draw[thick, -{Stealth[]}] (O) -- (-2,-1) node[midway, above] {$(-1)\vec{x}$};
+    \draw[thick, -{Stealth[]}] (O) -- (-1,-0.5) node[midway, above] {};
+    \draw[thick, -{Stealth[]}] (O) -- (-3.5,-1.75) node[midway, above] {};
+\end{tikzpicture}
+\end{center}
 \end{priklad}
 
-\textbf{Otázka:} priamky prechádzajúce počiatkom sú teda podpriestory $S$. Aké ďalšie podpriestory $S$ existujú?
-Zrejme dva: $\{\vec{0}\}$ a $S$.
+\textbf{Otázka:} priamky prechádzajúce počiatkom sú teda podpriestory $\rho_O$. Aké
+ďalšie podpriestory $\rho_O$ existujú?
+Zrejme dva: $\{\vec{0}\}$ a $\rho_O$.
 
 \begin{priklad}
-Nech $U$ je množina
+Nech $U$ je podmnožina vektorového priestoru $\R^3$
 $$ U = \{(s+2t, -t, 2s+t) : s, t \in \mathbb{R}\} $$
+Presvedčme sa, že $U$ je podpriestorom $\R^3$.
 \begin{itemize}
     \item[1)] $\vec{0} \in U$: ak $s=t=0$, potom $(0+2.0, -0, 2.0+0) = (0,0,0) \in U$.
     \item[2)] Nech $\vec{x}_1, \vec{x}_2 \in U$.
@@ -216,4 +273,21 @@ $$ U = \{(s+2t, -t, 2s+t) : s, t \in \mathbb{R}\} $$
 \end{itemize}
 \end{priklad}
 
-\end{document}
+\begin{priklad}
+Uvažujme vektorový priestor všetkých funkcií $\R^\R$. Nech $P$ je podmnožina tvorená všetkými párnymi funkciami, teda:
+$$ P = \{f \in \R^\R \mid \forall x \in \R: f(-x) = f(x)\} $$
+Tvrdíme, že $P$ je podpriestor $\R^\R$. Overíme podmienky z definície podpriestoru:
+
+\begin{enumerate}
+    \item Nulová funkcia $0(x)=0$ patrí do $P$, lebo pre každé $x \in \R$ platí
+    $0(-x)=0=0(x)$.
+    \item Nech $f, g \in P$. Potom pre každé $x \in \R$ platí:
+    $$ (f+g)(-x) = f(-x) + g(-x) = f(x) + g(x) = (f+g)(x) $$
+    Teda $f+g \in P$.
+    \item Nech $f \in P$ a $c \in \R$. Potom:
+    $$ (cf)(-x) = c \cdot f(-x) = c \cdot f(x) = (cf)(x) $$
+    Teda $cf \in P$.
+\end{enumerate}
+Zistili sme, že množina párnych funkcií je uzavretá na súčet aj skalárny násobok a
+obsahuje nulový vektor, a teda tvorí podpriestor vektorového priestoru $\R^\R$.
+\end{priklad}
