@@ -3,7 +3,7 @@
 Zobrazenia sa často nazývajú funkcie. Obe slová znamenajú to isté, obvykle však funkcia zobrazuje do čísel ($\mathbb{N}, \mathbb{R}, \mathbb{C}, \dots$).
 Ktoré slovo sa použije je otázkou konvencie v danej časti matematiky.
 
-\begin{definition}[zobrazenie]\label{def:zobrazenie}
+\begin{definicia}[zobrazenie]\label{def:zobrazenie}
 Nech $A, B$ sú množiny.
 \emph{Zobrazenie} $f$ z $A$ do $B$ je predpis, ktorý každému prvku
 $A$ priradí nejaký prvok $B$.
@@ -12,7 +12,7 @@ Zapisujeme
 f \colon A \to B.
 \]
 $A$ je \emph{definičný obor}, $B$ je \emph{koobor}.
-\end{definition}
+\end{definicia}
 
 To znamená, že ak chceme špecifikovať nejaké zobrazenie $f$, musíme špecifikovať tri
 veci:
@@ -28,7 +28,7 @@ Napríklad ak $f \colon \mathbb{R} \to \mathbb{R}$ môžeme predpis niekedy pozn
 f(x) = \sqrt{x^2+1}
 \]
 Ale $A, B$ vôbec nemusia byť množiny čísel, a predpis nemusí byť vzorec!
-\begin{example}
+\begin{priklad}
 Niekedy $A$ nemá číselnú povahu, $B$ áno.
 \begin{itemize}
     \item $A = \text{všetky adresy v meste}$
@@ -37,10 +37,10 @@ Niekedy $A$ nemá číselnú povahu, $B$ áno.
 Zobrazenie $d \colon A \to B$ môže byť \[
 d(x) = \text{najkratšia vzdialenosť pri ceste peši medzi adresou $x$ a SvF STU, v minútach}.\]
 Napríklad: $d(\text{moje bydlisko}) = 80$, $d(\text{Bernolákova 1})=8$.
-\end{example}
+\end{priklad}
 
 
-\begin{example}
+\begin{priklad}
 $g \colon \mathbb{N} \rightarrow \mathbb{N}$ dané predpisom $g(n) = n^2 + 1$.
 Toto nám hovorí, že $g$ zobrazuje z množiny všetkých prirodzených čísel do množiny všetkých prirodzených čísel.
 Predpis je teda v tomto prípade daný vzorcom, ktorý nám umožňuje počítať hodnoty zobrazenia pre konkrétne prvky definičného oboru $g$ (t.j. prirodzené čísla) dosadením a výpočtom.
@@ -49,9 +49,9 @@ Predpis je teda v tomto prípade daný vzorcom, ktorý nám umožňuje počíta�
     g(7) &= 7^2 + 1 = 50
 \end{align*}
 $g(-1) = ?$ Toto neexistuje, pretože $-1 \notin \mathbb{N}$ a nie je to teda prvok definičného oboru $g$.
-\end{example}
+\end{priklad}
 
-\begin{example}\label{ex:jedlo}
+\begin{priklad}\label{ex:jedlo}
 Nech $A = \{\text{Jožko, Miško}\}$ a $B = \{\text{bageta, guláš, jablko}\}$.
 Nech $j \colon A \rightarrow B$ je zobrazenie "najobľúbenejšie jedlo".
 V tomto prípade je definičný konečná množina.
@@ -67,7 +67,7 @@ Zobrazenie $j$ môžeme aj nakresliť:
 \begin{center}
 \includegraphics{figures/predn2_fig1.pdf}
 \end{center}
-\end{example}
+\end{priklad}
 
 Iný spôsob špecifikácie predpisu zobrazenia je napríklad tabuľkou:
 \begin{center}
@@ -78,23 +78,23 @@ Iný spôsob špecifikácie predpisu zobrazenia je napríklad tabuľkou:
 \end{tabular}
 \end{center}
 Tu sa, samozrejme, nesmú prvky v hornom riadku opakovať.
-\begin{example}
+\begin{priklad}
 Nech $H$ je množina všetkých ľudí (aj z minulosti).
 $\sigma \colon H \rightarrow H$ je zobrazenie dané predpisom $\sigma(x) = \text{otec človeka } x$.
-\end{example}
+\end{priklad}
 
-\begin{example}
+\begin{priklad}
 $S$ - množina všetkých občanov SR.
 $\eta \colon S \rightarrow \mathbb{N}$ dané predpisom $\eta(x) = \text{rodné číslo}$.
-\end{example}
+\end{priklad}
 
-\begin{example}
+\begin{priklad}
 $B = \{\text{bageta, guláš, jablko}\}$. Nech $k \colon B \rightarrow \mathbb{R}$ je zobrazenie "koľko kalórií".
 Keďže $B$ je konečná, stačí nám napísať:
 $k(\text{guláš}) = 677$, $k(\text{bageta}) = 1148$, $k(\text{jablko}) = 301.4$.
-\end{example}
+\end{priklad}
 
-\begin{example}
+\begin{priklad}
 Poznáme nejaký príklad zobrazenia typu $A\times A\to A$, kde $A$ je nejaká množina? Samozrejme, už od prvého ročníka
 základnej školy. Vezmime $A=\Nat$; sformulovať nejaký predpis pre zobrazenie 
 $\Nat\times\Nat\to\Nat$ znamená povedať, ako vyrobiť z usporiadanej dvojice prirodzených čísel prirodzené
@@ -106,7 +106,7 @@ máme teda $+(1,3)=4$, $+(4,4)=8$. Samozrejme, zaužívaný spôsob zapisovania 
 $(a,b)\in\Nat\times\Nat$ je iný, nepíšeme obvykle $+(a,b)$, ale znak zobrazenia dáme medzi prvú a druhú zložku
 usporiadanej dvojice, $a+b$. To je však detail, ktorý nič nemení na dôležitom náhľade, že sčítanie je zobrazením
 z nejakej množiny do inej množiny.
-\end{example}
+\end{priklad}
 
 Predošlý príklad je poučný v tom, že ukazuje ako jazyk postavený na pojmoch ,,množina'' a ,,zobrazenie'' umožňuje
 popisovať matematické pojmy. Tento jazyk sa začal účinne používať na popis existujúcej a objavovanie novej matematiky v
@@ -114,7 +114,7 @@ popisovať matematické pojmy. Tento jazyk sa začal účinne používať na pop
 
 Jeden zo spôsobov zapisovania zobrazení je ,,po prípadoch'', ako v nasledujúcich
 dvoch príkladoch.
-\begin{example}
+\begin{priklad}
 \emph{Absolútna hodnota} je zobrazenie $\mathbb R\to\mathbb R$ dané predpisom
 \[
 |x|=
@@ -123,8 +123,8 @@ x& x\geq 0\\
 -x& x<0
 \end{cases}
 \]
-\end{example}
-\begin{example}
+\end{priklad}
+\begin{priklad}
 \emph{Znamienková funkcia} alebo \emph{signum} je zobrazenie 
 $\mathrm{sgn}\colon\R\to\R$ dané predpisom
 \[
@@ -135,16 +135,16 @@ $\mathrm{sgn}\colon\R\to\R$ dané predpisom
 -1& x<0
 \end{cases}
 \]
-\end{example}
+\end{priklad}
 
 Voči Definícii \ref{def:zobrazenie} by bolo možné vzniesť (z istého hľadiska oprávnene) námietku o nepresnosti; používa nejasné slová ako
 "priradí", "predpis".
 Námietku je možné vyriešiť takto:
 
-\begin{definition}[formálna definícia zobrazenia]\label{def:zobrazenieFormal}
+\begin{definicia}[formálna definícia zobrazenia]\label{def:zobrazenieFormal}
 Nech $A$, $B$ sú množiny.
 \emph{Zobrazenie} $f$ z $A$ do $B$ je množina $F \subseteq A \times B$ taká, že pre každé $a \in A$ existuje práve jedno $b \in B$ také, že $(a,b) \in F$.
-\end{definition}
+\end{definicia}
 
 $(a,b) \in f$ v zmysle Definície \ref{def:zobrazenieFormal} potom znamená $f(a)=b$ v zmysle Definície
 \ref{def:zobrazenie}.
@@ -153,10 +153,10 @@ nerozmýšľa o zobrazeniach ako o množinách usporiadaných dvojíc.
 Niekedy však takéto presné uvažovanie nutne potrebujeme, a preto je dobré vedieť o existencii tohto pohľadu na pojem zobrazenia.
 %\subsection*{Koniec formalistickej odbočky}
 
-\begin{definition}[Obor hodnôt]\label{def:oborHodnot}
+\begin{definicia}[Obor hodnôt]\label{def:oborHodnot}
 Nech $f \colon A \rightarrow B$ je zobrazenie. \emph{Obor hodnôt} je množina
 $$ \mathcal{H}(f) = \{f(a) | a \in A\} $$
-\end{definition}
+\end{definicia}
 Čiže máme $b \in \mathcal{H}(f)$ práve vtedy, keď existuje $a \in A$ také, že $f(a)=b$.
 Je dôležité si uvedomiť rozdiel medzi oborom hodnôt a kooborom.
 Ak napíšeme napríklad
@@ -175,21 +175,21 @@ oblastiach líšia.
 Pre profesionálneho matematika však spravidla nie je problém sa
 odlišným konvenciám v prípade potreby prispôsobiť, ak potrebuje pracovať s
 matematickou literatúrou a podobne.
-\begin{definition}[identické zobrazenie]\label{def:identickeZobrazenie}
+\begin{definicia}[identické zobrazenie]\label{def:identickeZobrazenie}
 Nech $A$ je množina. \emph{Identické zobrazenie} (na $A$) je zobrazenie $\id_A \colon A \rightarrow A$ dané predpisom $\id_A(a) = a$, pre každý prvok $a \in A$.
-\end{definition}
+\end{definicia}
 
-\begin{definition}[rovnosť zobrazení]\label{def:rovnostZobrazeni}
+\begin{definicia}[rovnosť zobrazení]\label{def:rovnostZobrazeni}
 Nech $A, B, C, D$ sú množiny, nech $f \colon A \rightarrow B$ a $g \colon C \rightarrow D$.
 Hovoríme, že $f$ je \emph{rovné} $g$, ak $A=C$, $B=D$ a pre všetky $x \in A=C$ platí, že $f(x)=g(x)$.
-\end{definition}
+\end{definicia}
 
 Na lineárnej algebre budeme ohľadom pojmu rovnosti zobrazení trochu striktnejší ako
 na iných predmetoch, budeme aplikovať definíciu \ref{def:rovnostZobrazeni} veľmi
 presne.
 Ilustruje to nasledujúci príklad.
 
-\begin{example}\label{ex:rovnostZobrazeni}
+\begin{priklad}\label{ex:rovnostZobrazeni}
 ~\par
 \begin{enumerate}
     \item[A)] $f \colon \mathbb{Z} \rightarrow \mathbb{N}$ dané predpisom $f(k) = \sqrt{k^2}$ \\
@@ -208,7 +208,7 @@ Ilustruje to nasledujúci príklad.
     $g \colon \mathbb{N} \rightarrow \mathbb{Z}$ dané $g(x) = x+1$ \\
     Platí $f \neq g$ (pretože majú rôzne definičné obory).
 \end{enumerate}
-\end{example}
+\end{priklad}
 
 Uvažujme teraz nejaké zobrazenie $f\colon A\to B$ a množinu podmnožinu jeho 
 definičného oboru $X\subseteq A$.
@@ -224,13 +224,13 @@ $g=\restr{f}{\Nat}$.
 
 Najdôležitejšou vecou na zobrazeniach je to, že sa dajú skladať.
 
-\begin{definition}
+\begin{definicia}
 Nech $A, B, C$ sú množiny. Nech $f \colon A \rightarrow B$, $g \colon B \rightarrow C$.
 Potom \emph{zložené zobrazenie} $g \circ f$ je zobrazenie $g \circ f \colon A \rightarrow C$ dané predpisom
 \begin{equation}\label{eq:zlozeneZobrazenie}
 (g \circ f)(x) = g(f(x))
 \end{equation}
-\end{definition}
+\end{definicia}
 
 Vidíme, že nemôžeme ľubovoľné zobrazenie zložiť s ľubovoľným iným. Aby sme mohli vytvoriť zobrazenie $g\circ f$, musí
 platiť, že \ul{koobor $f$ je rovnaká množina ako definičný obor $g$}. Ďalšia pasca je v tom, že hodnota
@@ -238,14 +238,14 @@ zobrazenia $g\circ f$ vzniká tak, že najskôr aplikujeme $f$ a potom aplikujem
 vnímame v zápise $g\circ f$ písmeno $g$ ako prvé a $f$ ako druhé. Autor tohto textu používa pre zapamätanie si pravidla
 o skladaní fakt, že predpis \eqref{eq:zlozeneZobrazenie} má písmená $f,g$ v rovnakom poradí na oboch stranách rovnosti.
 
-\begin{example}
+\begin{priklad}
 Zobrazenie "koľko kalórií má najobľúbenejšie jedlo":
 Nech $j \colon A \rightarrow B$ je zobrazenie "najobľúbenejšie jedlo'' {a} $k \colon B \rightarrow \mathbb{R}$ je zobrazenie "koľko kalórií".
 Potom $k \circ j \colon A \rightarrow \mathbb{R}$ je zobrazenie "koľko kalórií má najobľúbenejšie jedlo".
 Napríklad: $(k \circ j)(\text{Miško}) = k(j(\text{Miško})) = k(\text{guláš}) = 677$.
-\end{example}
+\end{priklad}
 
-\begin{example}
+\begin{priklad}
 Nech $g \colon \mathbb{N} \rightarrow \mathbb{N}$ je dané $g(x) = x^2+1$ a $h \colon \mathbb{N} \rightarrow \mathbb{N}$ je dané $h(x) = 2x$.
 \begin{itemize}
     \item $g \circ h \colon \mathbb{N} \rightarrow \mathbb{N}$ \\
@@ -254,12 +254,12 @@ Nech $g \colon \mathbb{N} \rightarrow \mathbb{N}$ je dané $g(x) = x^2+1$ a $h \
     $(h \circ g)(x) = h(g(x)) = h(x^2+1) = 2(x^2+1) = 2x^2+2$
 \end{itemize}
 Vidíme, že $g \circ h \neq h \circ g$, lebo napríklad $(g \circ h)(1) = 5$, ale $(h \circ g)(1) = 4$.
-\end{example}
+\end{priklad}
 
-\begin{example}
+\begin{priklad}
 Čo je zobrazenie $\sigma \circ \sigma \colon H \rightarrow H$, ak $\sigma(x)$ je otec človeka $x$?
 Odpoveď: $\sigma(\sigma(x))$ je otcov otec, t.j. starý otec z otcovej strany.
-\end{example}
+\end{priklad}
 
 Zavedieme teraz označenie, ktoré v základných kurzoch matematiky nie je príliš časté, ale autor tohto textu ho považuje za
 užitočné. Pre dve množiny $A$, $B$ budeme ako $\Set(A,B)$ označovať množinu všetkých zobrazení

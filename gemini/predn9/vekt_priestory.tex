@@ -1,0 +1,214 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovak]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+
+\geometry{a4paper, margin=1in}
+
+\theoremstyle{definition}
+\newtheorem{definicia}{Definícia}[section]
+\newtheorem{priklad}{Príklad}[section]
+
+\theoremstyle{plain}
+\newtheorem{tvrdenie}{Tvrdenie}[section]
+
+\begin{document}
+
+\section*{VEKTOROVÉ PRIESTORY}
+
+Na začiatku tejto kapitolky si skúsme uvedomiť, aké objekty nazývame v tejto chvíli „vektory“:
+\begin{itemize}
+    \item $n$-tice z $\mathbb{R}^n$
+    \item orientované úsečky so spoločným počiatkom v rovine (označme množinu všetkých týchto úsečiek $S$)
+\end{itemize}
+S oboma typmi vektorov môžeme robiť isté operácie:
+\begin{itemize}
+    \item sčítať
+    \item násobiť skalárom
+\end{itemize}
+Teraz ideme spraviť toto: pokúsime sa zachytiť vlastnosti sčítania a násobenia skalárom pre „oba typy vektorov“ do abstraktného pojmu. Skôr, ako to urobíme, musíme si vyjasniť, aký majú operácie sčítania a násobenia skalárom dátový typ.
+
+Sčítanie vektorov je toto: predpis, ktorý nám hovorí, ako z dvoch vektorov vyrobiť vektor. V jazyku matematiky je sčítanie teda zobrazenie:
+$$ + : V \times V \longrightarrow V $$
+kde $V$ je množina všetkých vektorov, o ktorých uvažujeme. Napríklad ak $V = \mathbb{R}^2$, máme $+ : \mathbb{R}^2 \times \mathbb{R}^2 \longrightarrow \mathbb{R}^2$.
+
+$$ +((1,2), (-2,3)) = (-1, 5) $$
+
+Samozrejme, súčet vektorov $\vec{u}, \vec{v}$ nezapisujeme bežne ako $+(\vec{u}, \vec{v})$, ale $\vec{u} + \vec{v}$.
+
+Podobne násobenie vektora skalárom je zobrazenie typu
+$$ . : \mathbb{R} \times V \longrightarrow V $$
+kde $V$ je množina všetkých vektorov.
+
+Základná idea definície vektorového priestoru spočíva v tom, že na vyjadrenie podstaty pojmu vektora nám stačí to, aby sme zachytili to, ako sa tieto operácie správajú.
+
+Teda definícia vektorového priestoru nehovorí nič o tom, čo je vektor, ale vyjadruje len vlastnosti operácií $+, .$.
+
+\begin{definicia}
+Nech $V$ je neprázdna množina, vybavená
+\begin{itemize}
+    \item operáciou $+ : V \times V \longrightarrow V$ (sčítanie vektorov)
+    \item operáciou $. : \mathbb{R} \times V \longrightarrow V$ (násobenie vektora skalárom)
+    \item fixným vybratým prvkom $\vec{0} \in V$
+\end{itemize}
+pričom platia tieto rovnosti, pre všetky $a, b \in \mathbb{R}$ a pre všetky $\vec{x}, \vec{y}, \vec{z} \in V$:
+
+\begin{itemize}
+    \item \textbf{asociativita sčítania vektorov}
+    $$ (\vec{x} + \vec{y}) + \vec{z} = \vec{x} + (\vec{y} + \vec{z}) $$
+   
+    \item \textbf{komutativita sčítania vektorov}
+    $$ \vec{x} + \vec{y} = \vec{y} + \vec{x} $$
+   
+    \item \textbf{nulový vektor je neutrálny vzhľadom na sčítanie}
+    $$ \vec{x} + \vec{0} = \vec{x} $$
+   
+    \item \textbf{opačný vektor}
+    $$ \text{existuje } -\vec{x} \text{ také, že } \vec{x} + (-\vec{x}) = \vec{0} $$
+   
+    \item \textbf{kompatibilita s násobením skalárom}
+    $$ (a . b) . \vec{x} = a . (b . \vec{x}) $$
+   
+    \item \textbf{distributivita násobenia skalárom vzhľadom na sčítanie vektorov}
+    $$ a . (\vec{x} + \vec{y}) = a\vec{x} + a\vec{y} $$
+   
+    \item \textbf{distributivita násobenia skalárom vzhľadom na sčítanie skalárov}
+    $$ (a + b)\vec{x} = a\vec{x} + b\vec{x} $$
+   
+    \item \textbf{jednotkový zákon}
+    $$ 1 . \vec{x} = \vec{x} $$
+   
+\end{itemize}
+Potom hovoríme, že $V$ je \textbf{vektorový priestor} alebo (čo je to isté) \textbf{lineárny priestor}. Prvky množiny $V$ sa nazývajú vektory. Rovnosti z Definície sa volajú axiómy vektorového priestoru.
+\end{definicia}
+
+\begin{priklad}
+Množina $\mathbb{R}^n$, vybavená sčítaním a násobením po zložkách.
+\end{priklad}
+
+\begin{priklad}
+Množina všetkých orientovaných úsečiek v rovine s fixným počiatkom, sčítanie je dané rovnobežníkovým pravidlom, násobenie skalárom je škálovanie úsečky.
+\end{priklad}
+
+\begin{priklad}
+Množina všetkých funkcií z $\mathbb{R} \rightarrow \mathbb{R}$, sčítanie je súčet funkcií, násobenie skalárom je násobenie funkcie číslom.
+\end{priklad}
+
+\begin{priklad}
+Jednoprvková množina, povedzme $\{\star\}$; uvedomme si, že nutne $\vec{0} = \star$ a že sčítanie a násobenie skalárom sú jediné možné:
+$$ + : \{\star\} \times \{\star\} \rightarrow \{\star\} $$
+$$ . : \mathbb{R} \times \{\star\} \rightarrow \{\star\} $$
+\end{priklad}
+
+\textbf{Odčítanie vektorov:} Na každom vektorovom priestore $V$ môžeme zaviesť odvodenú operáciu rozdielu vektorov
+$$ - : V \times V \rightarrow V $$
+danú predpisom
+$$ \vec{x} - \vec{y} := \vec{x} + (-1)\vec{y} $$
+
+\begin{tvrdenie}
+Nech $V$ je vektorový priestor. Potom pre všetky $\vec{x}, \vec{y}, \vec{z}, \vec{u} \in V$ a pre všetky $a \in \mathbb{R}$ platí:
+\begin{enumerate}
+    \item[a)] ak $\vec{x} + \vec{y} = \vec{x} + \vec{z}$, potom $\vec{y} = \vec{z}$
+    \item[b)] ak $a\vec{x} = a\vec{y}$ a $a \neq 0$, potom $\vec{x} = \vec{y}$
+    \item[c)] $a . \vec{0} = \vec{0}$ a $0 . \vec{x} = \vec{0}$
+    \item[d)] ak $a\vec{x} = \vec{0}$, potom $a = 0$ alebo $\vec{x} = \vec{0}$
+    \item[e)] $-\vec{x} = (-1)\vec{x}$
+    \item[f)] $a(\vec{x} - \vec{y}) = a\vec{x} - a\vec{y}$
+\end{enumerate}
+\end{tvrdenie}
+
+\begin{proof}
+\textbf{a)}
+Nech $\vec{x} + \vec{y} = \vec{x} + \vec{z}$, potom zrejme $-\vec{x} + (\vec{x} + \vec{y}) = -\vec{x} + (\vec{x} + \vec{z})$.
+Asociativita sčítania aplikovaná na oboch stranách nám dá rovnosť
+$$ (*) \quad (-\vec{x} + \vec{x}) + \vec{y} = (-\vec{x} + \vec{x}) + \vec{z} $$
+
+Keďže sčítanie vektorov je komutatívne, $\vec{x} + (-\vec{x})$ a z toho a (*) dostávame
+$$ (**) \quad (\vec{x} + (-\vec{x})) + \vec{y} = (\vec{x} + (-\vec{x})) + \vec{z} $$
+
+Podľa axiómy o opačnom vektore $\vec{x} + (-\vec{x}) = \vec{0}$ a (**) dostaneme
+$$ \vec{0} + \vec{y} = \vec{0} + \vec{z} $$
+
+Aplikujeme na oboch stranách komutativitu sčítania
+$$ \vec{y} + \vec{0} = \vec{z} + \vec{0} $$
+
+a teraz už stačí iba na oboch stranách aplikovať axiómu o nulovom vektore, čím dostaneme $\vec{y} = \vec{z}$.
+
+\textbf{b) (menej podrobne)}
+$$ a\vec{x} = a\vec{y} $$
+$$ \Downarrow $$
+$$ \frac{1}{a}(a\vec{x}) = \frac{1}{a}(a\vec{y}) $$
+kompatibilita:
+$$ (\frac{1}{a} . a)\vec{x} = (\frac{1}{a} . a)\vec{y} $$
+$$ 1 . \vec{x} = 1 . \vec{y} $$
+jednotkový zákon:
+$$ \vec{x} = \vec{y} $$
+
+\textbf{c) ... f)} dôkazy vynechávame.
+\end{proof}
+
+Pointa tohto prístupu k veci je v tom, že keďže dôkaz Tvrdenia používa iba definíciu vektorového priestoru, Tvrdenie platí pre všetky vektorové priestory (rovinné, $n$-tice, funkcie...), ktoré spĺňajú definíciu. Všetko, čo dokážeme pre vektorové priestory, bude platiť pre každý partikulárny prípad vektorového priestoru.
+
+Preto budeme odteraz postupovať tak, že budeme formulovať pojmy a tvrdenia/vety v jazyku určenom definíciou.
+
+Začnime pojmom podpriestoru vektorového priestoru.
+
+\begin{definicia}
+Nech $V$ je vektorový priestor. Množina $U \subseteq V$ sa nazýva \textbf{podpriestor}, ak platí:
+\begin{enumerate}
+    \item $\vec{0} \in U$
+    \item Pre všetky dvojice $\vec{x}, \vec{y} \in U$ platí, že $\vec{x} + \vec{y} \in U$ (uzavretosť na sčítanie)
+    \item Pre všetky $\vec{x} \in U, a \in \mathbb{R}$ platí, že $a\vec{x} \in U$ (uzavretosť na násobenie skalárom)
+\end{enumerate}
+\end{definicia}
+
+\begin{tvrdenie}
+Ak $U$ je podpriestor vektorového priestoru $V$, potom množina $U$ vybavená operáciami zdedenými z $V$ je tiež vektorový priestor.
+\end{tvrdenie}
+
+\textbf{POZOR!} Neexistuje nič také ako „$U$ je podpriestor“ samé osebe, to slovné spojenie nemá žiaden zmysel; podobne ako „7 je menšie“. Má zmysel slovné spojenie $U$ je podpriestor $\mathbb{R}^3$ napríklad.
+
+\begin{priklad}
+Uvažujme podmnožinu $U = \{(1,2), (0,0)\}$ vektorového priestoru $\mathbb{R}^2$.
+Je $U$ podpriestor $\mathbb{R}^2$? Nie, pretože (medzi iným)
+$$ (1,2) + (1,2) = (2,4) \notin U $$
+\end{priklad}
+
+\begin{priklad}
+Uvažujme podmnožinu $U$ vektorového priestoru „vektory v rovine s počiatkom“ $S$ takú, že $U$ obsahuje všetky vektory, ktorých koncový bod leží na nejakej polpriamke s počiatkom v $\vec{0}$.
+Je $U$ podpriestor $S$? Nie, pretože ak $\vec{x} \in U$, potom $(-1) . \vec{x} \notin U$, čo odporuje bodu 3) Def.
+\end{priklad}
+
+Všimnite si, že $U$ spĺňa obidve zvyšné podmienky Definície.
+
+\begin{priklad}
+Ak nahradíme polpriamku z predošlého príkladu priamkou, taká množina vektorov už podpriestorom bude.
+\end{priklad}
+
+\textbf{Otázka:} priamky prechádzajúce počiatkom sú teda podpriestory $S$. Aké ďalšie podpriestory $S$ existujú?
+Zrejme dva: $\{\vec{0}\}$ a $S$.
+
+\begin{priklad}
+Nech $U$ je množina
+$$ U = \{(s+2t, -t, 2s+t) : s, t \in \mathbb{R}\} $$
+\begin{itemize}
+    \item[1)] $\vec{0} \in U$: ak $s=t=0$, potom $(0+2.0, -0, 2.0+0) = (0,0,0) \in U$.
+    \item[2)] Nech $\vec{x}_1, \vec{x}_2 \in U$.
+    $\vec{x}_1 \in U$ znamená, že $\vec{x}_1 = (s_1+2t_1, -t_1, 2s_1+t_1)$ pre nejaké $s_1, t_1 \in \mathbb{R}$.
+    Podobne $\vec{x}_2 = (s_2+2t_2, -t_2, 2s_2+t_2)$ pre nejaké $s_2, t_2 \in \mathbb{R}$.
+    Počítajme $\vec{x}_1 + \vec{x}_2$:
+    $$ ((s_1+s_2) + 2(t_1+t_2), -(t_1+t_2), 2(s_1+s_2) + (t_1+t_2)) $$
+    ak položíme $S = s_1+s_2$ a $T = t_1+t_2$, vidíme, že $\vec{x}_1+\vec{x}_2 \in U$.
+    \item[3)] Ak $\vec{x} \in U$, tj. $\vec{x} = (s+2t, -t, 2s+t)$ a $a \in \mathbb{R}$.
+    Potom $a\vec{x} = (a(s+2t), a(-t), a(2s+t)) = (as+2at, -at, 2as+at)$.
+    Položme $S' = as$ a $T' = at$.
+    $$ a\vec{x} = (S'+2T', -T', 2S'+T') \in U $$
+    a hotovo.
+\end{itemize}
+\end{priklad}
+
+\end{document}

@@ -14,7 +14,7 @@ Máme teda nejaký typ matematického objektu (zobrazenie z $\mathbb{R}^n$ do $\
 Cieľom tohto textu je preskúmať väzbu medzi maticami a zobrazeniami, ktoré reprezentujú.
 Teraz uvedieme niekoľko matíc a popíšeme zobrazenia, ktoré reprezentujú. Ak to budeme vedieť, sformulujeme aj význam toho zobrazenia - geometrický alebo iný.
 
-\begin{example}[Nulové matice]
+\begin{priklad}[Nulové matice]
 Uvažujme nulovú maticu typu $m \times n$. Aké zobrazenie $\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}$ táto matica reprezentuje?
 Počítajme:
 $$ 
@@ -42,9 +42,9 @@ $\in \mathbb{R}^{m \times n}$ \hspace{1em} $\in \mathbb{R}^{n}$ \hspace{1em} $\i
 
 Vidíme teda, že nulová matica reprezentuje zobrazenie z $\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}$, ktoré zobrazí každý vektor z $\mathbb{R}^{n}$ na prvok $\vec{0}=(0,...,0) \in \mathbb{R}^{m}$, t.j.
 konštantné zobrazenie s hodnotou $\vec{0}$. Asi nikoho neprekvapí, že toto zobrazenie sa značí $O$.
-\end{example}
+\end{priklad}
 
-\begin{example}[Jednotkové matice a ich skalárne násobky]
+\begin{priklad}[Jednotkové matice a ich skalárne násobky]
 Spomeňme si, že jednotková matica $I_n$ je diagonálna matica typu $n \times n$, ktorá má na diagonále samé 1. Preskúmajme, aké zobrazenie reprezentuje:
 $$ 
 \underbrace{
@@ -74,8 +74,8 @@ a teda $I_n$ reprezentuje identické zobrazenie $\id_{\mathbb{R}^n}$:
 $$
 [[I_n]] = \id_{\mathbb{R}^n}.
 $$
-\end{example}
-\begin{example}
+\end{priklad}
+\begin{priklad}
 Pozrime sa teraz na trochu všeobecnejší prípad; nech $D_{\alpha}$ je diagonálna matica typu $n \times n$, ktorá má na diagonále tú istú konštantu $\alpha \in \mathbb{R}$. Určme, aké zobrazenie takáto matica reprezentuje.
 $$ \underbrace{\begin{pmatrix} \alpha & 0 & 0 & \dots & 0 \\ 0 & \alpha & 0 & \dots & 0 \\ \vdots & \vdots & \ddots & & \vdots \\ 0 & 0 & 0 & \dots & \alpha \end{pmatrix}}_{D_{\alpha} \in \mathbb{R}^{n \times n}} \underbrace{\begin{pmatrix} x_{1} \\ x_{2} \\ \vdots \\ x_{n} \end{pmatrix}}_{\in \mathbb{R}^{n}} = \underbrace{\begin{pmatrix} \alpha x_{1} \\ \alpha x_{2} \\ \vdots \\ \alpha x_{n} \end{pmatrix}}_{\in \mathbb{R}^{n}} = \alpha \vec{x} $$
 (násobenie vektora sklárom)
@@ -93,11 +93,11 @@ prípady $\alpha=0, \alpha=1$:
 \[
 [[I_n]](\vec{x}) = [[D_1]](\vec{x}) = 1\vec{x} = \vec{x} = \id_{\mathbb{R}^n}(\vec{x})
 \]
-\end{example}
+\end{priklad}
 
 %D.Ú.: Popíšte zobrazenia reprezentované diagonálnymi maticami.
 
-\begin{example}[Súčty a priemery]
+\begin{priklad}[Súčty a priemery]
 Každá matica $A \in \mathbb{R}^{1 \times n}$ (riadok) reprezentuje zobrazenie
 $[[A]]: \mathbb{R}^n \rightarrow \mathbb{R}^1$.
 ($\downarrow$ prvky $\mathbb{R}^1$ sú usporiadané 1-ice; $\mathbb{R}^1 = \mathbb{R}$)
@@ -108,9 +108,9 @@ Zobrazenie z $\mathbb{R}^n$ do $\mathbb{R}^1$ reprezentované touto maticou je t
 
 Podobne $(\frac{1}{n} \dots \frac{1}{n})$ reprezentuje zobrazenie "priemer zložiek vektora".
 $$ (\begin{matrix} \frac{1}{n} & \dots & \frac{1}{n} \end{matrix}) \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix} = \frac{x_1}{n} + \dots + \frac{x_n}{n} = \frac{x_1 + \dots + x_n}{n} $$
-\end{example}
+\end{priklad}
 
-\begin{example}[Pravouhlá projekcia na priamku]
+\begin{priklad}[Pravouhlá projekcia na priamku]
 Vezmime si teraz maticu
 $$ P = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} $$
 Táto reprezentuje zobrazenie $\mathbb{R}^2 \rightarrow \mathbb{R}^2$. Predpis tohto zobrazenia rozpísaný do zložiek nájdeme ľahko
@@ -203,9 +203,9 @@ Po vyskúšaní pár bodov dospejeme k hypotéze $[[P]](\vec{x})$ je priemet $\v
 $q$ v pravom uhle. Táto hypotéza je naozaj pravdivá. Je možné ju dokázať holými
 rukami, ale rozumnejšie je odložiť jej dôkaz na neskôr, do druhého semestra, keď
 budeme mať k dispozícii mocnejšie nástroje.
-\end{example}
+\end{priklad}
 
-\begin{example}[Rovinná rotácia]
+\begin{priklad}[Rovinná rotácia]
 Uvažujme, pre $\alpha \in \langle 0, 2\pi \rangle$ maticu 
 \[
 L_{\alpha} = \begin{pmatrix} \cos\alpha & -\sin\alpha \\ \sin\alpha & \cos\alpha \end{pmatrix}
@@ -246,9 +246,9 @@ proti smeru hodinových ručičiek o uhol $\alpha$ vľavo okolo počiatku.
 \end{tikzpicture}
 \end{center}
 Toto nebudeme dokazovať teraz, ale dokážeme to neskôr.
-\end{example}
+\end{priklad}
 
-\begin{example}[Osová súmernosť podľa priamky]
+\begin{priklad}[Osová súmernosť podľa priamky]
 Uvažujme maticu $B = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ a počítajme pre $\vec{x}=(x_1, x_2)$ máme
 $$ [[B]](\vec{x}) = B\vec{x} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} x_2 \\ x_1 \end{pmatrix} $$
 Toto zobrazenie teda vymieňa zložky. Geometricky sa toto dá vyjadriť ako osová súmernosť
@@ -293,7 +293,7 @@ podľa priamky $q$, ktorú už poznáme \eqref{eq:q}
     \draw [dashline,->, >=Stealth, blue] (A)--(B);
 \end{tikzpicture}
 \end{center}
-\end{example}
+\end{priklad}
 
 \subsection{Ktoré zobrazenia sú reprezentovateľné maticami?}
 V tomto momente vzniká prirodzená otázka, ktoré zobrazenia $\mathbb{R}^n \rightarrow \mathbb{R}^m$ sú reprezentovateľné maticami $R^{m \times n}$;
@@ -332,7 +332,7 @@ každý vektor $\vec{x} \in \mathbb{R}^n$ zobrazia na rovnaký vektor v $\mathbb
 To znamená, že $[[B]] \circ [[A]] = [[BA]]$.
 \end{proof}
 
-\begin{example}
+\begin{priklad}
 Uvažujme maticu rovinnej rotácie $L_{\frac{\pi}{2}}$:
 $$L_{\frac{\pi}{2}}= \begin{pmatrix} \cos\frac{\pi}{2} & -\sin\frac{\pi}{2} \\ \sin\frac{\pi}{2} & \cos\frac{\pi}{2} \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} $$
 $$ L_{\frac{\pi}{2}} L_{\frac{\pi}{2}} = \begin{pmatrix} 0 & -1 \\ 1 & 0
@@ -345,14 +345,14 @@ Táto matica by mala reprezentovať zložené zobrazenie $[[L_{\frac{\pi}{2}}]] 
 $[[L_{\frac{\pi}{2}+\frac{\pi}{2}}]]=[[L_\pi]]$.
 Matica $D_{-1}$ reprezentuje zobrazenie násobenie skalárom $-1$. Ale vynásobiť
 rovinný vektor skalárom $-1$ je to isté ako otočiť ho o $\pi$ vľavo (alebo vpravo), teda $D_{-1} = L_{\pi}$.
-\end{example}
+\end{priklad}
 
-\begin{example}
+\begin{priklad}
 Ak vezmeme pravouhlú projekciu $P$ na priamku $q$ (viď vyššie), očakávame, že
 $PP = P$, pretože $[[P]]\circ [[P]]=[[P]]$.
 Naozaj:
 $$ \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} = \begin{pmatrix} 1/4+1/4 & 1/4+1/4 \\ 1/4+1/4 & 1/4+1/4 \end{pmatrix} = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} $$
-\end{example}
+\end{priklad}
 
 %D.Ú.: Nájdite geometrickú interpretáciu zobrazenia $P \circ D_2$. Kreslite si obrázky.
 %V akom vzťahu sú zobrazenia $P \circ D_2$ a $D_2 \circ P$?
@@ -361,18 +361,18 @@ $$ \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & 1/2 \end{pmatrix} \begin{pmatrix} 1/2 & 1/
 %D.Ú.: Ukážte, že $L_{\alpha} \circ P \neq P \circ L_{\alpha}$ a vypočítajte aj príslušné matice zložených zobrazení.
 
 \subsection{Inverzná matica}
-\begin{definition}\label{def:inverzna}
+\begin{definicia}\label{def:inverzna}
 Nech $A$ je štvorcová matica typu $n \times n$. \emph{Inverzná matica k
 $A$} je taká matica $A^{-1}$ typu $n \times n$, pre ktorú platí 
 $$ A A^{-1} = A^{-1} A = I_n $$
-\end{definition}
+\end{definicia}
 Pozor! Inverzná matica k štvorcovej matici nemusí existovať. Napríklad nulová matica iste nemá inverznú, prečo?
 
-\begin{definition}
+\begin{definicia}
 Nech $A$ je štvorcová matica. Ak $A$ má inverznú, hovoríme, že $A$ je
 \emph{regulárna}. V opačnom prípade hovoríme, že $A$ je \emph{singulárna}.
-\end{definition}
-\begin{example}
+\end{definicia}
+\begin{priklad}
 Ak 
 \[
 A = \begin{pmatrix}
@@ -389,14 +389,14 @@ A^{-1} = \begin{pmatrix}
 0 & 3 & 1
 \end{pmatrix}
 \]
-\end{example}
+\end{priklad}
 
-\begin{example}[Inverzná rotácia]
+\begin{priklad}[Inverzná rotácia]
 \[
 L_{-\alpha} = \begin{pmatrix} \cos(-\alpha) & -\sin(-\alpha) \\ \sin(-\alpha) & \cos(-\alpha) \end{pmatrix} = \begin{pmatrix} \cos\alpha & \sin\alpha \\ -\sin\alpha & \cos\alpha \end{pmatrix}
 \]
 je inverzná matica k $L_{\alpha}$.
-\end{example}
+\end{priklad}
 
 Keďže $A, A^{-1}$ sú štvorcové rovnakého typu, povedzme $A, A^{-1} \in \mathbb{R}^{n \times n}$, reprezentujú nejaké zobrazenia
 $$ [[A]]: \mathbb{R}^n \rightarrow \mathbb{R}^n $$
@@ -444,7 +444,7 @@ $$ ( A | I_n ) $$
 potom používame na obe matice (celé riadky) rovnaké elementárne riadkové operácie, ktorými sa snažíme upraviť maticu vľavo od čiary tak, aby sme tam dostali $I_n$. Ak sa nám to podarí, napravo od čiary máme $A^{-1}$.
 $$ ( I_n | A^{-1} ) $$
 
-\begin{example}
+\begin{priklad}
 Takto sa to urobí pre konkrétnu maticu.
 \[
 \left[
@@ -539,7 +539,7 @@ Takto sa to urobí pre konkrétnu maticu.
 \end{array}
 \right]
 \]
-\end{example}
+\end{priklad}
 
 \subsection{Sústavy lineárnych rovníc - nový pohľad}
 
@@ -636,9 +636,9 @@ $$ A \cdot \underbrace{(\vec{y}_1 \dots \vec{y}_n)}_{\text{Toto je } Y \text{}} 
 V poriadku, ale prečo platí aj $YA = I_n$?
 Aby sme to dokázali, je vhodné zaviesť pojem elementárnej matice:
 
-\begin{definition}[Elementárna matica]
+\begin{definicia}[Elementárna matica]
 $E$ je elementárna matica, ak vznikla z~jednotkovej matice $I$ vykonaním jednej elementárnej riadkovej operácie.
-\end{definition}
+\end{definicia}
 
 Napríklad pre pripočítanie $\frac{1}{2}$-násobku prvého riadku $I_3$ k~druhému dostaneme:
 $$ \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \xrightarrow{r_2 \leftarrow r_2 + \frac{1}{2}r_1} \begin{pmatrix} 1 & 0 & 0 \\ \frac{1}{2} & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \to \text{elementárna matica} $$

@@ -34,13 +34,13 @@ $i,j$}}}\bigr)_{\underbrace{m \times n}_{\text{\parbox{6em}{\centering dve priro
 \end{center}
 Predpis je obvykle výraz závislý na $i, j$.
 
-\begin{example}
+\begin{priklad}
 $(i+j)_{2 \times 3} = \begin{pmatrix} 2 & 3 & 4 \\ 3 & 4 & 5 \end{pmatrix}$
-\end{example}
+\end{priklad}
 
-\begin{example}
+\begin{priklad}
 $(i \cdot j)_{2 \times 3} = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \end{pmatrix}$
-\end{example}
+\end{priklad}
 
 Tento zápis budeme používať mnoho razy na vyjadrenie maticových operácií.
 
@@ -90,18 +90,18 @@ $B = (b_{ij})_{m \times n}$
 sú dve matice rovnakého typu $m \times n$. Potom súčet matíc A, B je matica
 \[ A + B = (a_{ij} + b_{ij})_{m \times n} \]
 
-\begin{example}
+\begin{priklad}
 $A = \begin{pmatrix} 1 & 2 & \sqrt{2} \\ -1 & 0 & 3 \end{pmatrix}$ $B = \begin{pmatrix} \frac{1}{2} & -1 & 0 \\ 0 & 0 & 4 \end{pmatrix}$
 \[ A + B = \begin{pmatrix} \frac{3}{2} & 1 & \sqrt{2} \\ -1 & 0 & 7 \end{pmatrix} \]
-\end{example}
+\end{priklad}
 Sčítať môžeme iba dvojice matíc rovnakého typu.
 
 \subsubsection{Násobenie matice skalárom}
 Nech $A = (a_{ij})_{m \times n}$, $c \in \mathbb{R}$. Potom
 \[ c A = (c \cdot a_{ij})_{m \times n} \quad (\text{bodka sa nepíše vždy}) \]
-\begin{example}
+\begin{priklad}
 \[ -2 \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & -7 \end{pmatrix} = \begin{pmatrix} -2 & -4 & -6 \\ 0 & -2 & 14 \end{pmatrix} \]
-\end{example}
+\end{priklad}
 
 \subsection{Vlastnosti súčtu matíc a násobenia matice skalárom}
 Zrejme doteraz zavedené operácie na maticiach manipulujú s maticami ako s vektormi $\mathbb{R}^{m \cdot n}$. V tomto zmysle nie sú pre nás ničím novým.
@@ -121,9 +121,9 @@ Pre každú trojicu matíc $A, B, C$ rovnakého typu a každú dvojicu $a, b \in
 \subsubsection{Transpozícia matice}
 Nech $A = (a_{ij})_{m \times n}$. Potom A transponovaná (alebo transpozícia A) je matica
 \[ A^T = (a_{ji})_{n \times m} \]
-\begin{example}
+\begin{priklad}
 \[ \begin{pmatrix} 1 & 2 & 4 \\ -1 & 0 & 3 \end{pmatrix}^T = \begin{pmatrix} 1 & -1 \\ 2 & 0 \\ 4 & 3 \end{pmatrix} \]
-\end{example}
+\end{priklad}
 
 Pre každú dvojicu matíc A, B rovnakého typu a $c \in \mathbb{R}$ platí
 \begin{itemize}
@@ -135,9 +135,9 @@ Pre každú dvojicu matíc A, B rovnakého typu a $c \in \mathbb{R}$ platí
 \textbf{Symetrická matica} je taká matica, že
 \[ A = A^T \]
 Každá symetrická matica je štvorcová (prečo?). \\
-\begin{example}
+\begin{priklad}
 \[ \begin{pmatrix} 1 & 0 & 7 \\ 0 & 4 & 2 \\ 7 & 2 & 1 \end{pmatrix}\]
-\end{example} 
+\end{priklad} 
 je symetrická matica .
 Je zrejmé, že každá diagonálna matica je symetrická.
 
@@ -148,9 +148,9 @@ To nám umožní definovať všeobecný súčin matíc.
 \subsubsection{Súčin riadku a stĺpca}
 Uvažujme teraz dve matice, jedna typu $1 \times n$ (riadok) a druhá typu $n \times 1$ (stĺpec). Ich súčin je skalár daný
 \[ \begin{pmatrix} y_1 & \dots & y_n \end{pmatrix} \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = y_1 x_1 + \dots + y_n x_n = \sum_{i=1}^n y_i x_i \]
-\begin{example}
+\begin{priklad}
 \[ \begin{pmatrix} 1 & -1 & 0 \end{pmatrix} \begin{pmatrix} 2 \\ 4 \\ 3 \end{pmatrix} = 1 \cdot 2 + (-1) \cdot 4 + 0 \cdot 3 = 2 - 4 + 0 = -2 \]
-\end{example}
+\end{priklad}
 
 \subsubsection{Súčin matíc (všeobecne)}
 Nech A je typu $m \times n$, B je typu $n \times k$. (počet stĺpcov A = počet riadkov B) \\
@@ -158,7 +158,7 @@ Potom súčin matíc A a B je matica $C$ typu $m \times k$ (počet riadkov A, po
 Prvok $C_{ij}$ matice $C$ na pozícii $(i, j)$ je daný ako súčin $i$-teho riadku A a $j$-teho stĺpca B:
 \[ C_{ij} = r_i(A) \cdot s_j(B) \]
 
-\begin{example}
+\begin{priklad}
 \[
 \begin{pmatrix}
 1 & 2 \\
@@ -190,7 +190,7 @@ _{\text{typ } 2 \times 4}
 {\begin{pmatrix} \dots \end{pmatrix}}
 _{\text{typ } 3 \times 4} 
 \]
-\end{example}
+\end{priklad}
 Prechádzame postupne cez všetky usporiadané dvojice (riadok ľavej, stĺpec pravej). Pre každú dvojicu vyrobíme ich súčin a umiestnime to číslo do výslednej matice na pozíciu $(i, j)$.
 
 \subsection*{Vlastnosti násobenia matíc}

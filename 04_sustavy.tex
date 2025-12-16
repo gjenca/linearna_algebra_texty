@@ -1,22 +1,22 @@
 \section{Sústavy lineárnych rovníc}
 
-\begin{definition}[Lineárna rovnica nad $\mathbb{R}$]
+\begin{definicia}[Lineárna rovnica nad $\mathbb{R}$]
 Lineárna rovnica o $n$ neznámych je rovnica tvaru
 $$ (*) \quad a_{1}x_{1} + \dots + a_{n}x_{n} = c $$
 kde $n \ge 1, n \in \mathbb{N}$. Koeficienty $a_1, \dots, a_n, c$ sú dané prvky $\mathbb{R}$. Riešenie tejto rovnice je taká $n$-tica $(x_1, \dots, x_n) \in \mathbb{R}^n$, že po dosadení do (*) je vzniknutý výrok pravdivý.
-\end{definition}
+\end{definicia}
 
-\begin{example}
+\begin{priklad}
 Daná je rovnica $3x_{1} + 2x_{2} + (-1)x_{3} = 7$, ktorú zvyčajne zapisujeme ako
 $$ 3x_{1} + 2x_{2} - x_{3} = 7 $$
 Niektoré jej riešenia sú napríklad $(x_{1}, x_{2}, x_{3}) = (1, 2, 0)$ alebo $(x_{1}, x_{2}, x_{3}) = (0, 0, -7)$. Táto rovnica má nekonečne veľa riešení.
-\end{example}
+\end{priklad}
 
-\begin{definition}[Sústava lineárnych rovníc]
+\begin{definicia}[Sústava lineárnych rovníc]
 Sústava $m$ lineárnych rovníc o $n$ neznámych nad $\mathbb{R}$ je usporiadaná
 $m$-tica rovníc o $n$ neznámych nad $\mathbb{R}$, kde $m, n \ge 1$. Neznáme sú
 rovnaké pre všetky rovnice.
-\end{definition}
+\end{definicia}
 
 \begin{equation}\label{eq:sustava}
 \begin{array}{ccccccccc}
@@ -29,7 +29,7 @@ a_{m1}x_{1} & + & a_{m2}x_{2} & + & \dots & + & a_{mn}x_{n} & = & c_{m}
 
 Riešenie sústavy je taká usporiadaná $n$-tica $(x_{1}, x_{2}, \dots, x_{n}) \in \mathbb{R}^{n}$, ktorá je riešením každej rovnice v sústave.
 
-\begin{example}\label{ex:malaSustava}
+\begin{priklad}\label{ex:malaSustava}
 Uvažujme sústavu rovníc:
 \begin{align*}
     3x_1 + x_2 &= 1 \\
@@ -49,7 +49,7 @@ Teraz už vieme, že $x_1=-1$, môžeme dosadiť túto hodnotu do prvej rovnice
 a vyjadriť $x_2$. Ale môžeme postupovať aj ďalej a napríklad pripočítať
 $-3$-násobok druhej rovnice k prvej.
 V každom prípade, jediným riešením je $x_1 = -1$ a $x_2 = 4$.
-\end{example}
+\end{priklad}
 
 Čo sme robili? Menili sme sústavu tak, aby zmenená sústava mala rovnakú množinu
 riešení. Transformujeme teda v každom problém na iný, jednoduchší. Ale najviac
@@ -292,11 +292,11 @@ a_{m1} & \dots & a_{mn}
 \end{pmatrix}
 \]
 \end{enumerate}
-\begin{definition}
+\begin{definicia}
 Hovoríme, že dve matice $A$, $B$ rovnakého typu sú \emph{riadkovo ekvivalentné},
 ak existuje postupnosť elementárnych riadkových operácií, ktorou sa dá $A$ upraviť na
 $B$.
-\end{definition}
+\end{definicia}
 Elementárne riadkové operácie sú pre nás v tejto chvíli dôležité kvôli nasledujúcej
 vete.
 \begin{veta}\label{veta:sustavyMatice}
@@ -328,13 +328,13 @@ Otázka je, čo budeme považovať za jednoduchší tvar; bude to takzvaný
 V tomto obrázku $\bullet$ znamená nenulový prvok (rôzny od 0), a prvok $?$ môže byť
 ľubovoľný.
 
-\begin{definition}[vedúci prvok riadku]\label{def:veduciPrvok}
+\begin{definicia}[vedúci prvok riadku]\label{def:veduciPrvok}
 Ak A je matica typu $m \times n$, potom vedúci prvok i-teho riadku matice je
 najľavejší nenulový prvok toho riadku: $a_{ij} \ne 0$ a zároveň $a_{il} = 0$ pre
 všetky $1 \le l < j$.
-\end{definition}
+\end{definicia}
 
-\begin{definition}
+\begin{definicia}
 Hovoríme, že matica A typu $m \times n$ je v stupňovitom tvare, ak
 \begin{enumerate}[(a)]
     \item Ak $r_i(A) \ne (0, \dots, 0)$ a zároveň $r_k(A) = (0, \dots, 0)$, potom $i < k$. 
@@ -348,8 +348,8 @@ Hovoríme, že matica A typu $m \times n$ je v stupňovitom tvare, ak
     vedúci prvok nižšieho riadku.
     \end{framed}
 \end{enumerate}
-\end{definition}
-\begin{example}
+\end{definicia}
+\begin{priklad}
 \[
 \begin{array}{rl}
 \begin{pmatrix} 1 & 7 & 0 & -1 & 2 \\ 0 & 0 & 0 & 0 & 0 \\ 0 & 1 & 1 & -1 & 0
@@ -366,7 +366,7 @@ Hovoríme, že matica A typu $m \times n$ je v stupňovitom tvare, ak
 \quad\text{je v stupňovitom tvare}
 \end{array}
 \]
-\end{example}
+\end{priklad}
 \subsection{Gaussova eliminačná metóda}
 
 \emph{Gaussova eliminačná metóda} je spôsob riešenia sústavy lineárnych rovníc. Má
@@ -376,7 +376,7 @@ dve fázy.
 \item Potom nájdeme riešenie sústavy zodpovedajúcej stupňovitému tvaru pomocou
 spätného dosádzania.
 \end{enumerate}
-\begin{example}
+\begin{priklad}
 Riešme Gaussovou eliminačnou metódou sústavu
 \begin{alignat*}{4}
         &   & 2x_2 & + &  x_3 &= & -8 \\
@@ -579,8 +579,8 @@ Množina všetkých riešení sústavy je
 \left\{\left( -\frac{80}{11}, -\frac{43}{11}, -\frac{2}{11}
 \right)\right\}\subseteq\mathbb R^3
 \]
-\end{example}
-\begin{example}
+\end{priklad}
+\begin{priklad}
 Teraz si ukážeme, že sústava lineárnych rovníc môže mať aj nekonečnú množinu riešení.
 Najskôr eliminácia.
 \[
@@ -732,8 +732,8 @@ Množina všetkých riešení teda je
 \mid s, t \in \mathbb{R}
 \right\}
 \]
-\end{example}
-\begin{example}
+\end{priklad}
+\begin{priklad}
 V poslednom príklade si ukážeme, že sústava lineárnych rovníc môže mať aj prázdnu
 množinu riešení.
 % --- Krok 1: R2 <- R2 - 2*R1 ---
@@ -818,4 +818,4 @@ Posledný riadok v matici teraz zodpovedá rovnici
 \]
 ale toto nie je pravda pre \emph{žiadnu} usporiadanú trojicu $(x_1,x_2,x_3)\in\R^3$.
 Množina všetkých riešení je teda $\emptyset$.
-\end{example}
+\end{priklad}
