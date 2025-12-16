@@ -1,0 +1,1 @@
+Convert the whole pdf document to LaTeX. Avoid any hallucinations, try to match the text as closely as possible, do not invent any text on your own. Do not cite the original document. Use the environments, packages and macros specified in main.tex 
