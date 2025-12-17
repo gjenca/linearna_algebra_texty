@@ -1,61 +1,4 @@
-\documentclass[11pt,a4paper]{article}
-
-% PACKAGES
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[slovak]{babel}
-\usepackage{amsmath, amssymb}
-\usepackage{amsthm}
-\usepackage{graphicx}
-\usepackage{enumerate}
-\usepackage{tikz}
-\usetikzlibrary{tikzmark}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{calc}
-\usepackage[all,pdf,2cell]{xy}
-\usepackage{soul}
-\usepackage{framed}
-\usepackage{array}
-\usepackage{todonotes}
-\usepackage{nicematrix}
-
-\NiceMatrixOptions
-  { pgf-node-code = \pgfsetfillcolor{white} \pgfusepathqfill }
-
-\pgfset{nicematrix/cell-node/.append style = { inner sep = 1pt } }
-
-% THEOREM ENVIRONMENTS SETUP
-\theoremstyle{definition} 
-\newtheorem{definicia}{Definícia}[section]
-\newtheorem{priklad}[definicia]{Príklad}
-
-\theoremstyle{plain} 
-\newtheorem{tvrdenie}[definicia]{Tvrdenie}
-\newtheorem{veta}[definicia]{Veta}
-
-\theoremstyle{remark} 
-\newtheorem*{question}{Otázka}
-
-% Macros
-\newcommand{\id}{\mathrm{id}}
-\newcommand{\Nat}{\mathbb{N}}
-\newcommand{\Set}{\mathbf{Set}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\ora}[1]{\overrightarrow{#1}}
-\newcommand{\restr}[2]{{
-  \left.\kern-\nulldelimiterspace
-  #1 
-  \littletaller 
-  \right|_{#2} 
-  }}
-\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
-
-% Additional macros inferred from text
-\newcommand{\Lo}{\mathcal{L}_\sigma} % Notation for Linearny Obal
-
-\begin{document}
-
-\section*{Lineárny obal}
+\subsection{Lineárny obal}
 
 \begin{definicia} \label{def:10.1}
 Nech $V$ je vektorový priestor, nech $X=(\vec{x}_{1},...,\vec{x}_{n})$ je $n$-tica vektorov z $V$. Potom \textbf{lineárny obal} je množina vektorov
@@ -220,4 +163,3 @@ Nech $V$ je vektorový priestor. \emph{Báza} $V$ je taká $n$-tica $X$ vektorov
 
 Z horeuvedeného dostávame aspoň jeden príklad bázy vektorového priestoru: $(\vec{e}_{1},...,\vec{e}_{n})$ je bázou $\R^n$.
 
-\end{document}

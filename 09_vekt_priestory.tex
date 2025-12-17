@@ -185,6 +185,7 @@ vektorového priestoru.
 Preto budeme odteraz postupovať tak, že budeme formulovať pojmy a tvrdenia/vety v
 jazyku určenom definíciou vektorového priestoru.
 
+\subsection{Podpriestor vektorového priestoru}
 Začnime pojmom podpriestoru vektorového priestoru.
 
 \begin{definicia}\label{def:vektorovyPriestor}
@@ -229,7 +230,7 @@ Je $U$ podpriestor $S$? Nie, pretože ak $\vec{x} \in U$, potom $(-1) . \vec{x} 
 U$, čo odporuje bodu 3. definície \ref{def:vektorovyPriestor}.
 \end{priklad}
 
-Všimnite si, že $U$ spĺňa obidve zvyšné podmienky Definície.
+Všimnite si, že $U$ spĺňa obidve zvyšné podmienky definície.
 
 \begin{priklad}
 Ak nahradíme polpriamku z predošlého príkladu priamkou, taká množina vektorov $U$ už
@@ -291,3 +292,90 @@ Tvrdíme, že $P$ je podpriestor $\R^\R$. Overíme podmienky z definície podpri
 Zistili sme, že množina párnych funkcií je uzavretá na súčet aj skalárny násobok a
 obsahuje nulový vektor, a teda tvorí podpriestor vektorového priestoru $\R^\R$.
 \end{priklad}
+
+\subsection{Lineárny obal}
+
+\begin{definicia} \label{def:10.1}
+Nech $V$ je vektorový priestor, nech $X=(\vec{x}_{1},...,\vec{x}_{n})$ je $n$-tica vektorov z $V$. Potom \textbf{lineárny obal} je množina vektorov
+$$ \Lo(X)=\{a_{1}\vec{x}_{1}+...+a_{n}\vec{x}_{n} \mid a_{1},...,a_{n}\in \R\} $$
+\end{definicia}
+
+Vidíme, že predpis pre vytvorenie lineárneho obalu $n$-tice $X$ sa dá vyjadriť slovne ako \textit{všetky lineárne kombinácie vektorov $X$}. Analogicky môžeme definovať lineárny obal množiny vektorov.
+
+\textbf{Cvičenie:} Ak $X=(\vec{u}, \vec{v})$ je dvojica vektorov v rovine, ako môže vyzerať $\Lo(X)$? Uvažujte prípady ako $\vec{u}=\vec{0}$, $\vec{u}=c\vec{v}$, $\vec{u} \neq c\vec{v}$.
+
+
+\begin{priklad}
+Skúsme si napísať ako vyzerá lineárny obal dvojice vektorov $((-1,2,3), (2,0,2))$ v $\R^{3}$.
+\begin{align*}
+\Lo(X) &= \{a_{1}(-1,2,3)+a_{2}(2,0,2) \mid a_{1},a_{2}\in \R\} \\
+&= \{(-a_{1},2a_{1},3a_{1})+(2a_{2},0,2a_{2}) \mid a_{1},a_{2}\in \R\} \\
+&= \{(-a_{1}+2a_{2},2a_{1},3a_{1}+2a_{2}) \mid a_{1},a_{2}\in \R\}
+\end{align*}
+\end{priklad}
+
+Označme vektorový priestor všetkých funkcií $\R \rightarrow \R$ ako $\R^\R$.
+
+\begin{priklad}
+Ako vyzerá lineárny obal $n$-tice funkcií $(1,x,x^{2},...,x^{n})$? 
+Tuto (trochu lajdácky) stotožňujeme funkciu v $\R^\R$ s jej predpisom.
+$$ \Lo(1,x,x^{2},...,x^{n}) = \{a_{0}+a_{1}x+...+a_{n}x^{n} \mid a_{0},a_{1},...,a_{n}\in \R\} $$
+To je množina všetkých polynómov stupňa nanajvýš $n$, označujeme ju $\R^{n}[x]$.
+\end{priklad}
+
+\begin{veta} \label{veta:10.2}
+Nech $V$ je vektorový priestor, nech $X=(\vec{x}_{1},...,\vec{x}_{n})$ je $n$-tica vektorov z $V$. Potom $\Lo(X)$ je podpriestor $V$.
+\end{veta}
+
+\begin{proof}
+Overíme podmienky podpriestoru:
+\begin{enumerate}
+    \item $\vec{0}\in \Lo(X)$, lebo $\vec{0}=0\vec{x}_{1}+...+0\vec{x}_{n}\in \Lo(X)$.
+    \item Nech $\vec{u}, \vec{v} \in \Lo(X)$. Potom
+    $$ \vec{u}=a_{1}\vec{x}_{1}+...+a_{n}\vec{x}_{n} $$
+    pre nejaké $a_{1},...,a_{n}\in \R$ a
+    $$ \vec{v}=b_{1}\vec{x}_{1}+...+b_{n}\vec{x}_{n} $$
+    pre nejaké $b_{1},...,b_{n}\in \R$.
+    Máme dokázať, že $\vec{u}+\vec{v}\in \Lo(X)$. Počítajme:
+    \begin{align*}
+    \vec{u}+\vec{v} &= (a_{1}\vec{x}_{1}+...+a_{n}\vec{x}_{n}) + (b_{1}\vec{x}_{1}+...+b_{n}\vec{x}_{n}) \\
+    &= (a_{1}+b_{1})\vec{x}_{1}+...+(a_{n}+b_{n})\vec{x}_{n}\in \Lo(X)
+    \end{align*}
+    \item Nech $\vec{u}$ je ako v bode 2), $c\in \R$. Potom
+    $$ c\vec{u}=c(a_{1}\vec{x}_{1}+...+a_{n}\vec{x}_{n})=(ca_{1})\vec{x}_{1}+...+(ca_{n})\vec{x}_{n}\in \Lo(X) $$
+\end{enumerate}
+\end{proof}
+
+Vidíme teda, že každý lineárny obal $n$-tice je podpriestorom priestoru, z ktorého vyberáme. Teda medziiným je $\R^{n}[x]=\Lo(1,x,...,x^{n})$ podpriestorom $\R^{\R}$.
+
+\begin{definicia} \label{def:10.3}
+Hovoríme, že vektorový priestor $V$ je \textbf{konečnorozmerný}, ak existuje $n$-tica $X=(\vec{x}_{1},...,\vec{x}_{n})$ vektorov z $V$ taká, že $\Lo(X)=V$. Ak $V$ nie je konečnorozmerný, je \textbf{nekonečnorozmerný}.
+\end{definicia}
+
+\begin{veta} \label{veta:10.4}
+Vektorový priestor $\R^{n}$ je konečnorozmerný pre každé $n \ge 1$.
+\end{veta}
+
+\begin{proof}
+Vezmime vektory
+\begin{align*}
+\vec{e}_{1} &= (1,0,0,...,0) \\
+\vec{e}_{2} &= (0,1,0,...,0) \\
+&\vdots \\
+\vec{e}_{n} &= (0,0,0,...,1)
+\end{align*}
+Tvrdíme, že $\R^n = \Lo(\vec{e}_1, ..., \vec{e}_n)$. Nech $\vec{v}=(a_{1},...,a_{n})$ je nejaký vektor z $\R^{n}$. Máme:
+\begin{align*}
+a_{1}\vec{e}_{1}+...+a_{n}\vec{e}_{n} &= a_{1}(1,0,...,0)+...+a_{n}(0,0,...,1) \\
+&= (a_{1},0,...,0)+...+(0,0,...,a_{n}) \\
+&= (a_{1},...,a_{n})=\vec{v}
+\end{align*}
+Teda $\vec{v} \in \Lo(\vec{e}_{1},...,\vec{e}_{n})$.
+\end{proof}
+
+Uvedomme si, že $\R^n[x]$ je tiež konečnorozmerný (lebo sme ho definovali ako lineárny obal nejakej $n$-tice vektorov).
+
+V tomto momente vzniká prirodzená otázka: existuje nejaký priestor, ktorý nie je konečnorozmerný?
+Odpoveď je, samozrejme, ,,Áno'': napríklad vektorový priestor $\R^\R$ nie je konečnorozmerný. Dôkaz presahuje zamýšľaný rámec prednášky, preto ho nespravíme.
+Skoro všetky vektorové priestory na tejto prednáške budú však konečnorozmerné.
+

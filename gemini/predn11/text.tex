@@ -1,0 +1,366 @@
+Nasledujúca veta by sa dala nazvať ,,načo sú dobré bázy''.
+
+\begin{veta} \label{veta:suradnice}
+Nech $X=(\vec{x}_{1},\vec{x}_{2},...,\vec{x}_{n})$ je usporiadaná $n$-tica vektorov vektorového priestoru $V$. Nasledujúce dve tvrdenia sú ekvivalentné.
+\begin{enumerate}[a)]
+    \item $X$ je báza $V$.
+    \item Pre každý vektor $\vec{v}\in V$ existuje jediná $n$-tica skalárov $(a_{1},...,a_{n})$ taká, že
+    $$ \vec{v}=a_{1}\vec{x}_{1}+...+a_{n}\vec{x}_{n} $$
+\end{enumerate}
+\end{veta}
+
+\begin{proof}
+$b)\Rightarrow a)$
+Zrejme b) znamená, že každý vektor $\vec{v} \in V$ sa dá vyjadriť ako lineárna kombinácia vektorov $X$, teda pre každý vektor $\vec{v}\in V$ platí $\vec{v} \in \Lo(X)$, teda $\Lo(X) = V$.
+Zostáva dokázať, že $X$ je lineárne nezávislá.
+To znamená, ak $a_{1}\vec{x}_{1}+\cdot\cdot\cdot+a_{n}\vec{x}_{n}=\vec{0},$ potom $a_{1}=a_{2}=...=a_{n}=0$.
+$$ \vec{0}=a_{1}\vec{x}_{1}+...+a_{n}\vec{x}_{n}=0\vec{x}_{1}+...+0\vec{x}_{n} $$
+ale podľa b) platí, že také $(a_1, \dots, a_n)$ sú jediné, teda nutne $a_{1}=0, \dots, a_{n}=0$.
+
+$a)\Rightarrow b)$
+Nech
+$$ \vec{v}=a_{1}\vec{x}_{1}+a_{2}\vec{x}_{2}+\cdot\cdot\cdot+a_{n}\vec{x}_{n} \quad \text{a zároveň} \quad \vec{v}=b_{1}\vec{x}_{1}+b_{2}\vec{x}_{2}+...+b_{n}\vec{x}_{n}. $$
+Odčítajme druhú rovnosť od prvej a dostaneme po úprave
+$$ (*) \quad \vec{0}=\vec{v}-\vec{v}=(a_{1}-b_{1})\vec{x}_{1}+...+(a_{n}-b_{n})\vec{x}_{n} $$
+Ale $X$ je lineárne nezávislá, preto (*) implikuje
+$$ a_{1}-b_{1}=...=a_{n}-b_{n}=0 $$
+a teda $a_{1}=b_{1},...,a_{n}=b_{n}$.
+\end{proof}
+
+\begin{definicia} \label{def:suradniceVBaze}
+Nech $V$ je konečnorozmerný vektorový priestor s bázou $X=(\vec{x}_{1},\cdot\cdot\cdot,\vec{x}_{n})$, nech $\vec{v} \in V$.
+Potom $n$-tici skalárov $(a_1, \dots, a_n)$, ktorá je jednoznačne určená vlastnosťou
+$$ \vec{v}=a_{1}\vec{x}_{1}+...+a_{n}\vec{x}_{n} $$
+hovoríme \emph{súradnice vektora} $\vec{v}$ v báze $X$ a značíme
+$$ [\vec{v}]_{X}=(a_{1},...,a_{n}) $$
+\end{definicia}
+
+Pojem súradníc v báze nám umožňuje pozrieť sa inými očami na to,ako sme pomocou voľby
+súradnicových osí prevádzali rovinné vektory na dvojice skalárov.
+
+\begin{priklad}
+Uvažujme geometrické vektory v rovine. Vieme, že ak určíme súradnicové osi, môžeme geometrické vektory reprezentovať ako usporiadané dvojice skalárov.
+$$ \vec{u} \mapsto (3\frac{1}{2}, 2\frac{1}{2}) \in \R^2 $$
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    % Draw the axes
+    \draw[<->] (-2.5,0) -- (4.5,0) node[right] {$x$};
+    \draw[<->] (0,-2.5) -- (0,4.5) node[above] {$y$};
+
+    % Draw tick marks on x-axis
+    \foreach \x in {-2,-1,1,2,...,4}
+    {
+        \draw (\x, 0.1) -- (\x, -0.1) node[below] {\tiny \x};
+    }
+
+    % Draw tick marks on y-axis
+    \foreach \y in {-2,-1,1,2,...,4}
+    {
+        \draw (0.1, \y) -- (-0.1, \y) node[left] {\tiny \y};
+    }
+
+    % Draw the origin
+    \node[circle, fill, inner sep=1.5pt] at (0,0) {};
+
+    % Draw the vector u
+    \draw[thick, -{Stealth[]}] (0,0) -- (3.5,2.5) node[midway, above left] {$\vec{u}$};
+
+    % Draw dashed lines to axes (projection)
+    \draw[dashed] (3.5,2.5) -- (3.5,0);
+    \draw[dashed] (3.5,2.5) -- (0,2.5);
+\end{tikzpicture}
+\end{center}
+Prikreslime na obrázok dva vektory $\vec{x}_{1}$, $\vec{x}_{2}$, ktoré končia v „jednotkách“.
+\begin{center}
+\begin{tikzpicture}
+    % Draw the axes
+    \draw[<->] (-2.5,0) -- (4.5,0) node[right] {$x$};
+    \draw[<->] (0,-2.5) -- (0,4.5) node[above] {$y$};
+
+    % Draw tick marks on x-axis
+    \foreach \x in {-2,-1,1,2,...,4}
+    {
+        \draw (\x, 0.1) -- (\x, -0.1) node[below] {\tiny \x};
+    }
+
+    % Draw tick marks on y-axis
+    \foreach \y in {-2,-1,1,2,...,4}
+    {
+        \draw (0.1, \y) -- (-0.1, \y) node[left] {\tiny \y};
+    }
+
+    % Draw the origin
+    \node[circle, fill, inner sep=1.5pt] at (0,0) {};
+
+    % Draw the vector u
+    \draw[thick, -{Stealth[]}] (0,0) -- (3.5,2.5) node[midway, above left] {$\vec{u}$};
+
+    % Draw dashed lines to axes (projection)
+    \draw[dashed] (3.5,2.5) -- (3.5,0);
+    \draw[dashed] (3.5,2.5) -- (0,2.5);
+    % Draw the vectors x1, x2
+    \draw[blue,thick, -{Stealth[]}] (0,0) -- (1,0) node[midway, below] {$\vec{x_1}$};
+    \draw[blue,thick, -{Stealth[]}] (0,0) -- (0,1) node[midway, left] {$\vec{x_2}$};
+\end{tikzpicture}
+\end{center}
+Uvažujme bázu $X=(\vec{x}_{1},\vec{x}_{2})$ a uvedomme si, že
+$3\frac{1}{2}\vec{x}_{1}$ a $2\frac{1}{2}\vec{x}_{2}$ sú pravouhlé priemety $\vec{u}$
+na osi a teda (podľa rovnobežníkového pravidla)
+$3\frac{1}{2}\vec{x}_{1}+2\frac{1}{2}\vec{x}_{2}=\vec{u}$.
+Ale to presne znamená 
+\[
+[\vec{u}]_{X}=(3\frac{1}{2},2\frac{1}{2}).
+\]
+\end{priklad}
+Ak by sme vzali inú bázu, dostali by sme inú dvojicu skalárov reprezentujúcu $\vec{u}$.
+
+\begin{center}
+\begin{tikzpicture}
+    % Define coordinates
+    \coordinate (O) at (0,0);
+    \coordinate (U) at (3.5, 2.5);
+    % Choose a horizontal vector y2. Let's say length 1.5.
+    \coordinate (Y2_tip) at (1.5, 0);
+    % Calculate the vector v = 2*y1 such that v + y2 = u.
+    % v = u - y2 = (3.5-1.5, 2.5-0) = (2.0, 2.5)
+    \coordinate (V_tip) at (2.0, 2.5);
+    % Calculate the tip of y1 (midpoint of V_tip) for labeling
+    \coordinate (Y1_tip) at (1.0, 1.25);
+
+    % Draw the origin
+    \node[circle, fill, inner sep=1.5pt] at (O) {};
+
+    % Draw the component vectors representing the parallelogram sides
+    \draw[blue,thick, -{Stealth[]}] (O) -- (Y2_tip) node[midway, below] {$\vec{y_2}$};
+    \draw[blue,thick, -{Stealth[]}] (O) -- (Y1_tip) node[midway, above left] {$\vec{y_1}$};
+
+    % Draw the resultant vector u
+    \draw[thick, -{Stealth[]}] (O) -- (U) node[above right] {$\vec{u}$};
+
+    % Complete the parallelogram with dashed lines
+    \draw[dashed] (Y2_tip) -- (U);
+    \draw[dashed] (V_tip) -- (U);
+    \draw[dashed] (V_tip) -- (Y1_tip);
+\end{tikzpicture}
+\end{center}
+\[
+Y=(\vec{y_1},\vec{y_2})\qquad
+\vec{u}=2\vec{y_1}+\vec{y_2}\qquad
+[\vec{u}]_{Y}=(2,1)
+\]
+\begin{priklad}
+Uvažujme vektorový priestor polynómov stupňa nanajvýš 2, $\R^2[x]$. Polynóm
+$p:\R\rightarrow\R$ daný predpisom $p(x)=3x^{2}-6$ je vektor v $\R^2[x]$. Jeho
+súradnice v báze $X=(1,x,x^{2})$ sú $(-6,0,3)$.
+
+Ale môžeme uvažovať aj inú bázu $\R^2[x]$, povedzme (zatiaľ nevieme, že toto je báza, ale na chvíľu tomu uveríme...):
+$$ Y=(x^{2}-1,x+1,x-2) $$
+Máme $3(x^{2}-1)+(-1)(x+1)+(1)(x-2)=3x^{2}-3-x-1+x-2 = 3x^{2}-6,$ teda
+$$ [p]_{Y}=(3,-1,1) $$
+\end{priklad}
+
+Vidíme teda teraz, že s každou bázou $X=(\vec{x}_{1},...,\vec{x}_{n})$ vektorového priestoru $V$ máme spojené zobrazenie
+$$ [\_]_{X}:V\rightarrow \R^{n} $$
+dané predpisom $\vec{v}\mapsto[\vec{v}]_{X}$.
+Veta \ref{veta:suradnice} nám hovorí, že toto zobrazenie je bijektívne. Jeho inverzné
+zobrazenie vezme nejakú ticu skalárov a použije ich ako koeficienty lineárnej
+kombinácie prvkov $X$.
+\[
+    V \xrightarrow{[\_]_X} \R^n
+\]
+\[
+V \xleftarrow{\text{lineárne kombinuj prvky $X$}} \R^n
+\]
+Toto je primárny účel zavedenia pojmu bázy: umožňuje prevádzať vektory na ich
+súradnice v danej báze a späť. Pritom je dôležité si uvedomiť, že pre rôzne bázy
+dostávame rôzne súradnice toho istého vektora.
+
+Teraz si napíšeme zopár postačujúcich podmienok pre rozpoznanie lineárnej závislosti $n$-tice vektorov.
+
+\begin{itemize}
+\item Ak $X$ obsahuje $\vec{0}$, $X$ je lineárne závislá.
+Naozaj, nech $\vec{x}_{j}=\vec{0}$ pre nejaké $j$. Potom zrejme
+$$ 0\vec{x}_{1}+0\vec{x}_{2}+\cdot\cdot\cdot+1\vec{x}_{j}+...+0\vec{x}_{n-1}+0\vec{x}_{n}=\vec{0} $$
+Je to lineárna kombinácia, nie všetky koeficienty sú nulové, a teda $X$ je lineárne závislá.
+\item Ak $X$ obsahuje aspoň dvakrát ten istý vektor, potom $X$ je lineárne závislá.
+Naozaj, ak $\vec{x}_{i}=\vec{x}_{j}$, $i<j$, potom
+$$ 0\vec{x}_{1}+\cdot\cdot\cdot+1\vec{x}_{i}+...+(-1)\vec{x}_{j}+...+0\vec{x}_{n} = 1\vec{x}_{i}+(-1)\vec{x}_{i} = 0\vec{x}_i = \vec{0} $$
+Je to lineárna kombinácia, $i$-ty koeficient je 1, $j$-ty je -1 (teda nie všetky sú 0).
+\end{itemize}
+Pozor! Tieto podmienky sú postačujúce, ale nie nutné. Nutnú a postačujúcu podmienku
+nám dá Veta \ref{veta:kriteriaLinearnejZavislosti}, ale predtým, ako ju sformulujeme, musíme sa vysporiadať s
+problémom, ktorý sa v tejto fáze zvykne študentom zatajiť: čo je bázou jednoprvkového
+vektorového priestoru $\{\vec{0}\}$?
+
+Nemôže to byť $(\vec{0})$, lebo to je lineárne závislá n-tica. Takže buď $\{\vec{0}\}$ nemá bázu, alebo to je usporiadaná „0-tica“ -- prázdny zoznam vektorov $()$; ak dodefinujeme $\Lo(())=\{\vec{0}\}$, zistíme, že veci fungujú uspokojivo, nenastane problém a formulácia nasledujúcej vety sa výrazne zjednoduší.
+
+\begin{veta} \label{veta:kriteriaLinearnejZavislosti}
+Nech $X=(\vec{x}_{1},...,\vec{x}_{n})$ je $n$-tica vektorov vo vektorovom priestore $V$. Potom nasledujúce tvrdenia sú ekvivalentné:
+\begin{enumerate}[a)]
+    \item $X$ je lineárne závislá.
+    \item Jeden z vektorov $\vec{x}_{i}$ v $X$ je lineárnou kombináciou predchádzajúcich vektorov v $X$; po vymazaní vektora $\vec{x}_i$ z $X$ sa lineárny obal nezmení.
+    \item Jeden z vektorov $\vec{x}_{i}$ v $X$ je lineárnou kombináciou ostatných vektorov v $X$; po vymazaní $\vec{x}_i$ z $X$ sa lineárny obal $X$ nezmení.
+\end{enumerate}
+\end{veta}
+
+\begin{proof}
+Dôkaz vynechávam, je technický a nezaujímavý.
+\end{proof}
+
+\begin{dosledok}
+Nech $V$ je vektorový priestor, nech $X=(\vec{x}_{1},\cdot\cdot\cdot,\vec{x}_{n})$, nech $\Lo(X)=V$. Potom existuje báza $V$, ktorá vznikne z $X$ vymazaním nula a viac vektorov.
+\end{dosledok}
+
+\begin{proof}
+Ak $X$ je lineárne nezávislá, $X$ je báza $V$. Ak $X$ je lineárne závislá, podľa Vety
+\ref{veta:kriteriaLinearnejZavislosti} z nej môžeme vymazať jeden vektor, pričom lineárny obal zostane stále rovnaký,
+t.j. $V$; toto môžeme opakovať, až kým nedostaneme bázu.
+\end{proof}
+
+\begin{dosledok}
+Každý konečnorozmerný vektorový priestor má bázu.
+\end{dosledok}
+\begin{proof}
+Zjavné z predošlého dôsledku.
+\end{proof}
+
+\begin{veta} \label{veta:porovnavanieTic}
+Nech $V$ je konečnorozmerný vektorový priestor. Potom dĺžka každej lineárne
+nezávislej tice vektorov z $V$ je menšia alebo rovná ako dĺžka každej tice,
+ktorej lineárnym obalom je $V$.
+\end{veta}
+
+\begin{proof}
+Nech $X=(\vec{x}_{1},...,\vec{x}_{k})$ je lineárne nezávislá k-tica vektorov z $V$ a nech $Y=(\vec{y}_{1},\cdot\cdot\cdot,\vec{y}_{n})$ je taká, že $\Lo(Y)=V$. Máme dokázať, že $k\le n$.
+Predpokladajme opak: že $k>n$. Ak dokážeme, že z toho vyplýva nejaká nepravda (spor), budeme vedieť, že $k\le n$.
+
+\textbf{KROK:}
+$(n+1)$-tica $(\vec{x}_{1},\vec{y}_{1},\cdot\cdot\cdot,\vec{y}_{n})$ je lineárne
+závislá podľa ekvivalencie a) $\Leftrightarrow$ c) z Vety
+\ref{veta:kriteriaLinearnejZavislosti}, pretože
+$\vec{x}_{1}\in V=\Lo(\vec{y}_{1},\cdot\cdot\cdot,\vec{y}_{n})$ a teda $\vec{x}_1$ je
+lineárnou kombináciou $(\vec{y}_{1},\cdot\cdot\cdot,\vec{y}_{n})$.  Opäť podľa Vety
+\ref{veta:kriteriaLinearnejZavislosti} je jeden z vektorov v tej $(n+1)$-tici
+lineárnou kombináciou predchádzajúcich vektorov, ale nemôže to byť $\vec{x}_1$, lebo
+potom by $\Lo(())=\{\vec{0}\}$, teda $\vec{x}_{1}=\vec{0}$, ale to nie je pravda,
+lebo $(\vec{x}_{1},\cdot\cdot\cdot,\vec{x}_{k})$ je lineárne nezávislá a teda
+neobsahuje $\vec{0}$. Teda to musí byť jeden z vektorov $\vec{y}_i$, a podľa Vety
+\ref{veta:kriteriaLinearnejZavislosti} ho môžeme
+z tej $(n+1)$-tice vymazať bez zmeny jej lineárneho obalu.
+Dostaneme n-ticu vektorov
+$$ Y^{\prime}=(\vec{x}_{1},\vec{y}_{2},...,\vec{y}_{i},...,\vec{y}_{n}) $$
+(Tento $\vec{y}_i$ sme vymazali).
+
+Ale teraz vezmeme $x' = (\vec{x}_2, \dots, \vec{x}_k)$ a $Y'$, môžeme KROK zopakovať,
+až kým sa všetky $\vec{y_{?}}$ neminú a nejaké $\vec{x}_i$ nám zostanú, lebo $k>n$. Ale to sa
+nemôže stať, lebo potom by sme mali $\Lo(\vec{x}_{n},\vec{x}_{n-1},...,\vec{x}_{1})=V
+\ni \vec{x}_{m}$ (pre $m > n$), teda $X$ by bola (viď Veta
+\ref{veta:kriteriaLinearnejZavislosti}) lineárne závislá. Teda
+$k>n$ vedie k sporu, a z toho vyplýva, že $k\le n$.
+\end{proof}
+
+\begin{veta} \label{veta:dimenzia}
+Každá báza konečnorozmerného vektorového priestoru má rovnako veľa prvkov.
+\end{veta}
+
+\begin{proof}
+Označme náš priestor $V$. Nech $X=(\vec{x}_{1},...,\vec{x}_{k})$, $Y=(\vec{y}_{1},\cdot\cdot\cdot,\vec{y}_{l})$ sú dve bázy konečnorozmerného vektorového priestoru.
+Potom podľa Vety \ref{veta:porovnavanieTic}:
+\begin{itemize}
+    \item $X$ je lineárne nezávislá, $\Lo(Y)=V \Rightarrow k\le l$
+    \item $Y$ je lineárne nezávislá, $\Lo(X)=V \Rightarrow l\le k$
+\end{itemize}
+Takže $l=k$.
+\end{proof}
+
+Keďže všetky bázy konečnorozmerného vektorového priestoru majú rovnako veľa prvkov, nasledujúca definícia je zmysluplná:
+
+\begin{definicia} \label{def:dimenzia}
+Nech $V$ je konečnorozmerný vektorový priestor. \emph{Dimenzia} $V$ (značíme
+$\dim(V)$) je počet prvkov niektorej (každej) bázy $V$. Ak $\dim(V)=n$, hovoríme, že
+$V$ je $n$-rozmerný.
+\end{definicia}
+
+\begin{priklad}
+$\R^n$ je $n$-rozmerný priestor, lebo $(\vec{e}_{1},\cdot\cdot\cdot,\vec{e}_{n})$ sú báza $\R^n$.
+\end{priklad}
+\begin{priklad}
+Všetky vektory v rovine tvoria dvojrozmerný vektorový priestor.
+\end{priklad}
+\begin{priklad}
+Všetky vektory v priestore tvoria vektorový priestor dimenzie 3.
+\end{priklad}
+\begin{priklad}
+$\R^n[x]$ je $(n+1)$-rozmerný vektorový priestor, lebo $(1, x, \dots, x^n)$ je báza.
+\end{priklad}
+
+\begin{veta} \label{veta:doplnenieNaBazu}
+Nech $V$ je vektorový priestor, nech $\dim(V)=n$, nech $X$ ($k$-prvková) je lineárne nezávislá n-tica vektorov z $V$. Potom buď $X$ je báza (ak $k=n$) alebo $k<n$ a $X$ sa dá doplniť na bázu.
+\end{veta}
+
+\begin{proof}
+Ak $\Lo(X)=V$, potom $X$ je báza a teda $k=n$.  Ak $\Lo(X) \ne V$, vyberme ľubovoľný
+vektor $\vec{y} \in V \setminus \Lo(X)$. Potom $(k+1)$-tica $X' = (X, \vec{y})$ je
+lineárne nezávislá. Naozaj, ak by bola lineárne závislá, podľa Vety
+\ref{veta:kriteriaLinearnejZavislosti} by musel
+jeden z vektorov v nej byť lineárnou kombináciou predchádzajúcich. Nemôže to byť
+žiaden z $X$ (lebo potom by $X$ bola lineárne závislá). Nemôže to ale byť ani
+$\vec{y}$, lebo potom by $\vec{y} \in \Lo(X)$.
+Keďže táto $n$-tica je lineárne nezávislá, tak $k+1 \le n$ (podľa Vety
+\ref{veta:porovnavanieTic}) a teda $k<n$.
+Teraz buď $k+1=n$ a máme bázu $V$, alebo môžeme proces opakovať, až kým nedostaneme bázu.
+\end{proof}
+
+\begin{dosledok}\label{dosledok:nezavislaSnPrvkami}
+Ak $V$ je vektorový priestor, $\dim(V)=n$ a $X$ je lineárne nezávislá n-tica s $n$ prvkami, $X$ je báza $V$.
+\end{dosledok}
+
+Toto je dôležité, pretože nám to umožňuje ušetriť si robotu: ak vieme, že $\dim(V)=n$ (pretože poznáme nejakú bázu s $n$ prvkami) a chceme dokázať, že $X$ je báza, stačí nám dokázať, že $X$ je lineárne nezávislá a má $n$ prvkov. Nemusíme dokazovať, že $\Lo(X)=V$.
+
+Na záver ukážeme, ako sa teória z dnešnej prednášky dá použiť na riešenie príkladov.
+
+\begin{priklad}
+Zistite, či sú nasledujúce výroky pravdivé s použitím tvrdení z dnešnej prednášky:
+\begin{enumerate}[a)]
+    \item Je $((1,2,3), (0,0,0),(0,1,1))$ je báza $\R^3$? \\
+    \textbf{NIE}, pretože a obsahuje nulový vektor a teda je lineárne závislá.
+    \item Je $((1,2,3), (3,2,1))$ báza $\R^3$? \\
+    \textbf{NIE}, lebo má 2 prvky a $\dim(\R^3)=3$.
+    \item Je $((1,1), (4,4), (3,2))$ lineárne závislá v $\R^2$? \\
+    \textbf{ÁNO.} Toto môžeme dokázať buď tak, že vyriešime sústavu, alebo si
+    všimneme, že máme 3 vektory v priestore dimenzie 2, a použijeme Vetu
+    \ref{veta:porovnavanieTic} takto: vieme, že $\dim(\R^2)=2$ a teda teda existuje
+    báza $X$ s dĺžkou $2$. Máme teda $\Lo(X)=\R^2$. Ak by táto (alebo ľubovoľná iná)
+    trojica vektorov v $R^2$ bola lineárne nezávislá, mali by sme podľa Vety
+    \ref{veta:porovnavanieTic} \[3\leq 2\]
+    čo nie je pravda.
+    \item Je $((0,1,1), (1,1,0), (1,0,1))$ báza $\R^3$? \\
+    \textbf{NIE.}
+    Vieme, že $\dim(\R^3)=3$, takže podľa Dôsledku \ref{dosledok:nezavislaSnPrvkami} nám stačí ukázať, že vektory
+    sú lineárne nezávislé. Toto môžeme urobiť buď priamo, alebo ukázať, že žiadny z
+    nich nie je lineárnou kombináciou predchádzajúcich. Zjavne $\vec{x}_1 \ne
+    \vec{0}$, $\vec{x}_2$ nie je skalárnym násobkom $\vec{x}_1$. A pre $\vec{x}_3$:
+    ak $(1,0,1) = a(0,1,1) + b(1,1,0)$, tak z prvej zložky $1=b$, z tretej $1=a$, ale
+    stredná $0 = a+b = 1+1=2$, čo je spor. Teda táto tica je lineárne nezávislá a je to báza.
+    \item Je pravda, že $\Lo(x+1,x^2-7x+4)=\R^2[x]$?\\
+    \textbf{NIE.} Podľa pretože $\dim(\R^2[x])=3$ a podľa 
+    Vety \ref{veta:porovnavanieTic} by sme potom dostali $3\leq 2$.
+    \item Je pravda, že $\Lo(1,x+1,x^2-7x+4)=\R^2[x]$?\\
+    \textbf{ÁNO.} Vieme, že $\dim(\R^2[x])=3$. Zrejme žiadny z vektorov v tici nie je
+    lineárnou kombináciou predchádzajúcich, teda podľa Dôsledku
+    \ref{dosledok:nezavislaSnPrvkami} je tica bázou $\R^2[x]$, teda jej lineárnym
+    obalom je celý vektorový priestor $R^2[x]$.
+\end{enumerate}
+\end{priklad}
+
+\begin{priklad}
+$Y = (x^2-1, x+1, x-2)$ je báza $\R^{2}[x]$, lebo $\dim(\R^{2}[x])=3$ a $Y$
+je lineárne nezávislá.
+Opäť stačí dokázať, že jediná trojica $(a_1, a_2, a_3) \in \R^3$ taká, že
+$$ a_1(x^2-1) + a_2(x+1) + a_3(x-2) = 0 $$
+je $(0,0,0)$, pretože platí Dôsledok \ref{dosledok:nezavislaSnPrvkami},
+Ale tento typ problémov poznáme z rátania príkladov na Matematickej analýze 1
+(neurčité koeficienty) a vieme, že nám stačí dosadiť napríklad $x=-1,1,2$ a z toho
+dostaneme sústavu lineárnych rovních, ktorej jediné riešenie $a_1=a_2=a+3=0$.
+Inou možnosťou je pouvažovať a ukázať, že žiadny z vektorov v $Y$ nie je vyjadriteľný ako lineárna kombinácia predchádzajúcich.
+\end{priklad}
