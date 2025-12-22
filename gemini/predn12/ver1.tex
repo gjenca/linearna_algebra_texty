@@ -1,0 +1,478 @@
+\section{Lineárne zobrazenia}
+
+\begin{definicia}
+Nech $V, U$ sú vektorové priestory. Hovoríme, že zobrazenie $f: V \to U$ je \textbf{lineárne}, ak platia nasledujúce podmienky:
+\begin{enumerate}
+    \item \textbf{Zachováva súčet:} Pre všetky $\vec{v}, \vec{w} \in V$ platí
+    $$ f(\vec{v} + \vec{w}) = f(\vec{v}) + f(\vec{w}) $$
+    (najprv sčítam v $V$, potom zobrazím do $U$ = najprv zobrazím každý z $V$ do $U$, obrazy potom sčítam v $U$. Teda ,,obraz súčtu'' = ,,súčet obrazov''.)
+    
+    \item \textbf{Zachováva násobenie skalárom:} Pre všetky $\alpha \in \mathbb{R}, \vec{v} \in V$ platí
+    $$ f(\alpha \vec{v}) = \alpha f(\vec{v}) $$
+    (najprv vynásobím $\alpha$, potom zobrazím výsledok do $U$ = najprv zobrazím do $U$, potom vynásobím $\alpha$. Teda ,,obraz škálovania'' = ,,škálovanie obrazu''.)
+\end{enumerate}
+\end{definicia}
+
+\begin{figure}
+\scalebox{0.75}{
+\begin{tikzpicture}[
+    thick,
+    >={Latex[length=2.5mm, width=2mm]}, % Define nice arrowheads
+    dot/.style={circle, fill=black, inner sep=1.5pt, outer sep=2pt}, % Style for vector points
+    addbox/.style={draw, rectangle, minimum size=0.7cm, font=\large}, % Style for the [+] operation box
+    set ellipse/.style={draw, ellipse, minimum width=6cm, minimum height=8cm}, % Style for the sets V and U
+    map arrow/.style={->, shorten >=3pt, shorten <=3pt, very thick, color=blue!70!black}, % Style for mapping arrows
+    internal arrow/.style={->, shorten >=2pt, shorten <=2pt}% Style for arrows inside the sets
+    ]
+    % === Title ===
+    %\node[font=\LARGE\bfseries, align=center] at (5, 5.5) {Zachovávanie súčtu};
+
+    % === Coordinates for Set Centers ===
+    \coordinate (V_center) at (0,0);
+    \coordinate (U_center) at (10,0);
+
+    % === Draw Sets V and U ===
+    \node[set ellipse] (SetV) at (V_center) {};
+    \node[set ellipse] (SetU) at (U_center) {};
+
+    % Labels for sets
+    \node[above=0.2cm of SetV, font=\huge] {$V$};
+    \node[above=0.2cm of SetU, font=\huge] {$U$};
+
+    % Top mapping arrow f
+    \draw[->, line width=1.5pt] ($(SetV.north)+(0.5,0.5)$) -- node[above,
+    font=\LARGE] {$f$} ($(SetU.north)+(-0.8,0.5)$);
+
+
+    % ====== INSIDE SET V ======
+    % Define positions
+    \coordinate (v_pos) at (-1, 2);
+    \coordinate (w_pos) at (1, 2);
+    \coordinate (box_V_pos) at (0, 0);
+    \coordinate (sum_V_pos) at (0, -2);
+
+    % Draw elements
+    \node[dot, label={[font=\large]above left:$\vec{v}$}] (v_node) at (v_pos) {};
+    \node[dot, label={[font=\large]above:$\vec{w}$}] (w_node) at (w_pos) {};
+    \node[addbox] (plus_V) at (box_V_pos) {$+$};
+    \node[dot, label={[font=\large]below:$\vec{v} + \vec{w}$}] (sum_V_node) at (sum_V_pos) {};
+
+    % Draw internal arrows showing addition
+    \draw[internal arrow] (v_node) to[out=-90, in=150] (plus_V);
+    \draw[internal arrow] (w_node) to[out=-90, in=30] (plus_V);
+    \draw[internal arrow] (plus_V) -- (sum_V_node);
+
+
+    % ====== INSIDE SET U ======
+    % Define relative positions (shifted by U_center)
+    \coordinate (fv_pos) at ($(U_center)+(-1, 2)$);
+    \coordinate (fw_pos) at ($(U_center)+(1, 2)$);
+    \coordinate (box_U_pos) at ($(U_center)+(0, 0)$);
+    \coordinate (sum_U_pos) at ($(U_center)+(0, -2)$);
+
+    % Draw elements
+    \node[dot, label={[font=\large]above:$f(\vec{v})$}] (fv_node) at (fv_pos) {};
+    \node[dot, label={[font=\large]above:$f(\vec{w})$}] (fw_node) at (fw_pos) {};
+    \node[addbox] (plus_U) at (box_U_pos) {$+$};
+    \node[dot] (result_node) at (sum_U_pos) {};
+
+    % Label for the result showing the preservation property
+    \node[below=0.3cm, align=center, font=\large] at (result_node) {$f(\vec{v} + \vec{w}) =$ \\ $f(\vec{v}) + f(\vec{w})$};
+
+    % Draw internal arrows showing addition in U
+    \draw[internal arrow] (fv_node) to[out=-90, in=150] (plus_U);
+    \draw[internal arrow] (fw_node) to[out=-90, in=30] (plus_U);
+    \draw[internal arrow] (plus_U) -- (result_node);
+
+
+    % ====== MAPPING ARROWS BETWEEN V AND U ======
+    % Map individual vectors
+    \draw[map arrow] (v_node) to[bend left=30] (fv_node);
+    \draw[map arrow] (w_node) to[bend left=35] (fw_node);
+
+    % Map the sum vector
+    \draw[map arrow] (sum_V_node) -- (result_node);
+
+\end{tikzpicture}
+}
+\caption{Zachovávanie súčtu}
+\end{figure}
+\begin{figure}
+\scalebox{0.75}{
+\begin{tikzpicture}[
+    thick,
+    >={Latex[length=2.5mm, width=2mm]}, % Define nice arrowheads
+    dot/.style={circle, fill=black, inner sep=1.5pt, outer sep=2pt}, % Style for vector points
+    % Adapted from addbox in the provided snippet for scalar multiplication
+    multbox/.style={draw, rectangle, minimum size=0.7cm, font=\large}, 
+    set ellipse/.style={draw, ellipse, minimum width=6cm, minimum height=8cm}, % Style for the sets V and U
+    map arrow/.style={->, shorten >=3pt, shorten <=3pt, very thick, color=blue!70!black}, % Style for mapping arrows
+    internal arrow/.style={->, shorten >=2pt, shorten <=2pt} % Style for arrows inside the sets
+]
+
+    % === Title ===
+    %\node[font=\LARGE\bfseries, align=center] at (5, 5.5) {Zachovávanie násobenia skalárom};
+
+    % === Coordinates for Set Centers ===
+    \coordinate (V_center) at (0,0);
+    \coordinate (U_center) at (10,0);
+
+    % === Draw Sets V and U ===
+    \node[set ellipse] (SetV) at (V_center) {};
+    \node[set ellipse] (SetU) at (U_center) {};
+
+    % Labels for sets
+    \node[above=0.2cm of SetV, font=\huge] {$V$};
+    \node[above=0.2cm of SetU, font=\huge] {$U$};
+
+    % Top mapping arrow f
+    \draw[->, line width=1.5pt] ($(SetV.north)+(0.5,0.5)$) -- node[above, font=\LARGE] {$f$} ($(SetU.north)+(-0.8,0.5)$);
+
+
+    % ====== INSIDE SET V ======
+    % Define positions
+    \coordinate (v_pos) at (0, 2);
+    \coordinate (box_V_pos) at (0, 0);
+    \coordinate (av_pos) at (0, -2);
+
+    % Draw elements
+    \node[dot, label={[font=\large]above:$\vec{v}$}] (v_node) at (v_pos) {};
+    \node[multbox] (mult_V) at (box_V_pos) {$\cdot \alpha$};
+    \node[dot, label={[font=\large]below:$\alpha\vec{v}$}] (av_node) at (av_pos) {};
+
+    % Draw internal arrows showing scalar multiplication
+    \draw[internal arrow] (v_node) -- (mult_V);
+    \draw[internal arrow] (mult_V) -- (av_node);
+
+
+    % ====== INSIDE SET U ======
+    % Define relative positions (shifted by U_center)
+    \coordinate (fv_pos) at ($(U_center)+(0, 2)$);
+    \coordinate (box_U_pos) at ($(U_center)+(0, 0)$);
+    \coordinate (afv_pos) at ($(U_center)+(0, -2)$);
+
+    % Draw elements
+    \node[dot, label={[font=\large]above:$f(\vec{v})$}] (fv_node) at (fv_pos) {};
+    \node[multbox] (mult_U) at (box_U_pos) {$\cdot \alpha$};
+    \node[dot] (result_node) at (afv_pos) {};
+
+    % Label for the result showing the preservation property
+    \node[below=0.3cm, align=center, font=\large] at (result_node) {$f(\alpha\vec{v}) = \alpha f(\vec{v})$};
+
+    % Draw internal arrows showing scalar multiplication in U
+    \draw[internal arrow] (fv_node) -- (mult_U);
+    \draw[internal arrow] (mult_U) -- (result_node);
+
+
+    % ====== MAPPING ARROWS BETWEEN V AND U ======
+    % Map the vector
+    \draw[map arrow] (v_node) to (fv_node);
+
+    % Map the scaled vector
+    \draw[map arrow] (av_node) to (result_node);
+\end{tikzpicture}
+}
+\caption{Zachovávanie násobenia skalárom $\alpha\in\R$}
+\end{figure}
+\begin{priklad}
+Príklady lineárnych zobrazení:
+\begin{enumerate}
+    \item $z: V \to U$. Pre každú dvojicu vektorových priestorov $V, U$ je zobrazenie $z$ dané predpisom $z(\vec{v}) = \vec{0}$ lineárne.
+    \begin{itemize}
+        \item Pre všetky $\vec{v}, \vec{w} \in V$ platí:
+        $$ z(\vec{v} + \vec{w}) = \vec{0} = \vec{0} + \vec{0} = z(\vec{v}) + z(\vec{w}) $$
+        \item Pre všetky $\alpha \in \mathbb{R}, \vec{v} \in V$ platí:
+        $$ z(\alpha \vec{v}) = \vec{0} = \alpha \cdot \vec{0} = \alpha z(\vec{v}) $$
+    \end{itemize}
+    
+    \item Pre každý vektorový priestor $V$ je zobrazenie $\id: V \to V$ dané predpisom $\id(\vec{v}) = \vec{v}$ lineárne:
+    \begin{itemize}
+        \item $\id(\vec{v} + \vec{w}) = \vec{v} + \vec{w} = \id(\vec{v}) + \id(\vec{w})$
+        \item $\id(\alpha \vec{v}) = \alpha \vec{v} = \alpha \id(\vec{v})$
+    \end{itemize}
+    
+    \item Nech $\rho_O$ je vektorový priestor geometrických vektorov v rovine s
+    počiatkom $O$, $\theta \in \langle 0, 2\pi)$. Nech $l_\theta: \rho_O \to \rho_O$ je rotácia vektora okolo počiatku doľava o uhol $\theta$.
+    
+    Máme sa presvedčiť o zachovávaní sčítania a násobenia skalárom. To je ľahké, ak si poriadne uvedomíme, čo tieto veci znamenajú a použijeme geometrický náhľad:
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[
+    thick,
+    >={Latex[length=2.5mm, width=2mm]}, % User's preferred arrow style
+    dot/.style={circle, fill=black, inner sep=1.5pt, outer sep=2pt}, % User's dot style
+    vector/.style={->, very thick}, % Style for main vectors
+    helper/.style={gray!70, thin}, % Style for parallelogram lines
+    angle arc/.style={->, blue, thick} % Style for the rotation angle
+]
+
+    % === Coordinates (Scaled by 0.7) ===
+    \coordinate (O) at (0,0);
+    
+    % Original w=(4, 1.5) -> Scaled w=(2.8, 1.05)
+    \coordinate (w) at (2.8, 1.05);   
+    
+    % Original v=(1.5, 3) -> Scaled v=(1.05, 2.1)
+    \coordinate (v) at (1.05, 2.1);   
+    
+    % Sum vector (calculated automatically relative to v and w)
+    \coordinate (sum) at ($(v)+(w)$); 
+    
+    % Rotated vector (Rotation logic remains the same, length scales automatically)
+    \coordinate (rotated) at ($(O)!1!70:(sum)$); 
+
+    % === Draw Parallelogram Construction ===
+    \draw[helper] (v) -- (sum);
+    \draw[helper] (w) -- (sum);
+
+    % === Draw Vectors ===
+    % Vector w
+    \draw[vector] (O) -- (w) node[midway, below right] {$\vec{w}$};
+    
+    % Vector v
+    \draw[vector] (O) -- (v) node[midway, left=1pt,yshift=8pt] {$\vec{v}$};
+    
+    % Sum Vector
+    \draw[vector] (O) -- (sum) node[right] {$\vec{v}+\vec{w}$};
+    
+    % Rotated Vector
+    \draw[vector] (O) -- (rotated) node[above left] {$l_\theta(\vec{v}+\vec{w})$};
+
+    % === Draw Origin Dot ===
+    \node[dot] at (O) {};
+
+    % === Draw Rotation Angle theta ===
+    % Calculate angles for the arc
+    \pgfmathanglebetweenpoints{\pgfpointanchor{O}{center}}{\pgfpointanchor{sum}{center}}
+    \let\StartAngle\pgfmathresult
+    
+    \pgfmathanglebetweenpoints{\pgfpointanchor{O}{center}}{\pgfpointanchor{rotated}{center}}
+    \let\EndAngle\pgfmathresult
+    
+    % Draw the blue arc (Radius scaled from 1.5cm to 1.05cm)
+    \draw[angle arc] (\StartAngle:1.05cm) arc (\StartAngle:\EndAngle:1.05cm) 
+        node[midway, below, yshift=2pt] {$\theta$};
+\end{tikzpicture}
+\caption{$l_\theta(\vec{v} + \vec{w})$: najprv sčítame, potom rotujeme}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[
+    thick,
+    >={Latex[length=2.5mm, width=2mm]}, % User's preferred arrow style
+    dot/.style={circle, fill=black, inner sep=1.5pt, outer sep=2pt}, % User's dot style
+    vector/.style={->, very thick}, % Style for main vectors
+    helper/.style={gray!70, thin}, % Style for parallelogram lines
+    angle arc/.style={->, blue, thick} % Style for the rotation angle
+]
+
+    % === Coordinates (using the same v and w as before) ===
+    \coordinate (O) at (0,0);
+    \coordinate (w) at (2.8, 1.05);   
+    \coordinate (v) at (1.05, 2.1);   
+
+    % === Calculate Rotated Vectors (Rotation by 70 degrees) ===
+    % Using the same rotation angle as in the previous picture for consistency
+    \coordinate (rotated_v) at ($(O)!1!70:(v)$); 
+    \coordinate (rotated_w) at ($(O)!1!70:(w)$);
+
+    % === Calculate the Sum of Rotated Vectors ===
+    \coordinate (sum_rotated) at ($(rotated_v)+(rotated_w)$); 
+
+    % === Draw Parallelogram Construction for the Sum of Rotated Vectors ===
+    \draw[helper] (rotated_v) -- (sum_rotated);
+    \draw[helper] (rotated_w) -- (sum_rotated);
+
+    % === Draw Vectors ===
+    % Original Vector w
+    \draw[vector] (O) -- (w) node[midway, below right, yshift=2pt] {$\vec{w}$};
+    
+    % Original Vector v
+    \draw[vector] (O) -- (v) node[midway, left=2pt, yshift=5pt] {$\vec{v}$};
+
+    % Rotated Vector w
+    \draw[vector] (O) -- (rotated_w) node[right, xshift=2pt] {$l_\theta(\vec{w})$};
+    
+    % Rotated Vector v
+    \draw[vector] (O) -- (rotated_v) node[above left, xshift=-2pt] {$l_\theta(\vec{v})$};
+    
+    % Sum of Rotated Vectors
+    \draw[vector] (O) -- (sum_rotated) node[above, yshift=3pt] {$l_\theta(\vec{v}) + l_\theta(\vec{w})$};
+
+    % === Draw Origin Dot ===
+    \node[dot] at (O) {};
+
+    % === Draw Rotation Arcs ===
+    
+    % Arc for v -> rotated_v
+    \pgfmathanglebetweenpoints{\pgfpointanchor{O}{center}}{\pgfpointanchor{v}{center}}
+    \let\StartAngleV\pgfmathresult
+    \pgfmathanglebetweenpoints{\pgfpointanchor{O}{center}}{\pgfpointanchor{rotated_v}{center}}
+    \let\EndAngleV\pgfmathresult
+    
+    \draw[angle arc] (\StartAngleV:1.5cm) arc (\StartAngleV:\EndAngleV:1.5cm) 
+        node[midway, above, yshift=2pt, xshift=-3pt] {$\theta$};
+
+    % Arc for w -> rotated_w
+    \pgfmathanglebetweenpoints{\pgfpointanchor{O}{center}}{\pgfpointanchor{w}{center}}
+    \let\StartAngleW\pgfmathresult
+    \pgfmathanglebetweenpoints{\pgfpointanchor{O}{center}}{\pgfpointanchor{rotated_w}{center}}
+    \let\EndAngleW\pgfmathresult
+    
+    \draw[angle arc] (\StartAngleW:1.8cm) arc (\StartAngleW:\EndAngleW:1.8cm) 
+        node[midway, above, xshift=6pt] {$\theta$};
+
+\end{tikzpicture}
+\caption{$l_\theta(\vec{v}) + l_\theta(\vec{w})$: najprv rotujeme, potom sčítame}
+\end{center}
+\end{figure}
+    \begin{itemize}
+        \item $l_\theta(\vec{v} + \vec{w})$: najprv sčítame, potom rotujeme.
+        \item $l_\theta(\vec{v}) + l_\theta(\vec{w})$: najprv rotujeme, potom sčítame.
+    \end{itemize}
+    V oboch prípadoch dostaneme ten istý vektor (pretože rovnobežník na dolnom obrázku je zrotovaný rovnobežník z horného obrázku).
+    
+    Podobne sa môžeme obrázkom presvedčiť o tom, že $l_\theta(\alpha \vec{v}) = \alpha l_\theta(\vec{v})$.
+    
+    \item Zobrazenie polynómov $d: \mathbb{R}^n[x] \to \mathbb{R}^{n-1}[x]$ ($n \in \mathbb{N}$) dané predpisom $d(p) = p'$ (polynóm $\mapsto$ jeho derivácia).
+    $$ n=3: \quad d(x^3 - 3x^2 + x + 7) = (x^3 - 3x^2 + x + 7)' = 3x^2 - 6x + 1 $$
+    To, že derivácia je lineárne zobrazenie, ste sa naučili na Matematickej analýze, sú to presne tie dobre známe vzorce:
+    $$ (p+q)' = p' + q' \quad \text{a} \quad (c \cdot p)' = c \cdot p' \quad (c \text{ je konštanta}), $$
+    ktoré ste neustále používali na počítanie derivácií.
+    
+    \item Evaluácia: $ev_c: \mathbb{R}^n[x] \to \mathbb{R}$ (evaluácia ,,v bode $c$'') dané predpisom $ev_c(p) = p(c)$ (polynóm $\mapsto$ jeho hodnota v bode $c$).
+    Napríklad pre $c=2$ a $n=3$:
+    $$ ev_2(x^3 - 3x^2 + x + 7) = 2^3 - 3\cdot 2^2 + 2 + 7 = 8 - 12 + 2 + 7 = 5 $$
+    Overenie linearity:
+    \begin{itemize}
+        \item Pre $p, q \in \mathbb{R}^n[x]$:
+        $$ ev_2(p+q) = (p+q)(2) = p(2) + q(2) = ev_2(p) + ev_2(q) $$
+        (Toto je iba použitie toho, ako definujeme súčet funkcií, napr. polynómov).
+        \item Pre $p \in \mathbb{R}^n[x], \alpha \in \mathbb{R}$:
+        $$ ev_2(\alpha p) = (\alpha p)(2) = \alpha (p(2)) = \alpha \cdot ev_2(p) $$
+    \end{itemize}
+    
+    \item Nech $A \in \mathbb{R}^{m \times n}$ je matica; potom $A$ reprezentuje zobrazenie $[[A]]: \mathbb{R}^n \to \mathbb{R}^m$ (násobenie maticou zľava, pozri text Linalg 1.7):
+    $$ [[A]](\vec{v}) = A\vec{v} $$
+    Toto zobrazenie je lineárne:
+    \begin{itemize}
+        \item Pre $\vec{v}, \vec{w} \in \mathbb{R}^n$:
+        $$ [[A]](\vec{v} + \vec{w}) = A(\vec{v} + \vec{w}) = A\vec{v} + A\vec{w} = [[A]](\vec{v}) + [[A]](\vec{w}) $$
+        (distributivita násobenia matíc).
+        \item Pre $\vec{v} \in \mathbb{R}^n, \alpha \in \mathbb{R}$:
+        $$ [[A]](\alpha \vec{v}) = A(\alpha \vec{v}) = \alpha (A\vec{v}) = \alpha [[A]](\vec{v}) $$
+    \end{itemize}
+    
+    \item Nech $V$ je konečnorozmerný vektorový priestor, $\dim(V) = n$. Nech $X = (\vec{x}_1, \dots, \vec{x}_n)$ je báza $V$. Potom zobrazenie $V \to \mathbb{R}^n$ dané predpisom
+    $$ \vec{v} \mapsto [\vec{v}]_X $$
+    (zobraz vektor na jeho súradnice v báze $X$) je lineárne.
+\end{enumerate}
+\end{priklad}
+
+\subsection{Vlastnosti lineárnych zobrazení}
+
+\begin{veta} \label{veta:vlastnosti_linearneho_zobrazenia}
+Nech $V, U$ sú vektorové priestory, nech $f: V \to U$ je lineárne zobrazenie. Potom:
+\begin{enumerate}[a)]
+    \item $f(\vec{0}) = \vec{0}$
+    \item Pre každú $n$-ticu skalárov $(a_1, \dots, a_n) \subset \mathbb{R}$ a vektorov $\vec{x}_1, \dots, \vec{x}_n \in V$ platí:
+    $$ f(a_1 \vec{x}_1 + \dots + a_n \vec{x}_n) = a_1 f(\vec{x}_1) + \dots + a_n f(\vec{x}_n) $$
+    (Obraz lineárnej kombinácie je lineárna kombinácia obrazov s rovnakými koeficientami).
+\end{enumerate}
+\end{veta}
+
+\begin{proof}
+\begin{enumerate}[a)]
+    \item $f(\vec{0}) = f(0 \cdot \vec{0}) = 0 \cdot f(\vec{0}) = \vec{0}$. (Využili sme, že $0 \cdot \vec{v} = \vec{0}$ a linearitu $f$).
+    \item 
+    \begin{align*}
+    f(a_1 \vec{x}_1 + \dots + a_n \vec{x}_n) &= f(a_1 \vec{x}_1) + f(a_2 \vec{x}_2 + \dots + a_n \vec{x}_n) = \dots \\
+    &= f(a_1 \vec{x}_1) + \dots + f(a_n \vec{x}_n) \\
+    &= a_1 f(\vec{x}_1) + \dots + a_n f(\vec{x}_n)
+    \end{align*}
+    (V prvom kroku sme opakovane použili, že $f$ zachováva súčet, v druhom kroku, že $f$ zachováva škálovanie).
+\end{enumerate}
+\end{proof}
+
+\begin{veta}
+Nech $V, U, W$ sú vektorové priestory, nech $f: V \to U$ a $g: U \to W$ sú lineárne zobrazenia. Potom $g \circ f: V \to W$ je lineárne zobrazenie.
+\end{veta}
+
+\begin{proof}
+Nech $\vec{v}_1, \vec{v}_2 \in V$. Počítajme:
+\begin{align*}
+(g \circ f)(\vec{v}_1 + \vec{v}_2) &= g(f(\vec{v}_1 + \vec{v}_2)) \\
+&= g(f(\vec{v}_1) + f(\vec{v}_2)) \quad (f \text{ je lineárne}) \\
+&= g(f(\vec{v}_1)) + g(f(\vec{v}_2)) \quad (g \text{ je lineárne}) \\
+&= (g \circ f)(\vec{v}_1) + (g \circ f)(\vec{v}_2)
+\end{align*}
+Teda $g \circ f$ zachováva súčet.
+
+Podobne, pre $\vec{v} \in V$ a $\alpha \in \mathbb{R}$ dostávame:
+\begin{align*}
+(g \circ f)(\alpha \vec{v}) &= g(f(\alpha \vec{v})) \\
+&= g(\alpha f(\vec{v})) \quad (f \text{ je lineárne}) \\
+&= \alpha g(f(\vec{v})) \quad (g \text{ je lineárne}) \\
+&= \alpha (g \circ f)(\vec{v})
+\end{align*}
+Teda $g \circ f$ zachováva násobenie skalárom.
+\end{proof}
+
+\begin{definicia}
+Bijektívne lineárne zobrazenie sa volá \textbf{izomorfizmus}. Vektorové priestory sú navzájom \textbf{izomorfné}, ak medzi nimi existuje nejaký izomorfizmus.
+\end{definicia}
+
+\begin{veta}[Základná veta o lineárnych zobrazeniach] \label{veta:zakladna_o_lin_zob}
+Nech $V, U$ sú konečnorozmerné vektorové priestory, nech $X = (\vec{x}_1, \dots, \vec{x}_n)$ je báza $V$. Potom pre každú usporiadanú $n$-ticu vektorov $(\vec{u}_1, \dots, \vec{u}_n) \in U$ existuje \textbf{jediné} lineárne zobrazenie $f: V \to U$ také, že
+$$ f(\vec{x}_1) = \vec{u}_1, \dots, f(\vec{x}_n) = \vec{u}_n $$
+\end{veta}
+
+Skôr, ako si túto vetu dokážeme, pozrime sa na jej význam.
+Ak chceme určiť nejaké zobrazenie (nie nutne lineárne) $f: V \to U$ medzi dvoma vektorovými priestormi, musíme špecifikovať $f(\vec{v})$ pre každé $\vec{v} \in V$.
+
+Veta \ref{veta:zakladna_o_lin_zob} nám hovorí, že ak je $V$ konečnorozmerný a $f$ je lineárne, potom nám $f$ jednoznačne špecifikujú tieto dáta:
+\begin{itemize}
+    \item nejaká báza $X = (\vec{x}_1, \dots, \vec{x}_n)$ vektorového priestoru $V$,
+    \item hodnoty $f$ v prvkoch tejto bázy $X$.
+\end{itemize}
+
+\begin{proof}
+Nech $\vec{v} \in V$, nech $(a_1, \dots, a_n)$ sú súradnice $\vec{v}$ v báze $X$, teda
+$$ [\vec{v}]_X = (a_1, \dots, a_n) $$
+To znamená $\vec{v} = a_1 \vec{x}_1 + \dots + a_n \vec{x}_n$.
+
+Potom musí platiť (z Vety \ref{veta:vlastnosti_linearneho_zobrazenia} b)):
+$$ f(\vec{v}) = f(a_1 \vec{x}_1 + \dots + a_n \vec{x}_n) = a_1 f(\vec{x}_1) + \dots + a_n f(\vec{x}_n) = a_1 \vec{u}_1 + \dots + a_n \vec{u}_n $$
+To nám ale presne určuje predpis $f$ v každom $\vec{v} \in V$:
+\begin{enumerate}
+    \item nájdi súradnice $\vec{v}$ v báze $X$,
+    \item použi ich ako koeficienty lineárnej kombinácie vektorov $(\vec{u}_1, \dots, \vec{u}_n)$.
+\end{enumerate}
+
+Je však takto definované $f$ vždy lineárne? Nech $\vec{v}, \vec{w} \in V$. Máme dokázať, že $f(\vec{v} + \vec{w}) = f(\vec{v}) + f(\vec{w})$.
+To vyžaduje zistiť vzťah medzi súradnicami vektorov $\vec{v}, \vec{w}$ a $\vec{v} + \vec{w}$ v báze $X$. Označme súradnice $\vec{v}$ a $\vec{w}$ v báze $X$:
+$$ [\vec{v}]_X = (a_1, \dots, a_n) $$
+$$ [\vec{w}]_X = (b_1, \dots, b_n) $$
+
+Aké sú súradnice $\vec{v} + \vec{w}$ v báze $X$?
+\begin{align*}
+\vec{v} + \vec{w} &= (a_1 \vec{x}_1 + \dots + a_n \vec{x}_n) + (b_1 \vec{x}_1 + \dots + b_n \vec{x}_n) \\
+&= (a_1 + b_1)\vec{x}_1 + \dots + (a_n + b_n)\vec{x}_n
+\end{align*}
+Teda $[\vec{v} + \vec{w}]_X = (a_1 + b_1, \dots, a_n + b_n)$.
+
+Počítajme:
+\begin{align*}
+f(\vec{v} + \vec{w}) &= (a_1 + b_1)\vec{u}_1 + \dots + (a_n + b_n)\vec{u}_n \\
+&= (a_1 \vec{u}_1 + b_1 \vec{u}_1) + \dots + (a_n \vec{u}_n + b_n \vec{u}_n) \\
+&= (a_1 \vec{u}_1 + \dots + a_n \vec{u}_n) + (b_1 \vec{u}_1 + \dots + b_n \vec{u}_n) \\
+&= f(\vec{v}) + f(\vec{w})
+\end{align*}
+
+Pre škálovanie $f(\alpha \vec{v})$ sa dokáže podobne:
+$$ [\alpha \vec{v}]_X = (\alpha a_1, \dots, \alpha a_n) $$
+$$ f(\alpha \vec{v}) = \sum (\alpha a_i)\vec{u}_i = \alpha \sum a_i \vec{u}_i = \alpha f(\vec{v}) $$
+\end{proof}
+
+V nasledujúcej prednáške využijeme Vetu \ref{veta:zakladna_o_lin_zob} na to, aby sme ukázali, že každé lineárne zobrazenie medzi dvoma konečnorozmernými vektorovými priestormi sa dá popísať pomocou matice.
