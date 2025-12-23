@@ -1,0 +1,81 @@
+\documentclass[11pt,a4paper]{article}
+
+% PACKAGES
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovak]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm} % For theorem environments
+\usepackage{graphicx}
+\usepackage{enumerate}
+
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{shapes.geometric} % Library required for ellipse shape
+\usetikzlibrary{positioning}      % Library for easy relative positioning
+\usetikzlibrary{cd}
+\usetikzlibrary{babel}
+
+\usepackage[all,pdf,2cell]{xy}
+\usepackage{soul}
+\usepackage{framed}
+\usepackage{array}
+\usepackage{todonotes}
+\usepackage{nicematrix}
+
+\NiceMatrixOptions
+  { pgf-node-code = \pgfsetfillcolor{white} \pgfusepathqfill }
+
+\pgfset{nicematrix/cell-node/.append style = { inner sep = 1pt } }
+
+% THEOREM ENVIRONMENTS SETUP
+% Style for definitions and examples (upright text, bold title)
+\theoremstyle{definition} 
+\newtheorem{definicia}{Definícia}[section]
+\newtheorem{priklad}[definicia]{Príklad}
+
+% Style for theorems (italicized text, bold title)
+\theoremstyle{plain} 
+\newtheorem{tvrdenie}[definicia]{Tvrdenie}
+\newtheorem{veta}[definicia]{Veta}
+\newtheorem{dosledok}[definicia]{Dôsledok}
+
+% Style for remarks and questions (upright text, italic title)
+\theoremstyle{remark} 
+\newtheorem*{question}{Otázka}
+
+% Macros
+
+% Simple abbreviations
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ora}[1]{\overrightarrow{#1}}
+\newcommand{\Lo}{\mathrm{Lo}} % Notation for Linearny Obal
+
+% More complex stuff
+% Restriction of a function (from stackexchange)
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \littletaller % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
+
+% vertically centered boxes
+\newcommand*{\vcbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+% DOCUMENT START
+\begin{document}
+\title{Lineárna algebra 1\\(texty k prednáškam)}
+\author{Gejza Jenča}
+\date{Verzia 1}
+\maketitle
+\input{text.tex}
+\end{document}
