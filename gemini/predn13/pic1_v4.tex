@@ -1,0 +1,91 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb}
+\usetikzlibrary{arrows.meta, positioning, calc, quotes, angles, decorations.pathreplacing}
+
+\begin{document}
+
+\begin{tikzpicture}[
+    thick,
+    >={Latex[length=2.5mm, width=2mm]},
+    vector/.style={->, very thick, line cap=round},
+    basis vector/.style={vector, color=black},
+    rotated vector 1/.style={vector, color=blue!70!cyan},
+    rotated vector 2/.style={vector, color=green!60!black},
+    projection/.style={thin, color=red!80!black},
+    angle arc/.style={->, thick},
+    every node/.style={font=\large}
+]
+
+    % === Parameters ===
+    \def\R{4.0} % Radius of the circle
+    \def\angleval{40} % Angle theta for drawing
+
+    % === Coordinates ===
+    \coordinate (O) at (0,0);
+    
+    % Basis vectors
+    \coordinate (X1_tip) at (\R, 0);
+    \coordinate (X2_tip) at (0, \R);
+    
+    % Rotated vectors on the circle
+    \coordinate (LX1) at (\angleval:\R);
+    \coordinate (LX2) at (90+\angleval:\R);
+
+    % === Circle ===
+    \draw[thin] (O) circle (\R);
+
+    % === Projections of l_theta(x1) ===
+    \coordinate (LX1_x) at ({\R*cos(\angleval)}, 0);
+    \coordinate (LX1_y) at (0, {\R*sin(\angleval)});
+
+    % Draw projection lines
+    \draw[projection] (LX1) -- (LX1_x);
+    \draw[projection] (LX1) -- (LX1_y);
+    
+    % Draw components on axes
+    \draw[projection] (O) -- (LX1_x);
+    \draw[projection] (O) -- (LX1_y);
+
+    % === Braces for Components ===
+    
+    % X-component brace (Mirror moves it below the line)
+    \draw[projection, decorate, decoration={brace, amplitude=5pt, mirror, raise=3pt}]
+        (O) -- (LX1_x) node[midway, below=12pt] {$\vec{x_1} \cdot \cos(\theta)$};
+
+    % Y-component brace (Standard brace on the "left" of the path O->Y puts it on the left side of the axis)
+    \draw[projection, decorate, decoration={brace, amplitude=5pt, raise=3pt}]
+        (O) -- (LX1_y) node[midway, left=12pt] {$\vec{x_2} \cdot \sin(\theta)$};
+    
+    % Right angle symbol
+    \draw[thin, gray] ($(LX1_x)+(-0.3,0)$) -- ($(LX1_x)+(-0.3,0.3)$) -- ($(LX1_x)+(0,0.3)$);
+    \fill[gray] ($(LX1_x)+(-0.15,0.15)$) circle (1pt);
+
+
+    % === Basis Vectors ===
+    \draw[basis vector] (O) -- (X1_tip) node[right, xshift=2pt] {$\vec{x_1}$};
+    \draw[basis vector] (O) -- (X2_tip) node[above, yshift=2pt] {$\vec{x_2}$};
+
+    % === Rotated Vectors ===
+    % l_theta(x1)
+    \draw[rotated vector 1] (O) -- (LX1)
+        node[right, xshift=5pt, align=left]
+        {$l_\theta(\vec{x_1}) = \vec{x_1} \cdot \cos(\theta) + \vec{x_2} \cdot \sin(\theta)$};
+
+    % l_theta(x2)
+    \draw[rotated vector 2] (O) -- (LX2) node[above, xshift=-10pt] {$l_\theta(\vec{x_2})$};
+
+
+    % === Angles ===
+    % Theta for x1
+    \draw[angle arc, color=blue!70!cyan] (1.3,0) arc (0:\angleval:1.3) node[midway, right, xshift=2pt] {$\theta$};
+
+    % Theta for x2
+    \draw[angle arc, color=blue!70!cyan] (0,1.3) arc (90:90+\angleval:1.3) node[midway, above, yshift=2pt] {$\theta$};
+
+    % Theta + pi/2
+    \draw[angle arc, color=green!60!black] (0.8,0) arc (0:90+\angleval:0.8);
+    \node[color=green!60!black] at (45+\angleval:1.3) {$\theta + \frac{\pi}{2}$};
+
+\end{tikzpicture}
+\end{document}

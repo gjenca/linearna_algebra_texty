@@ -1,0 +1,80 @@
+\begin{tikzpicture}[
+    thick,
+    >={Latex[length=2.5mm, width=2mm]}, % Define nice arrowheads
+    dot/.style={circle, fill=black, inner sep=1.5pt, outer sep=2pt}, % Style for vector points
+    addbox/.style={draw, rectangle, minimum size=0.7cm, font=\large}, % Style for the [+] operation box
+    set ellipse/.style={draw, ellipse, minimum width=6cm, minimum height=8cm}, % Style for the sets V and U
+    map arrow/.style={->, shorten >=3pt, shorten <=3pt, very thick, color=blue!70!black}, % Style for mapping arrows
+    internal arrow/.style={->, shorten >=2pt, shorten <=2pt} % Style for arrows inside the sets
+]
+
+    % === Title ===
+    %\node[font=\LARGE\bfseries, align=center] at (5, 5.5) {Zachovávanie súčtu};
+
+    % === Coordinates for Set Centers ===
+    \coordinate (V_center) at (0,0);
+    \coordinate (U_center) at (10,0);
+
+    % === Draw Sets V and U ===
+    \node[set ellipse] (SetV) at (V_center) {};
+    \node[set ellipse] (SetU) at (U_center) {};
+
+    % Labels for sets
+    \node[above=0.2cm of SetV, font=\huge] {$V$};
+    \node[above=0.2cm of SetU, font=\huge] {$U$};
+
+    % Top mapping arrow f
+    \draw[->, line width=1.5pt] ($(SetV.north)+(0.2,0.5)$) -- node[above,
+    font=\LARGE] {$f$} ($(SetU.north)+(-0.3,0.5)$);
+
+
+    % ====== INSIDE SET V ======
+    % Define positions
+    \coordinate (v_pos) at (-1, 2);
+    \coordinate (w_pos) at (1, 2);
+    \coordinate (box_V_pos) at (0, 0);
+    \coordinate (sum_V_pos) at (0, -2);
+
+    % Draw elements
+    \node[dot, label={[font=\large]above left:$\vec{v}$}] (v_node) at (v_pos) {};
+    \node[dot, label={[font=\large]above:$\vec{w}$}] (w_node) at (w_pos) {};
+    \node[addbox] (plus_V) at (box_V_pos) {$+$};
+    \node[dot, label={[font=\large]below:$\vec{v} + \vec{w}$}] (sum_V_node) at (sum_V_pos) {};
+
+    % Draw internal arrows showing addition
+    \draw[internal arrow] (v_node) to[out=-90, in=150] (plus_V);
+    \draw[internal arrow] (w_node) to[out=-90, in=30] (plus_V);
+    \draw[internal arrow] (plus_V) -- (sum_V_node);
+
+
+    % ====== INSIDE SET U ======
+    % Define relative positions (shifted by U_center)
+    \coordinate (fv_pos) at ($(U_center)+(-1, 2)$);
+    \coordinate (fw_pos) at ($(U_center)+(1, 2)$);
+    \coordinate (box_U_pos) at ($(U_center)+(0, 0)$);
+    \coordinate (sum_U_pos) at ($(U_center)+(0, -2)$);
+
+    % Draw elements
+    \node[dot, label={[font=\large]above:$f(\vec{v})$}] (fv_node) at (fv_pos) {};
+    \node[dot, label={[font=\large]above:$f(\vec{w})$}] (fw_node) at (fw_pos) {};
+    \node[addbox] (plus_U) at (box_U_pos) {$+$};
+    \node[dot] (result_node) at (sum_U_pos) {};
+
+    % Label for the result showing the preservation property
+    \node[below=0.3cm, align=center, font=\large] at (result_node) {$f(\vec{v} + \vec{w}) =$ \\ $f(\vec{v}) + f(\vec{w})$};
+
+    % Draw internal arrows showing addition in U
+    \draw[internal arrow] (fv_node) to[out=-90, in=150] (plus_U);
+    \draw[internal arrow] (fw_node) to[out=-90, in=30] (plus_U);
+    \draw[internal arrow] (plus_U) -- (result_node);
+
+
+    % ====== MAPPING ARROWS BETWEEN V AND U ======
+    % Map individual vectors
+    \draw[map arrow] (v_node) to[bend left=30] (fv_node);
+    \draw[map arrow] (w_node) to[bend left=35] (fw_node);
+
+    % Map the sum vector
+    \draw[map arrow] (sum_V_node) -- (result_node);
+
+\end{tikzpicture}

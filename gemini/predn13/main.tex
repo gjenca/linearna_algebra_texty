@@ -13,11 +13,11 @@
 \usetikzlibrary{tikzmark}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{shapes.geometric} % Library required for ellipse shape
 \usetikzlibrary{positioning}      % Library for easy relative positioning
 \usetikzlibrary{cd}
 \usetikzlibrary{babel}
-\usetikzlibrary{decorations.pathreplacing}
 
 \usepackage[all,pdf,2cell]{xy}
 \usepackage{soul}
@@ -67,22 +67,15 @@
   }}
 \newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
 
+% vertically centered boxes
+\newcommand*{\vcbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
 % DOCUMENT START
 \begin{document}
 \title{Lineárna algebra 1\\(texty k prednáškam)}
 \author{Gejza Jenča}
 \date{Verzia 1}
 \maketitle
-\input{01_mnoziny.tex}
-\input{02_zobrazenia.tex}
-\input{03_injekcie_surjekcie.tex}
-\input{04_sustavy.tex}
-\input{05_vektory.tex}
-\input{06_maticovy_pocet.tex}
-\input{07_matice_ako_zobrazenia.tex}
-\input{08_inverzia_determinant.tex}
-\input{09_vekt_priestory.tex}
-\input{10_bazy.tex}
-\input{11_linearne_zobrazenia.tex}
-\input{12_matica_lz.tex}
+\input{text.tex}
 \end{document}
