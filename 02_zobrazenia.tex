@@ -220,6 +220,43 @@ predpisom
 Napríklad v E) Príkladu \ref{ex:rovnostZobrazeni} máme $f\neq g$, ale pritom
 $g=\restr{f}{\Nat}$.
 
+\subsection{Extrémne zobrazenia}
+
+Nech $A$ je nejaká množina; koľko zobrazení existuje z $A$ do jednoprvkovej množiny $\{*\}$?
+Je zrejmé, že zobrazenie $f\colon A\to \{*\}$ je iba jediné, jeho predpis je
+$f(a)=*$ pre každé $a\in A$.
+
+Ak uvažujeme zobrazenia opačným smerom, každé zobrazenie typu $\{*\}\to A$ zodpovedá výberu prvku z množiny
+$A$, na ktorý sa zobrazí prvok $*$. Povedzme zobrazenia typu $\{*\}\to\{1,2\}$ sú presne dve.
+
+Ako vyzerajú zobrazenia z prázdnej množiny $\emptyset$ do $A$? Toto je trochu horšie pochopiteľné (pre úplné
+pochopenie je vhodné použiť rigoróznejší, formálny pohľad na definíciu zobrazenia), ale zobrazenie
+$f\colon\emptyset\to A$ je opäť iba jedno. Predpis pritom vôbec nemusíme formulovať, pretože v definičnom
+obore $f$ nie sú žiadne prvky.
+
+Naproti tomu zobrazenie typu $A\to\emptyset$ neexistuje, ak $A\neq\emptyset$. Zobrazenie $\emptyset\to\emptyset$ je
+presne jedno.
+
+\subsection{tice ako zobrazenia}
+
+Ak $A$ je nejaká množina, potom prvky $A^2=A\times A$ sú usporiadané dvojice prvkov množiny $A$.
+\[
+A^2=\{(a_1,a_2):a_1,a_2\in A\}
+\]
+
+Pre každú dvojicu $a=(a_1,a_2)\in A^2$ vieme vytvoriť zobrazenie $\hat a\colon \{1,2\}\to A$ dané predpisom
+$\hat a(1)=a_1$, $\hat a(2)=a_2$. Naopak, pre každé zobrazenie $f\colon \{1,2\}\to A$ vieme vytvoriť
+usporiadanú dvojicu $\bar f=(f(1),f(2))$. Zrejme
+teda usporiadané dvojice prvkov $A$ môžeme chápať ako zobrazenia typu $\{1,2\}\to A$.
+
+Podobne pre iné hodnoty $n$ môžeme prvky $A^n$ stotožniť so zobrazeniami typu 
+\begin{equation}\label{eq:An}
+\{i\in\N : 1\leq i\leq n\}\to A
+\end{equation}
+Ak $n=0$, množina naľavo v \eqref{eq:An} je prázdna a dostávame typ $\emptyset\to A$. Takéto
+zobrazenie je iba jedno, teda množina $A^0$ všetkých usporiadaných $0$-íc by mala byť jednoprvková,
+jej jediný prvok môžeme označiť $()$.
+
 \subsection{Skladanie zobrazení}
 
 Najdôležitejšou vecou na zobrazeniach je to, že sa dajú skladať.

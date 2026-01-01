@@ -66,7 +66,32 @@ Uvažujme nasledujúce príklady lineárnych zobrazení:
 \end{priklad}
 
 \begin{priklad}[rovinná rotácia]
-    \begin{figure}
+    Nech $\rho_O$ je vektorový priestor geometrických vektorov v rovine s počiatkom $O$, nech $l_{\theta}: \rho_O \rightarrow \rho_O$ je rotácia okolo počiatku doľava o uhol $\theta$.
+    Nech $\vec{x}_{1}, \vec{x}_{2}$ sú dva vektory, kolmé na seba, rovnakej dĺžky; $X=(\vec{x}_{1},\vec{x}_{2})$ je
+    potom báza $\rho_O$. Aká je matica $[l_{\theta}]_{XX}$?
+    
+    Z obrázka (rotácia vektorov) dostávame súradnice vektorov:
+    \begin{align*}
+    l_{\theta}(\vec{x}_{1}) &= \cos(\theta) \vec{x}_{1}+ \sin(\theta) \vec{x}_{2}\\
+    l_{\theta}(\vec{x}_{2}) &= \cos(\theta + \frac{\pi}{2}) \vec{x}_{1}+ \sin(\theta + \frac{\pi}{2}) \vec{x}_{2}\\
+                             &= -\sin(\theta)\vec{x}_{1} + \cos(\theta)\vec{x}_{2}    
+    \end{align*}
+    Teda súradnice v báze $X$ sú
+    \[
+    [l_{\theta}(\vec{x}_{1})]_{X} = (\cos\theta, \sin\theta)
+    \]
+    \[
+    [l_{\theta}(\vec{x}_{2})]_{X} = (-\sin\theta, \cos\theta)
+    \]
+    a matica $l_{\theta}$ v bázach $X, X$ je
+    \[
+    [l_{\theta}]_{XX} = ([l_{\theta}(\vec{x}_{1})]_{X}, [l_{\theta}(\vec{x}_{2})]_{X}) = 
+    \begin{pmatrix}
+    \cos\theta & -\sin\theta \\
+    \sin\theta & \cos\theta
+    \end{pmatrix}
+    \]
+\begin{figure}
 \begin{center}
 \scalebox{0.75}{
 \begin{tikzpicture}[
@@ -192,7 +217,7 @@ Uvažujme nasledujúce príklady lineárnych zobrazení:
     % l_theta(x2)
     \draw[rotated vector 2] (O) -- (LX2) node[left, xshift=-10pt,align=right] 
     {
-    $l_\theta(\vec{x_2})=l_{\theta+\frac{\pi}{2}}(\vec{x_1})=$\\
+    ${\color{blue}l_\theta(\vec{x_2})}=l_{\theta+\frac{\pi}{2}}(\vec{x_1})=$\\
     $\cos(\theta+\frac{\pi}{2}).\vec{x_1}+sin(\theta+\frac{\pi}{2}).\vec{x_2}$
     };
 
@@ -216,31 +241,6 @@ Uvažujme nasledujúce príklady lineárnych zobrazení:
 \end{center}
     \caption{Rotácia vektorov $\vec{x_1}$ a $\vec{x_2}$.}
     \end{figure}
-    Nech $\rho_O$ je vektorový priestor geometrických vektorov v rovine s počiatkom $O$, nech $l_{\theta}: \rho_O \rightarrow \rho_O$ je rotácia okolo počiatku doľava o uhol $\theta$.
-    Nech $\vec{x}_{1}, \vec{x}_{2}$ sú dva vektory, kolmé na seba, rovnakej dĺžky; $X=(\vec{x}_{1},\vec{x}_{2})$ je
-    potom báza $\rho_O$. Aká je matica $[l_{\theta}]_{XX}$?
-    
-    Z obrázka (rotácia vektorov) dostávame súradnice vektorov:
-    \begin{align*}
-    l_{\theta}(\vec{x}_{1}) &= \cos(\theta) \vec{x}_{1}+ \sin(\theta) \vec{x}_{2}\\
-    l_{\theta}(\vec{x}_{2}) &= \cos(\theta + \frac{\pi}{2}) \vec{x}_{1}+ \sin(\theta + \frac{\pi}{2}) \vec{x}_{2}\\
-                             &= -\sin(\theta)\vec{x}_{1} + \cos(\theta)\vec{x}_{2}    
-    \end{align*}
-    Teda súradnice v báze $X$ sú
-    \[
-    [l_{\theta}(\vec{x}_{1})]_{X} = (\cos\theta, \sin\theta)
-    \]
-    \[
-    [l_{\theta}(\vec{x}_{2})]_{X} = (-\sin\theta, \cos\theta)
-    \]
-    a matica $l_{\theta}$ v bázach $X, X$ je
-    \[
-    [l_{\theta}]_{XX} = ([l_{\theta}(\vec{x}_{1})]_{X}, [l_{\theta}(\vec{x}_{2})]_{X}) = 
-    \begin{pmatrix}
-    \cos\theta & -\sin\theta \\
-    \sin\theta & \cos\theta
-    \end{pmatrix}
-    \]
 \end{priklad}
 \begin{priklad}[Derivácia polynómov]
 
