@@ -181,7 +181,9 @@ jednoducho, ale v skutočnosti je zložitejšie ako počítať determinant rozvo
 riadku alebo stĺpca. Vzorec pre Sarrusovo pravidlo má 12 násobení,
 rozvoj podľa riadku má násobení 9.
 
-\textbf{POZOR!} Sarrusovo pravidlo nefunguje na matice $4 \times 4$ a~väčšie!
+\begin{framed}
+Sarrusovo pravidlo nefunguje na matice $4 \times 4$ a~väčšie!
+\end{framed}
 
 \subsection{Vlastnosti determinantu}
 Dôležitá vlastnosť determinantu je tá, že detekuje, kedy je matica singulárna.
@@ -189,7 +191,7 @@ Dôležitá vlastnosť determinantu je tá, že detekuje, kedy je matica singul�
 \begin{veta}
 Štvorcová matica $A$ je singulárna práve vtedy, keď $\det(A) = 0$.
 \end{veta}
-
+Determinant matice je veľmi dobre prepojený s násobením matíc.
 \begin{veta}
 Nech $A, B$ sú štvorcové matice rovnakého typu. Potom:
 \begin{enumerate}[(a)]
@@ -203,7 +205,7 @@ Nech $A, B$ sú štvorcové matice rovnakého typu. Potom:
 \subsection{Elementárne riadkové operácie a determinant}
 Nie je pravda, že elementárne riadkové operácie zachovávajú determinant. Avšak pravda je, že vieme presne povedať, ako menia determinant.
 
-\begin{veta}
+\begin{veta}\label{veta:eroDet}
 Nech $A$ je štvorcová matica.
 \begin{enumerate}[(a)]
 \item Ak $A'$ je matica, ktorá vznikla z $A$ pripočítaním skalárneho násobku niektorého riadku k~inému riadku, potom $\det(A') = \det(A)$.
@@ -212,7 +214,7 @@ Nech $A$ je štvorcová matica.
 \end{enumerate}
 Analogické tvrdenie platí pre stĺpce a~elementárne stĺpcové operácie.
 \end{veta}
-
+Vetu \ref{veta:eroDet} môžeme s výhodou použiť na počítanie determinantu matice.
 \begin{priklad}
 Vypočítajme determinant matice typu $4\times 4$
 \[
@@ -264,6 +266,7 @@ Teraz môžeme rozvinúť podľa posledného riadku:
 pričom prvé tri minory ani nemusíme písať, keďže ich determinanty vo vzorci sú
 vynásobené $0$. Determinant $A$ je teda rovný
 \[
+\det
 \begin{pmatrix}
 -2 & 1 & -3 \\
 -1 & -1 & 2 \\
@@ -315,7 +318,7 @@ a rozvoj podľa druhého riadku nám dá (nulové členy vynechávame)
 \end{priklad}
 Uvedomme si teraz, ako nám rozumné použitie elementárnych riadkových operácií v
 predošlom príklade umožnilo zjednodušiť výpočet. Ak by sme spravili rozvoj podľa
-riadku/stĺpca hneď, počet násobení ktorý bu sme museli vykonať by bol (pri použití
+riadku/stĺpca hneď, počet násobení ktorý by sme museli vykonať by bol (pri použití
 Sarrusovho pravidla) rovný $4*12=48$.
 
 \subsection{Determinanty trojuholníkových matíc}
@@ -329,14 +332,14 @@ Determinant hornej trojuholníkovej matice je súčin jej diagonálnych prvkov.
 Tvrdenie platí pre matice $1\times 1$. 
 
 Nech $k\in\Nat$, $k>1$ a nech $A=(a_{ij})_{k\times k}$ je horná trojuholníková
-matica. Predpokladajme, že tvrdenie vety platí pre 
+matica. Predpokladajme, že veta platí pre 
 horné trojuholníkové matice rozmeru $k-1$.
 
 Rozvojom podľa prvého stĺpca dostaneme
 \[
 \det(A)=a_{11}\det(A_{11})
 \]
-ale pre minor $A_{11}\in\R^{(k-1)\times(k-1)}$ tvrdenie platí
+ale minor $A_{11}\in\R^{(k-1)\times(k-1)}$ je diagonálna a matica veta platí
 podľa predpokladu, teda
 \[
 \det(A_{11})=a_{22}.\dots.a_{nn}
@@ -352,9 +355,9 @@ $$ \det \begin{pmatrix} 1 & 3 & 2 & 0 \\ 0 & -1 & 5 & 8 \\ 0 & 0 & 2 & -1 \\ 0 &
 \end{priklad}
 
 \subsection{Cramerovo pravidlo}
-Nech $A$ je regulárna matica typu $n \times n$. Uvažujme sústavu $n$ lineárnych rovníc o~$n$ neznámych $A\ora{x} = \ora{b}$.
-Označme $A_i$ maticu, ktorá vznikne nahradením $i$-teho stĺpca matice $A$ pravou stranou $\ora{b}$.
-Potom sústava má jediné riešenie $\ora{x} = (x_1, \dots, x_n)$, kde
+Nech $A$ je regulárna matica typu $n \times n$. Uvažujme sústavu $n$ lineárnych rovníc o~$n$ neznámych $A\vec{x} = \vec{b}$.
+Označme $A_i$ maticu, ktorá vznikne nahradením $i$-teho stĺpca matice $A$ pravou stranou $\vec{b}$.
+Potom sústava má jediné riešenie $\vec{x} = (x_1, \dots, x_n)$, kde
 $$ x_i = \frac{\det(A_i)}{\det(A)} $$
 
 \subsection{Invertovanie matíc pomocou determinantov}

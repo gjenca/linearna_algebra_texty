@@ -76,7 +76,7 @@ Teda vektor v zmysle (*) si môžeme predstaviť takto:
 \end{center}
 
 Definícia (*) je úplne v poriadku, ale manipuluje sa s tým pojmom zle, pretože každý vektor je potom nekonečná množina.
-Poradíme si takto: vyberieme v rovine jeden ľubovoľný bod, nazveme ho "počiatok" a budeme ho označovať $O$. V každej množine orientovaných úsečiek, ktorá je vektorom v zmysle (*), máme práve jednu orientovanú úsečku, ktorá má počiatok v $O$. Túto vyberieme z vektora v zmysle (*) a máme vektor v zmysle (**).
+Poradíme si takto: vyberieme v rovine jeden ľubovoľný bod, nazveme ho ``počiatok'' a budeme ho označovať $O$. V každej množine orientovaných úsečiek, ktorá je vektorom v zmysle (*), máme práve jednu orientovanú úsečku, ktorá má počiatok v $O$. Túto vyberieme z vektora v zmysle (*) a máme vektor v zmysle (**).
 
 \begin{center}
 \begin{tikzpicture}
@@ -118,7 +118,7 @@ $$ \text{vektory v rovine} \longleftrightarrow \R^2 $$
 
 To, že sa body v rovine dajú jednoducho (a užitočne) vyjadrovať ako dvojice čísel je
 prekvapujúco mladý objav - pochádza z roku 1637 a vymyslel ho René
-Descartes. Zaujímavé je, že v tom čase sa už vyše tisíc rokov používali sférické
+Descartes. Zaujímavé je, že v tom čase sa už dlho používali sférické
 súradnice pre určovanie polohy na Zemi pomocou rovnobežiek a poludníkov.
 
 Zaveďme teraz terminológiu týkajúcu sa $\R^n$, ktorú budeme používať:
@@ -276,7 +276,7 @@ $$ \vec{x}+\vec{y} = (x_1+y_1, \dots, x_n+y_n) $$
 $(1,-3,2,0) + (-1,3,-1,4) = (0,0,1,4)$
 \end{priklad}
 
-\subsubsection{Vlastnosti sčítania vektorov v $\R^n$}
+\subsubsection{Vlastnosti vektorových operácií}
 Pre všetky vektory $\vec{x}, \vec{y}, \vec{z} \in \R^n$ platia rovnosti:
 \begin{itemize}
     \item $(\vec{x}+\vec{y})+\vec{z} = \vec{x}+(\vec{y}+\vec{z})$ (asociativita)
@@ -288,18 +288,19 @@ Dôkaz sa robí priamočiaro, napr. komutativita vektorov:
 $$ \vec{x}+\vec{y} = (x_1+y_1, \dots, x_n+y_n) = (y_1+x_1, \dots, y_n+x_n) = \vec{y}+\vec{x} $$
 pričom sme využili komutativitu sčítania reálnych čísel. Podobne pre ostatné rovnosti.
 
-
-
 Násobenie skalárom a sčítanie vektorov sú navzájom prepojené pomocou distributivity.
 \begin{itemize}
     \item Pre všetky $a \in \R$ a $\vec{x}, \vec{y} \in \R^n$ platí: $a(\vec{x}+\vec{y}) = a\vec{x} + a\vec{y}$
     \item Pre všetky $a,b \in \R$ a $\vec{x} \in \R^n$ platí: $(a+b)\vec{x} = a\vec{x} + b\vec{x}$
 \end{itemize}
-Násobenie skalárom má prednosť pred sčítaním vektorov.
+(Poznamenávame, že násobenie skalárom má prednosť pred sčítaním vektorov, podobne ako
+pri násobení a sčítaní čísel).
 
-\noindent\textbf{POZOR:} Neexistuje nič také ako násobenie vektorov medzi sebou!
+\begin{framed}
+Neexistuje nič také ako násobenie vektorov medzi sebou!
+\end{framed}
 
-Nič nám nebráni zaviesť odčítanie vektorov $\vec{x}-\vec{y}$ definované ako $\vec{x}-\vec{y} := \vec{x} + (-1)\vec{y}$. Je to teda odvodená operácia zavedená pomocou sčítania a násobenia $(-1)$. Samozrejme, ako ľahko vidieť, odčítanie vektorov prebieha tiež po zložkách:
+Odčítanie vektorov $\vec{x}-\vec{y}$ je definované ako $\vec{x}-\vec{y} := \vec{x} + (-1)\vec{y}$. Je to teda odvodená operácia zavedená pomocou sčítania a násobenia $(-1)$. Samozrejme, ako ľahko vidieť, odčítanie vektorov prebieha tiež po zložkách:
 $$ \vec{x}-\vec{y} = (x_1-y_1, \dots, x_n-y_n) $$
 
 

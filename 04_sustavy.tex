@@ -574,7 +574,7 @@ Dosadíme známe hodnoty $x_2$ a $x_3$ do prvej rovnice (1) a vyriešime pre $x_
 \end{align*}
 
 \noindent\textbf{Záver} \\
-Množina všetkých riešení sústavy je
+Množina všetkých riešení sústavy je jednoprvková množina
 \[
 \left\{\left( -\frac{80}{11}, -\frac{43}{11}, -\frac{2}{11}
 \right)\right\}\subseteq\mathbb R^3
@@ -672,10 +672,10 @@ Dve z rovníc sa trivializovali, stali sa z nich rovnice
 \]
 ktoré sú pravdivé pre každú usporiadanú štvoricu $(x_1,x_2,x_3,x_4)\in\R^4$ a môžeme
 ich teda vynechať. Dve zostávajúce rovnice sú
-\begin{alignat*}{4}
-    2x_1 & - & x_2 &   & + 4x_4 &= & 2 \\
-         &   &     &  &  x_3 - 2x_4 &= & 0
-\end{alignat*}
+\begin{align*}
+    2x_1  -  x_2     + 4x_4 &=  2 \\
+                     x_3 - 2x_4 &=  0
+\end{align*}
 Množinu všetkých riešení nájdeme opäť spätným dosádzaním, pričom niektoré premenné
 zvolíme ako parametre.
 \begin{framed}
@@ -731,6 +731,12 @@ Množina všetkých riešení teda je
 \left( 1 + \frac{1}{2}t - 2s, t, 2s, s \right)
 \mid s, t \in \mathbb{R}
 \right\}
+\]
+Jednotlivé riešenia potom dostaneme voľbou parametrov $s,t$. Napríklad pre
+$s=1$, $t=2$ dostaneme riešenie
+\[
+(x_1,x_2,x_3,x_4)=\left( 1 + \frac{1}{2}.2 - 2.1, 2, 2.1, 1 \right)=
+(0,2,2,1)
 \]
 \end{priklad}
 \begin{priklad}

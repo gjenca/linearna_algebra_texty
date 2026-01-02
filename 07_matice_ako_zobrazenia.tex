@@ -3,7 +3,7 @@
 Uvažujme maticu $A=(a_{ij})$ typu $m \times n$; sprava ju môžeme vynásobiť vektorom (t.j. stĺpcom) typu $n \times 1$;
 výsledok je opäť stĺpec typu $m \times 1$ (t.j. vektor).
 
-Príkl.
+Napríklad
 $$ \begin{pmatrix} 1 & -3 & \frac{1}{2} \\ 0 & 4 & -2 \end{pmatrix} \begin{pmatrix} 2 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} \frac{3}{2} \\ -2 \end{pmatrix} $$
 
 Týmto spôsobom máme s každou maticou $A$ typu $m \times n$ asociované zobrazenie
@@ -14,8 +14,13 @@ Máme teda nejaký typ matematického objektu (zobrazenie z $\mathbb{R}^n$ do $\
 Cieľom tohto textu je preskúmať väzbu medzi maticami a zobrazeniami, ktoré reprezentujú.
 Teraz uvedieme niekoľko matíc a popíšeme zobrazenia, ktoré reprezentujú. Ak to budeme vedieť, sformulujeme aj význam toho zobrazenia - geometrický alebo iný.
 
+V nasledujúcej skupine príkladov máme vždy
+\[
+\vec x=(x_1,\dots,x_n)
+\]
 \begin{priklad}[Nulové matice]
-Uvažujme nulovú maticu typu $m \times n$. Aké zobrazenie $\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}$ táto matica reprezentuje?
+Uvažujme nulovú maticu $0$ typu $m \times n$. Aké zobrazenie $[[0]]\colon\mathbb{R}^{n}
+\rightarrow \mathbb{R}^{m}$ táto matica reprezentuje?
 Počítajme:
 $$ 
 \underbrace{
@@ -38,10 +43,10 @@ x_{n}
 0 \end{pmatrix} 
 }_{\R^m}
 $$
-$\in \mathbb{R}^{m \times n}$ \hspace{1em} $\in \mathbb{R}^{n}$ \hspace{1em} $\in \mathbb{R}^{m}$
 
 Vidíme teda, že nulová matica reprezentuje zobrazenie z $\mathbb{R}^{n} \rightarrow \mathbb{R}^{m}$, ktoré zobrazí každý vektor z $\mathbb{R}^{n}$ na prvok $\vec{0}=(0,...,0) \in \mathbb{R}^{m}$, t.j.
-konštantné zobrazenie s hodnotou $\vec{0}$. Asi nikoho neprekvapí, že toto zobrazenie sa značí $O$.
+konštantné zobrazenie s hodnotou $\vec{0}$. Asi nikoho neprekvapí, že toto zobrazenie
+sa značí $0$.
 \end{priklad}
 
 \begin{priklad}[Jednotkové matice a ich skalárne násobky]
@@ -75,7 +80,7 @@ $$
 [[I_n]] = \id_{\mathbb{R}^n}.
 $$
 \end{priklad}
-\begin{priklad}
+\begin{priklad}[skalárny násobok $\vec x\mapsto \alpha.\vec x$]
 Pozrime sa teraz na trochu všeobecnejší prípad; nech $D_{\alpha}$ je diagonálna matica typu $n \times n$, ktorá má na diagonále tú istú konštantu $\alpha \in \mathbb{R}$. Určme, aké zobrazenie takáto matica reprezentuje.
 $$ \underbrace{\begin{pmatrix} \alpha & 0 & 0 & \dots & 0 \\ 0 & \alpha & 0 & \dots & 0 \\ \vdots & \vdots & \ddots & & \vdots \\ 0 & 0 & 0 & \dots & \alpha \end{pmatrix}}_{D_{\alpha} \in \mathbb{R}^{n \times n}} \underbrace{\begin{pmatrix} x_{1} \\ x_{2} \\ \vdots \\ x_{n} \end{pmatrix}}_{\in \mathbb{R}^{n}} = \underbrace{\begin{pmatrix} \alpha x_{1} \\ \alpha x_{2} \\ \vdots \\ \alpha x_{n} \end{pmatrix}}_{\in \mathbb{R}^{n}} = \alpha \vec{x} $$
 (násobenie vektora sklárom)
@@ -100,14 +105,16 @@ prípady $\alpha=0, \alpha=1$:
 \begin{priklad}[Súčty a priemery]
 Každá matica $A \in \mathbb{R}^{1 \times n}$ (riadok) reprezentuje zobrazenie
 $[[A]]: \mathbb{R}^n \rightarrow \mathbb{R}^1$.
-($\downarrow$ prvky $\mathbb{R}^1$ sú usporiadané 1-ice; $\mathbb{R}^1 = \mathbb{R}$)
+\footnote{
+Prvky $\mathbb{R}^1$ sú usporiadané 1-ice; $\mathbb{R}^1 = \mathbb{R}$.
+}
 
 Uvažujme špeciálne maticu z $\mathbb{R}^{1 \times n}$ obsahujúcu iba 1; máme
 $$ (\begin{matrix} 1 & 1 & \dots & 1 \end{matrix}) \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = x_1 + x_2 + \dots + x_n $$
 Zobrazenie z $\mathbb{R}^n$ do $\mathbb{R}^1$ reprezentované touto maticou je teda dané jednoducho ako "súčet zložiek vektora".
 
 Podobne $(\frac{1}{n} \dots \frac{1}{n})$ reprezentuje zobrazenie "priemer zložiek vektora".
-$$ (\begin{matrix} \frac{1}{n} & \dots & \frac{1}{n} \end{matrix}) \begin{pmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{pmatrix} = \frac{x_1}{n} + \dots + \frac{x_n}{n} = \frac{x_1 + \dots + x_n}{n} $$
+$$ (\begin{matrix} \frac{1}{n} & \dots & \frac{1}{n} \end{matrix}) \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = \frac{x_1}{n} + \dots + \frac{x_n}{n} = \frac{x_1 + \dots + x_n}{n} $$
 \end{priklad}
 
 \begin{priklad}[Pravouhlá projekcia na priamku]
@@ -117,7 +124,9 @@ Táto reprezentuje zobrazenie $\mathbb{R}^2 \rightarrow \mathbb{R}^2$. Predpis t
 $$ \begin{pmatrix} \frac{1}{2} & \frac{1}{2} \\ \frac{1}{2} & \frac{1}{2} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} \frac{1}{2}x_1 + \frac{1}{2}x_2 \\ \frac{1}{2}x_1 + \frac{1}{2}x_2 \end{pmatrix} $$
 (obe zložky sú vždy rovnaké)
 
-Pokúsme sa interpretovať toto zobrazenie geometricky; stotožníme vektory z $\mathbb{R}^2$ s vektormi v rovine prostredníctvom nejakých dvoch navzájom kolmých súradnicových osí
+Pokúsme sa interpretovať toto zobrazenie geometricky; stotožníme vektory z
+$\mathbb{R}^2$ s vektormi v rovine prostredníctvom nejakej zvyčajnej dvojice navzájom kolmých
+súradnicových osí s rovnakou mierkou
 a určíme polohu obrazov niekoľkých vektorov.
 Pre každý vektor $\vec{x}$ má $P\vec{x}$ obe zložky rovnaké. Geometricky toto znamená, že $P\vec{x}$ leží na priamke $q$ prechádzajúcej počiatkom
 \begin{equation}\label{eq:q}
@@ -579,9 +588,31 @@ je to isté:
         \centering
         nájsť množinu \\
         všetkých vektorov $\vec{x}$ \\
-        takých, že $[A](\vec{x}) = \vec{b}$, resp. $A\vec{x} = \vec{b}$
+        takých, že $[[A]](\vec{x}) = \vec{b}$, resp. $A\vec{x} = \vec{b}$
     \end{minipage}
 \end{center}
+
+Táto perspektíva nám umožňuje dosiahnuť trochu hlbší vhľad do povahy množín riešení
+systémov lineárnych rovníc: sú uzavreté na istý typ lineárnych kombinácií.
+\begin{veta}\label{veta:affine}
+Nech $\vec{x},\vec{y}\in\R^n$ sú riešenia nejakého systému lineárnych rovníc o $n$
+neznámych, nech $c,d\in\R$ sú také skaláry, že $c+d=1$. Potom $c\vec{x}+d\vec{y}$
+je tiež riešenie toho systému.
+\end{veta}
+\begin{proof}
+To, že $\vec x,\vec y$ sú riešenia, vieme zapísať $A\vec x=\vec b$ a $A\vec y=\vec
+b$, kde $A$ je matica sústavy a $\vec b$ je pravá strana. Pomocou známych vlastností
+maticových a vektorových operácií dostaneme
+\[
+A(c\vec{x}+d\vec{y})=A(c\vec x)+A(d\vec y)=c(A\vec x)+d(A\vec y)=c\vec b+d\vec b=
+(c+d)\vec b=1.b=\vec b
+\]
+čo presne znamená, že $c\vec{x}+d\vec{y}$ je tiež riešením.
+\end{proof}
+
+Napríklad zo skúsenosti vieme, že sústava lineárnych rovníc nebude mať presne dve
+riešenia. Veta \ref{veta:affine} nám hovorí, prečo to tak je: ak má sústava
+lineárnych rovníc viac ako jedno riešenie, má ich nekonečne veľa.
 
 \subsection{Jednotkové vektory v $\R^n$}
 

@@ -8,6 +8,7 @@
 \usepackage{amsthm} % For theorem environments
 \usepackage{graphicx}
 \usepackage{enumerate}
+\usepackage{hyperref}
 
 \usepackage{tikz}
 \usetikzlibrary{tikzmark}
@@ -66,13 +67,15 @@
   \right|_{#2} % this is the delimiter
   }}
 \newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
-
+\setcounter{section}{-1} 
 % DOCUMENT START
 \begin{document}
 \title{Lineárna algebra 1\\(texty k prednáškam)}
 \author{Gejza Jenča}
 \date{Verzia 1}
 \maketitle
+\tableofcontents
+\input{00_uvod.tex}
 \input{01_mnoziny.tex}
 \input{02_zobrazenia.tex}
 \input{03_injekcie_surjekcie.tex}

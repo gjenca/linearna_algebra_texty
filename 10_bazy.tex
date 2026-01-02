@@ -7,7 +7,7 @@ Môžeme napríklad vziať $X=((1,0),(0,1),(-2,1))$. Zrejme $\Lo(X)=\R^{2}$ (vek
 Pri rozmýšľaní o podobných otázkach vzniká prirodzene pojem z nasledujúcej definície.
 (Veta: $\Lo(X)$ sa nezmení, ak sú vektory lineárne kombinované).
 
-\begin{definicia} \label{def:10.5}
+\begin{definicia}[Lineárna (ne)závislosť] \label{def:10.5}
 Nech $V$ je vektorový priestor, nech $X=(\vec{x}_{1},...,\vec{x}_{n})$ je $n$-tica vektorov z $V$. Hovoríme, že $X$ je \textbf{lineárne závislá}, ak existujú $a_1,..., a_n \in \R$, nie všetky rovné $0$, také, že
 $$ a_{1}\vec{x}_{1}+a_{2}\vec{x}_{2}+...+a_{n}\vec{x}_{n}=\vec{0} $$
 Ak $X$ nie je lineárne závislá, hovoríme, že $X$ je \textbf{lineárne nezávislá}.
@@ -69,7 +69,7 @@ Je $(\vec{e}_{1},\vec{e}_{2})=((1,0),(0,1))$ lineárne závislá v $\R^{2}$? Nap
 
 Teraz (na záver) pojem, ku ktorému smerujeme.
 
-\begin{definicia}\label{def:baza}
+\begin{definicia}[Báza]\label{def:baza}
 Nech $V$ je vektorový priestor. \emph{Báza} $V$ je taká $n$-tica $X$ vektorov z $V$, že platí:
 \begin{itemize}
     \item $X$ je lineárne nezávislá a zároveň
@@ -107,7 +107,7 @@ $$ a_{1}-b_{1}=...=a_{n}-b_{n}=0 $$
 a teda $a_{1}=b_{1},...,a_{n}=b_{n}$.
 \end{proof}
 
-\begin{definicia} \label{def:suradniceVBaze}
+\begin{definicia}[Súradnice v báze] \label{def:suradniceVBaze}
 Nech $V$ je konečnorozmerný vektorový priestor s bázou $X=(\vec{x}_{1},\cdot\cdot\cdot,\vec{x}_{n})$, nech $\vec{v} \in V$.
 Potom $n$-tici skalárov $(a_1, \dots, a_n)$, ktorá je jednoznačne určená vlastnosťou
 $$ \vec{v}=a_{1}\vec{x}_{1}+...+a_{n}\vec{x}_{n} $$
@@ -423,7 +423,7 @@ Zistite, či sú nasledujúce výroky pravdivé s použitím tvrdení z dnešnej
     ak $(1,0,1) = a(0,1,1) + b(1,1,0)$, tak z prvej zložky $1=b$, z tretej $1=a$, ale
     stredná $0 = a+b = 1+1=2$, čo je spor. Teda táto tica je lineárne nezávislá a je to báza.
     \item Je pravda, že $\Lo(x+1,x^2-7x+4)=\R^2[x]$?\\
-    \textbf{NIE.} Podľa pretože $\dim(\R^2[x])=3$ a podľa 
+    \textbf{ÁNO.} Podľa pretože $\dim(\R^2[x])=3$ a podľa 
     Vety \ref{veta:porovnavanieTic} by sme potom dostali $3\leq 2$.
     \item Je pravda, že $\Lo(1,x+1,x^2-7x+4)=\R^2[x]$?\\
     \textbf{ÁNO.} Vieme, že $\dim(\R^2[x])=3$. Zrejme žiadny z vektorov v tici nie je
