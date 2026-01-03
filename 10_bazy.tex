@@ -13,7 +13,7 @@ $$ a_{1}\vec{x}_{1}+a_{2}\vec{x}_{2}+...+a_{n}\vec{x}_{n}=\vec{0} $$
 Ak $X$ nie je lineárne závislá, hovoríme, že $X$ je \textbf{lineárne nezávislá}.
 \end{definicia}
 
-Inými slovami: $n$-tica vektorov $(\vec{x}_{1},...,\vec{x}_{n})$ je lineárne nezávislá, ak má rovnica
+Inými slovami: $n$-tica vektorov $(\vec{x}_{1},...,\vec{x}_{n})$ je lineárne nezávislá, ak nemá rovnica
 \begin{equation}\label{eq:linkombJeNula}
 a_{1}\vec{x}_{1}+...+a_{n}\vec{x}_{n}=\vec{0}
 \end{equation}
@@ -403,19 +403,19 @@ Na záver ukážeme, ako sa teória z dnešnej prednášky dá použiť na rieš
 Zistite, či sú nasledujúce výroky pravdivé s použitím tvrdení z dnešnej prednášky:
 \begin{enumerate}[a)]
     \item Je $((1,2,3), (0,0,0),(0,1,1))$ je báza $\R^3$? \\
-    \textbf{NIE}, pretože a obsahuje nulový vektor a teda je lineárne závislá.
+    \textbf{NIE}, pretože obsahuje nulový vektor a teda je lineárne závislá.
     \item Je $((1,2,3), (3,2,1))$ báza $\R^3$? \\
     \textbf{NIE}, lebo má 2 prvky a $\dim(\R^3)=3$.
     \item Je $((1,1), (4,4), (3,2))$ lineárne závislá v $\R^2$? \\
     \textbf{ÁNO.} Toto môžeme dokázať buď tak, že vyriešime sústavu, alebo si
     všimneme, že máme 3 vektory v priestore dimenzie 2, a použijeme Vetu
-    \ref{veta:porovnavanieTic} takto: vieme, že $\dim(\R^2)=2$ a teda teda existuje
+    \ref{veta:porovnavanieTic} takto: vieme, že $\dim(\R^2)=2$ a teda existuje
     báza $X$ s dĺžkou $2$. Máme teda $\Lo(X)=\R^2$. Ak by táto (alebo ľubovoľná iná)
-    trojica vektorov v $R^2$ bola lineárne nezávislá, mali by sme podľa Vety
+    trojica vektorov v $\R^2$ bola lineárne nezávislá, mali by sme podľa Vety
     \ref{veta:porovnavanieTic} \[3\leq 2\]
     čo nie je pravda.
     \item Je $((0,1,1), (1,1,0), (1,0,1))$ báza $\R^3$? \\
-    \textbf{NIE.}
+    \textbf{ÁNO.}
     Vieme, že $\dim(\R^3)=3$, takže podľa Dôsledku \ref{dosledok:nezavislaSnPrvkami} nám stačí ukázať, že vektory
     sú lineárne nezávislé. Toto môžeme urobiť buď priamo, alebo ukázať, že žiadny z
     nich nie je lineárnou kombináciou predchádzajúcich. Zjavne $\vec{x}_1 \ne
@@ -423,13 +423,13 @@ Zistite, či sú nasledujúce výroky pravdivé s použitím tvrdení z dnešnej
     ak $(1,0,1) = a(0,1,1) + b(1,1,0)$, tak z prvej zložky $1=b$, z tretej $1=a$, ale
     stredná $0 = a+b = 1+1=2$, čo je spor. Teda táto tica je lineárne nezávislá a je to báza.
     \item Je pravda, že $\Lo(x+1,x^2-7x+4)=\R^2[x]$?\\
-    \textbf{ÁNO.} Podľa pretože $\dim(\R^2[x])=3$ a podľa 
+    \textbf{NIE.} Pretože $\dim(\R^2[x])=3$ a podľa 
     Vety \ref{veta:porovnavanieTic} by sme potom dostali $3\leq 2$.
     \item Je pravda, že $\Lo(1,x+1,x^2-7x+4)=\R^2[x]$?\\
     \textbf{ÁNO.} Vieme, že $\dim(\R^2[x])=3$. Zrejme žiadny z vektorov v tici nie je
     lineárnou kombináciou predchádzajúcich, teda podľa Dôsledku
     \ref{dosledok:nezavislaSnPrvkami} je tica bázou $\R^2[x]$, teda jej lineárnym
-    obalom je celý vektorový priestor $R^2[x]$.
+    obalom je celý vektorový priestor $\R^2[x]$.
 \end{enumerate}
 \end{priklad}
 
@@ -441,7 +441,7 @@ $$ a_1(x^2-1) + a_2(x+1) + a_3(x-2) = 0 $$
 je $(0,0,0)$, pretože platí Dôsledok \ref{dosledok:nezavislaSnPrvkami},
 Ale tento typ problémov poznáme z rátania príkladov na Matematickej analýze 1
 (neurčité koeficienty) a vieme, že nám stačí dosadiť napríklad $x=-1,1,2$ a z toho
-dostaneme sústavu lineárnych rovníc, ktorej jediné riešenie $a_1=a_2=a+3=0$.
+dostaneme sústavu lineárnych rovníc, ktorej jediné riešenie $a_1=a_2=a_3=0$.
 Inou možnosťou je pouvažovať a ukázať, že žiadny z vektorov v $Y$ nie je vyjadriteľný ako lineárna kombinácia predchádzajúcich.
 \end{priklad}
 

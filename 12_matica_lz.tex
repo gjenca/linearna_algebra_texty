@@ -8,12 +8,12 @@ Uvažujme teraz tieto dáta:
     \item $f: V \rightarrow U$ je lineárne zobrazenie.
 \end{itemize}
 
-Vieme z Vety 12.4, že $f$ je jednoznačne určené $n$-ticou vektorov $(f(\vec{x}_{1}),\dots,f(\vec{x}_{n}))$.
+Vieme z Vety \ref{veta:zakladna_o_lin_zob}, že $f$ je jednoznačne určené $n$-ticou vektorov $(f(\vec{x}_{1}),\dots,f(\vec{x}_{n}))$.
 
 Každý z týchto vektorov $f(\vec{x}_{1}),\dots,f(\vec{x}_{n})$ je vektor z $U$, a teda každý z nich má nejaké súradnice v
 báze $Y$, ktoré ho určujú:
 \[
-[f(\vec{x}_{1}]_Y,\dots,[f(\vec{x}_{n})]_Y
+[f(\vec{x}_{1})]_Y,\dots,[f(\vec{x}_{n})]_Y
 \]
 Vzniká nám nasledujúca definícia.
 
@@ -386,7 +386,8 @@ reprezentované šípkami $\downarrow \rightarrow$.
 
 \subsection{Skladanie lineárnych zobrazení a násobenie matíc}
 
-Uvažujme teraz tri konečnorozmerné vektorové priestory $V, U, W$ a dve lineárne zobrazenia $f: V \rightarrow U$, $g: U \rightarrow W$. Podľa Vety 12.2 je zobrazenie $g \circ f: V \rightarrow W$ lineárne.
+Uvažujme teraz tri konečnorozmerné vektorové priestory $V, U, W$ a dve lineárne zobrazenia $f: V \rightarrow U$, $g: U
+\rightarrow W$. Podľa Vety \ref{veta:zlozenieLZ} je zobrazenie $g \circ f: V \rightarrow W$ lineárne.
 
 Ak vyberieme v každom z priestorov nejaké bázy, každé zo zobrazení $f, g, g \circ f$ bude reprezentované nejakou maticou. Nasledujúca veta nám hovorí o vzťahu medzi týmito tromi maticami.
 
@@ -500,7 +501,7 @@ Druhá rovnosť sa dokáže rovnako.
 
 \begin{priklad}
 Zrejme inverzné zobrazenie k rovinnej rotácii doľava o $\theta$ je rovinná rotácia doprava o $\theta$ (alebo, čo je to isté, rotácia doľava o záporný uhol $-\theta$).
-Teda $l_{\theta}^{-1} = l_{-\theta}$. Podľa Vety 13.4 má byť matica $[l_{-\theta}]_{XX}$ inverzná k matici $[l_{\theta}]_{XX}$. Počítajme:
+Teda $l_{\theta}^{-1} = l_{-\theta}$. Podľa Vety \ref{veta:inverznaMatica} má byť matica $[l_{-\theta}]_{XX}$ inverzná k matici $[l_{\theta}]_{XX}$. Počítajme:
 \[
 [l_{-\theta}]_{XX} = 
 \begin{pmatrix}

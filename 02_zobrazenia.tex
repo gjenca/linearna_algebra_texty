@@ -54,13 +54,13 @@ $g(-1) = ?$ Toto neexistuje, pretože $-1 \notin \mathbb{N}$ a nie je to teda pr
 \begin{priklad}\label{ex:jedlo}
 Nech $A = \{\text{Jožko, Miško}\}$ a $B = \{\text{bageta, guláš, jablko}\}$.
 Nech $j \colon A \rightarrow B$ je zobrazenie "najobľúbenejšie jedlo".
-V tomto prípade je definičný konečná množina.
+V tomto prípade je definičný obor konečná množina.
 Preto nám stačí napísať hodnotu
 zobrazenia $j$ v každom prvku množiny $A$:
 \begin{itemize}
-    \item $f(\text{Jožko}) = \text{bageta}$
-    \item $f(\text{Miško}) = \text{guláš}$
-    \item $f(\text{Anka}) = \text{guláš}$
+    \item $j(\text{Jožko}) = \text{bageta}$
+    \item $j(\text{Miško}) = \text{guláš}$
+    \item $j(\text{Anka}) = \text{guláš}$
 \end{itemize}
 
 Zobrazenie $j$ môžeme aj nakresliť:
@@ -217,7 +217,7 @@ Ilustruje to nasledujúci príklad.
 \end{enumerate}
 \end{priklad}
 
-Uvažujme teraz nejaké zobrazenie $f\colon A\to B$ a množinu podmnožinu jeho 
+Uvažujme teraz nejaké zobrazenie $f\colon A\to B$ a podmnožinu jeho 
 definičného oboru $X\subseteq A$.
 \emph{Zúženie $f$ na $X$} je zobrazenie $\restr{f}{X}\colon X\to B$ dané
 predpisom
@@ -332,13 +332,13 @@ Potom platí $f \circ \id_A = f$ a $\id_B \circ f = f$.
 
 \begin{proof}
 Máme dokázať, že dve zobrazenia sa rovnajú.
-Čo je rovnosť dvoch zobrazení, o tom hovorí Definícia 1.9.
+Čo je rovnosť dvoch zobrazení, o tom hovorí Definícia \ref{def:rovnostZobrazeni}.
 Pre $f \circ \id_A = f$:
 Zobrazenie $\id_A$ je typu $A \rightarrow A$, zobrazenie $f$ je typu $A \rightarrow B$.
 Teda $f \circ \id_A$ existuje a je typu $A \rightarrow B$. Majú rovnaký definičný obor aj koobor.
 Pre všetky $x \in A$ platí:
 $$ (f \circ \id_A)(x) = f(\id_A(x)) = f(x) $$
-Teda $f \circ \id_A = f$ v zmysle Definície 1.9.
+Teda $f \circ \id_A = f$ v zmysle Definície \ref{def:rovnostZobrazeni}.
 Dôkaz rovnosti $\id_B \circ f = f$ prenechávame čitateľovi ako cvičenie.
 \end{proof}
 
