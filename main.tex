@@ -19,6 +19,8 @@
 \usetikzlibrary{cd}
 \usetikzlibrary{babel}
 \usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{angles} 
+\usetikzlibrary{quotes}
 
 \usepackage[all,pdf,2cell]{xy}
 \usepackage{soul}
@@ -55,8 +57,14 @@
 \newcommand{\Nat}{\mathbb{N}}
 \newcommand{\Set}{\mathbf{Set}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
 \newcommand{\ora}[1]{\overrightarrow{#1}}
 \newcommand{\Lo}{\mathrm{Lo}} % Notation for Linearny Obal
+
+\let\Im\relax
+\let\Re\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Re}{Re}
 
 % More complex stuff
 % Restriction of a function (from stackexchange)
@@ -88,4 +96,5 @@
 \input{10_bazy.tex}
 \input{11_linearne_zobrazenia.tex}
 \input{12_matica_lz.tex}
+\input{13_komplexne_cisla.tex}
 \end{document}

@@ -1,0 +1,566 @@
+\documentclass[11pt,a4paper]{article}
+
+% PACKAGES
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovak]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm} % For theorem environments
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes.geometric} % Library required for ellipse shape
+\usetikzlibrary{positioning}      % Library for easy relative positioning
+\usetikzlibrary{cd}
+\usetikzlibrary{babel}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{angles, quotes}
+
+
+
+\usepackage[all,pdf,2cell]{xy}
+\usepackage{soul}
+\usepackage{framed}
+\usepackage{array}
+\usepackage{todonotes}
+\usepackage{nicematrix}
+
+\NiceMatrixOptions
+  { pgf-node-code = \pgfsetfillcolor{white} \pgfusepathqfill }
+
+\pgfset{nicematrix/cell-node/.append style = { inner sep = 1pt } }
+
+% THEOREM ENVIRONMENTS SETUP
+% Style for definitions and examples (upright text, bold title)
+\theoremstyle{definition} 
+\newtheorem{definicia}{Definícia}[section]
+\newtheorem{priklad}[definicia]{Príklad}
+
+% Style for theorems (italicized text, bold title)
+\theoremstyle{plain} 
+\newtheorem{tvrdenie}[definicia]{Tvrdenie}
+\newtheorem{veta}[definicia]{Veta}
+\newtheorem{dosledok}[definicia]{Dôsledok}
+
+% Style for remarks and questions (upright text, italic title)
+\theoremstyle{remark} 
+\newtheorem*{question}{Otázka}
+\newtheorem*{pozn}{Poznámka}
+
+% Macros
+
+% Simple abbreviations
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ora}[1]{\overrightarrow{#1}}
+\newcommand{\Lo}{\mathrm{Lo}} % Notation for Linearny Obal
+
+
+% More complex stuff
+% Restriction of a function (from stackexchange)
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically 
+resize the bar with \right
+  #1 % the function
+  \littletaller % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
+\setcounter{section}{-1} 
+% DOCUMENT START
+\begin{document}
+\title{Lineárna algebra 1\\(texty k prednáškam)}
+\author{Gejza Jenča}
+\date{Verzia 1}
+\maketitle
+\tableofcontents
+
+\section{Polia}
+
+Doteraz sme vektorový priestor chápali ako štvoricu $(V, +, \cdot, \vec{0})$, kde:
+\begin{itemize}
+    \item $V$ je množina (jej prvky nazývame vektory),
+    \item $+: V \times V \to V$ je operácia sčítania vektorov,
+    \item $\cdot: \R \times V \to V$ je operácia násobenia vektora skalárom,
+    \item $\vec{0} \in V$ je nulový vektor.
+\end{itemize}
+
+Samotná existencia tejto štruktúry však na definíciu vektorového priestoru nestačí; vyžaduje sa splnenie určitých vlastností (axióm). Na základe týchto axióm sme následne budovali teóriu vektorových priestorov.
+
+Keďže sme pri budovaní teórie vychádzali výlučne z axióm, všetky zavedené pojmy a dokázané tvrdenia platia pre ľubovoľné vektorové priestory, ktoré tieto axiómy spĺňajú.
+
+Tento koncept teraz zovšeobecníme a zavedieme doň väčšiu flexibilitu.
+
+\begin{tvrdenie}[Pozorovanie]
+Všetky tvrdenia dokázané v prvom semestri by platili aj vtedy, ak by sme množinu reálnych čísel $\R$ nahradili inou štruktúrou, ktorej prvky vieme sčítať, odčítať a násobiť. Tieto operácie sme so skalármi nepochybne vykonávali.
+\end{tvrdenie}
+
+Aké iné množiny, ktorých prvky vieme sčítať, odčítať a násobiť, poznáme?
+\begin{itemize}
+    \item Prichádza do úvahy množina prirodzených čísel $\Nat$? Mohli by sme budovať lineárnu algebru nad takýmito skalármi? Nie. Potrebujeme totiž aj deliť (napríklad pri riešení sústav lineárnych rovníc).
+    \item Na druhej strane, množina $\R$ má mnoho ďalších vlastností (napríklad usporiadanie, konvergencia postupností), ktoré sme v lineárnej algebre nevyužívali.
+\end{itemize}
+
+\begin{question}
+Aké vlastnosti sčítania a násobenia v $\R$ boli pre budovanie našej teórie nevyhnutné?
+\end{question}
+Odpoveďou je nasledujúca definícia.
+
+\begin{definicia}
+\textbf{Pole} je pätica $(K, +, \cdot, 0, 1)$, kde:
+\begin{itemize}
+    \item $K$ je množina,
+    \item $+: K \times K \to K$ a $\cdot: K \times K \to K$ sú binárne operácie,
+    \item $0 \in K$ a $1 \in K$ sú konštanty,
+\end{itemize}
+pričom sú splnené nasledujúce axiómy poľa:
+\begin{enumerate}
+    \item $\forall a,b,c \in K: (a+b)+c = a+(b+c)$ (asociatívnosť sčítania)
+    \item $\forall a,b \in K: a+b = b+a$ (komutatívnosť sčítania)
+    \item $\forall a \in K: a+0 = a$ (existencia neutrálneho prvku pre sčítanie)
+    \item $\forall a \in K, \exists b \in K: a+b=0$ (toto $b$ je nutne jediné a značí sa $-a$, existencia opačného prvku)
+    \item $\forall a,b,c \in K: (a \cdot b) \cdot c = a \cdot (b \cdot c)$ (asociatívnosť násobenia)
+    \item $\forall a \in K: 1 \cdot a = a$ (existencia neutrálneho prvku pre násobenie)
+    \item $\forall a \in K, a \neq 0, \exists b \in K: a \cdot b = 1$ (toto $b$ je nutne jediné a značí sa $a^{-1}$, existencia inverzného prvku)
+    \item $\forall a,b,c \in K: a \cdot (b+c) = (a \cdot b) + (a \cdot c)$ (distributívnosť)
+    \item $0 \neq 1$ (netriviálnosť)
+\end{enumerate}
+\end{definicia}
+
+\subsection{Príklady polí}
+Dva príklady sú nám dobre známe: reálne čísla $\R$ a racionálne čísla $\mathbb{Q}$. Väčšinu času tejto prednášky venujeme zavedeniu a skúmaniu ďalšieho príkladu: komplexných čísel $\mathbb{C}$.
+
+Skôr než začneme, spomeňme ešte jednu triedu príkladov: konečné polia $Z_p$.
+
+Nech $p$ je prvočíslo. Na množine $Z_p = \{0, 1, \dots, p-1\}$ definujme operácie sčítania a násobenia nasledovne:
+\begin{itemize}
+    \item $a \oplus b = (a+b) \pmod p$
+    \item $a \odot b = (a \cdot b) \pmod p$
+\end{itemize}
+
+Napríklad pre $p=3$ dostávame tabuľky operácií:
+
+\begin{center}
+\begin{tabular}{c|ccc}
+$\oplus$ & 0 & 1 & 2 \\
+\hline
+0 & 0 & 1 & 2 \\
+1 & 1 & 2 & 0 \\
+2 & 2 & 0 & 1
+\end{tabular}
+\hspace{2cm}
+\begin{tabular}{c|ccc}
+$\odot$ & 0 & 1 & 2 \\
+\hline
+0 & 0 & 0 & 0 \\
+1 & 0 & 1 & 2 \\
+2 & 0 & 2 & 1
+\end{tabular}
+\end{center}
+
+Potom štruktúra $(Z_p, \oplus, \odot, 0, 1)$ tvorí pole (dôkaz vynechávame). Poznamenajme, že ak $p$ nie je prvočíslo, axiómy poľa nie sú splnené.
+Polia $Z_p$ sú veľmi užitočné v aplikáciách (teória kódovania, kryptografia, \dots), my sa nimi však hlbšie zaoberať nebudeme.
+
+\section{Komplexné čísla}
+
+Cardanov vzorec z roku 1545 na riešenie kubickej rovnice obsahuje odmocniny zo záporných čísel, a to aj v prípade, keď sú všetky riešenia reálne. Použitie tohto vzorca teda predpokladalo existenciu odmocniny zo záporného čísla.
+
+Uvažujme reálne čísla $\R$. Pridajme k nim nový prvok $i \notin \R$ a definujme $i^2 = -1$. Množinu postupne rozširujme tak, aby sme pridali len nevyhnutné prvky na vytvorenie poľa. Pribudnú prvky tvaru $bi$ a $a+bi$, kde $a, b \in \R$. Tento proces je postačujúci.
+
+\begin{definicia}[Komplexné čísla]
+Množinu komplexných čísel definujeme ako $\mathbb{C} = \R \times \R$. Prvky nezapisujeme ako usporiadané dvojice $(a, b)$, ale v tvare:
+\[ a + bi \]
+kde $a, b \in \R$. Tento zápis sa nazýva \textbf{algebraický tvar}.
+Pritom stotožňujeme 
+\begin{itemize}
+    \item $\R\ni a \equiv (a, 0)$
+    \item $bi \equiv (0, b)$
+\end{itemize}
+Sčítanie $+: \mathbb{C} \times \mathbb{C} \to \mathbb{C}$ je definované predpisom:
+\[ (a_1 + b_1 i) + (a_2 + b_2 i) = (a_1 + a_2) + (b_1 + b_2)i \]
+Násobenie $\cdot: \mathbb{C} \times \mathbb{C} \to \mathbb{C}$ je definované predpisom:
+\[ (a_1 + b_1 i)(a_2 + b_2 i) = (a_1 a_2 - b_1 b_2) + (a_1 b_2 + b_1 a_2)i \]
+(Toto zodpovedá pravidlám pre násobenie dvojíc).
+Nulový prvok je $0 = 0 + 0i$. Jednotkový prvok je $1 = 1 + 0i$.
+Štruktúra $( \mathbb{C}, +, \cdot, 0, 1 )$ potom tvorí pole.
+\end{definicia}
+
+V zmysle stotožnenia v predošlej definícii stotožňujeme reálne číslo $a$ s komplexným číslom $a+0i$.
+
+\begin{veta}
+Komplexné čísla tvoria pole.
+\end{veta}
+\begin{proof}
+(iba náčrt) Axiómy pre sčítanie sú zrejmé. Pre násobenie: ak $z = a+bi$ a $z \neq 0$, ako vyzerá $z^{-1}$?
+\[ z^{-1} = \frac{1}{z} = \frac{1}{a+bi} \]
+Zlomok rozšírime výrazom $a-bi$:
+\[ \frac{1}{a+bi} \cdot \frac{a-bi}{a-bi} = \frac{a-bi}{a^2 - abi + abi + b^2} = \frac{a-bi}{a^2+b^2} = \frac{a}{a^2+b^2} - \frac{b}{a^2+b^2}i \]
+Teda
+\[ (a+bi)^{-1} = \frac{a}{a^2+b^2} - \frac{b}{a^2+b^2}i \]
+Je potrebné overiť, že platí: $(a+bi) \cdot z^{-1} = 1$, to môžete urobiť sami.
+
+Ostatné vlastnosti operácií sčítania a násobenia komplexných čísel je možné overiť priamym výpočtom (čo môže byť prácne,
+ale jednoduché, preto to nebudeme robiť).
+\end{proof}
+
+\subsection{Geometrická interpretácia}
+Keďže komplexné číslo $a+bi$ možno stotožniť s usporiadanou dvojicou čísel $(a,b)$, je prirodzené reprezentovať ho ako bod v rovine vybavenej dvoma kolmými súradnicovými osami:
+\begin{center}
+\begin{tikzpicture}[>=Stealth, thick]
+
+    % Define styles
+    \tikzset{
+        graphline/.style={blue!80!black},
+        guide/.style={blue!80!black, densely dotted},
+        % Standard brace (appears on 'left' side of the drawing path)
+        brace/.style={decorate, decoration={brace, amplitude=6pt, raise=2pt}, blue!80!black},
+        % Mirrored brace (appears on 'right' side of the drawing path)
+        brace mirror/.style={decorate, decoration={brace, mirror, amplitude=6pt, raise=2pt}, blue!80!black},
+        labeltext/.style={blue!80!black},
+        rednote/.style={red!85!black, font=\small\itshape},
+        redarrow/.style={->, red!85!black, shorten >=2pt, shorten <=2pt}
+    }
+
+    % --- LEFT DIAGRAM ---
+    \begin{scope}
+        % Axes
+        \draw[graphline] (-1.5,0) -- (3.5,0);
+        \draw[graphline] (0,-2.5) -- (0,3);
+
+        % Coordinates
+        \def\xa{2}
+        \def\yb{1.5}
+        \coordinate (P1) at (\xa, \yb);
+
+        % Dotted lines
+        \draw[guide] (P1) -- (\xa, 0);
+        \draw[guide] (P1) -- (0, \yb);
+
+        % Point
+        \fill[graphline] (P1) circle (1.5pt) node[anchor=west, xshift=3pt] {$a+bi$};
+
+        % Braces and Labels
+        
+        % Horizontal brace (a) - Below axis
+        % Path: Left -> Right. Mirror puts it on the Right side (Below).
+        \draw[brace mirror] (0,0) -- (\xa,0) node[midway, below=10pt, labeltext] {$a$};
+        
+        % Vertical brace (b) - Left of axis
+        % Path: Bottom -> Top. Standard brace puts it on the Left side.
+        \draw[brace] (0,0) -- (0,\yb) node[midway, left=10pt, labeltext] {$b$};
+    \end{scope}
+
+
+    % --- RIGHT DIAGRAM ---
+    \begin{scope}[xshift=8cm]
+        % Axes
+        \draw[graphline] (-2.5,0) -- (3.5,0);
+        \draw[graphline] (0,-2.5) -- (0,3);
+
+        % Coordinates
+        \def\xa{2}
+        \def\yb{1.5}
+        \coordinate (P2) at (\xa, \yb);
+
+        % Dotted lines
+        \draw[guide] (P2) -- (\xa, 0);
+        \draw[guide] (P2) -- (0, \yb);
+
+        % Point
+        \fill[graphline] (P2) circle (1.5pt) node[anchor=west, xshift=3pt] {$z$};
+
+        % Braces and Labels
+        
+        % Horizontal brace (Re z) - Below axis
+        \draw[brace mirror] (0,0) -- (\xa,0) node[midway, below=10pt, labeltext] (ReZ) {$\Re z$};
+        
+        % Vertical brace (Im z) - Left of axis
+        % Path: Bottom -> Top. Standard brace puts it on the Left side.
+        \draw[brace] (0,0) -- (0,\yb) node[midway, left=10pt, labeltext] (ImZ) {$\Im z$};
+
+        % --- Red Annotations ---
+        
+        % Imaginarna cast label (Top Left)
+        % Adjusted position to account for brace being on the left now
+        \node[rednote, anchor=east] (ImText) at (-1.0, 2.5) {imaginárna časť $z$};
+        % Arrow pointing from Im z label to the text
+        \draw[redarrow] (ImZ.west) to (ImText.south);
+
+        % Realna cast label (Bottom)
+        \node[rednote, anchor=north] (ReText) at (\xa, -1.8) {reálna časť $z$};
+        % Arrow pointing from Re z label to the text
+        \draw[redarrow] (ReZ.south) -- (ReText.north);
+
+    \end{scope}
+
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+    \item Reálna časť $z$ ($\Re z$) sa vynáša na os x.
+    \item Imaginárna časť $z$ ($\Im z$) sa vynáša na os y.
+\end{itemize}
+
+Sčítanie komplexných čísel má potom zrejmý geometrický význam, analogický sčítaniu vektorov v rovine.
+Aj násobenie komplexných čísel možno interpretovať geometricky. Skôr ako to urobíme,
+zavedieme si niekoľko pojmov.
+
+\begin{definicia}~
+\begin{itemize}
+    \item \textbf{Absolútna hodnota} komplexného čísla $z = a+ib$ je $|z| = \sqrt{a^2+b^2}$.
+    \item \textbf{Konjugované číslo} (združené) k číslu $z= a+ib$ je $\overline{z} = a-ib = \Re z - i(\Im z)$.
+\end{itemize}
+\end{definicia}
+
+
+Platí $z \cdot \overline{z} = (a+bi)(a-bi) = a^2+b^2 \in \R$. Teda $|z|^2 = z \cdot \overline{z}$, resp. $|z| = \sqrt{z \cdot \overline{z}}$.
+
+Všimnime si, že vyššie odvodený vzorec pre inverzný prvok možno zapísať ako $z^{-1} = \frac{\overline{z}}{|z|^2}$.
+
+Geometricky je \[
+|z|=\sqrt{(\Re z)^2+(\Im z)^2}
+\] vzdialenosť od počiatku súradnicovej sústavy. 
+
+\subsection{Polárny tvar}
+
+Vieme, že ak uvažujeme rovinu s počiatkomi $O$, zavedenie dvoch kolmých súradnicových osí pretínajúcich sa v počiatku s
+rovnakou vzdialenosťou bodu $1$ od bodu $0$ nám umožňuje reprezentovať body v rovine ako usporiadané dvojice reálnych
+čísel. Ale v rovine môžeme reprezentovať body aj inak, bod $A$ vieme jednoznačne reprezentovať pomocou dvojice
+\[
+(\text{dĺžka $AO$},\text{uhol zovretý polpriamkou $OA$ a kladnou polosou $x$}
+\]
+v prípade, že $A=O$, uhol zvolíme rovný $0$, toto nespôsobuje ťažkosti. Táto dvojica sa nazýva \emph{polárne súradnice}
+bodu $A$ v rovine.
+
+Ak $z\in\mathbb C$, vzdialenosť $z$ od počiatku komplexnej roviny je $|z|$. Uhol nazveme \emph{argument $z$}. Celá
+geometrická situácia vyzerá teraz takto
+\begin{center}
+\begin{tikzpicture}[>=Stealth, thick]
+
+    % Define styles
+    \tikzset{
+        axisline/.style={blue!80!black},
+        guide/.style={blue!80!black, densely dotted},
+        redpath/.style={red!85!black, thick},
+        redarrow/.style={->, red!85!black},
+        greenarrow/.style={->, green!60!black, shorten >=2pt, shorten <=2pt},
+        bluetext/.style={blue!80!black},
+        redtext/.style={red!85!black},
+        greentext/.style={green!60!black, font=\small\itshape, align=center},
+        brace/.style={decorate, decoration={brace, amplitude=6pt, raise=4pt}, red!85!black},
+        brace mirror/.style={decorate, decoration={brace, mirror, amplitude=6pt, raise=4pt}, red!85!black}
+    }
+
+    % 1. Define Coordinates
+    \coordinate (O) at (0,0);
+    \def\xa{3}
+    \def\yb{2}
+    
+    \coordinate (Z) at (\xa, \yb);          % Point z
+    \coordinate (Zbar) at (\xa, -\yb);      % Point z_bar (conjugate)
+    \coordinate (XPoint) at (\xa, 0);       % Projection on x-axis
+
+    % 2. Axes
+    \draw[axisline] (-2.5,0) -- (5.5,0);
+    \draw[axisline] (0,-3.5) -- (0,3.5);
+
+    % 3. Z Elements (Upper Half)
+    \draw[guide] (Z) -- (XPoint);
+    \draw[guide] (Z) -- (0, \yb);
+    \draw[redpath] (O) -- (Z);
+    \node[bluetext, right, xshift=2pt] at (Z) {$z$};
+
+    % 4. Z_bar Elements (Lower Half - New)
+    % Guide lines for z_bar
+    \draw[guide] (Zbar) -- (XPoint);
+    \draw[guide] (Zbar) -- (0, -\yb);
+    % Vector mirroring z
+    %\draw[redpath] (O) -- (Zbar);
+    % Node label
+    \node[bluetext, right, xshift=2pt] at (Zbar) {$\bar{z}$};
+    
+    % Formula for z_bar placed near the node
+
+    % 5. Braces (Red)
+    % Re z (horizontal, mirror to be below)
+    \draw[brace mirror] (O) -- (XPoint) node[midway, below=12pt, redtext] (ReZ) {$\Re z$};
+
+    % Im z (vertical, standard to be on left)
+    \draw[brace] (0,0) -- (0,\yb) node[midway, left=12pt, redtext] (ImZ) {$\Im z$};
+
+    % |z| (diagonal along vector)
+    \draw[brace, decoration={raise=2pt}] (O) -- (Z) node[midway, above left=8pt, redtext, sloped] (AbsZ) {$|z|$};
+
+    % 6. Angle (Argument)
+    \pic [draw=red!85!black, ->, angle radius=1.0cm] {angle = XPoint--O--Z};
+    
+    % Label for argument with arrow
+    \node[redtext] (ArgLabel) at (2.5, 0.8) {$\arg(z)$};
+    \draw[redarrow, bend right=10] (ArgLabel.west) to (1.0, 0.3);
+
+    % 7. Green Annotations
+    % Absolutna hodnota
+    \node[greentext, anchor=west] (AbsText) at (1.5, 3.2) {absolútna hodnota $z$};
+    \draw[greenarrow] (AbsZ.north) to [bend left=10] (AbsText.south west);
+
+    % Argument z
+    \node[greentext, anchor=west] (ArgText) at (4.5, 1.8) {argument $z$};
+    \draw[greenarrow] (ArgLabel.east) -- (ArgText.west);
+
+    % Imaginarna cast
+    \node[greentext, anchor=south east] (ImText) at (-1, 2.5) {imaginárna\\časť $z$};
+    \draw[greenarrow] (ImZ.west) to [bend left=10] (ImText.south);
+
+    % Realna cast
+    \node[greentext, anchor=north] (ReText) at (4.0, -2.8) {reálna časť $z$};
+    \draw[greenarrow] (ReZ.south) to [bend right=10] (ReText.north);
+    
+    % Absolutna hodnota
+    \node[greentext, anchor=west,xshift=40pt,yshift=40pt] (ZbarText) at (Zbar) {komplexne združené k $z$};
+    \draw[greenarrow] (Zbar.east)+(0.4,0.2) to (ZbarText.west);
+
+\end{tikzpicture}
+\end{center}
+
+Z pravouhlého trojuholníka v komplexnej rovine dostaneme:
+\[ \Im z = |z| \sin(\arg z) \]
+\[ \Re z = |z| \cos(\arg z) \]
+kde $\arg z$ je uhol, ktorý zviera sprievodič bodu $z$ s kladnou polosou x.
+Dosadením dostávame 
+\[
+z = \Re z + i(\Im z)= |z|\cos(\arg z) + i|z|\sin(\arg z)
+=|z|(\cos(\arg z)+i\sin(\arg z))
+\]
+Teda
+
+Analyzujme násobenie komplexných čísel v goniometrickom tvare. Nech $z = |z|(\cos \alpha + i \sin \alpha)$ a $w = |w|(\cos \beta + i \sin \beta)$.
+\[ z \cdot w = |z||w| (\cos \alpha + i \sin \alpha)(\cos \beta + i \sin \beta) \]
+\[ = |z||w| [ (\cos \alpha \cos \beta - \sin \alpha \sin \beta) + i (\sin \alpha \cos \beta + \cos \alpha \sin \beta) ] \]
+Použitím súčtových vzorcov:
+\[ \cos(\alpha+\beta) = \cos \alpha \cos \beta - \sin \alpha \sin \beta \]
+\[ \sin(\alpha+\beta) = \sin \alpha \cos \beta + \cos \alpha \sin \beta \]
+dostávame:
+\[ z \cdot w = |z||w| (\cos(\alpha+\beta) + i \sin(\alpha+\beta)) \]
+
+Tento vzorec má nasledujúcu geometrickú interpretáciu: pri násobení komplexných čísel sa \textbf{sčítajú ich argumenty} a \textbf{násobia ich absolútne hodnoty}.
+\[ |zw| = |z||w| \]
+\[ \arg(zw) = \arg z + \arg w \]
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, thick, line cap=round]
+
+    % --- Definitions ---
+    % Colors to match the image
+    \definecolor{myred}{RGB}{220, 20, 60}
+    \definecolor{myblue}{RGB}{25, 25, 180}
+    \definecolor{mygreen}{RGB}{0, 150, 60}
+
+    % Coordinates (Polar: angle:radius)
+    \def\angZ{35}   % Red angle
+    \def\lenZ{3.5}
+    
+    \def\angW{55}   % Blue angle
+    \def\lenW{4.5}
+    
+    \def\angZW{110} % Green angle = sum
+    \def\lenZW{5.5} % Schematic length for z*w
+
+    \coordinate (O) at (0,0);
+    \coordinate (X) at (4,0); % Reference for angles
+    
+    \coordinate (Z) at (\angZ:\lenZ);
+    \coordinate (W) at (\angW:\lenW);
+    \coordinate (ZW) at (\angZW:\lenZW);
+
+    % --- Axes ---
+    \draw[black] (-2.5,0) -- (4.0,0); % x-axis
+    \draw[black] (0,-1.0) -- (0,6); % y-axis
+
+    % --- Vectors and Points ---
+    
+    % Red Vector (z)
+    \draw[, myred] (O) -- (Z);
+    \fill[myred] (Z) circle (2pt);
+    \node[myred, anchor=south west] at (Z) {$z$};
+
+    % Blue Vector (w)
+    \draw[, myblue] (O) -- (W);
+    \fill[myblue] (W) circle (2pt);
+    \node[myblue, anchor=south west, xshift=2pt, yshift=2pt] at (W) {$w$};
+
+    % Green Vector (z.w)
+    \draw[, mygreen] (O) -- (ZW);
+    \fill[mygreen] (ZW) circle (2pt);
+    \node[mygreen, anchor=south, yshift=2pt] at (ZW) {$z \cdot w$};
+    
+    % --- Green Bracket and Label ---
+    % Label is now horizontal (no 'sloped') and positioned to the left
+    \draw[decorate, decoration={brace, amplitude=6pt, raise=5pt}, mygreen] 
+        (O) -- (ZW) 
+        node[midway, left=15pt, mygreen] {$|z||w|$};
+
+    % --- Angles and Labels ---
+
+    % 1. Red Angle (arg z)
+    \draw[myred] (1.8,0) arc (0:\angZ:1.8);
+    \node[myred, anchor=west] at (15:2.0) {$\arg z$};
+
+    % 2. Blue Angle (arg w)
+    \draw[myblue] (1.2,0) arc (0:\angW:1.2);
+    \node[myblue, rotate=\angW/2+15, anchor=west] at (\angW/2+15:1.4) {$\arg w$};
+
+    % 3. Green Angle (arg(z) + arg(w))
+    \draw[mygreen] (0.7,0) arc (0:\angZW:0.7);
+    \node[mygreen, rotate=\angZW/2+10, anchor=south west] at (\angZW/2:0.8) {$\arg(z)+\arg(w)$};
+
+\end{tikzpicture}
+\end{center}
+
+\begin{priklad}
+Nech $z = 1+i$, $w = \sqrt{3}+i$.
+Platí $|z| = \sqrt{2}$, $\arg z = \frac{\pi}{4}$.
+Ďalej $|w| = 2$, $\arg w = \frac{\pi}{6}$.
+Súčin $z \cdot w$ má potom absolútnu hodnotu $2\sqrt{2}$ a argument $\frac{\pi}{4} + \frac{\pi}{6} = \frac{5\pi}{12}$.
+\end{priklad}
+
+
+
+\subsection{Moivreova veta}
+Induktívnym rozšírením vzorca pre násobenie dostaneme vzorec pre mocninu komplexného čísla. Pre $n \in \Nat$ platí:
+\[ z^n = |z|^n (\cos(n \arg z) + i \sin(n \arg z)) \]
+
+\subsection{Riešenie rovnice $z^n = c$}
+Predpokladajme, že máme $n \in \Nat$ a číslo $c \in \mathbb{C}$. Našou úlohou je vyriešiť rovnicu $z^n = c$ (t.j. nájsť $n$-tú odmocninu z $c$).
+Vyjadrime obe strany rovnice v goniometrickom tvare. Nech $z = |z|(\cos \varphi + i \sin \varphi)$ a $c = |c|(\cos \psi + i \sin \psi)$.
+Rovnica $z^n = c$ má potom tvar:
+\[ |z|^n (\cos n\varphi + i \sin n\varphi) = |c|(\cos \psi + i \sin \psi) \]
+Porovnaním absolútnych hodnôt dostávame $|z|^n = |c|$, teda $|z| = \sqrt[n]{|c|}$.
+Pre argumenty platí:
+\[ \cos n\varphi = \cos \psi \]
+\[ \sin n\varphi = \sin \psi \]
+Aké sú možné hodnoty $n\varphi$?
+Jedným z riešení je $\psi$, ale musíme zohľadniť periodicitu funkcií sínus a kosínus (perióda $2\pi$). Všeobecné riešenie má tvar:
+\[ n\varphi = \psi + 2k\pi, \quad k \in \{0, 1, \dots, n-1\} \]
+Teda
+\[ \varphi_k = \frac{\psi + 2k\pi}{n} \]
+
+Geometricky tvoria riešenia vrcholy pravidelného $n$-uholníka ležiaceho na kružnici s polomerom $\sqrt[n]{|c|}$.
+
+\begin{priklad}
+Riešme rovnicu $z^3 = -2 + 2i$.
+Máme $c = -2+2i$. Absolútna hodnota je $|c| = \sqrt{4+4} = \sqrt{8}$.
+Argument je $\arg c = \frac{3\pi}{4}$ (pretože reálna časť je záporná, imaginárna kladná a sú v absolútnej hodnote rovnaké).
+Riešenia ležia na kružnici so stredom v 0 a polomerom $\sqrt[3]{\sqrt{8}} = \sqrt{2}$.
+Argumenty riešení sú:
+\[ \varphi_k = \frac{\frac{3\pi}{4} + 2k\pi}{3} = \frac{\pi}{4} + \frac{2k\pi}{3} \]
+Pre $k=0$ máme $\varphi_0 = \frac{\pi}{4}$. Prvé riešenie je $z_0 = \sqrt{2}(\cos \frac{\pi}{4} + i \sin \frac{\pi}{4}) = \sqrt{2}(\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}) = 1+i$.
+Pre $k=1$ a $k=2$ dostaneme ostatné vrcholy trojuholníka.
+\end{priklad}
+
+\end{document}

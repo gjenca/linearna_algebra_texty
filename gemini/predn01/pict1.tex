@@ -1,0 +1,95 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{decorations.pathreplacing, arrows.meta, calc}
+
+\begin{document}
+\begin{tikzpicture}[>=Stealth, thick]
+
+    % Define styles
+    \tikzset{
+        graphline/.style={blue!80!black},
+        guide/.style={blue!80!black, densely dotted},
+        % Standard brace (appears on 'left' side of the drawing path)
+        brace/.style={decorate, decoration={brace, amplitude=6pt, raise=2pt}, blue!80!black},
+        % Mirrored brace (appears on 'right' side of the drawing path)
+        brace mirror/.style={decorate, decoration={brace, mirror, amplitude=6pt, raise=2pt}, blue!80!black},
+        labeltext/.style={blue!80!black},
+        rednote/.style={red!85!black, font=\small\itshape},
+        redarrow/.style={->, red!85!black, shorten >=2pt, shorten <=2pt}
+    }
+
+    % --- LEFT DIAGRAM ---
+    \begin{scope}
+        % Axes
+        \draw[graphline] (-1.5,0) -- (3.5,0);
+        \draw[graphline] (0,-2.5) -- (0,3);
+
+        % Coordinates
+        \def\xa{2}
+        \def\yb{1.5}
+        \coordinate (P1) at (\xa, \yb);
+
+        % Dotted lines
+        \draw[guide] (P1) -- (\xa, 0);
+        \draw[guide] (P1) -- (0, \yb);
+
+        % Point
+        \fill[graphline] (P1) circle (1.5pt) node[anchor=west, xshift=3pt] {$a+bi$};
+
+        % Braces and Labels
+        
+        % Horizontal brace (a) - Below axis
+        % Path: Left -> Right. Mirror puts it on the Right side (Below).
+        \draw[brace mirror] (0,0) -- (\xa,0) node[midway, below=10pt, labeltext] {$a$};
+        
+        % Vertical brace (b) - Left of axis
+        % Path: Bottom -> Top. Standard brace puts it on the Left side.
+        \draw[brace] (0,0) -- (0,\yb) node[midway, left=10pt, labeltext] {$b$};
+    \end{scope}
+
+
+    % --- RIGHT DIAGRAM ---
+    \begin{scope}[xshift=8cm]
+        % Axes
+        \draw[graphline] (-2.5,0) -- (3.5,0);
+        \draw[graphline] (0,-2.5) -- (0,3);
+
+        % Coordinates
+        \def\xa{2}
+        \def\yb{1.5}
+        \coordinate (P2) at (\xa, \yb);
+
+        % Dotted lines
+        \draw[guide] (P2) -- (\xa, 0);
+        \draw[guide] (P2) -- (0, \yb);
+
+        % Point
+        \fill[graphline] (P2) circle (1.5pt) node[anchor=west, xshift=3pt] {$z$};
+
+        % Braces and Labels
+        
+        % Horizontal brace (Re z) - Below axis
+        \draw[brace mirror] (0,0) -- (\xa,0) node[midway, below=10pt, labeltext] (ReZ) {$\text{Re } z$};
+        
+        % Vertical brace (Im z) - Left of axis
+        % Path: Bottom -> Top. Standard brace puts it on the Left side.
+        \draw[brace] (0,0) -- (0,\yb) node[midway, left=10pt, labeltext] (ImZ) {$\text{Im } z$};
+
+        % --- Red Annotations ---
+        
+        % Imaginarna cast label (Top Left)
+        % Adjusted position to account for brace being on the left now
+        \node[rednote, anchor=east] (ImText) at (-1.0, 2.5) {imaginárna časť $z$};
+        % Arrow pointing from Im z label to the text
+        \draw[redarrow] (ImZ.west) to (ImText.south);
+
+        % Realna cast label (Bottom)
+        \node[rednote, anchor=north] (ReText) at (\xa, -1.8) {reálna časť $z$};
+        % Arrow pointing from Re z label to the text
+        \draw[redarrow] (ReZ.south) -- (ReText.north);
+
+    \end{scope}
+
+\end{tikzpicture}
+\end{document}
