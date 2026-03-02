@@ -245,7 +245,7 @@ Geometricky je \[
 
 \subsection{Polárny tvar}
 
-Vieme, že ak uvažujeme rovinu s počiatkomi $O$, zavedenie dvoch kolmých súradnicových osí pretínajúcich sa v počiatku s
+Vieme, že ak uvažujeme rovinu s počiatkom $O$, zavedenie dvoch kolmých súradnicových osí pretínajúcich sa v počiatku s
 rovnakou vzdialenosťou bodu $1$ od bodu $0$ nám umožňuje reprezentovať body v rovine ako usporiadané dvojice reálnych
 čísel. Ale v rovine môžeme reprezentovať body aj inak, bod $A$ vieme jednoznačne reprezentovať pomocou dvojice
 \[
@@ -461,7 +461,7 @@ Pre argumenty platí:
 \[ \sin n\varphi = \sin \psi \]
 Aké sú možné hodnoty $n\varphi$?
 Jedným z riešení je $\psi$, ale musíme zohľadniť periodicitu funkcií sínus a kosínus (perióda $2\pi$). Všeobecné riešenie má tvar:
-\[ n\varphi = \psi + 2k\pi, \quad k \in \{0, 1, \dots, n-1\} \]
+\[ n\varphi_k = \psi + 2k\pi, \quad k \in \{0, 1, \dots, n-1\} \]
 Teda
 \[ \varphi_k = \frac{\psi + 2k\pi}{n} \]
 
@@ -476,5 +476,70 @@ Argumenty riešení sú:
 \[ \varphi_k = \frac{\frac{3\pi}{4} + 2k\pi}{3} = \frac{\pi}{4} + \frac{2k\pi}{3} \]
 Pre $k=0$ máme $\varphi_0 = \frac{\pi}{4}$. Prvé riešenie je $z_0 = \sqrt{2}(\cos \frac{\pi}{4} + i \sin \frac{\pi}{4}) = \sqrt{2}(\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}) = 1+i$.
 Pre $k=1$ a $k=2$ dostaneme ostatné vrcholy trojuholníka.
+\begin{center}
+\begin{tikzpicture}[>=Stealth, thick]
+
+    % --- Define Document-Consistent Styles ---
+    \tikzset{
+        axisline/.style={blue!80!black},
+        guide/.style={blue!80!black, densely dotted},
+        rootcircle/.style={black}, % User requested black circle
+        rootpath/.style={red!85!black, thick},
+        labeltext/.style={blue!80!black},
+        redtext/.style={red!85!black}
+    }
+
+    % --- Constants & Coordinates ---
+    \def\radius{1.414} % sqrt(2) 
+    \coordinate (O) at (0,0);
+    
+    % Roots: 45 deg, 165 deg, 285 deg [cite: 119]
+    \coordinate (Z0) at (45:\radius);
+    \coordinate (Z1) at (165:\radius);
+    \coordinate (Z2) at (285:\radius);
+
+    % --- 1. Axes (No labels as requested) ---
+    % Using blue style from source [cite: 34, 70]
+    \draw[axisline] (-2.5,0) -- (2.5,0);
+    \draw[axisline] (0,-2.5) -- (0,2.5);
+
+    % --- 2. Black Circle ---
+    \draw[rootcircle] (O) circle (\radius);
+
+    % --- 3. Dot at sqrt(2) ---
+    \fill[black] (\radius, 0) circle (1.5pt) node[below right, labeltext] {$\sqrt{2}$};
+
+    % --- 4. Geometric Construction ---
+    % Guide lines from origin [cite: 71]
+    \draw[guide] (O) -- (Z0);
+    \draw[guide] (O) -- (Z1);
+    \draw[guide] (O) -- (Z2);
+
+    % Equilateral triangle 
+    \draw[rootpath] (Z0) -- (Z1) -- (Z2) -- cycle;
+
+    % --- 5. Root Points & Labels ---
+    % Standard point style from source [cite: 37, 45]
+    \fill[blue!80!black] (Z0) circle (1.5pt) node[anchor=south west, labeltext] {$1+i$};
+    \fill[blue!80!black] (Z1) circle (1.5pt);
+    \fill[blue!80!black] (Z2) circle (1.5pt);
+
+    % --- 6. Angle Annotation ---
+    % Argument arc [cite: 79]
+    \draw[red!85!black] (0.5,0) arc (0:45:0.5);
+    \node[redtext] at (22.5:0.75) {$\frac{\pi}{4}$};
+
+\end{tikzpicture}
+\end{center}
+Jedno z riešení rovnice je ,,pekné'' riešenie $1+i$, ostatné dve sú komplikovanejšie.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$k$ & \textbf{Goniometrický (polárny) tvar} & \textbf{Algebraický (kartézsky) tvar} \\ \hline
+$0$ & $\sqrt{2} \left( \cos \frac{\pi}{4} + i \sin \frac{\pi}{4} \right)$ & $1 + i$ \\ \hline
+$1$ & $\sqrt{2} \left( \cos \frac{11\pi}{12} + i \sin \frac{11\pi}{12} \right)$  & $\frac{-1-\sqrt{3}}{2} + i \frac{\sqrt{3}-1}{2}$ \\ \hline
+$2$ & $\sqrt{2} \left( \cos \frac{19\pi}{12} + i \sin \frac{19\pi}{12} \right)$  & $\frac{\sqrt{3}-1}{2} - i \frac{\sqrt{3}+1}{2}$ \\ \hline
+\end{tabular}
+\end{center}
 \end{priklad}
 

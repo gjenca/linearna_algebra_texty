@@ -1,0 +1,50 @@
+\begin{center}
+\begin{tikzpicture}[>=Stealth, thick]
+
+    % --- Define Document-Consistent Styles ---
+    \tikzset{
+        axisline/.style={blue!80!black},
+        guide/.style={blue!80!black, densely dotted},
+        rootcircle/.style={blue!80!black, thin},
+        rootpath/.style={red!85!black, thick},
+        labeltext/.style={blue!80!black},
+        redtext/.style={red!85!black}
+    }
+
+    % --- Constants & Coordinates ---
+    \def\radius{1.414} % sqrt(2)
+    \coordinate (O) at (0,0);
+    
+    % Roots: 45 deg, 165 deg, 285 deg
+    \coordinate (Z0) at (45:\radius);
+    \coordinate (Z1) at (165:\radius);
+    \coordinate (Z2) at (285:\radius);
+
+    % --- 1. Axes (Consistent with Source 35, 43, 70) ---
+    \draw[axisline] (-2.5,0) -- (2.5,0) node[below] {Re};
+    \draw[axisline] (0,-2.5) -- (0,2.5) node[left] {Im};
+
+    % --- 2. Root Circle (Consistent with geometric context) ---
+    \draw[rootcircle] (O) circle (\radius);
+    \node[labeltext, anchor=north west] at (1.414, 0) {$\sqrt{2}$};
+
+    % --- 3. Geometric Construction ---
+    % Lines from origin to roots
+    \draw[guide] (O) -- (Z0);
+    \draw[guide] (O) -- (Z1);
+    \draw[guide] (O) -- (Z2);
+
+    % The equilateral triangle connecting roots (Consistent with Source 97-101)
+    \draw[rootpath] (Z0) -- (Z1) -- (Z2) -- cycle;
+
+    % --- 4. Points & Labels (Consistent with Source 38, 46) ---
+    \fill[blue!80!black] (Z0) circle (1.5pt) node[anchor=south west, labeltext] {$1+i$};
+    \fill[blue!80!black] (Z1) circle (1.5pt);
+    \fill[blue!80!black] (Z2) circle (1.5pt);
+
+    % --- 5. Angle Annotation (Consistent with Source 79-80) ---
+    \draw[red!85!black] (0.5,0) arc (0:45:0.5);
+    \node[redtext] at (22.5:0.7) {$\frac{\pi}{4}$};
+
+\end{tikzpicture}
+\end{center}
