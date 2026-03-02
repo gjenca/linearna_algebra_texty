@@ -1,0 +1,83 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usetikzlibrary{arrows.meta, calc, angles, quotes, decorations.pathreplacing}
+
+\begin{document}
+\begin{tikzpicture}[>=Stealth, thick, line cap=round]
+
+    % --- Definitions ---
+    % Colors to match the image
+    \definecolor{myred}{RGB}{220, 20, 60}
+    \definecolor{myblue}{RGB}{25, 25, 180}
+    \definecolor{mygreen}{RGB}{0, 150, 60}
+
+    % Coordinates (Polar: angle:radius)
+    % Chosen to visually match the image
+    \def\angZ{35}   % Red angle
+    \def\lenZ{3.5}
+    
+    \def\angW{55}   % Blue angle
+    \def\lenW{4.5}
+    
+    \def\angZW{110} % Green angle = sum
+    \def\lenZW{5.5} % Schematic length for z*w
+
+    \coordinate (O) at (0,0);
+    \coordinate (X) at (4,0); % Reference for angles
+    
+    \coordinate (Z) at (\angZ:\lenZ);
+    \coordinate (W) at (\angW:\lenW);
+    \coordinate (ZW) at (\angZW:\lenZW);
+
+    % --- Axes ---
+    \draw[black] (-4.5,0) -- (6.0,0); % x-axis
+    \draw[black] (0,-4.0) -- (0,6.5); % y-axis
+
+    % --- Vectors and Points ---
+    
+    % Red Vector (z)
+    \draw[->, myred] (O) -- (Z);
+    \fill[myred] (Z) circle (2pt);
+    \node[myred, anchor=south west] at (Z) {$z$};
+
+    % Blue Vector (w)
+    \draw[->, myblue] (O) -- (W);
+    \fill[myblue] (W) circle (2pt);
+    % Label shifted further out
+    \node[myblue, anchor=south west, xshift=2pt, yshift=2pt] at (W) {$w$};
+
+    % Green Vector (z.w)
+    \draw[->, mygreen] (O) -- (ZW);
+    \fill[mygreen] (ZW) circle (2pt);
+    % Label shifted further out and up
+    \node[mygreen, anchor=south, yshift=2pt] at (ZW) {$z \cdot w$};
+    
+    % --- Green Bracket and Label ---
+    % Replaces the old static node. 
+    % Drawn from O to ZW with raise moves it to the "left" of the vector.
+    \draw[decorate, decoration={brace, amplitude=6pt, raise=5pt}, mygreen] 
+        (O) -- (ZW) 
+        node[midway, above left=8pt, mygreen, sloped] {$|z||w|$};
+
+    % --- Angles and Labels ---
+
+    % 1. Red Angle (arg z)
+    % Radius: Largest in this stack
+    \draw[myred] (1.8,0) arc (0:\angZ:1.8);
+    \node[myred, anchor=west] at (15:2.0) {$\arg z$};
+
+    % 2. Blue Angle (arg w)
+    % Radius: Medium
+    \draw[myblue] (1.2,0) arc (0:\angW:1.2);
+    % Label rotated along the angle bisector roughly (User's tweak preserved)
+    \node[myblue, rotate=\angW/2+15, anchor=west] at (\angW/2+15:1.4) {$\arg w$};
+
+    % 3. Green Angle (arg(z) + arg(w))
+    % Radius: Smallest (to form the "stack" look from the image)
+    \draw[mygreen] (0.7,0) arc (0:\angZW:0.7);
+    % Label rotated and positioned above the arc
+    \node[mygreen, rotate=\angZW/2+10, anchor=south west] at (\angZW/2:0.8) {$\arg(z)+\arg(w)$};
+
+\end{tikzpicture}
+\end{document}
