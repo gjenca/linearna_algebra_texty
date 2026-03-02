@@ -65,6 +65,7 @@
 \newcommand{\ora}[1]{\overrightarrow{#1}}
 \newcommand{\Lo}{\mathrm{Lo}} % Notation for Linearny Obal
 
+
 % More complex stuff
 % Restriction of a function (from stackexchange)
 \newcommand\restr[2]{{% we make the whole thing an ordinary symbol
@@ -197,10 +198,11 @@ Sčítanie $+: \mathbb{C} \times \mathbb{C} \to \mathbb{C}$ je definované predp
 Násobenie $\cdot: \mathbb{C} \times \mathbb{C} \to \mathbb{C}$ je definované predpisom:
 \[ (a_1 + b_1 i)(a_2 + b_2 i) = (a_1 a_2 - b_1 b_2) + (a_1 b_2 + b_1 a_2)i \]
 (Toto zodpovedá pravidlám pre násobenie dvojíc).
+Nulový prvok je $0 = 0 + 0i$. Jednotkový prvok je $1 = 1 + 0i$.
+Štruktúra $( \mathbb{C}, +, \cdot, 0, 1 )$ potom tvorí pole.
 \end{definicia}
 
-Nulový prvok je $0 = 0 + 0i$. Jednotkový prvok je $1 = 1 + 0i$.
-Štruktúra $( \mathbb{C}, +, \cdot, 0, 1 )$ tvorí pole.
+V zmysle stotožnenia v predošlej definícii stotožňujeme reálne číslo $a$ s komplexným číslom $a+0i$.
 
 \paragraph{Náčrt dôkazu:} Axiómy pre sčítanie sú zrejmé. Pre násobenie: ak $z = a+bi$ a $z \neq 0$, ako vyzerá $z^{-1}$?
 =======
@@ -224,7 +226,9 @@ Teda
 <<<<<<< HEAD
 Je potrebné overiť, že platí: $(a+bi) \cdot z^{-1} = 1$. (DÚ).
 
-Ostatné vlastnosti operácií sčítania a násobenia komplexných čísel je možné overiť priamym výpočtom (čo môže byť prácne, preto to nebudeme vykonávať).
+Ostatné vlastnosti operácií sčítania a násobenia komplexných čísel je možné overiť priamym výpočtom (čo môže byť prácne,
+ale jednoduché, preto to nebudeme robiť).
+\end{proof}
 
 \subsection{Geometrická interpretácia}
 Keďže komplexné číslo $a+bi$ možno stotožniť s usporiadanou dvojicou čísel $(a,b)$, je prirodzené reprezentovať ho ako bod v rovine vybavenej dvoma kolmými súradnicovými osami:
@@ -330,7 +334,7 @@ zavedieme si niekoľko pojmov.
 \begin{definicia}~
 \begin{itemize}
     \item \textbf{Absolútna hodnota} komplexného čísla $z = a+ib$ je $|z| = \sqrt{a^2+b^2}$.
-    \item \textbf{Konjugované číslo} (združené) k číslu $z= a+ib$ je $\overline{z} = a-bi = \mathrm{Re}\, z - (\mathrm{Im}\, z)i$.
+    \item \textbf{Konjugované číslo} (združené) k číslu $z= a+ib$ je $\overline{z} = a-ib = \Re z - i(\Im z)$.
 \end{itemize}
 \end{definicia}
 

@@ -1,0 +1,151 @@
+\section{Jadro a obraz lineárneho zobrazenia}
+
+Doteraz budeme robiť algebru nad všeobecným polom $K$. Pole $K$ nebudeme explicitne spomínať. Predstaviť si možno $K = \R, K = \C$.
+
+Najprv opakovanie:
+\begin{itemize}
+    \item podpriestor vektorového priestoru
+    \item lineárne zobrazenie
+\end{itemize}
+
+\begin{definicia} \label{def:jadro_a_obraz}
+Nech $f: V \to U$ je lineárne zobrazenie.
+\begin{itemize}
+    \item $\Ker(f) = \{ \vec{x} \in V : f(\vec{x}) = \vec{0} \}$ sa volá \textbf{jadro} $f$.
+    \item $\Im(f) = \{ \vec{y} \in U : f(\vec{x}) = \vec{y} \text{ pre nejaké } \vec{x} \in V \}$ sa volá \textbf{obraz} $f$.
+\end{itemize}
+\end{definicia}
+
+Všimnime si, že $\Im(f)$ je iba iný názov pre obor hodnôt $f$.  Ďalej $\Ker(f) \subseteq V$ a $\Im(f) \subseteq U$.
+S každým lineárnym zobrazením sme teda asociovali dve množiny: jadro a obraz.
+
+\begin{tvrdenie} \label{tvr:podpriestory}
+Pre každé lineárne zobrazenie $f: V \to U$:
+\begin{enumerate}[a)]
+    \item $\Ker(f)$ je podpriestor $V$
+    \item $\Im(f)$ je podpriestor $U$
+\end{enumerate}
+\end{tvrdenie}
+
+\begin{proof}
+a) Máme dokázať, že $\Ker(f) \subseteq V$ je uzavretá na sčítanie vektorov aj na násobenie vektora skalárom:
+\begin{itemize}
+    \item Ak $\vec{x}, \vec{y} \in \Ker(f)$, potom $f(\vec{x}) = f(\vec{y}) = \vec{0}$, preto $f(\vec{x} + \vec{y}) = f(\vec{x}) + f(\vec{y}) = \vec{0} + \vec{0} = \vec{0}$ (lebo $f$ je lineárne). To ale znamená, že $\vec{x} + \vec{y} \in \Ker(f)$.
+    \item Ak $\vec{x} \in \Ker(f)$ a zároveň $c \in K$, potom $f(\vec{x}) = \vec{0}$ a ďalej $f(c\vec{x}) = cf(\vec{x}) = c \cdot \vec{0} = \vec{0}$ (lebo $f$ je lineárne), a preto $c\vec{x} \in \Ker(f)$.
+\end{itemize}
+b) Ak $\vec{z}, \vec{w} \in \Im(f)$, znamená to, že existujú $\vec{x}, \vec{y} \in V$ také, že $f(\vec{x}) = \vec{z}, f(\vec{y}) = \vec{w}$. Preto $f(\vec{x} + \vec{y}) = f(\vec{x}) + f(\vec{y}) = \vec{z} + \vec{w}$, to znamená, že $\vec{z} + \vec{w} \in \Im(f)$. Uzavretosť $\Im(f)$ na násobenie skalárom sa dokáže podobne, dôkaz vynechávame.
+\end{proof}
+
+\begin{priklad} \label{ex:rotacia}
+Uvažujme lineárne zobrazenie rovinná rotácia o uhol $\theta$ „vľavo“, označovali sme ho $l_{\theta}$.
+Ľahko vidno, že $\Ker(l_{\theta}) = \{ \vec{0} \}$ a $\Im(l_{\theta}) = \text{celá rovina}$.
+\end{priklad}
+
+\begin{priklad} \label{ex:projekcia}
+Nech $T$ je priamka v rovine s počiatkom $\vec{0}$, pričom $\vec{0} \in T$. Zobrazenie pravouhlá projekcia na $T$, ktoré budeme označovať $\proj_T$, je lineárne. Ako vyzerá $\Ker(\proj_T)$ a $\Im(\proj_T)$?
+
+\begin{itemize}
+    \item $\Ker(\proj_T)$ sú všetky vektory ležiace na priamke kolmej na priamku $T$ prechádzajúcej počiatkom.
+    \item $\Im(\proj_T) = T$.
+\end{itemize}
+\end{priklad}
+
+\begin{priklad} \label{ex:derivacia}
+Uvažujme zobrazenie $D: \R^3[x] \to \R^2[x]$ „derivácia polynómu“, $D(\vec p) = (\vec p)'$. $\Ker(D)$ sú tie prvky
+$\R^3[x]$, ktorých derivácia je nulová funkcia $\vec 0$, t.j. konštantné funkcie. 
+
+Na druhej strane $\Im(D) = \R^2[x]$, pretože každý
+polynóm stupňa nanajvýš 2 je deriváciou nejakého polynómu stupňa nanajvýš 3. Uvedomte si, že toto presne znamená,
+že každá funkcia $\vec f\in\R^2[x]$ má neurčitý integrál pozostávajúci z prvkov $\R^3[x]$.
+\end{priklad}
+
+\begin{priklad} \label{ex:evaluacia}
+Uvažujme zobrazenie $ev_1: \R^2[x] \to \R$ „evaluácia v bode 1“, dané predpisom $ev_1(\vec p) = \vec p(1)$. Toto zobrazenie je lineárne. Máme:
+\[ \Ker(ev_1) = \{\vec p \in \R^2[x] : \vec p(1) = 0 \} \]
+
+Príkladom vektora z $\R^2[x]$ je napríklad polynóm $\vec p(x)=(x-1).(x-2)$. 
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \draw[->] (-3.5,0) -- (2,0) node[right] {$x$};
+    \draw[->] (0,-4.5) -- (0,2.5) node[above] {$y$};
+    \draw[domain=-3:1.5, smooth, variable=\x, blue, thick] plot ({\x}, {(\x-1)*(\x+2)});
+    \node[below right] at (1,0) {$1$};
+    \node[below left] at (-2,0) {$-2$};
+    \node[left] at (0,-2) {$-2$};
+\end{tikzpicture}
+\end{center}
+
+Čo je $\Im(ev_1)$? Z Tvrdenia \ref{tvr:podpriestory} vieme, že to je podpriestor $\R$, teda veľa možností nie je: buď je
+to $\{0\}$, alebo je to celé $\R$. Iste existuje polynóm $\vec p \in \R^2[x]$, pre ktorý je $ev_1(\vec p) = \vec p(1)
+\neq 0$, teda $\Im(ev_1) \neq \{0\}$, teda $\Im(ev_1) = \R$.
+\end{priklad}
+
+\begin{tvrdenie} \label{tvr:injektivita}
+Nech $f: V \to U$ je lineárne zobrazenie vekt. priestorov nad polom $K$. Potom $\Ker(f) = \{ \vec{0} \}$ práve vtedy, keď $f$ je injektívne.
+\end{tvrdenie}
+
+\begin{proof}
+($\implies$) Predpokladajme, že $\Ker(f) = \{ \vec{0} \}$. Máme dokázať, že ak $f(\vec{x}_1) = f(\vec{x}_2)$, potom $\vec{x}_1 = \vec{x}_2$.
+\[ \vec{0} = f(\vec{x}_1) - f(\vec{x}_2) = f(\vec{x}_1 - \vec{x}_2) \quad \text{(linearita)} \]
+teda $\vec{x}_1 - \vec{x}_2 \in \Ker(f)$, teda $\vec{x}_1 - \vec{x}_2 = \vec{0}$, teda $\vec{x}_1 = \vec{x}_2$.
+
+($\impliedby$) Iste $f(\vec{0}) = \vec{0}$, teda $\vec{0} \in \Ker(f)$. Ak $\vec{x} \in \Ker(f)$, potom $f(\vec{x}) = \vec{0} = f(\vec{0})$. Z injektivity vyplýva $\vec{x} = \vec{0}$.
+\end{proof}
+
+\begin{veta}[o jadre a obraze] \label{veta:jadro_obraz}
+Nech $f: V \to U$ je lineárne zobrazenie konečnorozmerných vektorových priestorov nad polom $K$. Potom
+\[ \dim(V) = \dim(\Ker(f)) + \dim(\Im(f)) \]
+\end{veta}
+
+\begin{proof}
+Táto veta je tvrdenie o dimenziách, dimenzia je počet prvkov bázy. Položme $n = \dim(\Ker(f))$ a $m = \dim(\Im(f))$. Máme dokázať, že $\dim(V) = n + m$. Spravíme to takto: vezmeme bázu $\Ker(f)$ a bázu $\Im(f)$, vyrobíme z nich $(n+m)$-ticu vektorov vo $V$ a dokážeme, že to je báza.
+
+Nech $X = (\vec{x}_1, \dots, \vec{x}_n)$ je báza $\Ker(f)$ a $Y = (\vec{y}_1, \dots, \vec{y}_m)$ je báza $\Im(f)$. Keďže $\vec{y}_1, \dots, \vec{y}_m \in \Im(f)$, ku každému z nich sa v zobrazení $f$ zobrazí nejaký prvok z $V$. Existuje teda $m$-tica $Z = (\vec{z}_1, \dots, \vec{z}_m)$ taká, že $f(\vec{z}_1) = \vec{y}_1, \dots, f(\vec{z}_m) = \vec{y}_m$.
+Uvažujeme teraz $(n+m)$-ticu:
+\[ W = (\vec{x}_1, \dots, \vec{x}_n, \vec{z}_1, \dots, \vec{z}_m) \]
+Tvrdíme, že toto je báza $V$. Na to musíme dokázať, že to je lineárne nezávislá sústava a že $\Lo(W) = V$.
+
+\textbf{Lineárna nezávislosť:} Predpokladajme:
+\[ a_1\vec{x}_1 + \dots + a_n\vec{x}_n + b_1\vec{z}_1 + \dots + b_m\vec{z}_m = \vec{0} \]
+Aplikujeme $f$:
+\[ f(a_1\vec{x}_1 + \dots + a_n\vec{x}_n + b_1\vec{z}_1 + \dots + b_m\vec{z}_m) = f(\vec{0}) \]
+z linearity:
+\[ a_1f(\vec{x}_1) + \dots + a_nf(\vec{x}_n) + b_1f(\vec{z}_1) + \dots + b_mf(\vec{z}_m) = \vec{0} \]
+Keďže $\vec{x}_1, \dots, \vec{x}_n \in \Ker(f)$, máme $f(\vec{x}_i) = \vec{0}$:
+\[ a_1\vec{0} + \dots + a_n\vec{0} + b_1\vec{y}_1 + \dots + b_m\vec{y}_m = \vec{0} \]
+\[ b_1\vec{y}_1 + \dots + b_m\vec{y}_m = \vec{0} \]
+Pretože $Y$ je báza $\Im(f)$ (teda LN), vyplýva z toho $b_1 = \dots = b_m = 0$. Dosadíme späť:
+\[ a_1\vec{x}_1 + \dots + a_n\vec{x}_n + 0\vec{z}_1 + \dots + 0\vec{z}_m = \vec{0} \]
+\[ a_1\vec{x}_1 + \dots + a_n\vec{x}_n = \vec{0} \]
+Pretože $X$ je báza $\Ker(f)$ (teda LN), vyplýva z toho $a_1 = \dots = a_n = 0$. $W$ je teda LN.
+
+\textbf{Generovanie $V$ ($\Lo(W) = V$):} Nech $\vec{v} \in V$. Potom $f(\vec{v}) \in \Im(f) = \Lo(Y)$. Teda existujú koeficienty $b_i$ také, že:
+\[ f(\vec{v}) = b_1\vec{y}_1 + \dots + b_m\vec{y}_m \]
+Uvažujme vektor $\vec{r} = \vec{v} - (b_1\vec{z}_1 + \dots + b_m\vec{z}_m)$. Tvrdíme, že $\vec{r} \in \Ker(f)$. Skutočne:
+\[ f(\vec{r}) = f(\vec{v}) - f(b_1\vec{z}_1 + \dots + b_m\vec{z}_m) = f(\vec{v}) - (b_1\vec{y}_1 + \dots + b_m\vec{y}_m) = f(\vec{v}) - f(\vec{v}) = \vec{0} \]
+Ale $\vec{r} \in \Ker(f) = \Lo(X)$, teda existujú $a_i$ také, že:
+\[ \vec{r} = a_1\vec{x}_1 + \dots + a_n\vec{x}_n \]
+\[ \vec{v} - (b_1\vec{z}_1 + \dots + b_m\vec{z}_m) = a_1\vec{x}_1 + \dots + a_n\vec{x}_n \]
+\[ \vec{v} = a_1\vec{x}_1 + \dots + a_n\vec{x}_n + b_1\vec{z}_1 + \dots + b_m\vec{z}_m \]
+Teda $\vec{v} \in \Lo(W)$.
+\end{proof}
+
+\begin{dosledok} \label{dosl:ekvivalencia}
+Nech $f: V \to U$ je lineárne zobrazenie konečnorozmerných vekt. priestorov, nech $\dim(V) = \dim(U)$. Potom nasledujúce sú ekvivalentné:
+\begin{enumerate}[(a)]
+    \item $f$ je injektívne \label{it:inj}
+    \item $f$ je surjektívne \label{it:sur}
+    \item $f$ je bijektívne (teda izomorfizmus) \label{it:bij}
+\end{enumerate}
+\end{dosledok}
+
+\begin{proof}
+Položme $n = \dim(V) = \dim(U)$. Potom z Vety \ref{veta:jadro_obraz} $\dim(V) = \dim(\Ker(f)) + \dim(\Im(f))$.
+\begin{itemize}
+    \item (\ref{it:inj}) $\implies$ (\ref{it:sur}): Ak $f$ je injektívne, $\dim(\Ker(f)) = 0$, teda $n = 0 + \dim(\Im(f))$, teda $\dim(\Im(f)) = n = \dim(U)$. Keďže $\Im(f)$ je podpriestor $U$ rovnakej dimenzie, $\Im(f) = U$, teda $f$ je surjektívne.
+    \item (\ref{it:sur}) $\implies$ (\ref{it:inj}): Ak $f$ je surjektívne, $\Im(f) = U$, teda $\dim(\Im(f)) = n$. Potom $n = \dim(\Ker(f)) + n$, teda $\dim(\Ker(f)) = 0$. To znamená $\Ker(f) = \{ \vec{0} \}$, teda $f$ je injektívne.
+    \item \ref{it:bij} $\iff$ ((\ref{it:inj}) a zároveň (\ref{it:sur})): Zrejmé z definície bijekcie a predchádzajúcich krokov.
+\end{itemize}
+\end{proof}
+
