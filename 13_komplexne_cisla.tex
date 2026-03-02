@@ -1,90 +1,4 @@
-\documentclass[11pt,a4paper]{article}
-
-% PACKAGES
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[slovak]{babel}
-\usepackage{amsmath, amssymb}
-\usepackage{amsthm} % For theorem environments
-\usepackage{graphicx}
-\usepackage{enumerate}
-\usepackage{hyperref}
-
-\usepackage{tikz}
-\usetikzlibrary{tikzmark}
-\usetikzlibrary{arrows.meta}
-\usetikzlibrary{calc}
-\usetikzlibrary{shapes.geometric} % Library required for ellipse shape
-\usetikzlibrary{positioning}      % Library for easy relative positioning
-\usetikzlibrary{cd}
-\usetikzlibrary{babel}
-\usetikzlibrary{decorations.pathreplacing}
-<<<<<<< HEAD
-=======
-\usetikzlibrary{angles, quotes}
-
-
->>>>>>> bdeeb6cff993cf73fcfdfba8c62a5a0edfeac559
-
-\usepackage[all,pdf,2cell]{xy}
-\usepackage{soul}
-\usepackage{framed}
-\usepackage{array}
-\usepackage{todonotes}
-\usepackage{nicematrix}
-
-\NiceMatrixOptions
-  { pgf-node-code = \pgfsetfillcolor{white} \pgfusepathqfill }
-
-\pgfset{nicematrix/cell-node/.append style = { inner sep = 1pt } }
-
-% THEOREM ENVIRONMENTS SETUP
-% Style for definitions and examples (upright text, bold title)
-\theoremstyle{definition} 
-\newtheorem{definicia}{Definícia}[section]
-\newtheorem{priklad}[definicia]{Príklad}
-
-% Style for theorems (italicized text, bold title)
-\theoremstyle{plain} 
-\newtheorem{tvrdenie}[definicia]{Tvrdenie}
-\newtheorem{veta}[definicia]{Veta}
-\newtheorem{dosledok}[definicia]{Dôsledok}
-
-% Style for remarks and questions (upright text, italic title)
-\theoremstyle{remark} 
-\newtheorem*{question}{Otázka}
-\newtheorem*{pozn}{Poznámka}
-
-% Macros
-
-% Simple abbreviations
-\newcommand{\id}{\mathrm{id}}
-\newcommand{\Nat}{\mathbb{N}}
-\newcommand{\Set}{\mathbf{Set}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\ora}[1]{\overrightarrow{#1}}
-\newcommand{\Lo}{\mathrm{Lo}} % Notation for Linearny Obal
-
-% More complex stuff
-% Restriction of a function (from stackexchange)
-\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
-  \left.\kern-\nulldelimiterspace % automatically 
-resize the bar with \right
-  #1 % the function
-  \littletaller % pretend it's a little taller at normal size
-  \right|_{#2} % this is the delimiter
-  }}
-\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
-\setcounter{section}{-1} 
-% DOCUMENT START
-\begin{document}
-\title{Lineárna algebra 1\\(texty k prednáškam)}
-\author{Gejza Jenča}
-\date{Verzia 1}
-\maketitle
-\tableofcontents
-
-\section{Polia}
+\section{Kompexné čísla a iné polia}
 
 Doteraz sme vektorový priestor chápali ako štvoricu $(V, +, \cdot, \vec{0})$, kde:
 \begin{itemize}
@@ -170,7 +84,7 @@ $\odot$ & 0 & 1 & 2 \\
 Potom štruktúra $(Z_p, \oplus, \odot, 0, 1)$ tvorí pole (dôkaz vynechávame). Poznamenajme, že ak $p$ nie je prvočíslo, axiómy poľa nie sú splnené.
 Polia $Z_p$ sú veľmi užitočné v aplikáciách (teória kódovania, kryptografia, \dots), my sa nimi však hlbšie zaoberať nebudeme.
 
-\section{Komplexné čísla}
+\subsection{Komplexné čísla}
 
 Cardanov vzorec z roku 1545 na riešenie kubickej rovnice obsahuje odmocniny zo záporných čísel, a to aj v prípade, keď sú všetky riešenia reálne. Použitie tohto vzorca teda predpokladalo existenciu odmocniny zo záporného čísla.
 
@@ -179,13 +93,6 @@ Uvažujme reálne čísla $\R$. Pridajme k nim nový prvok $i \notin \R$ a defin
 \begin{definicia}[Komplexné čísla]
 Množinu komplexných čísel definujeme ako $\mathbb{C} = \R \times \R$. Prvky nezapisujeme ako usporiadané dvojice $(a, b)$, ale v tvare:
 \[ a + bi \]
-<<<<<<< HEAD
-kde $a, b \in \R$. Tento zápis sa nazýva \textbf{algebrický tvar}.
-Platí stotožnenie:
-\begin{itemize}
-    \item $a \equiv (a, 0)$
-    \item $i \equiv (0, 1)$
-=======
 kde $a, b \in \R$. Tento zápis sa nazýva \textbf{algebraický tvar}.
 Pritom stotožňujeme 
 \begin{itemize}
@@ -197,13 +104,6 @@ Sčítanie $+: \mathbb{C} \times \mathbb{C} \to \mathbb{C}$ je definované predp
 Násobenie $\cdot: \mathbb{C} \times \mathbb{C} \to \mathbb{C}$ je definované predpisom:
 \[ (a_1 + b_1 i)(a_2 + b_2 i) = (a_1 a_2 - b_1 b_2) + (a_1 b_2 + b_1 a_2)i \]
 (Toto zodpovedá pravidlám pre násobenie dvojíc).
-\end{definicia}
-
-Nulový prvok je $0 = 0 + 0i$. Jednotkový prvok je $1 = 1 + 0i$.
-Štruktúra $( \mathbb{C}, +, \cdot, 0, 1 )$ tvorí pole.
-
-\paragraph{Náčrt dôkazu:} Axiómy pre sčítanie sú zrejmé. Pre násobenie: ak $z = a+bi$ a $z \neq 0$, ako vyzerá $z^{-1}$?
-=======
 Nulový prvok je $0 = 0 + 0i$. Jednotkový prvok je $1 = 1 + 0i$.
 Štruktúra $( \mathbb{C}, +, \cdot, 0, 1 )$ potom tvorí pole.
 \end{definicia}
@@ -215,16 +115,16 @@ Komplexné čísla tvoria pole.
 \end{veta}
 \begin{proof}
 (iba náčrt) Axiómy pre sčítanie sú zrejmé. Pre násobenie: ak $z = a+bi$ a $z \neq 0$, ako vyzerá $z^{-1}$?
->>>>>>> bdeeb6cff993cf73fcfdfba8c62a5a0edfeac559
 \[ z^{-1} = \frac{1}{z} = \frac{1}{a+bi} \]
 Zlomok rozšírime výrazom $a-bi$:
 \[ \frac{1}{a+bi} \cdot \frac{a-bi}{a-bi} = \frac{a-bi}{a^2 - abi + abi + b^2} = \frac{a-bi}{a^2+b^2} = \frac{a}{a^2+b^2} - \frac{b}{a^2+b^2}i \]
 Teda
 \[ (a+bi)^{-1} = \frac{a}{a^2+b^2} - \frac{b}{a^2+b^2}i \]
-<<<<<<< HEAD
-Je potrebné overiť, že platí: $(a+bi) \cdot z^{-1} = 1$. (DÚ).
+Je potrebné overiť, že platí: $(a+bi) \cdot z^{-1} = 1$, to môžete urobiť sami.
 
-Ostatné vlastnosti operácií sčítania a násobenia komplexných čísel je možné overiť priamym výpočtom (čo môže byť prácne, preto to nebudeme vykonávať).
+Ostatné vlastnosti operácií sčítania a násobenia komplexných čísel je možné overiť priamym výpočtom (čo môže byť prácne,
+ale jednoduché, preto to nebudeme robiť).
+\end{proof}
 
 \subsection{Geometrická interpretácia}
 Keďže komplexné číslo $a+bi$ možno stotožniť s usporiadanou dvojicou čísel $(a,b)$, je prirodzené reprezentovať ho ako bod v rovine vybavenej dvoma kolmými súradnicovými osami:
@@ -330,7 +230,7 @@ zavedieme si niekoľko pojmov.
 \begin{definicia}~
 \begin{itemize}
     \item \textbf{Absolútna hodnota} komplexného čísla $z = a+ib$ je $|z| = \sqrt{a^2+b^2}$.
-    \item \textbf{Konjugované číslo} (združené) k číslu $z= a+ib$ je $\overline{z} = a-bi = \mathrm{Re}\, z - (\mathrm{Im}\, z)i$.
+    \item \textbf{Konjugované číslo} (združené) k číslu $z= a+ib$ je $\overline{z} = a-ib = \Re z - i(\Im z)$.
 \end{itemize}
 \end{definicia}
 
@@ -349,7 +249,7 @@ Vieme, že ak uvažujeme rovinu s počiatkomi $O$, zavedenie dvoch kolmých súr
 rovnakou vzdialenosťou bodu $1$ od bodu $0$ nám umožňuje reprezentovať body v rovine ako usporiadané dvojice reálnych
 čísel. Ale v rovine môžeme reprezentovať body aj inak, bod $A$ vieme jednoznačne reprezentovať pomocou dvojice
 \[
-(\text{dĺžka $AO$},\text{uhol zovretý polpriamkou $OA$ a kladnou polosou $x$}
+(\text{dĺžka $AO$},\text{uhol zovretý polpriamkou $OA$ a kladnou polosou $x$})
 \]
 v prípade, že $A=O$, uhol zvolíme rovný $0$, toto nespôsobuje ťažkosti. Táto dvojica sa nazýva \emph{polárne súradnice}
 bodu $A$ v rovine.
@@ -546,7 +446,11 @@ Súčin $z \cdot w$ má potom absolútnu hodnotu $2\sqrt{2}$ a argument $\frac{\
 \end{priklad}
 
 
-\subsection{Moivreova veta}
+\subsubsection{Moivreova veta}
+Induktívnym rozšírením vzorca pre násobenie dostaneme vzorec pre mocninu komplexného čísla. Pre $n \in \Nat$ platí:
+\[ z^n = |z|^n (\cos(n \arg z) + i \sin(n \arg z)) \]
+
+\subsubsection{Riešenie rovnice $z^n = c$}
 Predpokladajme, že máme $n \in \Nat$ a číslo $c \in \mathbb{C}$. Našou úlohou je vyriešiť rovnicu $z^n = c$ (t.j. nájsť $n$-tú odmocninu z $c$).
 Vyjadrime obe strany rovnice v goniometrickom tvare. Nech $z = |z|(\cos \varphi + i \sin \varphi)$ a $c = |c|(\cos \psi + i \sin \psi)$.
 Rovnica $z^n = c$ má potom tvar:
@@ -574,4 +478,3 @@ Pre $k=0$ máme $\varphi_0 = \frac{\pi}{4}$. Prvé riešenie je $z_0 = \sqrt{2}(
 Pre $k=1$ a $k=2$ dostaneme ostatné vrcholy trojuholníka.
 \end{priklad}
 
-\end{document}
