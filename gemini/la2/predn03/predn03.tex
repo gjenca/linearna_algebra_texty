@@ -1,0 +1,307 @@
+\documentclass[11pt,a4paper]{article}
+
+% PACKAGES
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[slovak]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm} 
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{hyperref}
+
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes.geometric} 
+\usetikzlibrary{positioning}      
+\usetikzlibrary{cd}
+\usetikzlibrary{babel}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{angles} 
+\usetikzlibrary{quotes}
+
+\usepackage[all,pdf,2cell]{xy}
+\usepackage{soul}
+\usepackage{framed}
+\usepackage{array}
+\usepackage{todonotes}
+\usepackage{nicematrix}
+
+\NiceMatrixOptions
+  { pgf-node-code = \pgfsetfillcolor{white} \pgfusepathqfill }
+
+\pgfset{nicematrix/cell-node/.append style = { inner sep = 1pt } }
+
+% THEOREM ENVIRONMENTS SETUP
+\theoremstyle{definition} 
+\newtheorem{definicia}{Definícia}[section]
+\newtheorem{priklad}[definicia]{Príklad}
+
+\theoremstyle{plain} 
+\newtheorem{tvrdenie}[definicia]{Tvrdenie}
+\newtheorem{veta}[definicia]{Veta}
+\newtheorem{dosledok}[definicia]{Dôsledok}
+
+\theoremstyle{remark} 
+\newtheorem*{question}{Otázka}
+
+% Macros
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ora}[1]{\overrightarrow{#1}}
+\newcommand{\Lo}{\mathrm{Lo}} 
+
+\let\Im\relax
+\let\Re\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\proj}{proj}
+
+\newcommand\restr[2]{{%
+  \left.\kern-\nulldelimiterspace 
+  #1 
+  \littletaller 
+  \right|_{#2} 
+  }}
+\newcommand{\littletaller}{\mathchoice{\vphantom{\big|}}{}{}{}}
+
+\begin{document}
+
+\section*{DIAGONALIZÁCIA, MOTIVÁCIA}
+
+Najskôr istá zmena: lineárne zobrazenia budem značiť veľkým písmenom lebo „tak sa to robí“. V skutočnosti tam nie je prevládajúca konvencia, mení sa to situačne.
+
+\setcounter{section}{3} % Iba kvôli číslovaniu 3.01
+\setcounter{definicia}{0}
+
+\begin{definicia}
+\ul{Lineárna transformácia} je lineárne zobrazenie vektorového priestoru do seba:
+\end{definicia}
+
+\vspace{0.3cm}
+\begin{center}
+\begin{tikzpicture}
+\node (eq) at (0,0) {$A \colon V \longrightarrow V \quad \square$};
+\node[red, align=center] (desc) at (0,-1.3) {lineárna transformácia\\priestoru $V$ / na priestore $V$.};
+\draw[->, red, thick] (desc) -- (0,-0.3);
+\end{tikzpicture}
+\end{center}
+\vspace{0.3cm}
+
+Ak $V$ je konečnorozmerný, každá matica $A$ je štvorcová, samozrejme.
+
+Cieľom tejto, aj ďalších prednášok je hľadať bázu $X$ tak, aby
+\[ [A]_{XX} \text{ bola čo najjednoduchšia} \]
+podľa možnosti diagonálna.
+
+\begin{definicia}
+Lineárna transformácia $A \colon V \to V$ na konečnorozmernom vektorovom priestore $V$ je \ul{diagonalizovateľná}, ak existuje báza $X$ vektorového priestoru $V$ taká, že $[A]_{XX}$ je diagonálna matica.
+\end{definicia}
+
+Prirodzené otázky:
+\begin{itemize}
+    \item Je každá lin. transformácia diagonalizovateľná? [nie]
+    \item Ktoré sú? [uvidíme]
+    \item Ak nejaká transformácia má dve diagonálne matice $[A]_{XX}$, $[A]_{YY}$ v dvoch rôznych bázach, musia byť rovnaké? [skoro]
+\end{itemize}
+
+Jedna z vecí, ktoré idú dobre robiť s diagonálnymi maticami: ľahko sa násobia medzi sebou, medziiným sa ľahko umocňujú: (iba príklad)
+
+\vspace{0.5cm}
+\noindent \textbf{Motivácia: Fibonacciho postupnosť}
+
+\begin{minipage}{0.65\textwidth}
+\[ F_0 = 1 \quad F_1 = 1 \quad F_{n+2} = F_{n} + F_{n+1} \quad n \in \Nat \]
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{center}
+$1 \ 1 \ 2 \ 3 \ 5 \ 8$\\
+\small $0 \ 1 \ 2 \ 3$
+\end{center}
+\end{minipage}
+
+\[
+\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix} 
+\begin{pmatrix} F_{n+1} \\ F_n \end{pmatrix} 
+= \begin{pmatrix} F_n + F_{n+1} \\ F_{n+1} \end{pmatrix}
+\]
+
+\vspace{0.3cm}
+\noindent $A \colon \R^2 \to \R^2$
+
+\[
+A \begin{pmatrix} F_1 \\ F_0 \end{pmatrix} = \begin{pmatrix} F_2 \\ F_1 \end{pmatrix} \qquad 
+A \begin{pmatrix} F_2 \\ F_1 \end{pmatrix} = \begin{pmatrix} F_3 \\ F_2 \end{pmatrix}
+\]
+
+\[
+A^2 \begin{pmatrix} F_1 \\ F_0 \end{pmatrix} = \begin{pmatrix} F_3 \\ F_2 \end{pmatrix} \quad \dots \quad 
+\underbrace{A^n}_{\color{red}\begin{matrix} \downarrow \\ \text{toto je škaredá} \\[-0.1cm] \text{matica} \end{matrix}} 
+\begin{pmatrix} F_1 \\ F_0 \end{pmatrix} = \begin{pmatrix} F_{n+1} \\ F_n \end{pmatrix}
+\]
+
+\vspace{0.5cm}
+\begin{center}
+\begin{tikzpicture}
+\node (eq) at (0,0) {$\displaystyle [A]^n_{XX} \left[\begin{pmatrix} 1 \\ 0 \end{pmatrix}\right]_X = \left[ \begin{pmatrix} F_{n+1} \\ F_n \end{pmatrix} \right]_X$};
+\node[align=left, text width=10.5cm] (desc) at (1,-1.5) {ak nájdeme takú bázu $X$ vektorového priestoru $\R^2$, že $[A]_{XX}$ je diagonálna matica, vieme toto ľahko zrátať.};
+\draw[->, thick] ($(eq.south west) + (1.2,0.2)$) to[out=-90, in=180] ($(desc.west) + (0,0)$);
+\end{tikzpicture}
+\end{center}
+\vspace{0.5cm}
+
+\section*{ZMENA BÁZY, PODOBNOSŤ MATÍC}
+
+Povedzme, že máme danú lineárnu transformáciu $A \colon V \to V$ na konečnorozmernom vektorovom priestore $V$, pomocou matice $[A]_{YY}$. Ak máme inú bázu $X$, ako nájdeme $[A]_{XX}$?
+
+\begin{align*}
+[A]_{XX} &= [\id_V \circ A \circ \id_V]_{XX} = \\[0.3cm]
+&= [\id_V]_{XY} \circ [A]_{YY} \circ \underbrace{[\id_V]_{YX}}_{\color{red}\begin{matrix} \downarrow \\ \text{ako vyzerá táto matica?} \end{matrix}}
+\end{align*}
+
+Ak $X = (\ora{x_1}, \dots, \ora{x_n})$
+
+\begin{align*}
+[\id_V]_{YX} &= \begin{pmatrix} 
+[\id_V(\ora{x_1})]_Y & \dots & [\id_V(\ora{x_n})]_Y 
+\end{pmatrix} = \\[0.3cm]
+&= \begin{pmatrix} 
+[\ora{x_1}]_Y & \dots & [\ora{x_n}]_Y 
+\end{pmatrix}
+\end{align*}
+
+ak $V = K^n$ a $Y$ je kanonická báza
+\begin{center}
+\begin{tikzpicture}
+\node (eq1) at (0,0) {$Y = E = (\ora{e_1}, \dots, \ora{e_n})$};
+\node (text1) at (0,-1) {jednotkové vektory $K^n$};
+\draw[->] (eq1) -- (text1);
+
+\node (eq2) at (0,-2.5) {$[\ora{x_i}]_Y = \ora{x_i}$};
+\node (text2) at (0,-3.5) {ako stĺpec};
+\draw[->] (eq2) -- (text2);
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+\noindent Aký je vzťah $[\id_V]_{XY}, [\id_V]_{YX}$?
+\begin{align*}
+[\id_V]_{XY} [\id_V]_{YX} &= [\id_V \circ \id_V]_{XX} \\
+&= I_n \quad \textbf{!}
+\end{align*}
+
+Teda sú navzájom inverzné.
+
+Pr.: Lin. transf: osová súmernosť dla osi I. kvadrantu $A$:
+\[
+[A]_{EE} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \qquad \text{AKA „prehodenie zložiek“}
+\]
+
+Vezmime $X = ((1,1), (-1,1))$
+\[
+\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}^{-1} = \begin{pmatrix} 1/2 & 1/2 \\ -1/2 & 1/2 \end{pmatrix}
+\]
+
+\begin{align*}
+[A]_{XX} &= \begin{pmatrix} 1/2 & 1/2 \\ -1/2 & 1/2 \end{pmatrix} 
+\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} 
+\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \\[0.2cm]
+&= \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & -1/2 \end{pmatrix} 
+\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = 
+\begin{array}[t]{c}
+\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \\
+\downarrow \\
+\text{diagonálna!}
+\end{array}
+\end{align*}
+
+\vspace{0.3cm}
+Toto motivuje nasledujúcu definíciu:
+
+\begin{definicia}
+Dve štvorcové matice rovnakého rozmeru $A, B$ sú \ul{podobné}, ak existuje regulárna matica $P$ taká, že
+\[ B = P^{-1} A P \]
+Značíme $A \simeq B$
+\end{definicia}
+
+\begin{tvrdenie}
+Ak $A, B, C$ sú štvorcové matice $n \times n$
+\begin{enumerate}[a)]
+    \item $A \simeq A$
+    \item Ak $A \simeq B$, potom $B \simeq A$
+    \item Ak $A \simeq B$ a $B \simeq C$, potom $A \simeq C$
+\end{enumerate}
+\end{tvrdenie}
+
+\begin{proof}
+\hfill
+\begin{enumerate}[a)]
+    \item $A = I^{-1} A I$
+    \item Ak $B = P^{-1} A P$, potom
+    \begin{align*}
+    P B &= P P^{-1} A P = I A P = A P \\
+    P B P^{-1} &= A P P^{-1} = A I = A
+    \end{align*}
+    \[ (P^{-1})^{-1} B P^{-1} = A \implies B \simeq A \]
+    \item $B = P^{-1} A P \qquad C = Q^{-1} B Q$
+    \begin{align*}
+    C &= Q^{-1} P^{-1} A P Q = \\
+    &= (P Q)^{-1} A (P Q) \\[0.2cm]
+    &\Downarrow \\
+    A &\simeq C \qedhere
+    \end{align*}
+\end{enumerate}
+\end{proof}
+
+\vspace{0.5cm}
+\noindent Pohľad na vec ako „diagonalizáciu matice“
+
+\begin{center}
+\begin{tikzpicture}
+% Circle representing the set of matrices
+\draw[thick] (0,0) circle (2cm);
+
+% Slices representing equivalence classes
+\begin{scope}
+\clip (0,0) circle (2cm);
+\draw[thick] (-3, -0.8) -- (3, 0.8);
+\draw[thick] (-3, 0.5) -- (3, 2);
+\draw[thick] (-3, -2) -- (3, -0.5);
+\draw[thick] (-0.5, -3) -- (1.5, 3);
+\draw[thick] (-2, -3) -- (0, 3);
+\draw[thick] (1, -3) -- (3, 3);
+\end{scope}
+
+% \simeq symbol in one class
+\node at (-0.6, 0.1) {\large $\simeq$};
+
+% Representative matrices as dots in their classes
+\filldraw (0.4, 0.5) circle (1.5pt);
+\filldraw (0.8, -0.1) circle (1.5pt);
+\filldraw (0.5, -0.6) circle (1.5pt);
+
+% Arrows to "diagonálne"
+\node[right] (diag) at (2.5, 0) {diagonálne};
+\draw[->, thick, shorten <=3pt] (0.4, 0.5) to[out=0, in=170] (diag.west);
+\draw[->, thick, shorten <=3pt] (0.8, -0.1) -- (diag.west);
+\draw[->, thick, shorten <=3pt] (0.5, -0.6) to[out=0, in=190] (diag.west);
+
+% Text K^{nxn}
+\node[above right] at (1.5, 1.5) {$K^{n \times n}$ matice $n \times n$};
+
+% Bottom arrow and text
+\draw[->, thick] (-0.5, -2.1) -- (-0.5, -2.8);
+\node[below] at (-0.5, -2.8) {rozklad $K^{n \times n}$ podľa podobnosti};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.5cm}
+Hľadáme podobnú, diagonálnu maticu.
+
+\end{document}

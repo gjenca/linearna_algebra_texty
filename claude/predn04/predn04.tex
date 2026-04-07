@@ -1,0 +1,183 @@
+\section{Vlastné hodnoty, vlastné vektory}
+
+Nech $A \colon V \to V$ je lineárna transformácia konečnorozmerného priestoru, $\dim(V) = n$.
+
+Hľadáme bázu $X = (\ora{x}_1, \dots, \ora{x}_n)$ takú, že $[A]_{XX}$ je diagonálna matica.
+
+Čo to znamená?
+\[
+  [A]_{XX}
+  = \begin{pmatrix}
+      [A\ora{x}_1]_X & \cdots & [A\ora{x}_n]_X
+    \end{pmatrix}
+\]
+Toto má byť diagonálna matica, teda
+\[
+  [A\ora{x}_1]_X
+  = \begin{pmatrix} \lambda_1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \quad
+  [A\ora{x}_2]_X
+  = \begin{pmatrix} 0 \\ \lambda_2 \\ \vdots \\ 0 \end{pmatrix}, \quad \dots \quad
+  [A\ora{x}_n]_X
+  = \begin{pmatrix} 0 \\ 0 \\ \vdots \\ \lambda_n \end{pmatrix}
+\]
+(toto sú súradnice v~báze $X$). Teda
+\[
+  [A\ora{x}_i]_X
+  = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ \lambda_i \\ 0 \\ \vdots \\ 0 \end{pmatrix}
+  \leftarrow \text{v~$i$-tom riadku}
+\]
+a teda
+\[
+  A\ora{x}_i
+  = 0 \cdot \ora{x}_1 + \dots + 0 + \lambda_i \ora{x}_i + 0 + \dots + 0 \cdot \ora{x}_n
+  = \lambda_i \ora{x}_i.
+\]
+
+Teda každý vektor $\ora{x}$, ktorý sa vyskytuje v~tej báze $X$, má vlastnosť
+\[
+  A\ora{x} = \lambda\ora{x}
+  \quad \text{pre nejaký skalár } \lambda \in K.
+\]
+Zároveň $\ora{x} \neq \ora{o}$ (lebo $\ora{o}$ nie je v~žiadnej báze).
+
+\begin{definicia}
+\label{def:vlastna-hodnota}
+Nech $A \colon V \to V$ je lineárna transformácia. Ak
+\[
+  A\ora{x} = \lambda\ora{x}, \quad \ora{x} \neq \ora{o}, \quad \lambda \in K,
+\]
+potom hovoríme, že $\lambda$ je \emph{vlastná hodnota} $A$
+a~$\ora{x}$ je k~nej prislúchajúci \emph{vlastný vektor}.
+\end{definicia}
+
+Podľa horeuvedených úvah teda dostávame:
+
+\begin{tvrdenie}
+\label{tvrden:diag-vlastne-vektory}
+Nech $A \colon V \to V$ je lineárna transformácia konečnorozmerného vektorového priestoru $V$, $X$ je báza $V$.
+Potom $[A]_{XX}$ je diagonálna práve vtedy, keď $X$ pozostáva z~vlastných vektorov $A$.
+\end{tvrdenie}
+
+\begin{priklad}
+Uvažujme lineárnu transformáciu „osová súmernosť podľa fixnej priamky $P$ v~rovine $S$ s~počiatkom''.
+
+% TikZ diagram for the reflection example
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+  % Line P
+  \draw[blue, thick] (-1,-1.5) -- (2,2.5) node[above right]{$P$};
+  % Original vector
+  \draw[->, thick] (0,0) -- (0.5,1.5) node[above left]{$\ora{x}$};
+  % Reflected vector
+  \draw[->, thick, green!60!black] (0,0) -- (1.5,0.5) node[right]{$O_P\ora{x}$};
+\end{tikzpicture}
+\end{center}
+
+Aké sú vlastné vektory tohto lineárneho zobrazenia $O_P$?
+
+Sú dvoch druhov:
+\begin{enumerate}
+  \item Tie, ktoré ležia na priamke $P$; platí pre ne
+    $O_P(\ora{x}) = \ora{x} = 1 \cdot \ora{x}$,
+    teda prislúchajú ku vlastnej hodnote $1$.
+
+  \item Tie, ktoré sú \underline{kolmé} na $P$; platí pre ne
+    $O_P(\ora{x}) = (-1)\ora{x}$,
+    teda prislúchajú vlastnej hodnote $(-1)$.
+\end{enumerate}
+
+Iné vlastné hodnoty ani vektory $O_P$ zrejme nemá.
+\end{priklad}
+
+Rozmýšľajme teraz o~nejakej lineárnej transformácii $A \colon V \to V$.
+Ako nájsť vlastné hodnoty a~vlastné vektory $A$?
+
+Predpokladajme najprv, že o~nejakom $\lambda \in K$ vieme, že je vlastnou hodnotou $A$, to znamená
+\[
+  A\ora{x} = \lambda\ora{x}, \quad \ora{x} \neq \ora{o}.
+\]
+Navzájom ekvivalentné výroky o~$\ora{x}$:
+\begin{align*}
+  A\ora{x} - \lambda\ora{x} &= \ora{o} \\
+  A\ora{x} - \lambda I\,\ora{x} &= \ora{o} \\
+  (A - \lambda I)\ora{x} &= \ora{o} \\
+  \ora{x} &\in \Ker(A - \lambda I)
+\end{align*}
+
+Ak teda vieme, že $\lambda$ je vlastná hodnota, vlastné vektory prislúchajúce k~$\lambda$ môžeme určiť ako prvky jadra akejsi lineárnej transformácie.
+
+\begin{priklad}
+Uvažujme lineárnu transformáciu vektorového priestoru $\R^2$ danú maticou
+\[
+  A = \begin{pmatrix} 1 & 1 \\ 3 & -1 \end{pmatrix}
+\]
+v~kanonickej báze $\R^2$.
+
+Prezradím, že vlastné hodnoty tejto lineárnej transformácie sú
+\[
+  \lambda_1 = 2, \quad \lambda_2 = -2.
+\]
+
+Nájdime vlastný vektor prislúchajúci k~$\lambda_1 = 2$.
+\[
+  A - \lambda_1 I
+  = \begin{pmatrix} 1 & 1 \\ 3 & -1 \end{pmatrix}
+  - \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}
+  = \begin{pmatrix} -1 & 1 \\ 3 & -3 \end{pmatrix}
+\]
+
+Hľadáme $\Ker(A - \lambda_1 I)$:
+\[
+  \left(\begin{array}{cc|c}
+    -1 & 1 & 0 \\
+     3 & -3 & 0
+  \end{array}\right)
+  \sim
+  \left(\begin{array}{cc|c}
+    -1 & 1 & 0 \\
+     0 & 0 & 0
+  \end{array}\right)
+\]
+
+Položme $x_2 = s$. Potom $-x_1 + x_2 = 0$, teda $-x_1 + s = 0$, čiže $x_1 = s$. Dostávame
+\[
+  \Ker(A - \lambda_1 I)
+  = \{(s, s) \mid s \in \R\}.
+\]
+
+Napríklad $(1,1)$ je vlastný vektor prislúchajúci k~$2$. Overenie:
+\[
+  \begin{pmatrix} 1 & 1 \\ 3 & -1 \end{pmatrix}
+  \begin{pmatrix} 1 \\ 1 \end{pmatrix}
+  = \begin{pmatrix} 2 \\ 2 \end{pmatrix}
+  = 2 \cdot \begin{pmatrix} 1 \\ 1 \end{pmatrix}
+  = \lambda_1 \cdot \begin{pmatrix} 1 \\ 1 \end{pmatrix}.
+\]
+
+Keď urobíme to isté pre tú druhú vlastnú hodnotu, dostaneme
+\[
+  A - \lambda_2 I
+  = \begin{pmatrix} 3 & 1 \\ 3 & 1 \end{pmatrix}.
+\]
+
+Hľadáme $\Ker(A - \lambda_2 I)$:
+\[
+  \left(\begin{array}{cc|c}
+    3 & 1 & 0 \\
+    3 & 1 & 0
+  \end{array}\right)
+  \sim
+  \left(\begin{array}{cc|c}
+    3 & 1 & 0 \\
+    0 & 0 & 0
+  \end{array}\right)
+\]
+
+Dostávame $3x_1 + x_2 = 0$. Položme $x_2 = t$, potom $3x_1 + t = 0$, čiže $x_1 = -\frac{1}{3}t$. Teda
+\[
+  \Ker(A - \lambda_2 I)
+  = \left\{\left(-\tfrac{1}{3}t,\; t\right) \;\middle|\; t \in \R\right\}.
+\]
+
+Čiže jeden z~vlastných vektorov prislúchajúcich k~$\lambda_2 = -2$ je (pre $t = 1$) vektor $\left(-\frac{1}{3},\; 1\right)$.
+\end{priklad}
